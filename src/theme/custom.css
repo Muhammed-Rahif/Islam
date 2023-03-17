@@ -4,6 +4,10 @@
   font-family: "Manjari", sans-serif;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 ion-router-outlet > .ion-page {
   animation: fadeIn 0.5s 1 forwards cubic-bezier(0.215, 0.61, 0.355, 1);
   box-shadow: -4px 4px 12px rgba(0, 0, 0, 0.4);
