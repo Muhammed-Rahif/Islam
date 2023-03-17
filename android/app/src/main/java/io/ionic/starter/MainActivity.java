@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package tech.rahif.islam;
 
 import com.getcapacitor.BridgeActivity;
 

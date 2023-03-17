@@ -48,6 +48,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
     "eject": "react-scripts eject",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "pretty": "prettier --write ."
   },
   "eslintConfig": {
@@ -72,6 +73,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.21.3",
+    "@capacitor/assets": "^2.0.4",
     "@capacitor/cli": "4.7.1",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "eslint": "^8.0.1",
