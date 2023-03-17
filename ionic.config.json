@@ -1,0 +1,7 @@
+{
+  "name": "Islam",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
