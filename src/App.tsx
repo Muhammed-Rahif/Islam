@@ -11,10 +11,8 @@ import {
   setupIonicReact,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { book, person, cog, chatbubble } from 'ionicons/icons';
+import QuranPage from './pages/Quran';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -40,37 +38,59 @@ setupIonicReact({
   mode: 'ios',
 });
 
+const routes: {
+  name: string;
+  path: string;
+  icon: string;
+}[] = [
+  {
+    name: 'Quran',
+    path: '/quran',
+    icon: book,
+  },
+  {
+    name: 'Sunnah',
+    path: '/sunnah',
+    icon: person,
+  },
+  {
+    name: 'Dhikr',
+    path: '/dhikr',
+    icon: chatbubble,
+  },
+  {
+    name: 'Settings',
+    path: '/settings',
+    icon: cog,
+  },
+];
+
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/quran">
+            <QuranPage />
           </Route>
-          <Route exact path="/tab2">
+          {/* <Route exact path="/tab2">
             <Tab2 />
           </Route>
           <Route path="/tab3">
             <Tab3 />
-          </Route>
+          </Route> */}
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/quran" />
           </Route>
         </IonRouterOutlet>
+
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
-          </IonTabButton>
+          {routes.map(({ icon, name, path }, indx) => (
+            <IonTabButton tab={name} href={path} key={name}>
+              <IonIcon aria-hidden="true" icon={icon} />
+              <IonLabel>{name}</IonLabel>
+            </IonTabButton>
+          ))}
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
