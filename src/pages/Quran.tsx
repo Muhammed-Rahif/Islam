@@ -20,6 +20,7 @@ const Quran: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
   const [sortBy, setSortBy] = useState<ChapterSortBy>('surah');
   const [search, setSearch] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const scrollToTop = useCallback(() => {
     // Passing a duration to the method makes it so the scroll slowly
@@ -35,7 +36,18 @@ const Quran: React.FC = () => {
           <IonTitle>Quran</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent ref={contentRef} fullscreen>
+      <IonContent
+        onIonScroll={(e) => {
+          if (e.detail.scrollTop > 30) {
+            setIsScrolled(true);
+          } else {
+            setIsScrolled(false);
+          }
+        }}
+        scrollEvents
+        ref={contentRef}
+        fullscreen
+      >
         <IonSearchbar
           onIonChange={(e) => setSearch(e.detail.value!)}
           className="sticky top-0 z-30"
@@ -62,9 +74,11 @@ const Quran: React.FC = () => {
       </IonContent>
 
       <IonFab slot="fixed" vertical="bottom" horizontal="end">
-        <IonFabButton size="small" onClick={scrollToTop}>
-          <IonIcon icon={arrowUp}></IonIcon>
-        </IonFabButton>
+        {isScrolled && (
+          <IonFabButton size="small" onClick={scrollToTop}>
+            <IonIcon icon={arrowUp}></IonIcon>
+          </IonFabButton>
+        )}
       </IonFab>
     </IonPage>
   );
