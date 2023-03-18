@@ -64,16 +64,9 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
     });
   }, [refetchChapters, presentToast, sortBy, refetchAllJuzs]);
 
-  const sortedChapters = useMemo(() => {
-    const sorted =
-      sortBy === 'revelation-order'
-        ? chapterData?.chapters.sort(
-            (a, b) => a.revelation_order - b.revelation_order
-          )
-        : chapterData?.chapters.sort((a, b) => a.id - b.id);
-
-    if (search) {
-      return sorted?.filter((chapter) => {
+  const searchedChapters = useMemo(() => {
+    if (search.trim()) {
+      return chapterData?.chapters?.filter((chapter) => {
         (chapter as any).t = chapter.translated_name.name;
         return Object.values(chapter)
           .join(' ')
@@ -82,9 +75,18 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
           .includes(search.toLowerCase());
       });
     }
+  }, [chapterData?.chapters, search]);
+
+  const sortedChapters = useMemo(() => {
+    const sorted =
+      sortBy === 'revelation-order'
+        ? chapterData?.chapters.sort(
+            (a, b) => a.revelation_order - b.revelation_order
+          )
+        : chapterData?.chapters.sort((a, b) => a.id - b.id);
 
     return sorted;
-  }, [chapterData, sortBy, search]);
+  }, [chapterData, sortBy]);
 
   return (
     <div className="my-3">
@@ -115,7 +117,7 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
       <IonItemGroup>
         {sortBy !== 'juz' ? (
           //  when succesfull data retrieve; and sortBy == 'revelation-order' or 'surah'
-          sortedChapters?.map(
+          (searchedChapters ?? sortedChapters)?.map(
             ({ name_simple, verses_count, id, translated_name }, i) => (
               <ChapterItem
                 name={name_simple}
@@ -130,7 +132,7 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
         ) : (
           // when succesfull data retrieve; and sortBy == 'juzs'
           <SortedByJuz
-            chapters={chapterData?.chapters}
+            chapters={searchedChapters ?? chapterData?.chapters}
             juzs={allJuzsData?.juzs}
           />
         )}

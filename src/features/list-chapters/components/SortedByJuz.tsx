@@ -19,9 +19,11 @@ const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
 
         return (
           <>
-            <IonItemDivider className="z-20">
-              <IonLabel>Juz {juz_number}</IonLabel>
-            </IonItemDivider>
+            {juzsChapters!.length > 0 && (
+              <IonItemDivider className="z-20">
+                <IonLabel>Juz {juz_number}</IonLabel>
+              </IonItemDivider>
+            )}
 
             {juzsChapters?.map(
               ({ name_simple, verses_count, id, translated_name }, i) => {
