@@ -1,12 +1,8 @@
-import { quranApiInstance } from 'config/api';
 import {
   IonItem,
-  IonItemDivider,
   IonItemGroup,
-  IonLabel,
   IonRefresher,
   IonRefresherContent,
-  IonRippleEffect,
   IonSpinner,
   IonToast,
   RefresherEventDetail,
@@ -18,6 +14,7 @@ import { useChapersList } from '../api/useChapersList';
 import { alertCircle } from 'ionicons/icons';
 import { useAllJuzs } from '../api/useAllJuzs';
 import { ChapterItem } from './ChapterItem';
+import { SortedByJuz } from './SortedByJuz';
 
 interface ChapetersListProps {
   sortBy: ChapterSortBy;
@@ -30,18 +27,14 @@ const ChapetersList: React.FC<ChapetersListProps> = ({ sortBy = 'surah' }) => {
     isLoading,
     error,
     data: chapterData,
-    refetch,
-  } = useChapersList({
-    sortBy,
-  });
-  const { data: allJuzsData } = useAllJuzs({
-    sortBy,
-  });
+    refetch: refetchChapters,
+  } = useChapersList();
+  const { data: allJuzsData, refetch: refetchAllJuzs } = useAllJuzs();
 
+  // when refetching
   const handleRefresh = useCallback(
     (event: CustomEvent<RefresherEventDetail>) => {
-      refetch()
-        .then(() => event.detail.complete())
+      Promise.all([refetchChapters(), refetchAllJuzs()])
         .catch((err) => {
           presentToast({
             message: err.message,
@@ -49,13 +42,15 @@ const ChapetersList: React.FC<ChapetersListProps> = ({ sortBy = 'surah' }) => {
             position: 'bottom',
             icon: alertCircle,
           });
-        });
+        })
+        .finally(() => event.detail.complete());
     },
-    [presentToast, refetch]
+    [presentToast, refetchAllJuzs, refetchChapters]
   );
 
+  // runs when 'sortBy' state changes
   useEffect(() => {
-    refetch().catch((err) => {
+    Promise.all([refetchChapters(), refetchAllJuzs()]).catch((err) => {
       presentToast({
         message: err.message,
         duration: 4500,
@@ -63,55 +58,16 @@ const ChapetersList: React.FC<ChapetersListProps> = ({ sortBy = 'surah' }) => {
         icon: alertCircle,
       });
     });
-  }, [refetch, presentToast, sortBy]);
+  }, [refetchChapters, presentToast, sortBy, refetchAllJuzs]);
 
-  const juzsItems = useMemo(
+  const sortedChapters = useMemo(
     () =>
-      allJuzsData?.juzs.map(({ verse_mapping, juz_number }, indx) => {
-        const juzChapters = chapterData?.chapters.filter((chapter) =>
-          // getting juzs chapters
-          Object.keys(verse_mapping).includes(chapter.id.toString())
-        );
-
-        return (
-          <>
-            <IonItemDivider className="z-20">
-              <IonLabel>Juz {juz_number}</IonLabel>
-            </IonItemDivider>
-
-            {juzChapters?.map(
-              ({ name_simple, verses_count, id, translated_name }, i) => {
-                return (
-                  <ChapterItem
-                    name={name_simple}
-                    versesCount={verses_count}
-                    id={id}
-                    translatedName={translated_name.name}
-                    index={i}
-                  />
-                );
-              }
-            )}
-          </>
-        );
-      }),
-    [allJuzsData?.juzs, chapterData?.chapters]
-  );
-
-  const chaptersItems = useMemo(
-    () =>
-      chapterData?.chapters?.map(
-        ({ name_simple, verses_count, id, translated_name }, i) => (
-          <ChapterItem
-            name={name_simple}
-            versesCount={verses_count}
-            id={id}
-            translatedName={translated_name.name}
-            index={i}
-          />
-        )
-      ),
-    [chapterData?.chapters]
+      sortBy === 'revelation-order'
+        ? chapterData?.chapters.sort(
+            (a, b) => a.revelation_order - b.revelation_order
+          )
+        : chapterData?.chapters.sort((a, b) => a.id - b.id),
+    [chapterData, sortBy]
   );
 
   return (
@@ -141,11 +97,26 @@ const ChapetersList: React.FC<ChapetersListProps> = ({ sortBy = 'surah' }) => {
       )}
 
       <IonItemGroup>
-        {sortBy !== 'juz'
-          ? //  when succesfull data retrieve; and sortBy != 'revelation-order' or 'surah'
-            chaptersItems
-          : // when succesfull data retrieve; and sortBy == 'juzs'
-            juzsItems}
+        {sortBy !== 'juz' ? (
+          //  when succesfull data retrieve; and sortBy == 'revelation-order' or 'surah'
+          sortedChapters?.map(
+            ({ name_simple, verses_count, id, translated_name }, i) => (
+              <ChapterItem
+                name={name_simple}
+                versesCount={verses_count}
+                id={id}
+                translatedName={translated_name.name}
+                index={i}
+              />
+            )
+          )
+        ) : (
+          // when succesfull data retrieve; and sortBy == 'juzs'
+          <SortedByJuz
+            chapters={chapterData?.chapters}
+            juzs={allJuzsData?.juzs}
+          />
+        )}
       </IonItemGroup>
     </div>
   );

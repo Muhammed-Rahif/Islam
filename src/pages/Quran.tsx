@@ -3,20 +3,15 @@ import {
   IonContent,
   IonFab,
   IonFabButton,
-  IonRefresherContent,
   IonHeader,
   IonIcon,
-  IonItem,
   IonLabel,
   IonPage,
-  IonRippleEffect,
   IonSearchbar,
   IonSegment,
   IonSegmentButton,
   IonTitle,
   IonToolbar,
-  IonRefresher,
-  RefresherEventDetail,
 } from '@ionic/react';
 import { arrowUp } from 'ionicons/icons';
 import { createRef, useCallback, useState } from 'react';

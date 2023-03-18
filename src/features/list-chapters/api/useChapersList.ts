@@ -1,37 +1,13 @@
 import { quranApiInstance } from 'config/api';
 import { useQuery } from 'react-query';
-import { Chapter, ChapterSortBy } from '../types/Chapter';
-import { Juz } from '../types/Juz';
+import { Chapter } from '../types/Chapter';
 
-interface Props {
-  sortBy: ChapterSortBy;
-}
+// interface Props {}
 
-function useChapersList({ sortBy }: Props) {
+function useChapersList() {
   return useQuery('chapters', async () => {
-    type ChapterWithJuzType = Chapter & {
-      juzNo: number;
-    };
-
-    // fetching chapters only
-    const { data }: { data: { chapters: ChapterWithJuzType[] } } =
+    const { data }: { data: { chapters: Chapter[] } } =
       await quranApiInstance.get('/chapters');
-
-    // fetching juzs
-    const {
-      data: { juzs },
-    }: { data: { juzs: Juz[] } } = await quranApiInstance.get('/juzs');
-
-    // injecting juzNo to chapters
-    // data.chapters = data.chapters.map((chapter) => {
-    //   chapter.juzNo =
-    // });
-
-    if (sortBy === 'revelation-order') {
-      data.chapters = data.chapters.sort(
-        (a, b) => a.revelation_order - b.revelation_order
-      );
-    }
 
     return data;
   });
