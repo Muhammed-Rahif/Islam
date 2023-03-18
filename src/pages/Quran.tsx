@@ -1,4 +1,4 @@
-import { ChapetersList, ChapterSortBy } from 'features/list-chapters';
+import { ChaptersList, ChapterSortBy } from 'features/list-chapters';
 import {
   IonContent,
   IonFab,
@@ -19,6 +19,7 @@ import { createRef, useCallback, useState } from 'react';
 const Quran: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
   const [sortBy, setSortBy] = useState<ChapterSortBy>('surah');
+  const [search, setSearch] = useState('');
 
   const scrollToTop = useCallback(() => {
     // Passing a duration to the method makes it so the scroll slowly
@@ -35,10 +36,14 @@ const Quran: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent ref={contentRef} fullscreen>
-        <IonSearchbar className="sticky top-0 z-30" color="light" />
+        <IonSearchbar
+          onIonChange={(e) => setSearch(e.detail.value!)}
+          className="sticky top-0 z-30"
+          color="light"
+        />
 
         <IonSegment
-          className="max-w-[94%] mx-auto"
+          className="max-w-[calc(100%-1.5rem)] mx-auto"
           value={sortBy}
           onIonChange={(e) => setSortBy(e.detail.value as ChapterSortBy)}
         >
@@ -53,7 +58,7 @@ const Quran: React.FC = () => {
           </IonSegmentButton>
         </IonSegment>
 
-        <ChapetersList sortBy={sortBy} />
+        <ChaptersList search={search} sortBy={sortBy} />
       </IonContent>
 
       <IonFab slot="fixed" vertical="bottom" horizontal="end">
