@@ -1,3 +1,4 @@
+import { ChapetersList, ChapterSortBy } from 'features/list-chapters';
 import {
   IonContent,
   IonFab,
@@ -18,20 +19,11 @@ import {
   RefresherEventDetail,
 } from '@ionic/react';
 import { arrowUp } from 'ionicons/icons';
-import { createRef, useCallback } from 'react';
+import { createRef, useCallback, useState } from 'react';
 
 const Quran: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
-
-  const handleRefresh = useCallback(
-    (event: CustomEvent<RefresherEventDetail>) => {
-      setTimeout(() => {
-        // Any calls to load data go here
-        event.detail.complete();
-      }, 2000);
-    },
-    []
-  );
+  const [sortBy, setSortBy] = useState<ChapterSortBy>('surah');
 
   const scrollToTop = useCallback(() => {
     // Passing a duration to the method makes it so the scroll slowly
@@ -50,7 +42,11 @@ const Quran: React.FC = () => {
       <IonContent ref={contentRef} fullscreen>
         <IonSearchbar className="sticky top-0 z-30" color="light" />
 
-        <IonSegment className="max-w-[94%] mx-auto" value="surah">
+        <IonSegment
+          className="max-w-[94%] mx-auto"
+          value={sortBy}
+          onIonChange={(e) => setSortBy(e.detail.value as ChapterSortBy)}
+        >
           <IonSegmentButton value="surah">
             <IonLabel>Surah</IonLabel>
           </IonSegmentButton>
@@ -62,35 +58,7 @@ const Quran: React.FC = () => {
           </IonSegmentButton>
         </IonSegment>
 
-        <IonRefresher
-          slot="fixed"
-          className="z-40"
-          onIonRefresh={handleRefresh}
-        >
-          <IonRefresherContent></IonRefresherContent>
-        </IonRefresher>
-
-        <div className="my-3">
-          {new Array(114).fill(0).map((_, i) => (
-            <IonItem
-              key={i}
-              className="flex items-center w-full [--inner-padding-end:0px]"
-              button
-            >
-              <IonRippleEffect type="unbounded" />
-              <h1 className="my-2 ml-1 mr-4">
-                <b>{i + 1}</b>
-              </h1>
-              <IonLabel>
-                <h2>Al-Fatihah</h2>
-                <p>The Opener</p>
-              </IonLabel>
-              <IonLabel slot="end" className="m-0">
-                <p>7 Ayahs</p>
-              </IonLabel>
-            </IonItem>
-          ))}
-        </div>
+        <ChapetersList sortBy={sortBy} />
       </IonContent>
 
       <IonFab slot="fixed" vertical="bottom" horizontal="end">
