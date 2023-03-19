@@ -34,7 +34,8 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import './theme/custom.css';
+import './theme/styles.css';
+import ViewChapter from 'pages/ViewChapter';
 
 setupIonicReact({
   mode: 'ios',
@@ -75,15 +76,9 @@ const App: React.FC = () => (
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route exact path="/quran">
-              <QuranPage />
-            </Route>
-            {/* <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route> */}
+            <Route exact path="/quran" component={QuranPage} />
+            <Route path="/quran/:id" component={ViewChapter} />
+
             <Route exact path="/">
               <Redirect to="/quran" />
             </Route>

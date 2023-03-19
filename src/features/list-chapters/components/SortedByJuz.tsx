@@ -1,4 +1,5 @@
 import { IonItemDivider, IonLabel } from '@ionic/react';
+import { Fragment } from 'react';
 import { Chapter } from '../types/Chapter';
 import { Juz } from '../types/Juz';
 import { ChapterItem } from './ChapterItem';
@@ -18,7 +19,7 @@ const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
         );
 
         return (
-          <>
+          <Fragment key={indx}>
             {juzsChapters!.length > 0 && (
               <IonItemDivider className="z-20">
                 <IonLabel>Juz {juz_number}</IonLabel>
@@ -38,7 +39,7 @@ const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
                 );
               }
             )}
-          </>
+          </Fragment>
         );
       })}
     </>

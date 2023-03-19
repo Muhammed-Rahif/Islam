@@ -5,7 +5,7 @@ import { Chapter } from '../types/Chapter';
 // interface Props {}
 
 function useChapersList() {
-  return useQuery('chapters', async () => {
+  return useQuery(['chapters'], async () => {
     const { data }: { data: { chapters: Chapter[] } } =
       await quranApiInstance.get('/chapters');
 

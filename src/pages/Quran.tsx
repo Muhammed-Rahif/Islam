@@ -23,10 +23,7 @@ const Quran: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const scrollToTop = useCallback(() => {
-    // Passing a duration to the method makes it so the scroll slowly
-    // goes to the top instead of instantly
     contentRef.current?.scrollToTop(500);
-    console.log(contentRef.current);
   }, [contentRef]);
 
   return (

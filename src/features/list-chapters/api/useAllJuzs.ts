@@ -5,7 +5,7 @@ import { Juz } from '../types/Juz';
 // interface Props {}
 
 function useAllJuzs() {
-  return useQuery('juzs', async () => {
+  return useQuery(['juzs'], async () => {
     const { data }: { data: { juzs: Juz[] } } = await quranApiInstance.get(
       '/juzs'
     );
