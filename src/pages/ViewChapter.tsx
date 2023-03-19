@@ -86,7 +86,7 @@ const ViewChapter: React.FC = () => {
         </IonSegment>
 
         {type === 'reading' ? (
-          <div className="[direction:rtl] leading-9 text-justify">
+          <div className="[direction:rtl] leading-9 text-justify my-3">
             <IonText lang="ar" className="ml-2">
               <span className="mb-2 text-justify">
                 {versesUthmaniData?.verses.map((verse, indx) => (
@@ -98,21 +98,21 @@ const ViewChapter: React.FC = () => {
             </IonText>
           </div>
         ) : (
-          <div className="my-4">
+          <div className="my-6">
             {chapterVerses?.verses.map((verse, indx) => (
               <>
                 <div key={indx} className="[direction:rtl]">
                   <IonText lang="ar" className="ml-2">
                     <span className="mb-2 text-justify">
-                      {versesUthmaniData?.verses[indx].text_uthmani}{' '}
+                      {versesUthmaniData?.verses[indx].text_uthmani}
                       {`  ﴿${numToArabic(++indx)}﴾  `}
                     </span>
                   </IonText>
                 </div>
                 <IonText className="text-left">
-                  {removeHtmlTags(verse?.translations[0].text)} -{' '}
+                  {removeHtmlTags(verse?.translations[0].text)}
                   <small className="opacity-20 block mb-4">
-                    {verse.translations[0].resource_name}
+                    - {verse.translations[0].resource_name}
                   </small>
                 </IonText>
               </>
