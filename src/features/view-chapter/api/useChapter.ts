@@ -7,13 +7,21 @@ interface Props {
 }
 
 function useChapter({ chapterId }: Props) {
-  return useQuery(['chapter', chapterId], async () => {
-    const { data }: { data: Chapter } = await quranApiInstance.get(
-      `/chapters/${chapterId}`
-    );
+  return useQuery(
+    ['chapter', chapterId],
+    async () => {
+      const { data }: { data: Chapter } = await quranApiInstance.get(
+        `/chapters/${chapterId}`
+      );
 
-    return data;
-  });
+      return data;
+    },
+    {
+      enabled: Boolean(chapterId),
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    }
+  );
 }
 
 export { useChapter };

@@ -7,13 +7,21 @@ interface Props {
 }
 
 function useVersesUthmani({ chapterId }: Props) {
-  return useQuery(['verses-uthmani', chapterId], async () => {
-    const { data }: { data: VersesUthmani } = await quranApiInstance.get(
-      `https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=${chapterId}`
-    );
+  return useQuery(
+    ['verses-uthmani', chapterId],
+    async () => {
+      const { data }: { data: VersesUthmani } = await quranApiInstance.get(
+        `https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=${chapterId}`
+      );
 
-    return data;
-  });
+      return data;
+    },
+    {
+      enabled: Boolean(chapterId),
+      cacheTime: Infinity,
+      staleTime: Infinity,
+    }
+  );
 }
 
 export { useVersesUthmani };

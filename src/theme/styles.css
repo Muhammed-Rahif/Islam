@@ -24,6 +24,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 
 ion-router-outlet > .ion-page {
   animation: fadeIn 0.5s 1 forwards cubic-bezier(0.215, 0.61, 0.355, 1);
   box-shadow: -4px 4px 12px rgba(0, 0, 0, 0.4);
@@ -31,7 +32,6 @@ ion-router-outlet > .ion-page {
 
 ion-router-outlet > .ion-page-hidden {
   animation: fadeOut 0.5s 1 forwards cubic-bezier(0.215, 0.61, 0.355, 1);
-  display: block !important;
 }
 
 @keyframes fadeIn {
@@ -58,4 +58,4 @@ ion-router-outlet > .ion-page-hidden {
     transform: translate3d(0, 0, 0);
     visibility: hidden;
   }
-}
+} */

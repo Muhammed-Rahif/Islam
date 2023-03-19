@@ -5,12 +5,20 @@ import { Chapter } from '../types/Chapter';
 // interface Props {}
 
 function useChapersList() {
-  return useQuery(['chapters'], async () => {
-    const { data }: { data: { chapters: Chapter[] } } =
-      await quranApiInstance.get('/chapters');
+  return useQuery(
+    ['chapters'],
+    async () => {
+      const { data }: { data: { chapters: Chapter[] } } =
+        await quranApiInstance.get('/chapters');
 
-    return data;
-  });
+      return data;
+    },
+    {
+      enabled: true,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    }
+  );
 }
 
 export { useChapersList };

@@ -17,15 +17,23 @@ function useChapterVerses({
   words = true,
   translations = [131],
 }: Props) {
-  return useQuery(['chapter-verses', chapterId], async () => {
-    const { data }: { data: VersesByChapter } = await quranApiInstance.get(
-      `/verses/by_chapter/${chapterId}?words=${words}&page=${page}&per_page=${per_page}&word_fields=text-uthmani,location,audio_url&translations=${translations.join(
-        ','
-      )}&translation_fields=resource_name`
-    );
+  return useQuery(
+    ['chapter-verses', chapterId],
+    async () => {
+      const { data }: { data: VersesByChapter } = await quranApiInstance.get(
+        `/verses/by_chapter/${chapterId}?words=${words}&page=${page}&per_page=${per_page}&word_fields=text-uthmani,location,audio_url&translations=${translations.join(
+          ','
+        )}&translation_fields=resource_name`
+      );
 
-    return data;
-  });
+      return data;
+    },
+    {
+      enabled: Boolean(chapterId),
+      cacheTime: Infinity,
+      staleTime: Infinity,
+    }
+  );
 }
 
 export { useChapterVerses };

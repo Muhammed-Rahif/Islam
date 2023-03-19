@@ -1,4 +1,3 @@
-import { ChaptersList, ChapterSortBy } from 'features/list-chapters';
 import {
   IonBackButton,
   IonButtons,
@@ -9,10 +8,8 @@ import {
   IonIcon,
   IonLabel,
   IonPage,
-  IonSearchbar,
   IonSegment,
   IonSegmentButton,
-  IonText,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
@@ -20,27 +17,17 @@ import { arrowUp } from 'ionicons/icons';
 import { createRef, useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useChapter } from 'features/view-chapter/api/useChapter';
-import { useVersesUthmani } from 'features/view-chapter/api/useVersesUthmani';
-import { numToArabic, removeHtmlTags } from 'utils/string';
-import { useChapterVerses } from 'features/view-chapter';
+import { ReadingContent } from 'features/view-chapter';
+import { TranslationContent } from 'features/view-chapter/components/TranslationContent';
 
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
   const [type, setType] = useState('reading');
   const [isScrolled, setIsScrolled] = useState(false);
   const { id } = useParams<{ id: string }>();
-  const { isLoading: isVersesUthmaniLoading, data: versesUthmaniData } =
-    useVersesUthmani({
-      chapterId: parseInt(id),
-    });
   const { isLoading: isChapterLoading, data: chapterData } = useChapter({
     chapterId: parseInt(id),
   });
-  const { isLoading: isChapterVersesLoading, data: chapterVerses } =
-    useChapterVerses({
-      chapterId: parseInt(id),
-      words: false,
-    });
 
   const scrollToTop = useCallback(() => {
     contentRef.current?.scrollToTop(500);
@@ -50,8 +37,8 @@ const ViewChapter: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton></IonBackButton>
+          <IonButtons className="flex items-center justify-center" slot="start">
+            <IonBackButton defaultHref="/"></IonBackButton>
           </IonButtons>
           <IonTitle>
             {id}.{' '}
@@ -85,40 +72,7 @@ const ViewChapter: React.FC = () => {
           </IonSegmentButton>
         </IonSegment>
 
-        {type === 'reading' ? (
-          <div className="[direction:rtl] leading-9 text-justify my-3">
-            <IonText lang="ar" className="ml-2">
-              <span className="mb-2 text-justify">
-                {versesUthmaniData?.verses.map((verse, indx) => (
-                  <>
-                    {verse?.text_uthmani} {`  ﴿${numToArabic(++indx)}﴾  `}
-                  </>
-                ))}
-              </span>
-            </IonText>
-          </div>
-        ) : (
-          <div className="my-6">
-            {chapterVerses?.verses.map((verse, indx) => (
-              <>
-                <div key={indx} className="[direction:rtl]">
-                  <IonText lang="ar" className="ml-2">
-                    <span className="mb-2 text-justify">
-                      {versesUthmaniData?.verses[indx].text_uthmani}
-                      {`  ﴿${numToArabic(++indx)}﴾  `}
-                    </span>
-                  </IonText>
-                </div>
-                <IonText className="text-left">
-                  {removeHtmlTags(verse?.translations[0].text)}
-                  <small className="opacity-20 block mb-4">
-                    - {verse.translations[0].resource_name}
-                  </small>
-                </IonText>
-              </>
-            ))}
-          </div>
-        )}
+        {type === 'reading' ? <ReadingContent /> : <TranslationContent />}
       </IonContent>
 
       <IonFab slot="fixed" vertical="bottom" horizontal="end">

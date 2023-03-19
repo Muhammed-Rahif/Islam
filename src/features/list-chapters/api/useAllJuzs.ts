@@ -5,13 +5,21 @@ import { Juz } from '../types/Juz';
 // interface Props {}
 
 function useAllJuzs() {
-  return useQuery(['juzs'], async () => {
-    const { data }: { data: { juzs: Juz[] } } = await quranApiInstance.get(
-      '/juzs'
-    );
+  return useQuery(
+    ['juzs'],
+    async () => {
+      const { data }: { data: { juzs: Juz[] } } = await quranApiInstance.get(
+        '/juzs'
+      );
 
-    return data;
-  });
+      return data;
+    },
+    {
+      enabled: true,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    }
+  );
 }
 
 export { useAllJuzs };

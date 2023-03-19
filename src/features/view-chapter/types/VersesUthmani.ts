@@ -1,5 +1,5 @@
 export interface VersesUthmani {
-  verses: Verse[];
+  verses: UthmaniVerse[];
   meta: Meta;
 }
 
@@ -11,7 +11,7 @@ export interface Filters {
   chapter_number: string;
 }
 
-export interface Verse {
+export interface UthmaniVerse {
   id: number;
   verse_key: string;
   text_uthmani: string;
