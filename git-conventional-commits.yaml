@@ -28,6 +28,7 @@ convention:
       'dhikrs',
       'settings',
       'components',
+      'api',
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:

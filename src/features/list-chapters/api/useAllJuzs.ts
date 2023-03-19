@@ -18,6 +18,7 @@ function useAllJuzs() {
       enabled: true,
       staleTime: Infinity,
       cacheTime: Infinity,
+      retry: true,
     }
   );
 }

@@ -17,6 +17,7 @@ function useChapersList() {
       enabled: true,
       staleTime: Infinity,
       cacheTime: Infinity,
+      retry: true,
     }
   );
 }

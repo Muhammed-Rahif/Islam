@@ -20,6 +20,7 @@ function useChapter({ chapterId }: Props) {
       enabled: Boolean(chapterId),
       staleTime: Infinity,
       cacheTime: Infinity,
+      retry: true,
     }
   );
 }

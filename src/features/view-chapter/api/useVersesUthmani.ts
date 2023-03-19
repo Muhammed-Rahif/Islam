@@ -20,6 +20,7 @@ function useVersesUthmani({ chapterId }: Props) {
       enabled: Boolean(chapterId),
       cacheTime: Infinity,
       staleTime: Infinity,
+      retry: true,
     }
   );
 }
