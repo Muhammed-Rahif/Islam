@@ -11,7 +11,7 @@ import {
   setupIonicReact,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { book, person, cog, chatbubble } from 'ionicons/icons';
+import { book, person, cog, chatbubble, happy } from 'ionicons/icons';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import QuranPage from './pages/Quran';
@@ -60,6 +60,11 @@ const routes: {
     name: 'Dhikr',
     path: '/dhikr',
     icon: chatbubble,
+  },
+  {
+    name: 'Good Deeds',
+    path: '/good-deeds',
+    icon: happy,
   },
   {
     name: 'Settings',
