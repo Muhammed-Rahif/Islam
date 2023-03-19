@@ -23,6 +23,14 @@ export interface Verse {
   page_number: number;
   juz_number: number;
   words: Word[];
+  translations: TranslationElement[];
+}
+
+export interface TranslationElement {
+  id: number;
+  resource_id: number;
+  text: string;
+  resource_name: string;
 }
 
 export interface Word {
@@ -31,12 +39,11 @@ export interface Word {
   audio_url: null | string;
   char_type_name: CharTypeName;
   text_uthmani: string;
-  location: string;
   page_number: number;
   line_number: number;
   text: string;
-  translation: Translation;
-  transliteration: Translation;
+  translation: TransliterationClass;
+  transliteration: TransliterationClass;
 }
 
 export enum CharTypeName {
@@ -44,7 +51,7 @@ export enum CharTypeName {
   Word = 'word',
 }
 
-export interface Translation {
+export interface TransliterationClass {
   text: null | string;
   language_name: LanguageName;
 }
