@@ -21,7 +21,7 @@ function useVersesUthmani({ chapterId }: Props) {
     staleTime: Infinity,
     retry: true,
     structuralSharing: false,
-    notifyOnChangeProps: ['data', 'error', 'isLoading', 'refetch'],
+    notifyOnChangeProps: ['data', 'error', 'isLoading'],
   });
 }
 
