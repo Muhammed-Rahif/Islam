@@ -1,5 +1,5 @@
 ---
-name: "Pre release"
+name: "Release"
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
       - main
 
 jobs:
-  pre-release:
-    name: "Pre Release"
+  release:
+    name: "Release"
     runs-on: "ubuntu-latest"
     permissions: write-all
     steps:
