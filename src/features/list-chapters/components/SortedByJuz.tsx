@@ -34,7 +34,7 @@ const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
                     versesCount={verses_count}
                     id={id}
                     translatedName={translated_name.name}
-                    index={i}
+                    index={id}
                   />
                 );
               }

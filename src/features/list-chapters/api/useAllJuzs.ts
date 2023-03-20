@@ -1,26 +1,24 @@
 import { quranApiInstance } from 'config/api';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Juz } from '../types/Juz';
 
 // interface Props {}
 
 function useAllJuzs() {
-  return useQuery(
-    ['juzs'],
-    async () => {
+  return useQuery({
+    queryKey: ['juzs'],
+    queryFn: async () => {
       const { data }: { data: { juzs: Juz[] } } = await quranApiInstance.get(
         '/juzs'
       );
-
       return data;
     },
-    {
-      enabled: true,
-      staleTime: Infinity,
-      cacheTime: Infinity,
-      retry: true,
-    }
-  );
+    enabled: true,
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    retry: true,
+    structuralSharing: false,
+  });
 }
 
 export { useAllJuzs };

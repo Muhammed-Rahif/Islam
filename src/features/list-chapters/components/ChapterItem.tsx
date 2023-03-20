@@ -1,4 +1,4 @@
-import { IonItem, IonLabel, IonRippleEffect, useIonRouter } from '@ionic/react';
+import { IonItem, IonLabel, IonRippleEffect } from '@ionic/react';
 
 type ChapterItemProps = {
   id: number;
@@ -15,18 +15,16 @@ const ChapterItem: React.FC<ChapterItemProps> = ({
   translatedName,
   versesCount,
 }) => {
-  const { push } = useIonRouter();
-
   return (
     <IonItem
       key={id}
       className="flex items-center w-full [--inner-padding-end:0px]"
       button
-      onClick={() => push(`/quran/${id}`)}
+      routerLink={`/quran/${id}`}
     >
       <IonRippleEffect type="unbounded" />
       <h1 className="my-2 ml-1 mr-4">
-        <b>{++index}</b>
+        <b>{id}</b>
       </h1>
       <IonLabel>
         <h2>{name}</h2>

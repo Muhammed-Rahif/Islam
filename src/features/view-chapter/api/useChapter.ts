@@ -1,5 +1,5 @@
 import { quranApiInstance } from 'config/api';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Chapter } from '../types/Chapter';
 
 interface Props {
@@ -7,22 +7,21 @@ interface Props {
 }
 
 function useChapter({ chapterId }: Props) {
-  return useQuery(
-    ['chapter', chapterId],
-    async () => {
+  return useQuery({
+    queryKey: ['chapter', chapterId],
+    queryFn: async () => {
       const { data }: { data: Chapter } = await quranApiInstance.get(
         `/chapters/${chapterId}`
       );
 
       return data;
     },
-    {
-      enabled: Boolean(chapterId),
-      staleTime: Infinity,
-      cacheTime: Infinity,
-      retry: true,
-    }
-  );
+    enabled: Boolean(chapterId),
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    retry: true,
+    structuralSharing: false,
+  });
 }
 
 export { useChapter };
