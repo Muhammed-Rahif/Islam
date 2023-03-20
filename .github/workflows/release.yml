@@ -1,0 +1,66 @@
+---
+name: "Pre release"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pre-release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+    permissions: write-all
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Setup node environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Setup ionic and capacitor
+        run: |
+          npm i -g @ionic/cli @capacitor/cli yarn
+
+      - name: Install node modules
+        run: yarn
+
+      - name: Build app for android
+        run: |
+          CI=false
+          yarn build
+          npx cap sync android
+          ionic capacitor update
+          ionic capacitor copy android
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+          ./gradlew assembleRelease
+          cd ..
+
+      - name: Conventional Changelog Action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          git-message: "chore(release): {version}"
+          tag-prefix: "v"
+          pre-commit: scripts/versioning.js
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        with:
+          body: ${{ steps.changelog.outputs.clean_changelog }}
+          prerelease: false
+          draft: true
+          tag_name: ${{ steps.changelog.outputs.tag }}
+          name: ${{ steps.changelog.outputs.tag }}
+          files: |
+            android/app/build/outputs/apk/release/app-release-unsigned.apk
+            android/app/build/outputs/apk/debug/app-debug.apk
+            CHANGELOG.md

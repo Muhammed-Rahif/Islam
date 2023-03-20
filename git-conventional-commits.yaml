@@ -15,20 +15,21 @@ convention:
     - revert
   commitScopes:
     [
-      'pages',
-      'resources',
-      'hooks',
-      'theme',
-      'config',
-      'licence',
-      'router',
-      'ui',
-      'quran',
-      'sunnah',
-      'dhikrs',
-      'settings',
-      'components',
-      'api',
+      "pages",
+      "resources",
+      "hooks",
+      "theme",
+      "config",
+      "licence",
+      "router",
+      "ui",
+      "quran",
+      "sunnah",
+      "dhikrs",
+      "settings",
+      "components",
+      "api",
+      "workflows",
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:
@@ -38,7 +39,7 @@ changelog:
     - perf
     - merge
   includeInvalidCommits: true
-  commitIgnoreRegexPattern: '^WIP '
+  commitIgnoreRegexPattern: "^WIP "
   headlines:
     feat: Features
     fix: Bug Fixes

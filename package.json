@@ -1,6 +1,6 @@
 {
   "name": "Islam",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "@capacitor/android": "4.7.1",
@@ -80,6 +80,7 @@
     "@capacitor/assets": "^2.0.4",
     "@capacitor/cli": "4.7.1",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "capacitor-set-version": "^2.0.13",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.7.0",
     "eslint-config-standard-with-typescript": "^34.0.1",
