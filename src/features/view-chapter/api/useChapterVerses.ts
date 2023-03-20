@@ -33,6 +33,7 @@ function useChapterVerses({
     staleTime: Infinity,
     retry: true,
     structuralSharing: false,
+    notifyOnChangeProps: ['data', 'error', 'isLoading', 'refetch'],
   });
 }
 

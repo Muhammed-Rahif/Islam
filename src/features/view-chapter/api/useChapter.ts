@@ -21,6 +21,7 @@ function useChapter({ chapterId }: Props) {
     cacheTime: Infinity,
     retry: true,
     structuralSharing: false,
+    notifyOnChangeProps: ['data', 'error', 'isLoading', 'refetch'],
   });
 }
 
