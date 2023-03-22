@@ -17,8 +17,8 @@ const preCommit = async () => {
 
   await new Promise((resolve, reject) => {
     exec(
-      `yarn capacitor-set-version . -v v${version} -b ${buildNo} --json`,
-      (err, stdout, stderr) => {
+      `yarn capacitor-set-version . -v ${version} -b ${buildNo} --json`,
+      (err, stdout) => {
         console.log(stdout);
         if (err) {
           reject(err);
