@@ -30,6 +30,7 @@ convention:
       "components",
       "api",
       "workflows",
+      "semantic-release"
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:
