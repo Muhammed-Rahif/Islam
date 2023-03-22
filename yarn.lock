@@ -2650,6 +2650,14 @@
     "@types/history" "^4.7.11"
     "@types/react" "*"
 
+"@types/react-scroll-into-view-if-needed@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@types/react-scroll-into-view-if-needed/-/react-scroll-into-view-if-needed-2.1.1.tgz#2e684c4d5e0a63a566383a54a16fc9bd2cf32852"
+  integrity sha512-aphcrlvAqeUTTh0gVa77lxVT7E04egwcy0/DglytyqjDzGKOTBqrl6B9z2JXySPWbi0d5ZVbttP1+ZCzB74Q0A==
+  dependencies:
+    "@types/react" "*"
+    scroll-into-view-if-needed "*"
+
 "@types/react@*", "@types/react@^18.0.17":
   version "18.0.28"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.28.tgz#accaeb8b86f4908057ad629a26635fe641480065"
@@ -4083,6 +4091,11 @@ compression@^1.7.4:
     on-headers "~1.0.2"
     safe-buffer "5.1.2"
     vary "~1.1.2"
+
+compute-scroll-into-view@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/compute-scroll-into-view/-/compute-scroll-into-view-3.0.0.tgz#95d2f2f4653e7edda74dd1e38edaaa897918e0f0"
+  integrity sha512-Yk1An4qzo5++Cu6peT9PsmRKIU8tALpmdoE09n//AfGQFcPfx21/tMGMsmKYmLJWaBJrGOJ5Jz5hoU+7cZZUWQ==
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -9948,6 +9961,13 @@ schema-utils@^4.0.0:
     ajv "^8.8.0"
     ajv-formats "^2.1.1"
     ajv-keywords "^5.0.0"
+
+scroll-into-view-if-needed@*:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/scroll-into-view-if-needed/-/scroll-into-view-if-needed-3.0.6.tgz#2c803a509c1036bc4a9c009fecc5c145f87e47cf"
+  integrity sha512-x+CW0kOzlFNOnseF0DBr0AJ5m+TgGmSOdEZwyiZW0gV87XBvxQKw5A8DvFFgabznA68XqLgVX+PwPX8OzsFvRA==
+  dependencies:
+    compute-scroll-into-view "^3.0.0"
 
 select-hose@^2.0.0:
   version "2.0.0"

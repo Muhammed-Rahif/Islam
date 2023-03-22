@@ -27,10 +27,10 @@ convention:
       "sunnah",
       "dhikrs",
       "settings",
-      "components",
+      "component",
       "api",
       "workflows",
-      "store"
+      "store",
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:
