@@ -1,5 +1,6 @@
-import { ChaptersList, ChapterSortBy } from 'features/list-chapters';
 import {
+  IonBackButton,
+  IonButtons,
   IonContent,
   IonFab,
   IonFabButton,
@@ -7,7 +8,6 @@ import {
   IonIcon,
   IonLabel,
   IonPage,
-  IonSearchbar,
   IonSegment,
   IonSegmentButton,
   IonTitle,
@@ -15,12 +15,19 @@ import {
 } from '@ionic/react';
 import { arrowUp } from 'ionicons/icons';
 import { createRef, useCallback, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useChapter } from 'features/view-chapter/api/useChapter';
+import { ReadingContent } from 'features/view-chapter';
+import { TranslationContent } from 'features/view-chapter/components/TranslationContent';
 
-const Quran: React.FC = () => {
+const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
-  const [sortBy, setSortBy] = useState<ChapterSortBy>('surah');
-  const [search, setSearch] = useState('');
+  const [type, setType] = useState('reading');
   const [isScrolled, setIsScrolled] = useState(false);
+  const { id } = useParams<{ id: string }>();
+  const { isLoading: isChapterLoading, data: chapterData } = useChapter({
+    chapterId: parseInt(id),
+  });
 
   const scrollToTop = useCallback(() => {
     contentRef.current?.scrollToTop(500);
@@ -30,10 +37,17 @@ const Quran: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Quran</IonTitle>
+          <IonButtons className="flex items-center justify-center" slot="start">
+            <IonBackButton defaultHref="/"></IonBackButton>
+          </IonButtons>
+          <IonTitle>
+            {id}.{' '}
+            {isChapterLoading ? 'Loading' : chapterData?.chapter.name_simple}
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent
+        className="ion-padding"
         onIonScroll={(e) => {
           if (e.detail.scrollTop > 30) {
             setIsScrolled(true);
@@ -45,29 +59,20 @@ const Quran: React.FC = () => {
         ref={contentRef}
         fullscreen
       >
-        <IonSearchbar
-          onIonChange={(e) => setSearch(e.detail.value!)}
-          className="sticky top-0 z-30"
-          color="light"
-        />
-
         <IonSegment
-          className="max-w-[calc(100%-1.5rem)] mx-auto"
-          value={sortBy}
-          onIonChange={(e) => setSortBy(e.detail.value as ChapterSortBy)}
+          className="mb-3"
+          value={type}
+          onIonChange={(e) => setType(e.detail.value!)}
         >
-          <IonSegmentButton value="surah">
-            <IonLabel>Surah</IonLabel>
+          <IonSegmentButton value="translation">
+            <IonLabel>Translation</IonLabel>
           </IonSegmentButton>
-          <IonSegmentButton value="juz">
-            <IonLabel>Juz</IonLabel>
-          </IonSegmentButton>
-          <IonSegmentButton value="revelation-order">
-            <IonLabel>Revelation Order</IonLabel>
+          <IonSegmentButton value="reading">
+            <IonLabel>Reading</IonLabel>
           </IonSegmentButton>
         </IonSegment>
 
-        <ChaptersList search={search} sortBy={sortBy} />
+        {type === 'reading' ? <ReadingContent /> : <TranslationContent />}
       </IonContent>
 
       <IonFab slot="fixed" vertical="bottom" horizontal="end">
@@ -81,4 +86,4 @@ const Quran: React.FC = () => {
   );
 };
 
-export default Quran;
+export default ViewChapter;

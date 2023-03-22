@@ -18,9 +18,13 @@ import { SortedByJuz } from './SortedByJuz';
 
 interface ChapetersListProps {
   sortBy: ChapterSortBy;
+  search: string;
 }
 
-const ChapetersList: React.FC<ChapetersListProps> = ({ sortBy = 'surah' }) => {
+const ChaptersList: React.FC<ChapetersListProps> = ({
+  sortBy = 'surah',
+  search,
+}) => {
   const [presentToast] = useIonToast();
 
   const {
@@ -60,15 +64,29 @@ const ChapetersList: React.FC<ChapetersListProps> = ({ sortBy = 'surah' }) => {
     });
   }, [refetchChapters, presentToast, sortBy, refetchAllJuzs]);
 
-  const sortedChapters = useMemo(
-    () =>
+  const searchedChapters = useMemo(() => {
+    if (search.trim()) {
+      return chapterData?.chapters?.filter((chapter) => {
+        (chapter as any).t = chapter.translated_name.name;
+        return Object.values(chapter)
+          .join(' ')
+          .toLowerCase()
+          .replace('[object object]', '')
+          .includes(search.toLowerCase());
+      });
+    }
+  }, [chapterData?.chapters, search]);
+
+  const sortedChapters = useMemo(() => {
+    const sorted =
       sortBy === 'revelation-order'
         ? chapterData?.chapters.sort(
             (a, b) => a.revelation_order - b.revelation_order
           )
-        : chapterData?.chapters.sort((a, b) => a.id - b.id),
-    [chapterData, sortBy]
-  );
+        : chapterData?.chapters.sort((a, b) => a.id - b.id);
+
+    return sorted;
+  }, [chapterData, sortBy]);
 
   return (
     <div className="my-3">
@@ -99,7 +117,7 @@ const ChapetersList: React.FC<ChapetersListProps> = ({ sortBy = 'surah' }) => {
       <IonItemGroup>
         {sortBy !== 'juz' ? (
           //  when succesfull data retrieve; and sortBy == 'revelation-order' or 'surah'
-          sortedChapters?.map(
+          (searchedChapters ?? sortedChapters)?.map(
             ({ name_simple, verses_count, id, translated_name }, i) => (
               <ChapterItem
                 name={name_simple}
@@ -107,13 +125,14 @@ const ChapetersList: React.FC<ChapetersListProps> = ({ sortBy = 'surah' }) => {
                 id={id}
                 translatedName={translated_name.name}
                 index={i}
+                key={id}
               />
             )
           )
         ) : (
           // when succesfull data retrieve; and sortBy == 'juzs'
           <SortedByJuz
-            chapters={chapterData?.chapters}
+            chapters={searchedChapters ?? chapterData?.chapters}
             juzs={allJuzsData?.juzs}
           />
         )}
@@ -122,4 +141,4 @@ const ChapetersList: React.FC<ChapetersListProps> = ({ sortBy = 'surah' }) => {
   );
 };
 
-export { ChapetersList };
+export { ChaptersList };

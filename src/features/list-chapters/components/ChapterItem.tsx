@@ -20,10 +20,11 @@ const ChapterItem: React.FC<ChapterItemProps> = ({
       key={id}
       className="flex items-center w-full [--inner-padding-end:0px]"
       button
+      routerLink={`/quran/${id}`}
     >
       <IonRippleEffect type="unbounded" />
       <h1 className="my-2 ml-1 mr-4">
-        <b>{++index}</b>
+        <b>{id}</b>
       </h1>
       <IonLabel>
         <h2>{name}</h2>
