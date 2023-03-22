@@ -31,8 +31,6 @@ jobs:
         run: yarn
 
       - name: Build app for android
-        env:
-          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
         run: |
           CI=false
           yarn build
@@ -45,3 +43,10 @@ jobs:
           ./gradlew assembleRelease
           cd ..
           CI=true
+
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+        run: |
+          CI=false
+          yarn semantic-release
