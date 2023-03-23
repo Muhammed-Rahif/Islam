@@ -27,10 +27,14 @@ convention:
       "sunnah",
       "dhikrs",
       "settings",
-      "components",
+      "component",
       "api",
       "workflows",
-      "semantic-release"
+      "store",
+      "semantic-release",
+      "performance",
+      "virtual-scroll",
+      "font",
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:

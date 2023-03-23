@@ -36,8 +36,8 @@ import './theme/variables.css';
 import './theme/styles.css';
 
 /* Pages */
-import QuranPage from 'pages/Quran';
-import ViewChapterPage from 'pages/ViewChapter';
+import QuranPage from 'screens/Quran';
+import ViewChapterPage from 'screens/ViewChapter';
 // const QuranPage = React.lazy(() => import('./pages/Quran'));
 // const ViewChapter = React.lazy(() => import('pages/ViewChapter'));
 
@@ -81,20 +81,18 @@ const queryClient = new QueryClient();
 
 const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
-    <ReactQueryDevtools initialIsOpen={false} />
+    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     <IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet animated>
-            <Route exact path="/quran" component={QuranPage} />
-            <Route path="/quran/:id" component={ViewChapterPage} />
+            <Route exact path="/quran" render={() => <QuranPage />} />
+            <Route exact path="/quran/:id" render={() => <ViewChapterPage />} />
 
-            <Route exact path="/">
-              <Redirect to="/quran" />
-            </Route>
+            <Redirect exact path="/" to="/quran" />
           </IonRouterOutlet>
 
-          <IonTabBar slot="bottom">
+          <IonTabBar slot="bottom" className="[border-top:1px_solid] py-1.5">
             {routes.map(({ icon, name, path }, indx) => (
               <IonTabButton tab={name} href={path} key={name}>
                 <IonIcon aria-hidden="true" icon={icon} />

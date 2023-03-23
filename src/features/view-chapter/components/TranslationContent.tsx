@@ -1,12 +1,16 @@
 import { IonItem, IonSpinner, IonText, IonToast } from '@ionic/react';
+import MotionCaret from 'components/MotionCaret';
 import { alertCircle } from 'ionicons/icons';
+import { useAtom } from 'jotai/react';
 import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
+import { quranLastReadAtom } from 'stores/quranLastRead';
 import { numToArabic, removeHtmlTags } from 'utils/string';
 import { useChapterVerses } from '../api/useChapterVerses';
 
 const TranslationContent: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const [lastRead, setLastRead] = useAtom(quranLastReadAtom);
 
   const {
     isLoading,
@@ -18,7 +22,7 @@ const TranslationContent: React.FC = () => {
   });
 
   return (
-    <div className="my-6">
+    <div className="mt-4 h-full pb-12 overflow-y-scroll overflow-x-hidden ion-content-scroll-host">
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -41,9 +45,28 @@ const TranslationContent: React.FC = () => {
 
       {chapterVerses?.verses.map((verse, indx) => (
         <Fragment key={indx}>
-          <div key={indx} className="[direction:rtl]">
+          <div
+            key={indx}
+            className="[direction:rtl]"
+            onDoubleClick={(e) => {
+              setLastRead({
+                reading: lastRead?.reading,
+                translation: {
+                  chapterId: parseInt(id),
+                  verseId: verse?.id,
+                },
+              });
+            }}
+          >
             <IonText lang="ar" className="ml-2">
               <span className="mb-2 text-justify">
+                <MotionCaret
+                  title="You last read this verse"
+                  show={
+                    lastRead?.translation?.chapterId.toString() === id &&
+                    lastRead?.translation?.verseId === verse?.id
+                  }
+                />
                 {verse.words
                   .filter((word) => word.char_type_name === 'word')
                   .map((word) => word.text_uthmani)

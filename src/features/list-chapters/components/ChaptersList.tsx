@@ -1,20 +1,18 @@
 import {
   IonItem,
   IonItemGroup,
-  IonRefresher,
-  IonRefresherContent,
   IonSpinner,
   IonToast,
-  RefresherEventDetail,
   useIonToast,
 } from '@ionic/react';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { ChapterSortBy } from '../types/Chapter';
 import { useChapersList } from '../api/useChapersList';
 import { alertCircle } from 'ionicons/icons';
 import { useAllJuzs } from '../api/useAllJuzs';
 import { ChapterItem } from './ChapterItem';
 import { SortedByJuz } from './SortedByJuz';
+import { Virtuoso } from 'react-virtuoso';
 
 interface ChapetersListProps {
   sortBy: ChapterSortBy;
@@ -34,23 +32,6 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
     refetch: refetchChapters,
   } = useChapersList();
   const { data: allJuzsData, refetch: refetchAllJuzs } = useAllJuzs();
-
-  // when refetching
-  const handleRefresh = useCallback(
-    (event: CustomEvent<RefresherEventDetail>) => {
-      Promise.all([refetchChapters(), refetchAllJuzs()])
-        .catch((err) => {
-          presentToast({
-            message: err.message,
-            duration: 4500,
-            position: 'bottom',
-            icon: alertCircle,
-          });
-        })
-        .finally(() => event.detail.complete());
-    },
-    [presentToast, refetchAllJuzs, refetchChapters]
-  );
 
   // runs when 'sortBy' state changes
   useEffect(() => {
@@ -88,12 +69,10 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
     return sorted;
   }, [chapterData, sortBy]);
 
-  return (
-    <div className="my-3">
-      <IonRefresher slot="fixed" className="z-40" onIonRefresh={handleRefresh}>
-        <IonRefresherContent></IonRefresherContent>
-      </IonRefresher>
+  const chapters = searchedChapters ?? sortedChapters ?? [];
 
+  return (
+    <div className="my-3 h-full">
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -114,21 +93,28 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
         </IonItem>
       )}
 
-      <IonItemGroup>
+      <IonItemGroup className="h-full">
         {sortBy !== 'juz' ? (
           //  when succesfull data retrieve; and sortBy == 'revelation-order' or 'surah'
-          (searchedChapters ?? sortedChapters)?.map(
-            ({ name_simple, verses_count, id, translated_name }, i) => (
-              <ChapterItem
-                name={name_simple}
-                versesCount={verses_count}
-                id={id}
-                translatedName={translated_name.name}
-                index={i}
-                key={id}
-              />
-            )
-          )
+          <Virtuoso
+            className="ion-content-scroll-host h-full w-full"
+            data={chapters}
+            itemContent={(
+              index,
+              { name_simple, verses_count, id, translated_name }
+            ) => {
+              return (
+                <ChapterItem
+                  name={name_simple}
+                  versesCount={verses_count}
+                  id={id}
+                  translatedName={translated_name.name}
+                  index={index}
+                  key={id}
+                />
+              );
+            }}
+          />
         ) : (
           // when succesfull data retrieve; and sortBy == 'juzs'
           <SortedByJuz

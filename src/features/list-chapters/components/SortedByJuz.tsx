@@ -1,8 +1,9 @@
 import { IonItemDivider, IonLabel } from '@ionic/react';
-import { Fragment } from 'react';
 import { Chapter } from '../types/Chapter';
 import { Juz } from '../types/Juz';
 import { ChapterItem } from './ChapterItem';
+import { GroupedVirtuoso } from 'react-virtuoso';
+import { useMemo } from 'react';
 
 type Props = {
   juzs?: Juz[];
@@ -10,39 +11,46 @@ type Props = {
 };
 
 const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
+  const juzChaptersGroup = useMemo(() => {
+    if (!juzs) return null;
+    if (!chapters) return null;
+
+    return juzs.map((juz) => {
+      const chapterIds = Object.keys(juz.verse_mapping);
+      return chapterIds.map((chapterId) => {
+        return chapters.find((chapter) => chapter.id === Number(chapterId));
+      });
+    });
+  }, [juzs, chapters]);
+
   return (
-    <>
-      {juzs?.map(({ verse_mapping, juz_number }, indx) => {
-        const juzsChapters = chapters?.filter((chapter) =>
-          // getting juzs chapters
-          Object.keys(verse_mapping).includes(chapter.id.toString())
-        );
+    <GroupedVirtuoso
+      groupCounts={juzChaptersGroup?.map((juzChapters) => juzChapters.length)}
+      groupContent={(index) => (
+        <IonItemDivider className="z-40 relative">
+          <IonLabel>Juz {juzs![index].juz_number}</IonLabel>
+        </IonItemDivider>
+      )}
+      className="w-full h-full"
+      itemContent={(indx, groupIndx) => {
+        if (!juzs) return null;
+        if (!chapters) return null;
+
+        const chapter = juzChaptersGroup?.flat(1)[indx];
+        if (!chapter) return <></>;
 
         return (
-          <Fragment key={indx}>
-            {juzsChapters!.length > 0 && (
-              <IonItemDivider className="z-20">
-                <IonLabel>Juz {juz_number}</IonLabel>
-              </IonItemDivider>
-            )}
-
-            {juzsChapters?.map(
-              ({ name_simple, verses_count, id, translated_name }, i) => {
-                return (
-                  <ChapterItem
-                    name={name_simple}
-                    versesCount={verses_count}
-                    id={id}
-                    translatedName={translated_name.name}
-                    index={id}
-                  />
-                );
-              }
-            )}
-          </Fragment>
+          <ChapterItem
+            name={chapter.name_simple}
+            versesCount={chapter.verses_count}
+            id={chapter.id}
+            translatedName={chapter.translated_name.name}
+            index={indx}
+            key={chapter.id}
+          />
         );
-      })}
-    </>
+      }}
+    />
   );
 };
 
