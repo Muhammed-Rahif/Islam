@@ -58,7 +58,8 @@ const ViewChapter: React.FC = () => {
         scrollEvents
         ref={contentRef}
         fullscreen
-        scrollY={false}
+        scrollX={false}
+        scrollY={type === 'reading'}
       >
         <IonSegment
           className="mb-3"
@@ -73,7 +74,11 @@ const ViewChapter: React.FC = () => {
           </IonSegmentButton>
         </IonSegment>
 
-        {type === 'reading' ? <ReadingContent /> : <TranslationContent />}
+        {type === 'reading' ? (
+          <ReadingContent bismiPre={chapterData?.chapter.bismillah_pre} />
+        ) : (
+          <TranslationContent />
+        )}
       </IonContent>
 
       <IonFab slot="fixed" vertical="bottom" horizontal="end">

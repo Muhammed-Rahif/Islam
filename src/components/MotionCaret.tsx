@@ -12,10 +12,15 @@ const MotionCaret: React.FC<MotionCaretProps> = ({ show, title }) => {
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!ref.current?.offsetTop) return;
-    const ionContent = document.querySelector('ion-content');
-    // console.log(ionContent, ref.current.offsetTop);
-    ionContent?.scrollToPoint(0, ref.current.offsetTop, 500);
+    (async () => {
+      if (!ref.current?.offsetTop) return;
+
+      const ionContent = await document
+        .querySelector('ion-content')
+        ?.getScrollElement();
+      console.log(ionContent, ref.current.offsetTop);
+      ionContent?.scrollTo(0, ref.current.offsetTop);
+    })();
   }, []);
 
   return (

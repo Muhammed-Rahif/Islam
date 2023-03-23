@@ -36,8 +36,8 @@ import './theme/variables.css';
 import './theme/styles.css';
 
 /* Pages */
-import QuranPage from 'pages/Quran';
-import ViewChapterPage from 'pages/ViewChapter';
+import QuranPage from 'screens/Quran';
+import ViewChapterPage from 'screens/ViewChapter';
 // const QuranPage = React.lazy(() => import('./pages/Quran'));
 // const ViewChapter = React.lazy(() => import('pages/ViewChapter'));
 
