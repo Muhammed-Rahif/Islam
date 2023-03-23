@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0...v1.1.1) (2023-03-23)
+
+
+### Bug Fixes
+
+* **quran:** scroll to last read delay ([13d541e](https://github.com/Muhammed-Rahif/Islam/commit/13d541ece94ff16b2755ec423841fc8948e1b056))
+
 # [1.1.0](https://github.com/Muhammed-Rahif/Islam/compare/v1.0.0...v1.1.0) (2023-03-23)
 
 
