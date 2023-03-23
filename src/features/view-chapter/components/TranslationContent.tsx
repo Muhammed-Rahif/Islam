@@ -23,7 +23,7 @@ const TranslationContent: React.FC = () => {
   });
 
   return (
-    <div className="mt-6 h-full pb-12">
+    <div className="mt-4 h-full pb-12">
       {/* when error appears */}
       {error ? (
         <IonToast

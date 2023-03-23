@@ -24,7 +24,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre }) => {
   const [lastRead, setLastRead] = useAtom(quranLastReadAtom);
 
   return (
-    <div className="[direction:rtl] leading-9 text-justify my-3">
+    <div className="[direction:rtl] leading-9 text-justify my-3 h-full overflow-y-scroll overflow-x-hidden">
       {/* when error appears */}
       {error ? (
         <IonToast

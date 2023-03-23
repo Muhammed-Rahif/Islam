@@ -59,7 +59,7 @@ const ViewChapter: React.FC = () => {
         ref={contentRef}
         fullscreen
         scrollX={false}
-        scrollY={type === 'reading'}
+        scrollY={false}
       >
         <IonSegment
           className="mb-3"
