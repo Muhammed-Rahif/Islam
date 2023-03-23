@@ -75,7 +75,7 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   const chapters = searchedChapters ?? sortedChapters ?? [];
 
   return (
-    <div className="my-3 h-[calc(100%-6.5rem)]">
+    <div className="my-3 h-full">
       {/* when error appears */}
       {error ? (
         <IonToast

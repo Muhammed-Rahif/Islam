@@ -34,6 +34,7 @@ convention:
       "semantic-release",
       "performance",
       "virtual-scroll",
+      "font",
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:
