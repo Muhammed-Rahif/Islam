@@ -14,29 +14,10 @@ const MotionCaret: React.FC<MotionCaretProps> = ({ show, title }) => {
   useEffect(() => {
     if (!ref.current) return;
 
-    // console.log(scrollWrapper, ref.current?.offsetTop);
-    // scrollWrapper?.scrollTo({
-    //   top: ref.current.offsetTop - 150,
-    //   behavior: 'smooth',
-    // });
-    // ref.current?.scrollIntoView({
-    //   behavior: 'smooth',
-    //   block: 'nearest',
-    //   inline: 'start',
-    // });
-    // window.scroll({ top: ref.current.offsetTop, behavior: 'smooth' });
-    // (ref.current.parentNode as HTMLElement)!.scrollTop = ref.current?.offsetTop;
-
     setTimeout(() => {
       (ref.current as any).scrollIntoViewIfNeeded({ behavior: 'smooth' });
-    }, 100);
+    }, 780);
   }, []);
-
-  // useEffect(() => {
-  //   (document.getElementById('motion-caret') as any)?.scrollIntoViewIfNeeded({
-  //     behavior: 'smooth',
-  //   });
-  // }, [isLoading]);
 
   return (
     <AnimatePresence>
