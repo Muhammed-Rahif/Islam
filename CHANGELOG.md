@@ -1,3 +1,22 @@
+# [1.1.0](https://github.com/Muhammed-Rahif/Islam/compare/v1.0.0...v1.1.0) (2023-03-23)
+
+
+### Bug Fixes
+
+* **quran:** reading content issue ([6c16367](https://github.com/Muhammed-Rahif/Islam/commit/6c16367096b1443b0c8dbf1e1a6c98a6955f5343))
+* **quran:** remove scroll to top fab button ([283d130](https://github.com/Muhammed-Rahif/Islam/commit/283d130cabc2e5c45ea8875e94a5da60304dd8f4))
+* **quran:** type select visible after scrolled ([286a888](https://github.com/Muhammed-Rahif/Islam/commit/286a888d3d92906b55b4c73508235390c6992a0c))
+* **virtual-scroll:** performance improvement ([b087369](https://github.com/Muhammed-Rahif/Islam/commit/b087369ddea637ed1f59a3e99f67c75a9bb0d2b3))
+
+
+### Features
+
+* **component:** create 'motioncaret' component ([fcd9a14](https://github.com/Muhammed-Rahif/Islam/commit/fcd9a14c9b9e3b6f0dc10a3e779aa42a8d5cd105))
+* **font:** change font to ubuntu ([38d476d](https://github.com/Muhammed-Rahif/Islam/commit/38d476d6da2b223e525ec390b21690aee9e80163))
+* **quran:** add bismi pre for quran reading ([4e1e54b](https://github.com/Muhammed-Rahif/Islam/commit/4e1e54b21aa1f37f1b7671961f1c5157110a987e))
+* **quran:** continue from last read ([7619249](https://github.com/Muhammed-Rahif/Islam/commit/7619249cae04d52fd59750d4db4885943a8e0561))
+* **store:** add 'quranLastRead' store ([67ffd0b](https://github.com/Muhammed-Rahif/Islam/commit/67ffd0b5e49165718fc13409966dbcc67902fcd5))
+
 # 1.0.0 (2023-03-22)
 
 
