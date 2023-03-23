@@ -2,10 +2,7 @@ import {
   IonBackButton,
   IonButtons,
   IonContent,
-  IonFab,
-  IonFabButton,
   IonHeader,
-  IonIcon,
   IonLabel,
   IonPage,
   IonSegment,
@@ -13,9 +10,8 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import { arrowUp } from 'ionicons/icons';
-import { createRef, useCallback, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { createRef, useMemo, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import { useChapter } from 'features/view-chapter/api/useChapter';
 import { ReadingContent } from 'features/view-chapter';
 import { TranslationContent } from 'features/view-chapter/components/TranslationContent';
@@ -23,15 +19,17 @@ import { TranslationContent } from 'features/view-chapter/components/Translation
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
   const [type, setType] = useState('reading');
-  const [isScrolled, setIsScrolled] = useState(false);
   const { id } = useParams<{ id: string }>();
   const { isLoading: isChapterLoading, data: chapterData } = useChapter({
     chapterId: parseInt(id),
   });
+  let { search } = useLocation();
 
-  const scrollToTop = useCallback(() => {
-    contentRef.current?.scrollToTop(500);
-  }, [contentRef]);
+  const chapterName = useMemo(() => {
+    const query = new URLSearchParams(search);
+    const chapterName = query.get('chapterName');
+    return chapterName ?? 'Loading';
+  }, [search]);
 
   return (
     <IonPage>
@@ -42,20 +40,12 @@ const ViewChapter: React.FC = () => {
           </IonButtons>
           <IonTitle>
             {id}.{' '}
-            {isChapterLoading ? 'Loading' : chapterData?.chapter.name_simple}
+            {isChapterLoading ? chapterName : chapterData?.chapter.name_simple}
           </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent
         className="ion-padding"
-        onIonScroll={(e) => {
-          if (e.detail.scrollTop > 30) {
-            setIsScrolled(true);
-          } else {
-            setIsScrolled(false);
-          }
-        }}
-        scrollEvents
         ref={contentRef}
         fullscreen
         scrollX={false}

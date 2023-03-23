@@ -72,7 +72,11 @@ const ReadingContent: React.FC<Props> = ({ bismiPre }) => {
               verse.text_uthmani === 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ'
             )
               return (
-                <IonText lang="ar" className="block text-center h-10">
+                <IonText
+                  lang="ar"
+                  className="block text-center h-10"
+                  key={indx}
+                >
                   <span>
                     {verse?.text_uthmani} {`  ﴿${numToArabic(++indx)}﴾  `}
                   </span>

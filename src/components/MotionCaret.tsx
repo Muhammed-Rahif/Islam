@@ -1,4 +1,4 @@
-import { IonIcon, useIonViewDidEnter } from '@ionic/react';
+import { IonIcon } from '@ionic/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { caretBackOutline } from 'ionicons/icons';
 import { useEffect, useRef } from 'react';
@@ -12,23 +12,37 @@ const MotionCaret: React.FC<MotionCaretProps> = ({ show, title }) => {
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    (async () => {
-      if (!ref.current?.offsetTop) return;
+    if (!ref.current) return;
 
-      const ionContent = await document
-        .querySelector('ion-content')
-        ?.getScrollElement();
-      console.log(ionContent, ref.current.offsetTop);
-      setTimeout(() => {
-        // ionContent?.scrollTo(0, ref.current?.offsetTop ?? 0);
-      });
-    })();
+    // console.log(scrollWrapper, ref.current?.offsetTop);
+    // scrollWrapper?.scrollTo({
+    //   top: ref.current.offsetTop - 150,
+    //   behavior: 'smooth',
+    // });
+    // ref.current?.scrollIntoView({
+    //   behavior: 'smooth',
+    //   block: 'nearest',
+    //   inline: 'start',
+    // });
+    // window.scroll({ top: ref.current.offsetTop, behavior: 'smooth' });
+    // (ref.current.parentNode as HTMLElement)!.scrollTop = ref.current?.offsetTop;
+
+    setTimeout(() => {
+      (ref.current as any).scrollIntoViewIfNeeded({ behavior: 'smooth' });
+    }, 100);
   }, []);
+
+  // useEffect(() => {
+  //   (document.getElementById('motion-caret') as any)?.scrollIntoViewIfNeeded({
+  //     behavior: 'smooth',
+  //   });
+  // }, [isLoading]);
 
   return (
     <AnimatePresence>
       {show && (
         <motion.span
+          id="motion-caret"
           ref={ref}
           title={title}
           initial={{ width: '0rem', x: 1, opacity: 0 }}

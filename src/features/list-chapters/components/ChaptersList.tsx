@@ -1,14 +1,11 @@
 import {
   IonItem,
   IonItemGroup,
-  IonRefresher,
-  IonRefresherContent,
   IonSpinner,
   IonToast,
-  RefresherEventDetail,
   useIonToast,
 } from '@ionic/react';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { ChapterSortBy } from '../types/Chapter';
 import { useChapersList } from '../api/useChapersList';
 import { alertCircle } from 'ionicons/icons';
