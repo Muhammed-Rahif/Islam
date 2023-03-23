@@ -7,7 +7,6 @@ import { useVersesUthmani } from '../api/useVersesUthmani';
 import MotionCaret from 'components/MotionCaret';
 import { useAtom } from 'jotai/react';
 import { quranLastReadAtom } from 'stores/quranLastRead';
-import { Virtuoso } from 'react-virtuoso';
 
 const ReadingContent: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,7 +20,7 @@ const ReadingContent: React.FC = () => {
   const [lastRead, setLastRead] = useAtom(quranLastReadAtom);
 
   return (
-    <div className="[direction:rtl] leading-9 text-justify mt-3 pb-12 h-full">
+    <div className="[direction:rtl] leading-9 text-justify my-3 ion-content-scroll-host h-full overflow-y-scroll">
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -42,44 +41,33 @@ const ReadingContent: React.FC = () => {
         </IonItem>
       )}
 
-      <IonText lang="ar" className="ml-2 h-full">
-        <div className="mb-2 text-justify h-full">
-          <Virtuoso
-            data={versesUthmaniData?.verses}
-            className="h-full w-full"
-            components={{
-              Item: ({ children, item, context }) => (
-                <div className="mb-2 text-justify">{children}</div>
-              ),
-            }}
-            itemContent={(indx, verse) => {
-              return (
-                <Fragment key={indx}>
-                  <MotionCaret
-                    title="You last read this verse"
-                    show={
-                      lastRead?.reading?.chapterId.toString() === id &&
-                      lastRead?.reading?.verseId === verse?.id
-                    }
-                  />
-                  <span
-                    onDoubleClick={(e) => {
-                      setLastRead({
-                        translation: lastRead?.translation,
-                        reading: {
-                          chapterId: parseInt(id),
-                          verseId: verse?.id,
-                        },
-                      });
-                    }}
-                  >
-                    {verse?.text_uthmani} {`  ﴿${numToArabic(++indx)}﴾  `}
-                  </span>
-                </Fragment>
-              );
-            }}
-          />
-        </div>
+      <IonText lang="ar" className="ml-2">
+        <span className="mb-2 text-justify">
+          {versesUthmaniData?.verses.map((verse, indx) => (
+            <Fragment key={indx}>
+              <MotionCaret
+                title="You last read this verse"
+                show={
+                  lastRead?.reading?.chapterId.toString() === id &&
+                  lastRead?.reading?.verseId === verse?.id
+                }
+              />
+              <span
+                onDoubleClick={(e) => {
+                  setLastRead({
+                    translation: lastRead?.translation,
+                    reading: {
+                      chapterId: parseInt(id),
+                      verseId: verse?.id,
+                    },
+                  });
+                }}
+              >
+                {verse?.text_uthmani} {`  ﴿${numToArabic(++indx)}﴾  `}
+              </span>
+            </Fragment>
+          ))}
+        </span>
       </IonText>
     </div>
   );
