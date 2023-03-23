@@ -80,14 +80,6 @@ const ViewChapter: React.FC = () => {
           <TranslationContent />
         )}
       </IonContent>
-
-      <IonFab slot="fixed" vertical="bottom" horizontal="end">
-        {isScrolled && (
-          <IonFabButton size="small" onClick={scrollToTop}>
-            <IonIcon icon={arrowUp}></IonIcon>
-          </IonFabButton>
-        )}
-      </IonFab>
     </IonPage>
   );
 };

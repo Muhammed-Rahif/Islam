@@ -46,7 +46,7 @@ const TranslationContent: React.FC = () => {
 
       <Virtuoso
         data={chapterVerses?.verses}
-        className="h-full w-full"
+        className="h-full w-full ion-content-scroll-host"
         itemContent={(indx, verse) => {
           const textUthmaniWordsOnly = verse.words
             .filter((word) => word.char_type_name === 'word')

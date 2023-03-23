@@ -19,7 +19,9 @@ const MotionCaret: React.FC<MotionCaretProps> = ({ show, title }) => {
         .querySelector('ion-content')
         ?.getScrollElement();
       console.log(ionContent, ref.current.offsetTop);
-      ionContent?.scrollTo(0, ref.current.offsetTop);
+      setTimeout(() => {
+        ionContent?.scrollTo(0, ref.current?.offsetTop ?? 0);
+      });
     })();
   }, []);
 
