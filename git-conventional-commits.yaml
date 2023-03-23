@@ -32,6 +32,8 @@ convention:
       "workflows",
       "store",
       "semantic-release",
+      "performance",
+      "virtual-scroll",
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:

@@ -44,6 +44,7 @@ const Quran: React.FC = () => {
         scrollEvents
         ref={contentRef}
         fullscreen
+        scrollY={false}
       >
         <IonSearchbar
           onIonChange={(e) => setSearch(e.detail.value!)}

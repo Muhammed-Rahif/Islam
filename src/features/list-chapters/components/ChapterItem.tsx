@@ -18,7 +18,7 @@ const ChapterItem: React.FC<ChapterItemProps> = ({
   return (
     <IonItem
       key={id}
-      className="flex items-center w-full [--inner-padding-end:0px]"
+      className="flex items-center w-full [--inner-padding-end:0px] -z-0"
       button
       routerLink={`/quran/${id}`}
     >

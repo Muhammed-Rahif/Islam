@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Lateef:wght@200;300;400;500;600;700;800&family=Manjari:wght@100;400;700&display=swap');
 
+html {
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 * {
   font-family: 'Manjari', sans-serif;
 }

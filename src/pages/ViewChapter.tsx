@@ -38,7 +38,7 @@ const ViewChapter: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons className="flex items-center justify-center" slot="start">
-            <IonBackButton defaultHref="/"></IonBackButton>
+            <IonBackButton className="" defaultHref="/"></IonBackButton>
           </IonButtons>
           <IonTitle>
             {id}.{' '}
@@ -58,6 +58,7 @@ const ViewChapter: React.FC = () => {
         scrollEvents
         ref={contentRef}
         fullscreen
+        scrollY={false}
       >
         <IonSegment
           className="mb-3"

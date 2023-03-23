@@ -11,13 +11,13 @@
         "assets": [
           {
             "path": "android/app/build/outputs/apk/release/app-release-unsigned.apk",
-            "label": "App release unsigned",
-            "name": "app-release-unsigned-${nextRelease.version}.apk"
+            "label": "app-release-unsigned-v${nextRelease.version}.apk",
+            "name": "app-release-unsigned-v${nextRelease.version}.apk"
           },
           {
             "path": "android/app/build/outputs/apk/debug/app-debug.apk",
-            "label": "App debug",
-            "name": "app-debug-${nextRelease.version}.apk"
+            "label": "app-debug-v${nextRelease.version}.apk",
+            "name": "app-debug-v${nextRelease.version}.apk"
           },
           {
             "path": "CHANGELOG.md",

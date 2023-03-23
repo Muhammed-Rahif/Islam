@@ -81,20 +81,18 @@ const queryClient = new QueryClient();
 
 const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
-    <ReactQueryDevtools initialIsOpen={false} />
+    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     <IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet animated>
-            <Route exact path="/quran" component={QuranPage} />
-            <Route path="/quran/:id" component={ViewChapterPage} />
+            <Route exact path="/quran" render={() => <QuranPage />} />
+            <Route exact path="/quran/:id" render={() => <ViewChapterPage />} />
 
-            <Route exact path="/">
-              <Redirect to="/quran" />
-            </Route>
+            <Redirect exact path="/" to="/quran" />
           </IonRouterOutlet>
 
-          <IonTabBar slot="bottom">
+          <IonTabBar slot="bottom" className="[border-top:1px_solid] pt-2">
             {routes.map(({ icon, name, path }, indx) => (
               <IonTabButton tab={name} href={path} key={name}>
                 <IonIcon aria-hidden="true" icon={icon} />
