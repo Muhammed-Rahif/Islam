@@ -1,3 +1,11 @@
+## [1.1.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.1...v1.1.2) (2023-03-24)
+
+
+### Bug Fixes
+
+* **quran:** next chapter, prev chapter, to top buttons at end of chapter ([9b90137](https://github.com/Muhammed-Rahif/Islam/commit/9b90137306b275e37443ec75cc20da078c2dd84e))
+* **quran:** view chapter last read scroll smooth ([3dbd4a7](https://github.com/Muhammed-Rahif/Islam/commit/3dbd4a767e88edbadef4fe5b2fac3a1e886f2826))
+
 ## [1.1.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0...v1.1.1) (2023-03-23)
 
 
