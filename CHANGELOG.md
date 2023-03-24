@@ -1,3 +1,26 @@
+## [1.2.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.2.1...v1.2.2) (2023-03-24)
+
+
+### Bug Fixes
+
+* **semantic-release:** gradle versioning not added to git commit ([c03dd5a](https://github.com/Muhammed-Rahif/Islam/commit/c03dd5a4ea928adc774b57449e199c38c88f193e))
+
+
+
+
+
+====================================
+Precommit with args:  [ '-v', '1.2.2' ]
+Precommit with version string:  v1.2.2
+Precommit with build no:  1
+====================================
+$ /home/runner/work/Islam/Islam/node_modules/.bin/capacitor-set-version . -v v1.2.2 -b 1 --json
+{
+  "status": "success",
+  "version": "v1.2.2",
+  "build": 1
+}
+
 ## [1.2.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.2.0...v1.2.1) (2023-03-24)
 
 
