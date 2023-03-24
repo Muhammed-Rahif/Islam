@@ -97,7 +97,7 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
         {sortBy !== 'juz' ? (
           //  when succesfull data retrieve; and sortBy == 'revelation-order' or 'surah'
           <Virtuoso
-            className="ion-content-scroll-host h-full w-full"
+            className="h-full w-full"
             data={chapters}
             itemContent={(
               index,

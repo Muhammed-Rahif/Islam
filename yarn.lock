@@ -11661,7 +11661,7 @@ schema-utils@^4.0.0:
     ajv-formats "^2.1.1"
     ajv-keywords "^5.0.0"
 
-scroll-into-view-if-needed@*:
+scroll-into-view-if-needed@*, scroll-into-view-if-needed@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/scroll-into-view-if-needed/-/scroll-into-view-if-needed-3.0.6.tgz#2c803a509c1036bc4a9c009fecc5c145f87e47cf"
   integrity sha512-x+CW0kOzlFNOnseF0DBr0AJ5m+TgGmSOdEZwyiZW0gV87XBvxQKw5A8DvFFgabznA68XqLgVX+PwPX8OzsFvRA==
@@ -11950,6 +11950,13 @@ smart-buffer@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.2.0.tgz#6e1d71fa4f18c05f7d0ff216dd16a481d0e8d9ae"
   integrity sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==
+
+smooth-scroll-into-view-if-needed@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/smooth-scroll-into-view-if-needed/-/smooth-scroll-into-view-if-needed-2.0.0.tgz#45023285e7b13a4510539cd3b2d345f90d706d2d"
+  integrity sha512-afkGGHcXTFggn0/byzt0vhTEFEzQItQVgEAuapNBEo8TcoxPlWx1kTyzar6b2sYiDPmZ9RIguIdBTTofpTJ3vw==
+  dependencies:
+    scroll-into-view-if-needed "^3.0.6"
 
 sockjs@^0.3.24:
   version "0.3.24"
