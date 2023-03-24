@@ -30,7 +30,7 @@
     [
       "@semantic-release/exec",
       {
-        "verifyConditionsCmd": "./scripts/verify.sh ${nextRelease.version}"
+        "verifyConditionsCmd": "chmod +x ./scripts/verify.sh && ./scripts/verify.sh ${nextRelease.version}"
       }
     ],
     [
