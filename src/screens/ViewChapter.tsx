@@ -1,8 +1,10 @@
 import {
   IonBackButton,
+  IonButton,
   IonButtons,
   IonContent,
   IonHeader,
+  IonIcon,
   IonLabel,
   IonPage,
   IonSegment,
@@ -15,10 +17,10 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useChapter } from 'features/view-chapter/api/useChapter';
 import { ReadingContent } from 'features/view-chapter';
 import { TranslationContent } from 'features/view-chapter/components/TranslationContent';
+import { chevronBack, chevronForward } from 'ionicons/icons';
 
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
-  const [type, setType] = useState('reading');
   const { id } = useParams<{ id: string }>();
   const { isLoading: isChapterLoading, data: chapterData } = useChapter({
     chapterId: parseInt(id),
@@ -30,6 +32,46 @@ const ViewChapter: React.FC = () => {
     const chapterName = query.get('chapterName');
     return chapterName ?? 'Loading';
   }, [search]);
+
+  const [type, setType] = useState('reading');
+
+  const footer = useMemo(
+    () => (
+      <div className="[direction:ltr] flex justify-between">
+        <IonButton
+          routerLink={`/quran/${parseInt(id) - 1}`}
+          size="small"
+          color="light"
+          disabled={parseInt(id) === 1}
+        >
+          Prev Chapter
+          <IonIcon slot="start" size="small" icon={chevronBack} />
+        </IonButton>
+        <IonButton
+          size="small"
+          color="light"
+          onClick={async () =>
+            document.querySelector('.ion-content-scroll-host')?.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            })
+          }
+        >
+          To top
+        </IonButton>
+        <IonButton
+          size="small"
+          color="light"
+          routerLink={`/quran/${parseInt(id) + 1}`}
+          disabled={parseInt(id) === 114}
+        >
+          Next Chapter
+          <IonIcon slot="end" size="small" icon={chevronForward} />
+        </IonButton>
+      </div>
+    ),
+    [id]
+  );
 
   return (
     <IonPage>
@@ -65,9 +107,12 @@ const ViewChapter: React.FC = () => {
         </IonSegment>
 
         {type === 'reading' ? (
-          <ReadingContent bismiPre={chapterData?.chapter.bismillah_pre} />
+          <ReadingContent
+            bismiPre={chapterData?.chapter.bismillah_pre}
+            footer={footer}
+          />
         ) : (
-          <TranslationContent />
+          <TranslationContent footer={footer} />
         )}
       </IonContent>
     </IonPage>

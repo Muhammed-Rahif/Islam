@@ -8,7 +8,11 @@ import { quranLastReadAtom } from 'stores/quranLastRead';
 import { numToArabic, removeHtmlTags } from 'utils/string';
 import { useChapterVerses } from '../api/useChapterVerses';
 
-const TranslationContent: React.FC = () => {
+type Props = {
+  footer?: React.ReactNode;
+};
+
+const TranslationContent: React.FC<Props> = ({ footer }) => {
   const { id } = useParams<{ id: string }>();
   const [lastRead, setLastRead] = useAtom(quranLastReadAtom);
 
@@ -22,7 +26,7 @@ const TranslationContent: React.FC = () => {
   });
 
   return (
-    <div className="mt-4 h-full pb-12 overflow-y-scroll overflow-x-hidden ion-content-scroll-host">
+    <div className="mt-4 h-full pb-10 overflow-y-scroll overflow-x-visible ion-content-scroll-host">
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -84,6 +88,8 @@ const TranslationContent: React.FC = () => {
           <hr className="my-4 opacity-20" />
         </Fragment>
       ))}
+
+      {!isLoading && footer}
     </div>
   );
 };

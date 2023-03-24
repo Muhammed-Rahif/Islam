@@ -10,9 +10,10 @@ import { quranLastReadAtom } from 'stores/quranLastRead';
 
 type Props = {
   bismiPre?: boolean;
+  footer?: React.ReactNode;
 };
 
-const ReadingContent: React.FC<Props> = ({ bismiPre }) => {
+const ReadingContent: React.FC<Props> = ({ bismiPre, footer }) => {
   const { id } = useParams<{ id: string }>();
   const {
     isLoading,
@@ -24,7 +25,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre }) => {
   const [lastRead, setLastRead] = useAtom(quranLastReadAtom);
 
   return (
-    <div className="[direction:rtl] leading-9 text-justify my-3 h-full overflow-y-scroll overflow-x-hidden ion-content-scroll-host">
+    <div className="[direction:rtl] leading-9 pb-10 text-justify my-3 h-full overflow-y-scroll overflow-x-visible ion-content-scroll-host">
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -51,52 +52,44 @@ const ReadingContent: React.FC<Props> = ({ bismiPre }) => {
         </IonText>
       )}
 
-      <IonText lang="ar" className="ml-2">
-        <span className="mb-2 text-justify">
-          {versesUthmaniData?.verses.map((verse, indx) => {
-            const isLastRead =
-              lastRead?.reading?.chapterId.toString() === id &&
-              lastRead?.reading?.verseId === verse?.id;
+      <span lang="ar" className="mb-2 text-justify">
+        {versesUthmaniData?.verses.map((verse, indx) => {
+          const isLastRead =
+            lastRead?.reading?.chapterId.toString() === id &&
+            lastRead?.reading?.verseId === verse?.id;
 
-            const onVerseDblClick = () => {
-              setLastRead({
-                translation: lastRead?.translation,
-                reading: {
-                  chapterId: parseInt(id),
-                  verseId: verse?.id,
-                },
-              });
-            };
+          const onVerseDblClick = () => {
+            setLastRead({
+              translation: lastRead?.translation,
+              reading: {
+                chapterId: parseInt(id),
+                verseId: verse?.id,
+              },
+            });
+          };
 
-            if (
-              verse.text_uthmani === 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ'
-            )
-              return (
-                <IonText
-                  lang="ar"
-                  className="block text-center h-10"
-                  key={indx}
-                >
-                  <span>
-                    {verse?.text_uthmani} {`  ﴿${numToArabic(++indx)}﴾  `}
-                  </span>
-                </IonText>
-              );
-
+          if (verse.text_uthmani === 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ')
             return (
-              <Fragment key={indx}>
-                <MotionCaret
-                  title="You last read this verse"
-                  show={isLastRead}
-                />
-                <span onDoubleClick={onVerseDblClick}>
+              <IonText className="block text-center h-10" key={indx}>
+                <span>
                   {verse?.text_uthmani} {`  ﴿${numToArabic(++indx)}﴾  `}
                 </span>
-              </Fragment>
+              </IonText>
             );
-          })}
-        </span>
-      </IonText>
+
+          return (
+            <Fragment key={indx}>
+              <MotionCaret title="You last read this verse" show={isLastRead} />
+              <span onDoubleClick={onVerseDblClick}>
+                {verse?.text_uthmani} {`  ﴿${numToArabic(++indx)}﴾  `}
+              </span>
+            </Fragment>
+          );
+        })}
+        <hr className="opacity-20 mt-3.5" />
+      </span>
+
+      <div className="-mt-5">{!isLoading && footer}</div>
     </div>
   );
 };
