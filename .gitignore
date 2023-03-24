@@ -30,3 +30,6 @@ yarn-error.log*
 
 my-release-key.keystore
 env.local
+/test-results/
+/playwright-report/
+/playwright/.cache/
