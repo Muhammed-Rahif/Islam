@@ -47,6 +47,8 @@ jobs:
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          TELEGRAM_BOT_ID: ${{ secrets.TELEGRAM_BOT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: |
           CI=false
           yarn semantic-release
