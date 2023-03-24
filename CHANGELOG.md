@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.2.0...v1.2.1) (2023-03-24)
+
+
+### Bug Fixes
+
+* **semantic-release:** gradle versioning not added to git commit ([a6e1ebf](https://github.com/Muhammed-Rahif/Islam/commit/a6e1ebf9575e0f8ed024840e76fac1e72308cebf))
+
 # [1.2.0](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.2...v1.2.0) (2023-03-24)
 
 
