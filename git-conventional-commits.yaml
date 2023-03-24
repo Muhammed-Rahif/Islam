@@ -20,6 +20,7 @@ convention:
       "hooks",
       "theme",
       "config",
+      "scripts",
       "licence",
       "router",
       "ui",

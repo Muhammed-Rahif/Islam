@@ -11,3 +11,4 @@ chmod +x gradlew
 ./gradlew assembleRelease 
 cd .. 
 CI=true
+return 0
