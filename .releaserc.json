@@ -30,7 +30,7 @@
     [
       "@semantic-release/exec",
       {
-        "publishCmd": "node scripts/versioning.js -v ${nextRelease.version}"
+        "generateNotesCmd": "node scripts/versioning.js -v ${nextRelease.version}"
       }
     ],
     [
