@@ -77,10 +77,11 @@ const TranslationContent: React.FC = () => {
           </div>
           <IonText className="text-left">
             {removeHtmlTags(verse?.translations[0].text)}
-            <small className="opacity-20 block mb-4">
+            <small className="opacity-20 block">
               - {verse.translations[0].resource_name}
             </small>
           </IonText>
+          <hr className="my-4 opacity-20" />
         </Fragment>
       ))}
     </div>

@@ -2,6 +2,7 @@ import { IonIcon } from '@ionic/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { caretBackOutline } from 'ionicons/icons';
 import { useEffect, useRef } from 'react';
+import scrollIntoView from 'smooth-scroll-into-view-if-needed';
 
 interface MotionCaretProps {
   show: boolean;
@@ -14,9 +15,12 @@ const MotionCaret: React.FC<MotionCaretProps> = ({ show, title }) => {
   useEffect(() => {
     if (!ref.current) return;
 
-    setTimeout(() => {
-      (ref.current as any).scrollIntoViewIfNeeded({ behavior: 'smooth' });
-    }, 780);
+    setTimeout(async () => {
+      scrollIntoView(ref.current!, {
+        scrollMode: 'if-needed',
+        boundary: document.querySelector('.ion-content-scroll-host'),
+      });
+    }, 480);
   }, []);
 
   return (
