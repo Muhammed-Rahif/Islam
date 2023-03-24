@@ -36,7 +36,11 @@
     [
       "@semantic-release/git",
       {
-        "assets": ["CHANGELOG.md"],
+        "assets": [
+          "CHANGELOG.md",
+          "android/app/build.gradle",
+          "ios/App/App.xcodeproj/project.pbxproj"
+        ],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],
@@ -46,16 +50,13 @@
         "chats": [774495232],
         "assets": [
           {
-            "path": "android/app/build/outputs/apk/release/app-release-unsigned.apk",
-            "name": "app-release-unsigned-v${version}.apk"
+            "path": "android/app/build/outputs/apk/release/app-release-unsigned.apk"
           },
           {
-            "path": "android/app/build/outputs/apk/debug/app-debug.apk",
-            "name": "app-debug-v${version}.apk"
+            "path": "android/app/build/outputs/apk/debug/app-debug.apk"
           },
           {
-            "path": "CHANGELOG.md",
-            "name": "CHANGELOG-${version}.md"
+            "path": "CHANGELOG.md"
           }
         ]
       }
