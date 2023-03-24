@@ -35,6 +35,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.0",
     "react-virtuoso": "^4.1.0",
+    "semantic-release-telegram": "^1.6.2",
     "smooth-scroll-into-view-if-needed": "^2.0.0",
     "typescript": "*",
     "web-vitals": "^0.2.4",
