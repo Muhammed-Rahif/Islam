@@ -45,6 +45,7 @@ changelog:
     - fix
     - perf
     - merge
+    - test
   includeInvalidCommits: true
   commitIgnoreRegexPattern: "^WIP "
   headlines:
@@ -53,6 +54,7 @@ changelog:
     perf: Performance Improvements
     merge: Merges
     breakingChange: BREAKING CHANGES
+    test: Test Cases
 
   ## GitHub
   # commitUrl: https://github.com/Muhammed-Rahif/Islam/commit/%commit%
