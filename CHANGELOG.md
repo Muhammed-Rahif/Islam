@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.2...v1.2.0) (2023-03-24)
+
+
+### Features
+
+* **font:** change font to 'Cabin' ([82c0c47](https://github.com/Muhammed-Rahif/Islam/commit/82c0c47c7cad857a828f4d237ea03158a596c776))
+
 ## [1.1.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.1...v1.1.2) (2023-03-24)
 
 
