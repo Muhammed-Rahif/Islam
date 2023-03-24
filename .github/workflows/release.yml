@@ -50,5 +50,4 @@ jobs:
           TELEGRAM_BOT_ID: ${{ secrets.TELEGRAM_BOT_ID }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: |
-          CI=false
           yarn semantic-release
