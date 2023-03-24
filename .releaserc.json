@@ -30,7 +30,7 @@
     [
       "@semantic-release/exec",
       {
-        "verifyConditionsCmd": "node scripts/versioning.js -v ${nextRelease.version} && CI=false && yarn build && npx cap sync android && ionic capacitor update && ionic capacitor copy android && cd android && chmod +x gradlew && ./gradlew assembleDebug && ./gradlew assembleRelease && cd .. && CI=true"
+        "verifyConditionsCmd": "./scripts/verify.sh ${nextRelease.version}"
       }
     ],
     [

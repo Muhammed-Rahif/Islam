@@ -30,7 +30,7 @@ jobs:
       - name: Install node modules
         run: yarn
 
-      - name: Release
+      - name: Build and Release
         env:
           GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
           TELEGRAM_BOT_ID: ${{ secrets.TELEGRAM_BOT_ID }}
