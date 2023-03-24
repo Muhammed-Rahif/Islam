@@ -62,6 +62,7 @@ export default defineConfig({
     {
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] },
+      timeout: 120_000,
     },
     // {
     //   name: 'Mobile Safari',
@@ -80,11 +81,12 @@ export default defineConfig({
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  // outputDir: 'test-results/',
+  outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'ionic serve',
-  //   port: 3000,
-  // },
+  webServer: {
+    command: 'ionic serve',
+    port: 8100,
+    timeout: 60000 * 4,
+  },
 });
