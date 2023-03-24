@@ -30,20 +30,6 @@ jobs:
       - name: Install node modules
         run: yarn
 
-      - name: Build app for android
-        run: |
-          CI=false
-          yarn build
-          npx cap sync android
-          ionic capacitor update
-          ionic capacitor copy android
-          cd android
-          chmod +x gradlew
-          ./gradlew assembleDebug
-          ./gradlew assembleRelease
-          cd ..
-          CI=true
-
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
