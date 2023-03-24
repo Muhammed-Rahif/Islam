@@ -39,6 +39,26 @@
         "assets": ["CHANGELOG.md"],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
+    ],
+    [
+      "semantic-release-telegram",
+      {
+        "chats": [774495232],
+        "assets": [
+          {
+            "path": "android/app/build/outputs/apk/release/app-release-unsigned.apk",
+            "name": "app-release-unsigned-v${version}.apk"
+          },
+          {
+            "path": "android/app/build/outputs/apk/debug/app-debug.apk",
+            "name": "app-debug-v${version}.apk"
+          },
+          {
+            "path": "CHANGELOG.md",
+            "name": "CHANGELOG-${version}.md"
+          }
+        ]
+      }
     ]
   ]
 }
