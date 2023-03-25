@@ -29,7 +29,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: process.env.CI ? 'github' : 'list',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -84,9 +84,11 @@ export default defineConfig({
   outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'ionic serve',
-    port: 8100,
-    timeout: 60000 * 4,
-  },
+  webServer: process.env.CI
+    ? {
+        command: 'ionic serve',
+        port: 8100,
+        timeout: 60000 * 4,
+      }
+    : undefined,
 });
