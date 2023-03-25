@@ -4,8 +4,11 @@ import { delay } from 'utils/time';
 
 test('clicking on fatiha item should navigate to "Al-Fatihah" page', async ({
   page,
-}) => {
+}, testInfo) => {
   await page.goto('http://localhost:8100/quran');
+
+  // adding delay for fetching data
+  await delay(2000);
 
   // clicking on the fatiha link on quran page
   await page.getByRole('heading', { name: 'Al-Fatihah' }).click();
@@ -13,6 +16,15 @@ test('clicking on fatiha item should navigate to "Al-Fatihah" page', async ({
   const pageTitle = page
     .locator('ion-title')
     .filter({ hasText: '1. Al-Fatihah' });
+
+  // capturing a screenshot
+  const screenshot = await page.screenshot({
+    type: 'png',
+  });
+  await testInfo.attach('view-quran-fatiha', {
+    body: screenshot,
+    contentType: 'image/png',
+  });
 
   await expect(pageTitle).toBeInViewport();
 });
