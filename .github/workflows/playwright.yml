@@ -4,9 +4,11 @@ on:
     branches: [main, beta]
   pull_request:
     branches: [main, beta]
+
 concurrency:
   group: ${{ github.head_ref }}
   cancel-in-progress: true
+
 jobs:
   test:
     name: Playwright Tests
