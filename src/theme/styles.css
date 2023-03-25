@@ -68,3 +68,18 @@ ion-router-outlet > .ion-page-hidden {
     visibility: hidden;
   }
 } */
+
+ion-router-outlet > .ion-page {
+  animation: fadeIn 0.3s 1 forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(22vw, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

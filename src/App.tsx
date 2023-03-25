@@ -43,6 +43,7 @@ import './theme/styles.css';
 /* Pages */
 import QuranPage from 'screens/Quran';
 import ViewChapterPage from 'screens/ViewChapter';
+import SettingsPage from 'screens/Settings';
 // const QuranPage = React.lazy(() => import('./pages/Quran'));
 // const ViewChapter = React.lazy(() => import('pages/ViewChapter'));
 
@@ -93,11 +94,15 @@ const App: React.FC = () => (
           <IonRouterOutlet animated>
             <Route exact path="/quran" render={() => <QuranPage />} />
             <Route exact path="/quran/:id" render={() => <ViewChapterPage />} />
+            <Route exact path="/settings" render={() => <SettingsPage />} />
 
             <Redirect exact path="/" to="/quran" />
           </IonRouterOutlet>
 
-          <IonTabBar slot="bottom" className="[border-top:1px_solid] py-1.5">
+          <IonTabBar
+            slot="bottom"
+            className="[border-top:1px_solid] border-t-neutral-500 py-1.5"
+          >
             {routes.map(({ icon, name, path }, indx) => (
               <IonTabButton tab={name} href={path} key={name}>
                 <IonIcon aria-hidden="true" icon={icon} />
