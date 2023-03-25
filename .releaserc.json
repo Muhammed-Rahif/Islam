@@ -1,5 +1,5 @@
 {
-  "branches": ["develop", "main"],
+  "branches": ["main", { "name": "beta", "prerelease": true }],
   "repository": "https://github.com/Muhammed-Rahif/Islam",
   "plugins": [
     "@semantic-release/commit-analyzer",
