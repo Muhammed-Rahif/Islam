@@ -1,3 +1,10 @@
+# [1.0.0-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-03-25)
+
+
+### Features
+
+* **settings:** dark and light mode ([5bffb5e](https://github.com/Muhammed-Rahif/Islam/commit/5bffb5e97153357486c42157396e96b82a126151))
+
 # 1.0.0-beta.1 (2023-03-25)
 
 
