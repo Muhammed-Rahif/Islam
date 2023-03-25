@@ -60,16 +60,16 @@ const routes: {
     path: '/sunnah',
     icon: person,
   },
-  {
-    name: 'Dhikr',
-    path: '/dhikr',
-    icon: chatbubble,
-  },
-  {
-    name: 'Good Deeds',
-    path: '/good-deeds',
-    icon: happy,
-  },
+  // {
+  //   name: 'Dhikr',
+  //   path: '/dhikr',
+  //   icon: chatbubble,
+  // },
+  // {
+  //   name: 'Good Deeds',
+  //   path: '/good-deeds',
+  //   icon: happy,
+  // },
   {
     name: 'Settings',
     path: '/settings',
