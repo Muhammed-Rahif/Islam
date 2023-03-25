@@ -11,9 +11,14 @@ import {
   setupIonicReact,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { book, person, cog, chatbubble, happy } from 'ionicons/icons';
+import {
+  book,
+  person,
+  cog,
+  // chatbubble, happy
+} from 'ionicons/icons';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
