@@ -17,27 +17,33 @@ const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
 
     return juzs.map((juz) => {
       const chapterIds = Object.keys(juz.verse_mapping);
-      return chapterIds.map((chapterId) => {
-        return chapters.find((chapter) => chapter.id === Number(chapterId));
-      });
+      return chapterIds
+        .map((chapterId) => {
+          return chapters.find((chapter) => chapter.id === Number(chapterId));
+        })
+        .filter((chapter) => chapter);
     });
   }, [juzs, chapters]);
 
   return (
     <GroupedVirtuoso
       groupCounts={juzChaptersGroup?.map((juzChapters) => juzChapters.length)}
-      groupContent={(index) => (
-        <IonItemDivider className="z-40 relative">
-          <IonLabel>Juz {juzs![index].juz_number}</IonLabel>
-        </IonItemDivider>
-      )}
+      groupContent={(index) => {
+        return juzChaptersGroup![index].length > 0 ? (
+          <IonItemDivider className="z-40 relative">
+            <IonLabel>Juz {juzs![index].juz_number}</IonLabel>
+          </IonItemDivider>
+        ) : (
+          <div style={{ height: 0.5 }}></div>
+        );
+      }}
       className="w-full h-full"
       itemContent={(indx, groupIndx) => {
         if (!juzs) return null;
         if (!chapters) return null;
 
         const chapter = juzChaptersGroup?.flat(1)[indx];
-        if (!chapter) return <></>;
+        if (!chapter) return <div></div>;
 
         return (
           <ChapterItem

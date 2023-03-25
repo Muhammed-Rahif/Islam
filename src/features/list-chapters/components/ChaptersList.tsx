@@ -48,12 +48,10 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   const searchedChapters = useMemo(() => {
     if (search.trim()) {
       return chapterData?.chapters?.filter((chapter) => {
-        (chapter as any).t = chapter.translated_name.name;
-        return Object.values(chapter)
-          .join(' ')
-          .toLowerCase()
-          .replace('[object object]', '')
-          .includes(search.toLowerCase());
+        const chapterValues =
+          `${chapter.translated_name.name}, ${chapter.id}, ${chapter.name_arabic}, ${chapter.name_simple}`.toLocaleLowerCase();
+
+        return chapterValues.includes(search.toLowerCase());
       });
     }
   }, [chapterData?.chapters, search]);
@@ -69,7 +67,10 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
     return sorted;
   }, [chapterData, sortBy]);
 
-  const chapters = searchedChapters ?? sortedChapters ?? [];
+  const chapters = useMemo(
+    () => searchedChapters ?? sortedChapters ?? [],
+    [searchedChapters, sortedChapters]
+  );
 
   return (
     <div className="my-3 h-full">
