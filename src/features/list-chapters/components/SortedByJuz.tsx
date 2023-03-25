@@ -39,11 +39,11 @@ const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
       }}
       className="w-full h-full"
       itemContent={(indx, groupIndx) => {
-        if (!juzs) return null;
-        if (!chapters) return null;
+        if (!juzs) return;
+        if (!chapters) return;
 
         const chapter = juzChaptersGroup?.flat(1)[indx];
-        if (!chapter) return <div></div>;
+        if (!chapter) return;
 
         return (
           <ChapterItem
