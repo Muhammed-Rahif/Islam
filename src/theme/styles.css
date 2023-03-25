@@ -70,7 +70,7 @@ ion-router-outlet > .ion-page-hidden {
 } */
 
 ion-router-outlet > .ion-page {
-  animation: fadeIn 0.3s 1 forwards;
+  animation: fadeIn 0.3s 1 forwards ease-out;
 }
 
 @keyframes fadeIn {

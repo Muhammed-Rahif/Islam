@@ -1,6 +1,7 @@
 import {
   IonContent,
   IonHeader,
+  IonItemDivider,
   IonItemGroup,
   IonList,
   IonPage,
@@ -11,6 +12,7 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import { THEME_KEY } from 'config/store';
+import { QuranSettings } from 'features/quran-settings';
 import { useLocalStorage } from 'hooks/useLocalStore';
 import { useEffect } from 'react';
 
@@ -32,16 +34,16 @@ const Settings: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen scrollY={false} className="ion-padding">
         <IonList>
-          <IonItemGroup>
-            <h2 className="text-xl font-bold mb-1">General</h2>
-
-            <div className="flex justify-between items-center">
+          <IonItemGroup className="pb-3">
+            <h2 className="text-xl font-bold mb-2">General</h2>
+            <div className="flex justify-between items-center h-9">
               <IonText>
                 <h2 className="text-base">Theme</h2>
               </IonText>
               <IonSelect
                 interface="popover"
                 placeholder="Select theme"
+                className="py-0"
                 value={theme}
                 onIonChange={(e) => setTheme(e.detail.value)}
               >
@@ -49,9 +51,10 @@ const Settings: React.FC = () => {
                 <IonSelectOption value="light">Light</IonSelectOption>
               </IonSelect>
             </div>
-
-            <hr className="opacity-20" />
+            <IonItemDivider className="min-h-[2px] my-2" />
           </IonItemGroup>
+
+          <QuranSettings />
         </IonList>
       </IonContent>
     </IonPage>
