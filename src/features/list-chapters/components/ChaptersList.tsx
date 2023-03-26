@@ -12,7 +12,6 @@ import { alertCircle } from 'ionicons/icons';
 import { useAllJuzs } from '../api/useAllJuzs';
 import { ChapterItem } from './ChapterItem';
 import { SortedByJuz } from './SortedByJuz';
-import { Virtuoso } from 'react-virtuoso';
 import { FixedSizeList as List } from 'react-window';
 
 interface ChapetersListProps {
@@ -103,9 +102,8 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
             height={contentRef.current?.clientHeight ?? window.innerHeight}
             itemCount={chapters.length}
             itemSize={62}
-            width={window.innerWidth}
+            width="100%"
             itemData={chapters}
-            className="w-full"
           >
             {({ index, style, data }) => (
               <ChapterItem

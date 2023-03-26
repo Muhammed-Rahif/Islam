@@ -107,10 +107,18 @@ const ViewChapter: React.FC = () => {
         </IonSegment>
 
         {type === 'reading' ? (
-          <ReadingContent
-            bismiPre={chapterData?.chapter.bismillah_pre}
-            footer={footer}
-          />
+          <>
+            {chapterData?.chapter.pages.length && (
+              <ReadingContent
+                bismiPre={chapterData?.chapter.bismillah_pre}
+                footer={footer}
+                pages={{
+                  start: chapterData.chapter.pages[0],
+                  end: chapterData.chapter.pages[1],
+                }}
+              />
+            )}
+          </>
         ) : (
           <TranslationContent footer={footer} />
         )}
