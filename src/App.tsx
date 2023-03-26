@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -44,6 +44,8 @@ import './theme/styles.css';
 import QuranPage from 'screens/Quran';
 import ViewChapterPage from 'screens/ViewChapter';
 import SettingsPage from 'screens/Settings';
+import { useAtomValue } from 'jotai/react';
+import { settingsAtom } from 'stores/settings';
 // const QuranPage = React.lazy(() => import('./pages/Quran'));
 // const ViewChapter = React.lazy(() => import('pages/ViewChapter'));
 
@@ -85,35 +87,49 @@ const routes: {
 
 const queryClient = new QueryClient();
 
-const App: React.FC = () => (
-  <QueryClientProvider client={queryClient}>
-    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-    <IonApp>
-      <IonReactRouter>
-        <IonTabs>
-          <IonRouterOutlet animated>
-            <Route exact path="/quran" render={() => <QuranPage />} />
-            <Route exact path="/quran/:id" render={() => <ViewChapterPage />} />
-            <Route exact path="/settings" render={() => <SettingsPage />} />
+const App: React.FC = () => {
+  const settings = useAtomValue(settingsAtom);
 
-            <Redirect exact path="/" to="/quran" />
-          </IonRouterOutlet>
+  useEffect(() => {
+    settings.general.theme === 'dark'
+      ? document.body.classList.add('dark')
+      : document.body.classList.remove('dark');
+  }, [settings.general.theme]);
 
-          <IonTabBar
-            slot="bottom"
-            className="py-1.5 border-t-[.5px] border-[var(--border-color)]"
-          >
-            {routes.map(({ icon, name, path }, indx) => (
-              <IonTabButton tab={name} href={path} key={name}>
-                <IonIcon aria-hidden="true" icon={icon} />
-                <IonLabel>{name}</IonLabel>
-              </IonTabButton>
-            ))}
-          </IonTabBar>
-        </IonTabs>
-      </IonReactRouter>
-    </IonApp>
-  </QueryClientProvider>
-);
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <IonApp>
+        <IonReactRouter>
+          <IonTabs>
+            <IonRouterOutlet animated>
+              <Route exact path="/quran" render={() => <QuranPage />} />
+              <Route
+                exact
+                path="/quran/:id"
+                render={() => <ViewChapterPage />}
+              />
+              <Route exact path="/settings" render={() => <SettingsPage />} />
+
+              <Redirect exact path="/" to="/quran" />
+            </IonRouterOutlet>
+
+            <IonTabBar
+              slot="bottom"
+              className="py-1.5 border-t-[.5px] border-[var(--border-color)]"
+            >
+              {routes.map(({ icon, name, path }, indx) => (
+                <IonTabButton tab={name} href={path} key={name}>
+                  <IonIcon aria-hidden="true" icon={icon} />
+                  <IonLabel>{name}</IonLabel>
+                </IonTabButton>
+              ))}
+            </IonTabBar>
+          </IonTabs>
+        </IonReactRouter>
+      </IonApp>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

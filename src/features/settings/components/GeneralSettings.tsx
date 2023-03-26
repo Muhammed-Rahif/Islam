@@ -25,12 +25,6 @@ const GeneralSettings: React.FC = () => {
     [setSettings]
   );
 
-  useEffect(() => {
-    settings.general.theme === 'dark'
-      ? document.body.classList.add('dark')
-      : document.body.classList.remove('dark');
-  }, [settings.general.theme]);
-
   return (
     <IonItemGroup className="pb-3">
       <h2 className="text-xl font-bold mb-2">General</h2>

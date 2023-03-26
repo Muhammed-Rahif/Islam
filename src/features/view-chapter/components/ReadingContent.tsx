@@ -90,7 +90,9 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer }) => {
           };
 
           if (verse.text_uthmani === 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ')
-            return <Bismi quranSettings={quranSettings} ayahNo={++indx} />;
+            return (
+              <Bismi quranSettings={quranSettings} ayahNo={++indx} key={indx} />
+            );
 
           return (
             <Fragment key={indx}>

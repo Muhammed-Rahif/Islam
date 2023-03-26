@@ -73,7 +73,7 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   );
 
   return (
-    <div className="my-3 h-full pb-28">
+    <div className="my-3 h-full pb-[6.6rem]">
       {/* when error appears */}
       {error ? (
         <IonToast
