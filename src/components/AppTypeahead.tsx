@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   IonButton,
   IonButtons,
@@ -35,27 +35,26 @@ function AppTypeahead(props: TypeaheadProps) {
     ...props.selectedItems,
   ]);
 
-  const isChecked = (value: string) => {
-    return workingSelectedValues.find((item) => item === value) !== undefined;
-  };
+  const isChecked = useCallback(
+    (value: string) => {
+      return workingSelectedValues.find((item) => item === value) !== undefined;
+    },
+    [workingSelectedValues]
+  );
 
-  const cancelChanges = () => {
+  const cancelChanges = useCallback(() => {
     const { onSelectionCancel } = props;
     if (onSelectionCancel !== undefined) {
       onSelectionCancel();
     }
-  };
+  }, [props]);
 
-  const confirmChanges = () => {
+  const confirmChanges = useCallback(() => {
     const { onSelectionChange } = props;
     if (onSelectionChange !== undefined) {
       onSelectionChange(workingSelectedValues);
     }
-  };
-
-  const searchbarInput = (ev: any) => {
-    filterList(ev.target.value);
-  };
+  }, [props, workingSelectedValues]);
 
   /**
    * Update the rendered view with
@@ -63,27 +62,37 @@ function AppTypeahead(props: TypeaheadProps) {
    * query is provided, all data
    * will be rendered.
    */
-  const filterList = (searchQuery: string | null | undefined) => {
-    /**
-     * If no search query is defined,
-     * return all options.
-     */
-    if (searchQuery === undefined || searchQuery === null) {
-      setFilteredItems([...props.items]);
-    } else {
+  const filterList = useCallback(
+    (searchQuery: string | null | undefined) => {
       /**
-       * Otherwise, normalize the search
-       * query and check to see which items
-       * contain the search query as a substring.
+       * If no search query is defined,
+       * return all options.
        */
-      const normalizedQuery = searchQuery.toLowerCase();
-      setFilteredItems(
-        props.items.filter((item) => {
-          return item.text.toLowerCase().includes(normalizedQuery);
-        })
-      );
-    }
-  };
+      if (searchQuery === undefined || searchQuery === null) {
+        setFilteredItems([...props.items]);
+      } else {
+        /**
+         * Otherwise, normalize the search
+         * query and check to see which items
+         * contain the search query as a substring.
+         */
+        const normalizedQuery = searchQuery.toLowerCase();
+        setFilteredItems(
+          props.items.filter((item) => {
+            return item.text.toLowerCase().includes(normalizedQuery);
+          })
+        );
+      }
+    },
+    [props.items]
+  );
+
+  const searchbarInput = useCallback(
+    (ev: any) => {
+      filterList(ev.target.value);
+    },
+    [filterList]
+  );
 
   const checkboxChange = (ev: CheckboxCustomEvent) => {
     const { checked, value } = ev.detail;

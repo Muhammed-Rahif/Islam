@@ -5,7 +5,7 @@ import {
   IonToast,
   useIonToast,
 } from '@ionic/react';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { ChapterSortBy } from '../types/Chapter';
 import { useChapersList } from '../api/useChapersList';
 import { alertCircle } from 'ionicons/icons';
@@ -13,6 +13,7 @@ import { useAllJuzs } from '../api/useAllJuzs';
 import { ChapterItem } from './ChapterItem';
 import { SortedByJuz } from './SortedByJuz';
 import { Virtuoso } from 'react-virtuoso';
+import { FixedSizeList as List } from 'react-window';
 
 interface ChapetersListProps {
   sortBy: ChapterSortBy;
@@ -23,6 +24,7 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   sortBy = 'surah',
   search,
 }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
   const [presentToast] = useIonToast();
 
   const {
@@ -73,7 +75,7 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   );
 
   return (
-    <div className="my-3 h-full pb-[6.6rem]">
+    <div className="my-3 h-[calc(100%-6.6rem)]" ref={contentRef}>
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -97,25 +99,26 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
       <IonItemGroup className="h-full">
         {sortBy !== 'juz' ? (
           //  when succesfull data retrieve; and sortBy == 'revelation-order' or 'surah'
-          <Virtuoso
-            className="h-full w-full"
-            data={chapters}
-            itemContent={(
-              index,
-              { name_simple, verses_count, id, translated_name }
-            ) => {
-              return (
-                <ChapterItem
-                  name={name_simple}
-                  versesCount={verses_count}
-                  id={id}
-                  translatedName={translated_name.name}
-                  index={index}
-                  key={id}
-                />
-              );
-            }}
-          />
+          <List
+            height={contentRef.current?.clientHeight ?? window.innerHeight}
+            itemCount={chapters.length}
+            itemSize={62}
+            width={window.innerWidth}
+            itemData={chapters}
+            className="w-full"
+          >
+            {({ index, style, data }) => (
+              <ChapterItem
+                style={style}
+                name={data[index]?.name_simple}
+                versesCount={data[index]?.verses_count}
+                id={data[index]?.id}
+                translatedName={data[index]?.translated_name.name}
+                index={index}
+                key={data[index]?.id}
+              />
+            )}
+          </List>
         ) : (
           // when succesfull data retrieve; and sortBy == 'juzs'
           <SortedByJuz
