@@ -12,7 +12,7 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import { THEME_KEY } from 'config/store';
-import { QuranSettings } from 'features/quran-settings';
+import { QuranSettings } from 'features/settings';
 import { useLocalStorage } from 'hooks/useLocalStore';
 import { useEffect } from 'react';
 

@@ -1,10 +1,11 @@
 import { IonItem, IonSpinner, IonText, IonToast } from '@ionic/react';
 import MotionCaret from 'components/MotionCaret';
 import { alertCircle } from 'ionicons/icons';
-import { useAtom } from 'jotai/react';
+import { useAtom, useAtomValue } from 'jotai/react';
 import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import { quranLastReadAtom } from 'stores/quranLastRead';
+import { settingsAtom } from 'stores/settings';
 import { numToArabic, removeHtmlTags } from 'utils/string';
 import { useChapterVerses } from '../api/useChapterVerses';
 
@@ -15,6 +16,7 @@ type Props = {
 const TranslationContent: React.FC<Props> = ({ footer }) => {
   const { id } = useParams<{ id: string }>();
   const [lastRead, setLastRead] = useAtom(quranLastReadAtom);
+  const { quran: quranSettings } = useAtomValue(settingsAtom);
 
   const {
     isLoading,
@@ -23,6 +25,7 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
   } = useChapterVerses({
     chapterId: parseInt(id),
     per_page: 286,
+    translations: quranSettings.translations.map((t) => t.id),
   });
 
   return (
@@ -63,7 +66,14 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
             }}
           >
             <IonText lang="ar" className="ml-2">
-              <span className="mb-2 text-justify">
+              <span
+                className="mb-2 text-justify"
+                style={{
+                  fontSize: quranSettings.fontSize,
+                  lineHeight: quranSettings.fontSize,
+                  fontFamily: quranSettings.fontFamily,
+                }}
+              >
                 <MotionCaret
                   title="You last read this verse"
                   show={
@@ -79,12 +89,14 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
               </span>
             </IonText>
           </div>
-          <IonText className="text-left">
-            {removeHtmlTags(verse?.translations[0].text)}
-            <small className="opacity-20 block">
-              - {verse.translations[0].resource_name}
-            </small>
-          </IonText>
+          {verse?.translations.map((translation, indx) => (
+            <IonText key={indx} className="text-left">
+              {removeHtmlTags(translation.text)}
+              <small className="opacity-20 block mb-2">
+                - {translation.resource_name}
+              </small>
+            </IonText>
+          ))}
           <hr className="my-4 opacity-20" />
         </Fragment>
       ))}

@@ -11,9 +11,4 @@ export interface Translation {
 
 export interface TranslatedName {
   name: string;
-  language_name: LanguageName;
-}
-
-export enum LanguageName {
-  English = 'english',
 }

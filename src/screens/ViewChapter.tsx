@@ -94,7 +94,7 @@ const ViewChapter: React.FC = () => {
         scrollY={false}
       >
         <IonSegment
-          className="mb-3"
+          className="mb-0.5"
           value={type}
           onIonChange={(e) => setType(e.detail.value!)}
         >

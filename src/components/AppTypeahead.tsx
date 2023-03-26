@@ -26,6 +26,7 @@ interface TypeaheadProps {
   title?: string;
   onSelectionCancel?: () => void;
   onSelectionChange?: (items: string[]) => void;
+  required?: boolean;
 }
 
 function AppTypeahead(props: TypeaheadProps) {
@@ -105,7 +106,12 @@ function AppTypeahead(props: TypeaheadProps) {
           </IonButtons>
           <IonTitle>{props.title}</IonTitle>
           <IonButtons slot="end">
-            <IonButton onClick={confirmChanges}>Done</IonButton>
+            <IonButton
+              disabled={props.required && workingSelectedValues.length === 0}
+              onClick={confirmChanges}
+            >
+              Done
+            </IonButton>
           </IonButtons>
         </IonToolbar>
         <IonToolbar>
@@ -120,7 +126,7 @@ function AppTypeahead(props: TypeaheadProps) {
             data={filteredItems}
             itemContent={(index, { text, value }) => (
               <IonItem key={value}>
-                <IonLabel className="capitalize">{text}</IonLabel>
+                <IonLabel className="capitalize !text-sm">{text}</IonLabel>
                 <IonCheckbox
                   value={value}
                   checked={isChecked(value)}

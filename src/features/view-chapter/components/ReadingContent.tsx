@@ -5,13 +5,37 @@ import { useParams } from 'react-router-dom';
 import { numToArabic } from 'utils/string';
 import { useVersesUthmani } from '../api/useVersesUthmani';
 import MotionCaret from 'components/MotionCaret';
-import { useAtom } from 'jotai/react';
+import { useAtom, useAtomValue } from 'jotai/react';
 import { quranLastReadAtom } from 'stores/quranLastRead';
+import { settingsAtom, SettingsType } from 'stores/settings';
 
 type Props = {
   bismiPre?: boolean;
   footer?: React.ReactNode;
 };
+
+function Bismi({
+  quranSettings,
+  ayahNo,
+}: {
+  quranSettings: SettingsType['quran'];
+  ayahNo?: number;
+}) {
+  return (
+    <div
+      style={{
+        fontSize: quranSettings.fontSize,
+        height: parseInt(quranSettings.fontSize.replace('%', '')) * 0.36,
+        fontFamily: quranSettings.fontFamily,
+      }}
+      lang="ar"
+      className="block text-center mt-1"
+    >
+      بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ{' '}
+      {ayahNo && `  ﴿${numToArabic(ayahNo)}﴾  `}
+    </div>
+  );
+}
 
 const ReadingContent: React.FC<Props> = ({ bismiPre, footer }) => {
   const { id } = useParams<{ id: string }>();
@@ -23,9 +47,10 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer }) => {
     chapterId: parseInt(id),
   });
   const [lastRead, setLastRead] = useAtom(quranLastReadAtom);
+  const { quran: quranSettings } = useAtomValue(settingsAtom);
 
   return (
-    <div className="[direction:rtl] leading-9 pb-10 text-justify my-3 h-full overflow-y-scroll overflow-x-visible ion-content-scroll-host">
+    <div className="[direction:rtl] leading-9 pb-10 text-justify mt-0.5 mb-3 h-full overflow-y-scroll overflow-x-visible ion-content-scroll-host">
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -46,13 +71,9 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer }) => {
         </IonItem>
       )}
 
-      {bismiPre && (
-        <IonText lang="ar" className="block text-center h-10">
-          <span>بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</span>
-        </IonText>
-      )}
-
       <span lang="ar" className="mb-2 text-justify">
+        {bismiPre && <Bismi quranSettings={quranSettings} />}
+
         {versesUthmaniData?.verses.map((verse, indx) => {
           const isLastRead =
             lastRead?.reading?.chapterId.toString() === id &&
@@ -69,18 +90,19 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer }) => {
           };
 
           if (verse.text_uthmani === 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ')
-            return (
-              <IonText className="block text-center h-10" key={indx}>
-                <span>
-                  {verse?.text_uthmani} {`  ﴿${numToArabic(++indx)}﴾  `}
-                </span>
-              </IonText>
-            );
+            return <Bismi quranSettings={quranSettings} ayahNo={++indx} />;
 
           return (
             <Fragment key={indx}>
               <MotionCaret title="You last read this verse" show={isLastRead} />
-              <span onDoubleClick={onVerseDblClick}>
+              <span
+                style={{
+                  fontSize: quranSettings.fontSize,
+                  lineHeight: quranSettings.fontSize,
+                  fontFamily: quranSettings.fontFamily,
+                }}
+                onDoubleClick={onVerseDblClick}
+              >
                 {verse?.text_uthmani} {`  ﴿${numToArabic(++indx)}﴾  `}
               </span>
             </Fragment>
