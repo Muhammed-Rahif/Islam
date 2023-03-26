@@ -64,6 +64,17 @@ const QuranSettings: React.FC = () => {
     [translationsData?.translations, updateQuranSettings]
   );
 
+  const translationsBtnText = useMemo(() => {
+    const uniqueTranslations = [
+      ...new Set(
+        settings?.quran.translations.map(
+          (translation) => translation.language_name
+        )
+      ),
+    ];
+    return truncate(uniqueTranslations.join(', '), 24);
+  }, [settings?.quran.translations]);
+
   return (
     <IonItemGroup className="pb-3">
       {/* Title */}
@@ -128,16 +139,7 @@ const QuranSettings: React.FC = () => {
           disabled={isTranslationsLoading}
           className="capitalize"
         >
-          {truncate(
-            [
-              ...new Set(
-                settings?.quran.translations.map(
-                  (translation) => translation.language_name
-                )
-              ),
-            ].join(', '),
-            24
-          )}
+          {translationsBtnText}
         </IonButton>
 
         <IonModal trigger="select-translations" ref={translationsModal}>

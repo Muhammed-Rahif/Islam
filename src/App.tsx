@@ -99,7 +99,10 @@ const App: React.FC = () => (
             <Redirect exact path="/" to="/quran" />
           </IonRouterOutlet>
 
-          <IonTabBar slot="bottom" className="py-1.5">
+          <IonTabBar
+            slot="bottom"
+            className="py-1.5 border-t-[.5px] border-[var(--border-color)]"
+          >
             {routes.map(({ icon, name, path }, indx) => (
               <IonTabButton tab={name} href={path} key={name}>
                 <IonIcon aria-hidden="true" icon={icon} />
