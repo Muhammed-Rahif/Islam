@@ -1,8 +1,13 @@
-name: 'Apk Comment'
+name: 'Telegram - Debug Apk'
 on: pull_request
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  apk-comment:
-    name: 'Apk Comment'
+  telegram-debug-apk:
+    name: 'Telegram - Debug Apk'
     runs-on: 'ubuntu-latest'
     permissions: write-all
     steps:
@@ -30,11 +35,10 @@ jobs:
           ./gradlew assembleDebug
           ./gradlew assembleRelease
           cd ..
-      - name: Comment apk file
-        uses: thollander/actions-comment-pull-request@v2
+      - name: Send telegram message with dubug apk
+        uses: appleboy/telegram-action@master
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          reactions: eyes
-          filePath: android/app/build/outputs/apk/debug/app-debug.apk
-          comment_tag: execution
-          mode: recreate
+          to: 774495232
+          token: |
+            ${{ secrets.TELEGRAM_BOT_ID }}:${{ secrets.TELEGRAM_BOT_TOKEN }}
+          document: android/app/build/outputs/apk/debug/app-debug.apk
