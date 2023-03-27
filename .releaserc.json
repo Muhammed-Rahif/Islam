@@ -47,7 +47,7 @@
     [
       "semantic-release-telegram",
       {
-        "chats": [774495232],
+        "chats": [-877507563],
         "assets": [
           {
             "path": "android/app/build/outputs/apk/release/app-release-unsigned.apk"
