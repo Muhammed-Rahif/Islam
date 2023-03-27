@@ -26,7 +26,8 @@ function useChapterVerses({
 
       return data;
     },
-    getNextPageParam: (lastPage, allPages) => lastPage.pagination.next_page,
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.pagination.next_page ?? undefined,
     getPreviousPageParam: (firstPage, allPages) =>
       firstPage.pagination.current_page === 1
         ? undefined

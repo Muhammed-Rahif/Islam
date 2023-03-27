@@ -22,8 +22,6 @@ function useVersesUthmani({ chapterId, pages }: Props) {
     },
     getNextPageParam: (lastPage, allPages) => {
       const currentPageNo = parseInt(lastPage.meta.filters.page_number);
-      console.log(currentPageNo < pages.end ? currentPageNo + 1 : undefined);
-
       return currentPageNo < pages.end ? currentPageNo + 1 : undefined;
     },
     getPreviousPageParam: (firstPage, allPages) => {

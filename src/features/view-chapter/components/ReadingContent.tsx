@@ -124,7 +124,10 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
                     }}
                     onDoubleClick={onVerseDblClick}
                   >
-                    {verse?.text_uthmani} {`  ﴿${numToArabic(++indx)}﴾  `}
+                    {verse?.text_uthmani}{' '}
+                    {`  ﴿${numToArabic(
+                      verse.verse_key.replace(/\d+:/, '')
+                    )}﴾  `}
                   </span>
                 </Fragment>
               );
