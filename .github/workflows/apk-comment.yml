@@ -20,10 +20,14 @@ jobs:
         run: yarn
       - name: Build
         run: |
+          yarn build 
+          npx cap sync android 
+          ionic capacitor update 
+          ionic capacitor copy android 
           ionic capacitor copy android
           cd android
           chmod +x gradlew
-          gradlew assembleDebug
+          ./gradlew assembleDebug
           cd ..
       - name: Comment Apk
         uses: thollander/actions-comment-pull-request@v2
