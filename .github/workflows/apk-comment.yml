@@ -21,6 +21,7 @@ jobs:
         run: yarn
       - name: Build android
         run: |
+          ionic capacitor update
           ionic capacitor copy android
           cd android
           chmod +x gradlew

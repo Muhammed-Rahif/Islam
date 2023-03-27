@@ -1,10 +1,11 @@
 #!/bin/bash
-node scripts/versioning.js -v $1 
-CI=false 
+node scripts/versioning.js -v $1
+CI=false
+ionic capacitor update
 ionic capacitor copy android
-cd android 
-chmod +x gradlew 
-./gradlew assembleDebug 
-./gradlew assembleRelease 
-cd .. 
+cd android
+chmod +x gradlew
+./gradlew assembleDebug
+./gradlew assembleRelease
+cd ..
 CI=true
