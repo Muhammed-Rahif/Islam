@@ -26,5 +26,8 @@ export default defineConfig(({ mode }) => {
       open: Boolean(process.env.BROWSER),
       port: Number(process.env.PORT) || 8100,
     },
+    build: {
+      outDir: 'build',
+    },
   };
 });
