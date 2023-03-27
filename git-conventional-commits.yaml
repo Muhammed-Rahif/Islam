@@ -39,6 +39,7 @@ convention:
       "changelog",
       "playwright",
       "vite",
+      "gitignore",
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:

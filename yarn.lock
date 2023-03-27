@@ -2526,14 +2526,6 @@
     "@types/history" "^4.7.11"
     "@types/react" "*"
 
-"@types/react-scroll-into-view-if-needed@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@types/react-scroll-into-view-if-needed/-/react-scroll-into-view-if-needed-2.1.1.tgz#2e684c4d5e0a63a566383a54a16fc9bd2cf32852"
-  integrity sha512-aphcrlvAqeUTTh0gVa77lxVT7E04egwcy0/DglytyqjDzGKOTBqrl6B9z2JXySPWbi0d5ZVbttP1+ZCzB74Q0A==
-  dependencies:
-    "@types/react" "*"
-    scroll-into-view-if-needed "*"
-
 "@types/react-virtualized-auto-sizer@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/react-virtualized-auto-sizer/-/react-virtualized-auto-sizer-1.0.1.tgz#b3187dae1dfc4c15880c9cfc5b45f2719ea6ebd4"
@@ -2541,7 +2533,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-window@^1.8.2", "@types/react-window@^1.8.5":
+"@types/react-window@^1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@types/react-window/-/react-window-1.8.5.tgz#285fcc5cea703eef78d90f499e1457e9b5c02fc1"
   integrity sha512-V9q3CvhC9Jk9bWBOysPGaWy/Z0lxYcTXLtLipkt2cnRj1JOSFNF7wqGpkScSXMgBwC+fnVRg/7shwgddBG5ICw==
@@ -7990,26 +7982,12 @@ react-router@5.3.4, react-router@^5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-virtualized-auto-sizer@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/react-virtualized-auto-sizer/-/react-virtualized-auto-sizer-1.0.7.tgz#bfb8414698ad1597912473de3e2e5f82180c1195"
-  integrity sha512-Mxi6lwOmjwIjC1X4gABXMJcKHsOo0xWl3E3ugOgufB8GJU+MqrtY35aBuvCYv/razQ1Vbp7h1gWJjGjoNN5pmA==
-
 react-virtuoso@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/react-virtuoso/-/react-virtuoso-4.1.0.tgz#44138385d87bddc7597867778f2cbcd9d4dfea79"
   integrity sha512-Vcq5WXn18PvPT55kdeGQ8BN3K95XyPe7hum8zG6Tx7g1CtUYVsQKN7fouMxBSy+XymEDB5ynGy8JWhuqyLLtPw==
 
-react-window-dynamic-list@^2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/react-window-dynamic-list/-/react-window-dynamic-list-2.4.2.tgz#e9cabcd067cb066619613af00f5dd42bca9f4b19"
-  integrity sha512-vFTTOt//53KShp9skE/xW/y0YVFllgCCWWKi97Ma69XZ6Rn/+wLPXCVGVBCtbjxi3l/KYCenzsDbb4lHgI3Gvw==
-  dependencies:
-    "@types/react-window" "^1.8.2"
-    lodash.debounce "^4.0.8"
-    react-window "^1.8.5"
-
-react-window@^1.8.5, react-window@^1.8.8:
+react-window@^1.8.8:
   version "1.8.8"
   resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.8.tgz#1b52919f009ddf91970cbdb2050a6c7be44df243"
   integrity sha512-D4IiBeRtGXziZ1n0XklnFGu7h9gU684zepqyKzgPNzrsrk7xOCxni+TCckjg2Nr/DiaEEGVVmnhYSlT2rB47dQ==
@@ -8416,7 +8394,7 @@ scheduler@^0.23.0:
   dependencies:
     loose-envify "^1.1.0"
 
-scroll-into-view-if-needed@*, scroll-into-view-if-needed@^3.0.6:
+scroll-into-view-if-needed@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/scroll-into-view-if-needed/-/scroll-into-view-if-needed-3.0.6.tgz#2c803a509c1036bc4a9c009fecc5c145f87e47cf"
   integrity sha512-x+CW0kOzlFNOnseF0DBr0AJ5m+TgGmSOdEZwyiZW0gV87XBvxQKw5A8DvFFgabznA68XqLgVX+PwPX8OzsFvRA==
