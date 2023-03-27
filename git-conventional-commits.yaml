@@ -38,6 +38,7 @@ convention:
       "font",
       "changelog",
       "playwright",
+      "vite",
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:
