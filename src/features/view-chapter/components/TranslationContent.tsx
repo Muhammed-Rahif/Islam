@@ -38,7 +38,7 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
   });
 
   return (
-    <div className="mt-2 h-full pb-10 overflow-y-scroll overflow-x-visible ion-content-scroll-host">
+    <div className="mt-4 h-full pb-10 overflow-y-scroll overflow-x-visible ion-content-scroll-host">
       {/* when error appears */}
       {error ? (
         <IonToast

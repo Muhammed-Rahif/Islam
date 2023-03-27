@@ -98,7 +98,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
                 <Bismi
                   quranSettings={quranSettings}
                   ayahNo={++indx}
-                  key={indx}
+                  key={'bismi'}
                 />
               );
 

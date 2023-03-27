@@ -6,7 +6,7 @@ import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 import manifest from './public/manifest.json';
 
 export const pwaOptions: Partial<VitePWAOptions> = {
-  base: '/',
+  base: '/quran',
   devOptions: {
     enabled: true,
     navigateFallback: 'index.html',
