@@ -1,0 +1,35 @@
+name: 'Apk Comment'
+on: pull_request
+jobs:
+  apk-comment:
+    name: 'Apk Comment'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup node environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.15.0
+      - name: Setup ionic and capacitor
+        run: |
+          npm i -g @ionic/cli @capacitor/cli yarn
+      - name: Install node modules
+        run: yarn
+      - name: Build
+        run: |
+          ionic capacitor copy android
+          cd android
+          chmod +x gradlew
+          gradlew assembleDebug
+          cd ..
+      - name: Comment Apk
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          reactions: eyes
+          filePath: android/app/build/outputs/apk/debug/app-debug.apk
+          comment_tag: execution
+          mode: recreate
