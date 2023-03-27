@@ -40,6 +40,7 @@ convention:
       "playwright",
       "vite",
       "gitignore",
+      "atom-state",
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:

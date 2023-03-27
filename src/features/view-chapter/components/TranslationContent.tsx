@@ -22,7 +22,6 @@ type Props = {
 
 const TranslationContent: React.FC<Props> = ({ footer }) => {
   const { id } = useParams<{ id: string }>();
-  const [lastRead, setLastRead] = useAtom(quranLastReadAtom);
   const { quran: quranSettings } = useAtomValue(settingsAtom);
   const [presentToast] = useIonToast();
 
@@ -49,7 +48,6 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
           icon={alertCircle}
         />
       ) : null}
-
       {/* when api is loading */}
       {isLoading && (
         <IonItem
@@ -63,19 +61,7 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
       {chapterVerses?.pages.map((chapterVerses) =>
         chapterVerses.verses.map((verse, indx) => (
           <Fragment key={indx}>
-            <div
-              key={indx}
-              className="[direction:rtl]"
-              onDoubleClick={(e) => {
-                setLastRead({
-                  reading: lastRead?.reading,
-                  translation: {
-                    chapterId: parseInt(id),
-                    verseId: verse?.id,
-                  },
-                });
-              }}
-            >
+            <div key={indx} className="[direction:rtl]">
               <IonText lang="ar" className="ml-2">
                 <span
                   className="mb-2 text-justify"
@@ -105,7 +91,6 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
           </Fragment>
         ))
       )}
-
       <IonInfiniteScroll
         disabled={!hasNextPage}
         onIonInfinite={async (ev) => {
@@ -125,7 +110,6 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
       >
         <IonInfiniteScrollContent loadingText="Please, be patient..."></IonInfiniteScrollContent>
       </IonInfiniteScroll>
-
       {!hasNextPage && !isFetchingNextPage && !isLoading && footer}
     </div>
   );

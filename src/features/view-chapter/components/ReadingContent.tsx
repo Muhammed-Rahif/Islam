@@ -60,7 +60,6 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
     chapterId: parseInt(id),
     pages,
   });
-  const [lastRead, setLastRead] = useAtom(quranLastReadAtom);
   const { quran: quranSettings } = useAtomValue(settingsAtom);
 
   const [presentToast] = useIonToast();
@@ -92,16 +91,6 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
       {versesUthmaniData?.pages.map((versesUthmani, index) => (
         <span key={index}>
           {versesUthmani.verses.map((verse, indx) => {
-            const onVerseDblClick = () => {
-              setLastRead({
-                translation: lastRead?.translation,
-                reading: {
-                  chapterId: parseInt(id),
-                  verseId: verse?.id,
-                },
-              });
-            };
-
             if (
               verse.text_uthmani === 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ'
             )
@@ -121,7 +110,6 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
                     lineHeight: quranSettings.fontSize,
                     fontFamily: quranSettings.fontFamily,
                   }}
-                  onDoubleClick={onVerseDblClick}
                 >
                   {verse?.text_uthmani}{' '}
                   {`  ﴿${numToArabic(verse.verse_key.replace(/\d+:/, ''))}﴾  `}
