@@ -66,7 +66,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
   const [presentToast] = useIonToast();
 
   return (
-    <div className="[direction:rtl] leading-9 pb-10 text-justify mt-0.5 mb-3 h-full overflow-y-scroll overflow-x-visible ion-content-scroll-host">
+    <div className="[direction:rtl] leading-9 pb-10 text-justify mt-2 mb-3 h-full overflow-y-scroll overflow-x-visible ion-content-scroll-host">
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -87,66 +87,63 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
         </IonItem>
       )}
 
-      <span lang="ar" className="mb-2 text-justify">
-        {!isLoading && bismiPre && <Bismi quranSettings={quranSettings} />}
+      {!isLoading && bismiPre && <Bismi quranSettings={quranSettings} />}
 
-        {versesUthmaniData?.pages.map((versesUthmani, index) => (
-          <Fragment key={index}>
-            {versesUthmani.verses.map((verse, indx) => {
-              const onVerseDblClick = () => {
-                setLastRead({
-                  translation: lastRead?.translation,
-                  reading: {
-                    chapterId: parseInt(id),
-                    verseId: verse?.id,
-                  },
-                });
-              };
+      {versesUthmaniData?.pages.map((versesUthmani, index) => (
+        <span key={index}>
+          {versesUthmani.verses.map((verse, indx) => {
+            const onVerseDblClick = () => {
+              setLastRead({
+                translation: lastRead?.translation,
+                reading: {
+                  chapterId: parseInt(id),
+                  verseId: verse?.id,
+                },
+              });
+            };
 
-              if (
-                verse.text_uthmani === 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ'
-              )
-                return (
-                  <Bismi
-                    quranSettings={quranSettings}
-                    ayahNo={++indx}
-                    key={indx}
-                  />
-                );
-
+            if (
+              verse.text_uthmani === 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ'
+            )
               return (
-                <Fragment key={indx}>
-                  <span
-                    style={{
-                      fontSize: quranSettings.fontSize,
-                      lineHeight: quranSettings.fontSize,
-                      fontFamily: quranSettings.fontFamily,
-                    }}
-                    onDoubleClick={onVerseDblClick}
-                  >
-                    {verse?.text_uthmani}{' '}
-                    {`  ﴿${numToArabic(
-                      verse.verse_key.replace(/\d+:/, '')
-                    )}﴾  `}
-                  </span>
-                </Fragment>
+                <Bismi
+                  quranSettings={quranSettings}
+                  ayahNo={++indx}
+                  key={indx}
+                />
               );
-            })}
-            <hr className="opacity-20 my-3.5" />
-          </Fragment>
-        ))}
-        {hasNextPage && !isFetchingNextPage && !isLoading && (
-          <p className="opacity-20 text-center text-xs [font-family:var(--ion-font-family)]">
-            Scroll down to load more
-          </p>
-        )}
-      </span>
+
+            return (
+              <Fragment key={indx}>
+                <span
+                  style={{
+                    fontSize: quranSettings.fontSize,
+                    lineHeight: quranSettings.fontSize,
+                    fontFamily: quranSettings.fontFamily,
+                  }}
+                  onDoubleClick={onVerseDblClick}
+                >
+                  {verse?.text_uthmani}{' '}
+                  {`  ﴿${numToArabic(verse.verse_key.replace(/\d+:/, ''))}﴾  `}
+                </span>
+              </Fragment>
+            );
+          })}
+          <hr className="opacity-20 my-3.5" />
+        </span>
+      ))}
+      {hasNextPage && !isFetchingNextPage && !isLoading && (
+        <p className="opacity-20 text-center text-xs [font-family:var(--ion-font-family)]">
+          Scroll down to load more
+        </p>
+      )}
 
       <IonInfiniteScroll
         className="[direction:ltr]"
         style={{
           height: hasNextPage ? window.innerHeight * 0.4 : 0,
         }}
+        disabled={!hasNextPage}
         onIonInfinite={async (ev) => {
           await fetchNextPage()
             .then(() => ev.target.complete())
@@ -165,9 +162,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
         <IonInfiniteScrollContent loadingText="Please, be patient..."></IonInfiniteScrollContent>
       </IonInfiniteScroll>
 
-      <div className="-mt-5">
-        {!hasNextPage && !isFetchingNextPage && !isLoading && footer}
-      </div>
+      {!hasNextPage && !isFetchingNextPage && !isLoading && footer}
     </div>
   );
 };
