@@ -19,6 +19,8 @@ import {
 } from 'ionicons/icons';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useAtomValue } from 'jotai/react';
+import { settingsAtom } from 'stores/settings';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -44,10 +46,9 @@ import './theme/styles.css';
 import QuranPage from 'screens/Quran';
 import ViewChapterPage from 'screens/ViewChapter';
 import SettingsPage from 'screens/Settings';
-import { useAtomValue } from 'jotai/react';
-import { settingsAtom } from 'stores/settings';
-// const QuranPage = React.lazy(() => import('./pages/Quran'));
-// const ViewChapter = React.lazy(() => import('pages/ViewChapter'));
+// const QuranPage = React.lazy(() => import('screens/Quran'));
+// const ViewChapterPage = React.lazy(() => import('screens/ViewChapter'));
+// const SettingsPage = React.lazy(() => import('screens/Settings'));
 
 setupIonicReact({
   mode: 'ios',
