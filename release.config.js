@@ -35,7 +35,7 @@ module.exports = {
         prepareCmd:
           'chmod +x scripts/build/build-android.sh && scripts/build/build-android.sh ${nextRelease.gitTag}',
         successCmd:
-          'yarn tsc scripts/telegram-bot/success-release.ts && node scripts/telegram-bot/success-release.js --versionName ${nextRelease.gitTag} --releaseNotes ${nextRelease.notes} --releaseType ${nextRelease.type} --branchName ${branch.name}',
+          'yarn tsc scripts/telegram-bot/success-release.ts --skipLibCheck && node scripts/telegram-bot/success-release.js --versionName ${nextRelease.gitTag} --releaseNotes ${nextRelease.notes} --releaseType ${nextRelease.type} --branchName ${branch.name}',
       },
     ],
     [

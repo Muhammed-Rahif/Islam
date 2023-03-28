@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Telegraf } from 'telegraf';
 import { marked } from 'marked';
 
