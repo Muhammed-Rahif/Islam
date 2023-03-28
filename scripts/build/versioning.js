@@ -1,4 +1,4 @@
-// when running this file version argument should be passed as "-v 1.0.0"
+// when running this file version argument should be passed as "-v v1.0.0"
 const { exec } = require('child_process');
 
 const preCommit = async () => {
@@ -10,7 +10,7 @@ const preCommit = async () => {
   const version = args[1];
   console.log('Precommit with version string: ', version);
 
-  const buildNo = version.match(RegExp(/^\d+/g))[0].replaceAll('v', '');
+  const buildNo = version.replaceAll('v', '').match(RegExp(/^\d+/g))[0];
   console.log('Precommit with build no: ', buildNo);
 
   console.log('====================================');
