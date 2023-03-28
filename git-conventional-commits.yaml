@@ -38,6 +38,10 @@ convention:
       "font",
       "changelog",
       "playwright",
+      "vite",
+      "gitignore",
+      "atom-state",
+      "community",
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:

@@ -9,6 +9,7 @@ export interface Meta {
 
 export interface Filters {
   chapter_number: string;
+  page_number: string;
 }
 
 export interface UthmaniVerse {
