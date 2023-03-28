@@ -32,9 +32,7 @@ We encourage all developers, testers, and users to <a href="${downloadUrl}">down
 🔗 <a href="${downloadUrl}">Download ${versionName} apk</a>
 🔗 <a href="${newIssueUrl}">Report new issue</a><br>
 👨‍💻 Your feedback is essential in helping us improve the app's quality. We appreciate your continuous support and dedication in making our app better for all our users.<br>
-🤲 May Allah bless you all with His mercy and reward you for your efforts.<br>
-Best regards,<br>
-The ${appName} team`;
+🤲 May Allah bless you all with His mercy and reward you for your efforts.<br>`;
 
   content = marked(content)
     // remove h1 tag
