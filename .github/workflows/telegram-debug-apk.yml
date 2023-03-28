@@ -41,3 +41,21 @@ jobs:
           to: -877507563
           token: ${{ secrets.TELEGRAM_BOT_API_KEY }}
           document: android/app/build/outputs/apk/debug/app-debug.apk
+          message: |
+            🚀 New update available for the app!
+
+            @${{ github.actor }} has made improvements on PR #${{ github.event.pull_request.number }}.
+
+            Here are the changes that have been made since the last build:
+
+            - New features: FEATURE_1, FEATURE_2, FEATURE_3...
+            - Bug fixes: BUG_1, BUG_2, BUG_3...
+            - Other improvements: IMPROVEMENT_1, IMPROVEMENT_2, IMPROVEMENT_3...
+
+            To download the new build, click on the link below:
+
+            https://github.com/${{ github.repository }}/releases/tag/v${{ github.ref }}
+
+            Commit details: 
+            Commit Message: ${{ github.event.head_commit.message }}
+            Commit SHA: ${{ github.event.head_commit.id }}
