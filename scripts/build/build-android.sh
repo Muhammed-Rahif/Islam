@@ -1,5 +1,5 @@
 #!/bin/bash
-node scripts/versioning.js -v $1
+node scripts/build/versioning.js -v $1
 yarn build
 npx cap sync android
 ionic capacitor update

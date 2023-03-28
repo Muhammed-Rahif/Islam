@@ -7,10 +7,10 @@ const preCommit = async () => {
   const args = process.argv.slice(2);
   console.log('Precommit with args: ', args);
 
-  const version = `v${args[1]}`;
+  const version = args[1];
   console.log('Precommit with version string: ', version);
 
-  const buildNo = args[1].match(RegExp(/^\d+/g))[0].replaceAll('v', '');
+  const buildNo = version.match(RegExp(/^\d+/g))[0].replaceAll('v', '');
   console.log('Precommit with build no: ', buildNo);
 
   console.log('====================================');
