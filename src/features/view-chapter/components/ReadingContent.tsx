@@ -121,8 +121,11 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
         </span>
       ))}
       {hasNextPage && !isFetchingNextPage && !isLoading && (
-        <p className="opacity-20 text-center text-xs [font-family:var(--ion-font-family)]">
-          Scroll down to load more
+        <p
+          onClick={async () => await fetchNextPage()}
+          className="opacity-20 text-center text-xs [font-family:var(--ion-font-family)] cursor-pointer"
+        >
+          Click here or Scroll down to load more
         </p>
       )}
 
