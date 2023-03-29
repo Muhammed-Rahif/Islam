@@ -35,7 +35,7 @@ module.exports = {
         prepareCmd:
           'chmod +x scripts/build/build-android.sh && scripts/build/build-android.sh ${nextRelease.gitTag}',
         successCmd:
-          'yarn tsc scripts/telegram-bot/success-release.ts --skipLibCheck -w false && node scripts/telegram-bot/success-release.js --versionName ${nextRelease.gitTag} --releaseType ${nextRelease.type} --branchName ${branch.name} --releaseNotes "${nextRelease.notes}"',
+          'yarn tsc scripts/telegram-bot/success-release.ts --skipLibCheck && node scripts/telegram-bot/success-release.js --versionName ${nextRelease.gitTag} --releaseType ${nextRelease.type} --branchName ${branch.name} --releaseNotes "${nextRelease.notes}"',
       },
     ],
     [
@@ -43,6 +43,7 @@ module.exports = {
       {
         assets: [
           'CHANGELOG.md',
+          'package.json',
           'android/app/build.gradle',
           'ios/App/App.xcodeproj/project.pbxproj',
         ],

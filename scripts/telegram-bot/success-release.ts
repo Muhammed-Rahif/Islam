@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Telegraf } from 'telegraf';
 import { marked } from 'marked';
 
@@ -59,6 +58,4 @@ We encourage all developers, testers, and users to <a href="${downloadUrl}">down
   });
 
   bot.launch();
-
-  process.exit();
 })();
