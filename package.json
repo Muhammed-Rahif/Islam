@@ -11,7 +11,7 @@
     "@capacitor/keyboard": "4.1.1",
     "@capacitor/status-bar": "4.1.1",
     "@ionic/react": "^6.7.0",
-    "@ionic/react-router": "^6.0.0",
+    "@ionic/react-router": "^6.7.0",
     "@tanstack/react-query": "^4.27.0",
     "@tanstack/react-query-devtools": "^4.27.0",
     "@testing-library/jest-dom": "^5.11.9",
