@@ -1,3 +1,10 @@
+# [1.1.0-beta.4](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0-beta.3...v1.1.0-beta.4) (2023-03-29)
+
+
+### Bug Fixes
+
+* **quran:** short page cant load next page, fixed by adding load more btn ([3dd5a2b](https://github.com/Muhammed-Rahif/Islam/commit/3dd5a2bd0a264b8aec69b5f974cfb3fff3295e63))
+
 # [1.1.0-beta.3](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0-beta.2...v1.1.0-beta.3) (2023-03-29)
 
 
