@@ -94,7 +94,7 @@ const ViewChapter: React.FC = () => {
         scrollY={false}
       >
         <IonSegment
-          className="mb-3"
+          className="mb-0.5"
           value={type}
           onIonChange={(e) => setType(e.detail.value!)}
         >
@@ -107,10 +107,18 @@ const ViewChapter: React.FC = () => {
         </IonSegment>
 
         {type === 'reading' ? (
-          <ReadingContent
-            bismiPre={chapterData?.chapter.bismillah_pre}
-            footer={footer}
-          />
+          <>
+            {chapterData?.chapter.pages.length && (
+              <ReadingContent
+                bismiPre={chapterData?.chapter.bismillah_pre}
+                footer={footer}
+                pages={{
+                  start: chapterData.chapter.pages[0],
+                  end: chapterData.chapter.pages[1],
+                }}
+              />
+            )}
+          </>
         ) : (
           <TranslationContent footer={footer} />
         )}

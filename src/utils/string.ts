@@ -9,4 +9,7 @@ const arNumToInt = (s: {
 
 const removeHtmlTags = (s: string) => s.replace(/<[^>]*>?/gm, '');
 
-export { arNumToInt, numToArabic, removeHtmlTags };
+const truncate = (input: string, length = 5) =>
+  input.length > length ? `${input.substring(0, length)}...` : input;
+
+export { arNumToInt, numToArabic, removeHtmlTags, truncate };

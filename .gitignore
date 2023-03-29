@@ -10,6 +10,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -33,3 +34,5 @@ env.local
 /test-results/
 /playwright-report/
 /playwright/.cache/
+/dev-dist/
+scripts/telegram-bot/*.js

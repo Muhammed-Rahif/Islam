@@ -6,6 +6,7 @@ type ChapterItemProps = {
   name: string;
   translatedName: string;
   versesCount: number;
+  style?: React.CSSProperties;
 };
 
 const ChapterItem: React.FC<ChapterItemProps> = ({
@@ -14,6 +15,7 @@ const ChapterItem: React.FC<ChapterItemProps> = ({
   name,
   translatedName,
   versesCount,
+  style,
 }) => {
   return (
     <IonItem
@@ -21,6 +23,7 @@ const ChapterItem: React.FC<ChapterItemProps> = ({
       className="flex items-center w-full [--inner-padding-end:0px] -z-0"
       button
       routerLink={`/quran/${id}?chapterName=${name}`}
+      style={style}
     >
       <IonRippleEffect type="unbounded" />
       <h1 className="my-2 ml-1 mr-4">
