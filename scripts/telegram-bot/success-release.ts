@@ -4,9 +4,7 @@ import { marked } from 'marked';
 const argv = require('minimist')(process.argv.slice(2));
 const bot = new Telegraf(process.env.TELEGRAM_BOT_API_KEY ?? '');
 
-console.log(process.env.TELEGRAM_BOT_API_KEY);
-
-(async function () {
+async function successReleaseMsg() {
   const versionName = argv.versionName;
   const releaseNotes = argv.releaseNotes;
   const releaseType = argv.releaseType;
@@ -48,25 +46,27 @@ We encourage all developers, testers, and users to <a href="${downloadUrl}">down
     // remove p tag
     .replaceAll(/<p(\s[^>]*)?>|<\/p>/g, '');
 
-  bot.telegram.sendMessage(toTelegramId, content, {
+  await bot.telegram.sendMessage(toTelegramId, content, {
     parse_mode: 'HTML',
   });
 
-  bot.telegram.sendDocument(toTelegramId, {
+  await bot.telegram.sendDocument(toTelegramId, {
     source: `android/app/build/outputs/apk/debug/app-debug.apk`,
     filename: `app-debug-${versionName}.apk`,
   });
 
-  bot
+  await bot
     .launch()
     .then(() => {
       console.log(
-        `Telegram bot: ${versionName} release message sent successfully to community`
+        `Telegram bot: ${versionName} release message sent successfully to community.`
       );
-      process.exit(0);
     })
     .catch((err) => {
       console.error(err);
-      process.exit(1);
     });
+}
+
+(async () => {
+  await successReleaseMsg();
 })();
