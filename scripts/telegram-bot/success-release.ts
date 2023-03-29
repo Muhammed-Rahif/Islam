@@ -59,4 +59,6 @@ We encourage all developers, testers, and users to <a href="${downloadUrl}">down
   });
 
   bot.launch();
+
+  process.exit();
 })();
