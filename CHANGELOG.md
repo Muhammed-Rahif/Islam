@@ -1,3 +1,10 @@
+# [1.1.0-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2023-03-29)
+
+
+### Bug Fixes
+
+* **deps:** update @ionic/react-router to 6.7.0 ([bce85dd](https://github.com/Muhammed-Rahif/Islam/commit/bce85dd60d2cc15fdbbfd644d6036c47f60e699c))
+
 # [1.1.0-beta.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.0.0...v1.1.0-beta.1) (2023-03-29)
 
 
