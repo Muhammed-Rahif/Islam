@@ -42,6 +42,7 @@ convention:
       "gitignore",
       "atom-state",
       "community",
+      "deps",
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:
