@@ -1,3 +1,11 @@
+# [1.1.0-beta.6](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0-beta.5...v1.1.0-beta.6) (2023-03-29)
+
+
+### Bug Fixes
+
+* **community:** telegram bot infinite running on CI beacuse of not stopping the bot ([568d512](https://github.com/Muhammed-Rahif/Islam/commit/568d5126b3720bd296b767cbbd3f164de071e480))
+* **community:** telegram bot infinite running on CI issue ([3561fd5](https://github.com/Muhammed-Rahif/Islam/commit/3561fd5edd7a36a6aa8b4fd7d6d50b87f5d39bb6))
+
 # [1.1.0-beta.5](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0-beta.4...v1.1.0-beta.5) (2023-03-29)
 
 
