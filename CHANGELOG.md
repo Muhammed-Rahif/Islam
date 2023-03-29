@@ -1,3 +1,10 @@
+# [1.1.0-beta.5](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0-beta.4...v1.1.0-beta.5) (2023-03-29)
+
+
+### Features
+
+* **quran:** add page no in reading section ([325034f](https://github.com/Muhammed-Rahif/Islam/commit/325034f25cad29da6cab607e2f0b826d4228fef8))
+
 # [1.1.0-beta.4](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0-beta.3...v1.1.0-beta.4) (2023-03-29)
 
 

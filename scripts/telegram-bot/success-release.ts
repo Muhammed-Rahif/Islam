@@ -55,16 +55,16 @@ We encourage all developers, testers, and users to <a href="${downloadUrl}">down
     filename: `app-debug-${versionName}.apk`,
   });
 
-  await bot
-    .launch()
-    .then(() => {
-      console.log(
-        `Telegram bot: ${versionName} release message sent successfully to community.`
-      );
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  bot.launch();
+
+  console.log(
+    `Telegram bot: ${versionName} release message sent successfully to community.`
+  );
+
+  // stopping bot after 3 seconds
+  setTimeout(() => {
+    bot.stop();
+  }, 3000);
 }
 
 (async () => {
