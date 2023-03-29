@@ -1,3 +1,10 @@
+# [1.1.0-beta.3](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0-beta.2...v1.1.0-beta.3) (2023-03-29)
+
+
+### Bug Fixes
+
+* **community:** telegram bot issue ([b2e2d95](https://github.com/Muhammed-Rahif/Islam/commit/b2e2d953af4ba704f87d4756f3e6858a4711ddcf))
+
 # [1.1.0-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2023-03-29)
 
 
