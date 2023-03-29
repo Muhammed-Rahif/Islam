@@ -88,38 +88,51 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
 
       {!isLoading && bismiPre && <Bismi quranSettings={quranSettings} />}
 
-      {versesUthmaniData?.pages.map((versesUthmani, index) => (
-        <span key={index}>
-          {versesUthmani.verses.map((verse, indx) => {
-            if (
-              verse.text_uthmani === 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ'
-            )
-              return (
-                <Bismi
-                  quranSettings={quranSettings}
-                  ayahNo={++indx}
-                  key={'bismi'}
-                />
-              );
+      {versesUthmaniData?.pages.map((versesUthmani, index) => {
+        const pageNo = [
+          pages.start,
+          ...versesUthmaniData.pageParams.filter(Boolean),
+        ][index] as number;
 
-            return (
-              <Fragment key={indx}>
-                <span
-                  style={{
-                    fontSize: quranSettings.fontSize,
-                    lineHeight: quranSettings.fontSize,
-                    fontFamily: quranSettings.fontFamily,
-                  }}
-                >
-                  {verse?.text_uthmani}{' '}
-                  {`  ﴿${numToArabic(verse.verse_key.replace(/\d+:/, ''))}﴾  `}
-                </span>
-              </Fragment>
-            );
-          })}
-          <hr className="opacity-20 my-3.5" />
-        </span>
-      ))}
+        return (
+          <span key={index}>
+            {versesUthmani.verses.map((verse, indx) => {
+              if (
+                verse.text_uthmani === 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ'
+              )
+                return (
+                  <Bismi
+                    quranSettings={quranSettings}
+                    ayahNo={++indx}
+                    key={'bismi'}
+                  />
+                );
+
+              return (
+                <Fragment key={indx}>
+                  <span
+                    style={{
+                      fontSize: quranSettings.fontSize,
+                      lineHeight: quranSettings.fontSize,
+                      fontFamily: quranSettings.fontFamily,
+                    }}
+                  >
+                    {verse?.text_uthmani}{' '}
+                    {`  ﴿${numToArabic(
+                      verse.verse_key.replace(/\d+:/, '')
+                    )}﴾  `}
+                  </span>
+                </Fragment>
+              );
+            })}
+            <p className="opacity-20 text-center text-xs [direction:ltr]">
+              {pageNo}
+            </p>
+            <hr className="opacity-20 my-3.5" />
+          </span>
+        );
+      })}
+
       {hasNextPage && !isFetchingNextPage && !isLoading && (
         <p
           onClick={async () => await fetchNextPage()}
