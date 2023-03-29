@@ -1,3 +1,38 @@
+# [1.1.0-beta.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.0.0...v1.1.0-beta.1) (2023-03-29)
+
+
+### Bug Fixes
+
+* **api:** change api to pages method and infinite scroll to improve perfomance ([072595c](https://github.com/Muhammed-Rahif/Islam/commit/072595c11ec9bd28e8704cba4e5329952d2795b4))
+* **atom-state:** remove last read quran atom state ([abe3d3e](https://github.com/Muhammed-Rahif/Islam/commit/abe3d3ede8aab3978a71d6574f7a2a38d9be704c))
+* **community:** telegram bot success-release typescript compile issue ([bf70968](https://github.com/Muhammed-Rahif/Islam/commit/bf7096824c02f4a4e1bb82fc3bc35123a913007b))
+* **community:** telegram bot sucessCmd issue ([0c59617](https://github.com/Muhammed-Rahif/Islam/commit/0c5961753d729b15cf4364b879f9177746b930bc))
+* **community:** update telegram bot success-release message template ([0dda88e](https://github.com/Muhammed-Rahif/Islam/commit/0dda88eb5b3ae13b3054fc82b6815823120d180b))
+* **component:** make general settings saperate ([f57e996](https://github.com/Muhammed-Rahif/Islam/commit/f57e996bd3bfd1c0583ce94ea6e46655ad95225b))
+* **deps:** add typescript version ([9c6a313](https://github.com/Muhammed-Rahif/Islam/commit/9c6a31376f0f847a9cbcfc8cff57e24027afc0e7))
+* **quran:** add padding bottom; bottom items are not visible ([255d6f2](https://github.com/Muhammed-Rahif/Islam/commit/255d6f26007c8ce1462719062de06f1969851654))
+* **semantic-release:** update scripts\build\versioning.js ([c55df7c](https://github.com/Muhammed-Rahif/Islam/commit/c55df7cf269ad99fe3e258bdebd87be4ebaa7245))
+* **semantic-release:** update scripts\build\versioning.js ([540f595](https://github.com/Muhammed-Rahif/Islam/commit/540f595a978975193aac1a9dc444947d14baffc8))
+* **theme:** light or dark mode not applying when app loads ([39ce9de](https://github.com/Muhammed-Rahif/Islam/commit/39ce9deac07c41922266c074b1d9c644063f7e84))
+* **ui:** quran- reading and translation section update ([2135193](https://github.com/Muhammed-Rahif/Islam/commit/21351935d49ebe1f0bb10629dab14ea8645fa83c))
+* **ui:** verse no incorrect in reading section; translations api repeated loding ([b97ca1b](https://github.com/Muhammed-Rahif/Islam/commit/b97ca1b5b25094036629874eed4a984e1a7da27e))
+
+
+### Features
+
+* **font:** add more quran fonts ([5332d18](https://github.com/Muhammed-Rahif/Islam/commit/5332d181e943381e9f9ed7c608aa7c565a063b86))
+* **semantic-release:** telegram bot message ([0072cf5](https://github.com/Muhammed-Rahif/Islam/commit/0072cf5d4666e0a9133ef56487919b7a8cb07068))
+* **semantic-release:** update telegram bot message ([a258fef](https://github.com/Muhammed-Rahif/Islam/commit/a258fefd325ffa0cce749f717994055e2af74992))
+* **settings:** add components without functionalities ([85c66d4](https://github.com/Muhammed-Rahif/Islam/commit/85c66d4c554f8dab428851296eede7552501b833))
+* **settings:** dark and light mode ([5bffb5e](https://github.com/Muhammed-Rahif/Islam/commit/5bffb5e97153357486c42157396e96b82a126151))
+* **settings:** quran settings added with fonts ([2cf14de](https://github.com/Muhammed-Rahif/Islam/commit/2cf14deee88feaed9e4eebf00bbccb225e439ed0))
+
+
+### Performance Improvements
+
+* **quran:** quran list 'react-window' implement ([ec35ae2](https://github.com/Muhammed-Rahif/Islam/commit/ec35ae23958793de7e3ea427c25ac0335852dd09))
+* **vite:** integrate vite ([90c88b5](https://github.com/Muhammed-Rahif/Islam/commit/90c88b5a3dc353441f634906f6f6247e71a0191f))
+
 # [1.0.0-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-03-25)
 
 
