@@ -10,8 +10,8 @@
     "@capacitor/ios": "4.7.1",
     "@capacitor/keyboard": "4.1.1",
     "@capacitor/status-bar": "4.1.1",
-    "@ionic/react": "^6.0.0",
-    "@ionic/react-router": "^6.0.0",
+    "@ionic/react": "^6.7.0",
+    "@ionic/react-router": "^6.7.0",
     "@tanstack/react-query": "^4.27.0",
     "@tanstack/react-query-devtools": "^4.27.0",
     "@testing-library/jest-dom": "^5.11.9",
@@ -48,7 +48,7 @@
     "vite-plugin-svgr": "^2.4.0",
     "vite-tsconfig-paths": "^4.0.7",
     "web-vitals": "^0.2.4",
-    "workbox-background-sync": "^5.1.4",
+    "workbox-background-sync": "^6.5.4",
     "workbox-broadcast-update": "^5.1.4",
     "workbox-cacheable-response": "^6.5.4",
     "workbox-core": "^5.1.4",
@@ -58,7 +58,7 @@
     "workbox-precaching": "^5.1.4",
     "workbox-range-requests": "^6.5.4",
     "workbox-routing": "^5.1.4",
-    "workbox-strategies": "^5.1.4",
+    "workbox-strategies": "^6.5.4",
     "workbox-streams": "^5.1.4"
   },
   "scripts": {
@@ -112,7 +112,7 @@
     "eslint-plugin-react": "^7.32.2",
     "postcss": "^8.4.21",
     "prettier": "2.8.6",
-    "semantic-release": "^20.1.3",
+    "semantic-release": "^21.0.0",
     "tailwindcss": "^3.2.7"
   },
   "description": "Quran, Hadiths, Sunnah and Dhikrs in one place!"
