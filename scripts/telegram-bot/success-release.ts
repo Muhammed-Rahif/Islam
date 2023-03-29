@@ -57,5 +57,13 @@ We encourage all developers, testers, and users to <a href="${downloadUrl}">down
     filename: `app-debug-${versionName}.apk`,
   });
 
-  bot.launch();
+  bot
+    .launch()
+    .then(() => {
+      process.exit(0);
+    })
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    });
 })();
