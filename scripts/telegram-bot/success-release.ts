@@ -12,7 +12,7 @@ console.log(process.env.TELEGRAM_BOT_API_KEY);
   const releaseType = argv.releaseType;
   const branchName = argv.branchName;
   const appName = 'Islam App';
-  const toTelegramId = process.env.TELEGRAM_TO_ID || -877507563;
+  const toTelegramId = process.env.TELEGRAM_TO_ID || -1001890500958;
   const releaseUrl = `https://github.com/Muhammed-Rahif/Islam/releases/tag/${versionName}`;
   const changelogUrl = `https://github.com/Muhammed-Rahif/Islam/blob/${versionName}/CHANGELOG.md`;
   const downloadUrl = `https://github.com/Muhammed-Rahif/Islam/releases/download/${versionName}/app-debug-${versionName}.apk`;
