@@ -60,6 +60,9 @@ We encourage all developers, testers, and users to <a href="${downloadUrl}">down
   bot
     .launch()
     .then(() => {
+      console.log(
+        `Telegram bot: ${versionName} release message sent successfully to community`
+      );
       process.exit(0);
     })
     .catch((err) => {
