@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0...v1.2.0) (2023-03-30)
+
+
+### Bug Fixes
+
+* **ionic:** v7 warning about input aria-label ([0bc45b3](https://github.com/Muhammed-Rahif/Islam/commit/0bc45b3959980a1354e4ab2546eb4d83f2075b1e))
+* **settings:** change theme select option to dark mode toggle btn ([c5da2a8](https://github.com/Muhammed-Rahif/Islam/commit/c5da2a8517a654eac8a30b1d4f6e8d4d4b0a0ed5))
+
+
+### Features
+
+* **ui:** update ionic to v7 ([c2cdbe7](https://github.com/Muhammed-Rahif/Islam/commit/c2cdbe76f1509329e4b21e1669b3fe91067b1fe3))
+
 # [1.1.0](https://github.com/Muhammed-Rahif/Islam/compare/v1.0.0...v1.1.0) (2023-03-29)
 
 
