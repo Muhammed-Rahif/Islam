@@ -1,0 +1,26 @@
+"type: dependencies":
+  - yarn.lock
+
+"type: documentation":
+  - README.md
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
+  - LICENSE.md
+  - CHANGELOG.md
+
+"type: chore":
+  - .github/workflows/**/*
+
+"type: maintenance":
+  - src/tests/**/*
+
+"type: design":
+  - resources/**/*
+
+"semantic-release":
+  - .github/workflows/release.yml
+  - release.config.js
+
+"related: community":
+  - .github/ISSUE_TEMPLATE/**/*
+  - .github/PULL_REQUEST_TEMPLATE/**/*
