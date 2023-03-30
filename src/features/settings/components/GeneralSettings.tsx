@@ -4,9 +4,10 @@ import {
   IonSelect,
   IonSelectOption,
   IonText,
+  IonToggle,
 } from '@ionic/react';
 import { useAtom } from 'jotai/react';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { settingsAtom, SettingsType } from 'stores/settings';
 
 const GeneralSettings: React.FC = () => {
@@ -30,22 +31,16 @@ const GeneralSettings: React.FC = () => {
       <h2 className="text-xl font-bold mb-2">General</h2>
       <div className="flex justify-between items-center h-9">
         <IonText>
-          <h2 className="text-base">Theme</h2>
+          <h2 className="text-base">Dark Mode</h2>
         </IonText>
-        <IonSelect
-          interface="popover"
-          placeholder="Select theme"
-          className="py-0"
-          value={settings.general.theme}
+        <IonToggle
           onIonChange={(e) =>
             updateGeneralSettings({
-              theme: e.detail.value,
+              theme: e.detail.checked ? 'dark' : 'light',
             })
           }
-        >
-          <IonSelectOption value="dark">Dark</IonSelectOption>
-          <IonSelectOption value="light">Light</IonSelectOption>
-        </IonSelect>
+          className="py-0"
+        ></IonToggle>
       </div>
       <IonItemDivider className="min-h-[2px] my-2" />
     </IonItemGroup>

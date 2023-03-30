@@ -1251,29 +1251,29 @@
     debug "^4.0.0"
     tslib "^2.0.1"
 
-"@ionic/core@7.0.0-rc.5":
-  version "7.0.0-rc.5"
-  resolved "https://registry.yarnpkg.com/@ionic/core/-/core-7.0.0-rc.5.tgz#d24c5eb0c35e10dfa85c47dddba068b019f7db2d"
-  integrity sha512-c8st2bhM+mlauv2/1Xm++cZIoAXG5mEK2LA+HbO5RAUI6045k/GbXsVbpDyGI0HtrOvOq8+IyCH5i+AdwqzyWQ==
+"@ionic/core@7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@ionic/core/-/core-7.0.0.tgz#a38ba73e10caf4fc31b97008e1adf20956cb9cc3"
+  integrity sha512-pM8qOaea9ZbqZbGnoIswaeeTiHJKNQ9ziSNHSILDpdd4FjpxZjOeMgNUdvYzh5rX9fA6hEM2wodg7McIWHgvZQ==
   dependencies:
     "@stencil/core" "^3.1.0"
     ionicons "^7.1.0"
     tslib "^2.1.0"
 
-"@ionic/react-router@^7.0.0-rc.5":
-  version "7.0.0-rc.5"
-  resolved "https://registry.yarnpkg.com/@ionic/react-router/-/react-router-7.0.0-rc.5.tgz#89d7c7865ee53e58fc0eaeaec5713737ed6e91f9"
-  integrity sha512-3VBpXjFEtpXQSTQL27gpd5yWuHdbfY6k3BpBYrHH6dPX+E/sT80/Y2AMD/uayLQHVit9rrBQ0WO2O/rziVlh0w==
+"@ionic/react-router@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@ionic/react-router/-/react-router-7.0.0.tgz#95312875a8dcb229819732c8bc71bff2c2558e0c"
+  integrity sha512-rlYWI9Rh8lk3STZ38J7AGx0wnCHYpLg7Ocoxjsvxyuif5PEqQlzZyu0UN9IWVyEMctZEZ2cN0CLayBVaOCMYuA==
   dependencies:
-    "@ionic/react" "7.0.0-rc.5"
+    "@ionic/react" "7.0.0"
     tslib "*"
 
-"@ionic/react@7.0.0-rc.5", "@ionic/react@^7.0.0-rc.5":
-  version "7.0.0-rc.5"
-  resolved "https://registry.yarnpkg.com/@ionic/react/-/react-7.0.0-rc.5.tgz#2b7e54fb67c959c2cc840342dbcd8bbbde2c34de"
-  integrity sha512-D6PWjKEyboG9yTGjJ4kw92fECd0cZXLv0suraTp7Lg8nS4BGwthTxHq+xqJePEXZqMcoCCqgFrwDpS4bCXCDkw==
+"@ionic/react@7.0.0", "@ionic/react@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@ionic/react/-/react-7.0.0.tgz#35abdaab505fd01e1f2fd03a81d273cc10b11d81"
+  integrity sha512-t9NlHZTiH/NvT3GLcO4yS5Whe9stpsZ9AtNOYS+aPcKM5vhxJSFGXDUvKtABOLi2CniW2kFE8krHwjz9V0GQYA==
   dependencies:
-    "@ionic/core" "7.0.0-rc.5"
+    "@ionic/core" "7.0.0"
     ionicons "^7.0.0"
     tslib "*"
 
