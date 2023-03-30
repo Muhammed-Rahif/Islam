@@ -26,7 +26,7 @@ const Quran: React.FC = () => {
       </IonHeader>
       <IonContent ref={contentRef} fullscreen scrollY={false}>
         <IonSearchbar
-          onIonChange={(e) => setSearch(e.detail.value!)}
+          onIonInput={(e) => setSearch(e.detail.value!)}
           className="sticky top-0 z-30"
           color="light"
         />

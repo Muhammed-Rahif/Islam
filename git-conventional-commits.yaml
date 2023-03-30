@@ -43,6 +43,7 @@ convention:
       "atom-state",
       "community",
       "deps",
+      "ionic",
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:

@@ -135,8 +135,12 @@ function AppTypeahead(props: TypeaheadProps) {
             data={filteredItems}
             itemContent={(index, { text, value }) => (
               <IonItem key={value}>
-                <IonLabel className="capitalize !text-sm">{text}</IonLabel>
+                <IonLabel className="capitalize !text-sm !whitespace-normal">
+                  {text}
+                </IonLabel>
                 <IonCheckbox
+                  className="w-min"
+                  aria-label={text}
                   value={value}
                   checked={isChecked(value)}
                   onIonChange={checkboxChange}
