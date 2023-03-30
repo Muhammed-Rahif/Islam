@@ -1,11 +1,4 @@
-import {
-  IonItemDivider,
-  IonItemGroup,
-  IonSelect,
-  IonSelectOption,
-  IonText,
-  IonToggle,
-} from '@ionic/react';
+import { IonItemDivider, IonItemGroup, IonText, IonToggle } from '@ionic/react';
 import { useAtom } from 'jotai/react';
 import { useCallback } from 'react';
 import { settingsAtom, SettingsType } from 'stores/settings';
@@ -31,9 +24,11 @@ const GeneralSettings: React.FC = () => {
       <h2 className="text-xl font-bold mb-2">General</h2>
       <div className="flex justify-between items-center h-9">
         <IonText>
-          <h2 className="text-base">Dark Mode</h2>
+          <h2 className="text-base">Dark mode</h2>
         </IonText>
         <IonToggle
+          aria-label="Dark mode"
+          checked={settings.general.theme === 'dark'}
           onIonChange={(e) =>
             updateGeneralSettings({
               theme: e.detail.checked ? 'dark' : 'light',
