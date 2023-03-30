@@ -12,7 +12,7 @@
     "description": "A feature idea that is large enough to require a sprint (5 days) or more and has smaller sub-issues."
   },
   {
-    "name": "related: dependencies",
+    "name": "type: dependencies",
     "color": "ffffff",
     "aliases": ["deps", "dependencies"],
     "description": "Issues related to npm dependencies"
@@ -153,5 +153,11 @@
     "color": "119c2f",
     "aliases": ["invalid"],
     "description": "Feedback from people using the App"
+  },
+  {
+    "name": "related: community",
+    "color": "207de5",
+    "aliases": ["community"],
+    "description": "Related to community, community telegram bot and community telegram group"
   }
 ]
