@@ -1,0 +1,157 @@
+[
+  {
+    "name": "type: chore",
+    "color": "3A2716",
+    "aliases": ["chore"],
+    "description": "A tedious but necessary task often paying technical debt"
+  },
+  {
+    "name": "type: epic",
+    "color": "000059",
+    "aliases": ["epic"],
+    "description": "A feature idea that is large enough to require a sprint (5 days) or more and has smaller sub-issues."
+  },
+  {
+    "name": "related: dependencies",
+    "color": "ffffff",
+    "aliases": ["deps", "dependencies"],
+    "description": "Issues related to npm dependencies"
+  },
+  {
+    "name": "type: bug",
+    "color": "e11d21",
+    "aliases": ["bug"],
+    "description": "Suspected or confirmed bug (defect) in the code"
+  },
+  {
+    "name": "type: breaking",
+    "color": "990000",
+    "aliases": ["breaking", "breaking-change"],
+    "description": "Breaking changes"
+  },
+  {
+    "name": "type: maintenance",
+    "color": "fbca04",
+    "aliases": ["maintenance", "refactor", "testing", "test"],
+    "description": "Internal changes that don't affect the public"
+  },
+  {
+    "name": "type: enhancement",
+    "color": "009800",
+    "aliases": ["enhancement", "feature"],
+    "description": "New feature or enhancement of existing functionality"
+  },
+  {
+    "name": "type: question",
+    "color": "cc317c",
+    "aliases": ["question"],
+    "description": "A question needs to be answered before progress can be made on this issue"
+  },
+  {
+    "name": "type: discussion",
+    "color": "cc317c",
+    "aliases": ["discussion"],
+    "description": "Share your constructive thoughts on how to make progress with this issue"
+  },
+  {
+    "name": "type: documentation",
+    "color": "207de5",
+    "aliases": ["documentation"],
+    "description": "Improvements or additions to documentation"
+  },
+  {
+    "name": "type: design",
+    "color": "eb6420",
+    "aliases": ["design"],
+    "description": "Improvements or additions to design"
+  },
+  {
+    "name": "priority: low",
+    "color": "009800",
+    "description": "Deprioritised until all other medium priority issues are complete."
+  },
+  {
+    "name": "priority: medium",
+    "color": "fbca04",
+    "description": "Third priority. Considered \"Nice to Have\". Not urgent."
+  },
+  {
+    "name": "priority: high",
+    "color": "eb6420",
+    "description": "Second highest priority, should be worked on as soon as the Critical issues are finished"
+  },
+  {
+    "name": "priority: critical",
+    "color": "e11d21",
+    "description": "Critical priority issue. This is costing us every minute that passes."
+  },
+  {
+    "name": "status: good starter issue",
+    "color": "bfe5bf",
+    "aliases": [
+      "beginner-friendly",
+      "beginner",
+      "good-starter-issue",
+      "starter-issue",
+      "good first issue"
+    ],
+    "description": "A beginner-friendly issue that is a good starting point for a new person"
+  },
+  {
+    "name": "status: help wanted",
+    "color": "bfe5bf",
+    "aliases": ["help wanted"],
+    "description": "Extra attention is needed"
+  },
+  {
+    "name": "status: wontfix",
+    "color": "cccccc",
+    "aliases": ["wontfix", "wont-fix"],
+    "description": "This will not be worked on"
+  },
+  {
+    "name": "status: duplicate",
+    "color": "cccccc",
+    "aliases": ["duplicate"],
+    "description": "This issue or pull request already exists"
+  },
+  {
+    "name": "status: blocked",
+    "color": "990000",
+    "aliases": ["blocked"],
+    "description": ":fire: Core team's HIGHEST priority, blocking critical work"
+  },
+  {
+    "name": "semantic-release",
+    "color": "207de5",
+    "aliases": ["release"],
+    "description": "Related to semantic release"
+  },
+  {
+    "name": "released",
+    "color": "207de5",
+    "description": "Released"
+  },
+  {
+    "name": "released on @beta",
+    "color": "207de5",
+    "description": "Released on beta version"
+  },
+  {
+    "name": "released on @main",
+    "color": "207de5",
+    "description": "Released on main version"
+  },
+  {
+    "name": "status: invalid",
+    "color": "e52020",
+    "aliases": ["invalid"],
+    "description": "This doesn't seem right"
+  },
+  {
+    "name": "type: user-feedback",
+    "color": "119c2f",
+    "aliases": ["invalid"],
+    "description": "Feedback from people using the App"
+  }
+]
