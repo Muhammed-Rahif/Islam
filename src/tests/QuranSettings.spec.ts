@@ -118,3 +118,59 @@ test('enabling translations of french and chinese with default eng translation',
   await expect(frenchTranslation).toBeInViewport();
   await expect(engTranslation).toBeInViewport();
 });
+
+test('replacing default translation "Eng - Dr. Mustafa Khattab" by "Malayalam, Abdul-Hamid Haidar & Kanhi Muhammad"', async ({
+  page,
+}) => {
+  await page.goto('http://localhost:8100/settings');
+  // opening translations selecting modal in settings
+  await page.getByRole('button', { name: 'english' }).click();
+
+  // disabling default translation "Eng - Dr. Mustafa Khattab"
+  await page
+    .getByRole('listitem')
+    .filter({ hasText: 'english, Dr. Mustafa Khattab, the Clear Quran' })
+    .locator('svg')
+    .click();
+
+  // searching for "Malayalam, Abdul-Hamid Haidar & Kanhi Muhammad"
+  await page.getByPlaceholder('Search').click();
+  await page.getByPlaceholder('Search').fill('mala');
+
+  // selecting "Malayalam, Abdul-Hamid Haidar & Kanhi Muhammad"
+  await page
+    .getByRole('listitem')
+    .filter({ hasText: 'malayalam, Abdul-Hamid Haidar & Kanhi Muhammad' })
+    .locator('svg')
+    .click();
+  await page.getByRole('button', { name: 'Done' }).click();
+
+  // checking if "Malayalam, Abdul-Hamid Haidar & Kanhi Muhammad" is visible
+  await page.goto('http://localhost:8100/quran/1');
+  await page
+    .locator('ion-segment-button')
+    .filter({ hasText: 'Translation' })
+    .click();
+  const malayalamTranslation = page
+    .locator('ion-text')
+    .filter({
+      hasText:
+        'സ്തുതി സര്‍വ്വലോക പരിപാലകനായ അല്ലാഹുവിന്നാകുന്നു- Abdul-Hamid Haidar & Kanhi Muh',
+    })
+    .locator('small');
+
+  // checking if default translation "Eng - Dr. Mustafa Khattab" is visible
+  const engTranslation = page
+    .locator('ion-text')
+    .filter({
+      hasText:
+        'In the Name of Allah—the Most Compassionate, Most Merciful.- Dr. Mustafa Khattab',
+    })
+    .locator('small');
+
+  // waiting for translations to load
+  await delay(1000);
+
+  await expect(malayalamTranslation).toBeInViewport();
+  await expect(engTranslation).not.toBeInViewport();
+});
