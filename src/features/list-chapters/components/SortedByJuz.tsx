@@ -25,9 +25,15 @@ const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
     });
   }, [juzs, chapters]);
 
+  // juz chapters cout like [2, 1, 3, 1, 4, 2, 2, 5]
+  const juzChaptersCount = useMemo(
+    () => juzChaptersGroup?.map((juzChapters) => juzChapters.length),
+    [juzChaptersGroup]
+  );
+
   return (
     <GroupedVirtuoso
-      groupCounts={juzChaptersGroup?.map((juzChapters) => juzChapters.length)}
+      groupCounts={juzChaptersCount}
       groupContent={(index) => {
         return juzChaptersGroup![index].length > 0 ? (
           <IonItemDivider className="z-40 relative">

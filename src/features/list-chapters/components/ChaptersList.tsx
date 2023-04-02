@@ -73,6 +73,7 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
     return sorted;
   }, [chapterData, sortBy]);
 
+  // chapters after sorted and searched
   const chapters = useMemo(
     () => searchedChapters ?? sortedChapters ?? [],
     [searchedChapters, sortedChapters]
