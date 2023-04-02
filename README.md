@@ -39,8 +39,10 @@
 
 ## About The Project
 
-![lightMode](assets/images/screenshot/lightMode.png)
-![darkMode](assets/images/screenshot/darkMode.png)
+<a name="screenshots"></a>
+
+![light-mode](resources/screenshots/light-mode.png)
+![dark-mode](resources/screenshots/dark-mode.png)
 
 <p>The Islam Application is a mobile app created for Muslims, offering access to the Quran, Sunnah, and Dhikrs. The app is designed to serve as a valuable resource for Muslims who are looking to enhance their knowledge and practice of Islam.
 
