@@ -5,7 +5,7 @@ import {
   IonToast,
   useIonToast,
 } from '@ionic/react';
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ChapterSortBy } from '../types/Chapter';
 import { useChapersList } from '../api/useChapersList';
 import { alertCircle } from 'ionicons/icons';
@@ -25,6 +25,7 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [presentToast] = useIonToast();
+  const [chapterListHeight, setChapterListHeight] = useState(0);
 
   const {
     isLoading,
@@ -33,6 +34,10 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
     refetch: refetchChapters,
   } = useChapersList();
   const { data: allJuzsData, refetch: refetchAllJuzs } = useAllJuzs();
+
+  useEffect(() => {
+    setChapterListHeight(contentRef.current?.clientHeight ?? 0);
+  });
 
   // runs when 'sortBy' state changes
   useEffect(() => {
@@ -99,7 +104,8 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
         {sortBy !== 'juz' ? (
           //  when succesfull data retrieve; and sortBy == 'revelation-order' or 'surah'
           <List
-            height={contentRef.current?.clientHeight ?? window.innerHeight}
+            height={chapterListHeight}
+            className="h-full"
             itemCount={chapters.length}
             itemSize={62}
             width="100%"
