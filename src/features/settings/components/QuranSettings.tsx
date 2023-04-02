@@ -89,6 +89,7 @@ const QuranSettings: React.FC = () => {
           interface="popover"
           placeholder="Select font size"
           aria-label="Select font size"
+          title="Select font size"
           className="py-0 w-min"
           value={settings?.quran.fontSize}
           onIonChange={(e) => {
@@ -114,6 +115,7 @@ const QuranSettings: React.FC = () => {
           interface="alert"
           placeholder="Select font family"
           aria-label="Select font family"
+          title="Select font family"
           className="py-0 capitalize w-min"
           value={settings?.quran.fontFamily}
           onIonChange={(e) => {
@@ -140,6 +142,7 @@ const QuranSettings: React.FC = () => {
           id="select-translations"
           disabled={isTranslationsLoading}
           className="capitalize"
+          title="Select translations"
         >
           {translationsBtnText}
         </IonButton>

@@ -28,6 +28,7 @@ const GeneralSettings: React.FC = () => {
         </IonText>
         <IonToggle
           aria-label="Dark mode"
+          title="Select theme"
           checked={settings.general.theme === 'dark'}
           onIonChange={(e) =>
             updateGeneralSettings({

@@ -3,7 +3,7 @@ import { delay } from 'utils/time';
 
 test('changing font size to "175%" should work', async ({ page }) => {
   await page.goto('http://localhost:8100/settings');
-  await page.getByText('100%').nth(1).click();
+  await page.getByTitle('Select font size').click();
 
   // font size to 175%
   await page.locator('label').filter({ hasText: '175%' }).click();
@@ -22,7 +22,7 @@ test('changing font size to "175%" should not have value "100%"', async ({
   page,
 }) => {
   await page.goto('http://localhost:8100/settings');
-  await page.getByText('100%').nth(1).click();
+  await page.locator('label').filter({ hasText: '100%' }).click();
 
   // font size to 175%
   await page.locator('label').filter({ hasText: '175%' }).click();
@@ -41,7 +41,7 @@ test('changing font family to "Al Qalam" should work', async ({ page }) => {
   await page.goto('http://localhost:8100/settings');
 
   // clicking on font family select
-  await page.locator('label').filter({ hasText: 'Me Quran' }).click();
+  await page.getByTitle('Select font family').click();
 
   // selecting 'Al Qalam'
   await page.getByRole('radio', { name: 'Al Qalam', exact: true }).click();
@@ -63,7 +63,7 @@ test('enabling translations of french and chinese with default eng translation',
   await page.goto('http://localhost:8100/settings');
 
   // opening translations selecting modal in settings
-  await page.getByRole('button', { name: 'english' }).click();
+  await page.getByTitle('Select translations').click();
   await page.getByPlaceholder('Search').click();
 
   // selecting french translations
@@ -124,7 +124,7 @@ test('replacing default translation "Eng - Dr. Mustafa Khattab" by "Malayalam, A
 }) => {
   await page.goto('http://localhost:8100/settings');
   // opening translations selecting modal in settings
-  await page.getByRole('button', { name: 'english' }).click();
+  await page.getByTitle('Select translations').click();
 
   // disabling default translation "Eng - Dr. Mustafa Khattab"
   await page
