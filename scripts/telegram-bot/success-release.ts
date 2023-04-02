@@ -35,6 +35,8 @@ We encourage all developers, testers, and users to <a href="${downloadUrl}">down
   content = marked(content)
     // replace h1 with <b> tag
     .replaceAll(/<h1(\s[^>]*)?>(.*?)<\/h1>/g, '<b>📢 $2</b>\n')
+    // replace h2 with <b> tag
+    .replaceAll(/<h2(\s[^>]*)?>(.*?)<\/h2>/g, '<b>$2</b>')
     // replace h3 with <b> tag
     .replaceAll(/<h3(\s[^>]*)?>(.*?)<\/h3>/g, '<b><u>$2</u></b>:-')
     // replace li with <b>
