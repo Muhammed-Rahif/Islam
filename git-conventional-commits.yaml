@@ -15,35 +15,36 @@ convention:
     - revert
   commitScopes:
     [
-      "pages",
-      "resources",
-      "hooks",
-      "theme",
-      "config",
-      "scripts",
-      "licence",
-      "router",
-      "ui",
-      "quran",
-      "sunnah",
-      "dhikrs",
-      "settings",
-      "component",
-      "api",
-      "workflows",
-      "store",
-      "semantic-release",
-      "performance",
-      "virtual-scroll",
-      "font",
-      "changelog",
-      "playwright",
-      "vite",
-      "gitignore",
-      "atom-state",
-      "community",
-      "deps",
-      "ionic",
+      'pages',
+      'resources',
+      'hooks',
+      'theme',
+      'config',
+      'scripts',
+      'licence',
+      'router',
+      'ui',
+      'quran',
+      'sunnah',
+      'dhikrs',
+      'settings',
+      'component',
+      'api',
+      'workflows',
+      'store',
+      'semantic-release',
+      'performance',
+      'virtual-scroll',
+      'font',
+      'changelog',
+      'playwright',
+      'vite',
+      'gitignore',
+      'atom-state',
+      'community',
+      'deps',
+      'ionic',
+      'readme',
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:
@@ -54,7 +55,7 @@ changelog:
     - merge
     - test
   includeInvalidCommits: true
-  commitIgnoreRegexPattern: "^WIP "
+  commitIgnoreRegexPattern: '^WIP '
   headlines:
     feat: Features
     fix: Bug Fixes
