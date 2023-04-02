@@ -17,7 +17,7 @@ test('should "Quran" title visible', async ({ page }) => {
   await page.goto('http://localhost:8100/quran');
 
   // Expects the title to be in viewport.
-  const quranTitleInViewport = await page.locator('ion-title').filter({
+  const quranTitleInViewport = page.locator('ion-title').filter({
     hasText: 'Quran',
   });
   await expect(quranTitleInViewport).toBeInViewport();
@@ -34,7 +34,9 @@ test('have segment btn with text of "Surah"', async ({ page }) => {
   await expect(ionSegBtn).toBeInViewport();
 });
 
-test('in "Revelation Order", surah Alaq should be first', async ({ page }) => {
+test('in "Revelation Order", surah Alaq should be visible', async ({
+  page,
+}) => {
   await page.goto('http://localhost:8100/quran');
 
   await page

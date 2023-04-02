@@ -18,7 +18,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.15.0
-
       - name: Setup ionic and capacitor
         run: |
           npm i -g @ionic/cli @capacitor/cli
