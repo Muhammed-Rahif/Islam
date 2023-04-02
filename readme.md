@@ -1,0 +1,1 @@
+<a href="https://t.me/islam_app_community"><img src="https://img.shields.io/badge/Join%20Us%20on-Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram Badge"></a>
