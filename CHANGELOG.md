@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.2.0...v1.2.1) (2023-04-02)
+
+
+### Bug Fixes
+
+* **quran:** al-nas surah not visible after interaction ([58a686e](https://github.com/Muhammed-Rahif/Islam/commit/58a686e9625ab4ce493f3a1292e3266d8d50a960))
+
 # [1.2.0](https://github.com/Muhammed-Rahif/Islam/compare/v1.1.0...v1.2.0) (2023-03-30)
 
 
