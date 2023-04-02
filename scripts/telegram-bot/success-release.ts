@@ -25,6 +25,7 @@ async function successReleaseMsg() {
 Assalamu Alaikum guys! We are excited to announce the release of a new ${releaseType} version of ${appName}. This release is now available on the ${branchName} branch of our repository.<br>
 📝 Here are the key highlights of this release:<br>
 ${releaseNotes}
+—————————————————————
 Please refer to the <a href="${changelogUrl}">changelog</a> for a more detailed list of changes.<br>
 We encourage all developers, testers, and users to <a href="${downloadUrl}">download and install</a> the apk file attached below to test the app's functionality. If you encounter any issues, please <a href="${newIssueUrl}">report them</a> by opening a new issue on our GitHub repository through the following link:<br>
 🔗 <a href="${downloadUrl}">Download ${versionName} apk</a>
