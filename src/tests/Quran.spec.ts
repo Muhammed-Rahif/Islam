@@ -57,3 +57,16 @@ test('search for "Mulk" should show mulk surah', async ({ page }) => {
   });
   await expect(mulkSurahItem).toBeInViewport();
 });
+
+test('scroll down to bottom, surah "Al-Nas" should be visible', async ({
+  page,
+}) => {
+  await page.goto('http://localhost:8100/quran');
+  await delay(1000);
+
+  // scrolling down maximum
+  await page.mouse.wheel(0, 7000);
+
+  const alNasSurah = page.getByText('Mankind');
+  await expect(alNasSurah).toBeInViewport();
+});
