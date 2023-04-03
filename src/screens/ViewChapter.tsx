@@ -13,33 +13,39 @@ import {
   IonToolbar,
   useIonRouter,
 } from '@ionic/react';
-import { createRef, useMemo } from 'react';
+import { createRef, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useChapter } from 'features/view-chapter';
 import { ReadingContent } from 'features/view-chapter';
 import { TranslationContent } from 'features/view-chapter';
 import { chevronBack, chevronForward } from 'ionicons/icons';
-import { useHistory } from 'react-router-dom';
 
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
   const { chapterNo } = useParams<{
     chapterNo: string;
   }>();
+
   const { isLoading: isChapterLoading, data: chapterData } = useChapter({
     chapterId: parseInt(chapterNo),
   });
+
   const {
     routeInfo: { search },
   } = useIonRouter();
-  const { replace } = useHistory();
 
-  const { chapterName, type } = useMemo(() => {
+  const { type: typeParam } = useMemo(() => {
     const query = new URLSearchParams(search);
-    const chapterName = query.get('chapterName') ?? 'Loading';
-    const type = query.get('type') ?? 'reading';
-    return { chapterName: chapterName, type };
+    let type = query.get('type');
+
+    // setting type to 'reading' when there is no 'type' param or 'type' param is other than 'translation' or 'reading'
+    if (!type || (type !== 'reading' && type !== 'translation'))
+      type = 'reading';
+
+    return { type };
   }, [search]);
+
+  const [type, setType] = useState(typeParam ?? 'reading');
 
   const footer = useMemo(
     () => (
@@ -87,8 +93,9 @@ const ViewChapter: React.FC = () => {
             <IonBackButton type="reset" defaultHref="/"></IonBackButton>
           </IonButtons>
           <IonTitle>
-            {chapterNo}.{' '}
-            {isChapterLoading ? chapterName : chapterData?.chapter.name_simple}
+            {isChapterLoading
+              ? `Surah No. ${chapterNo}`
+              : `${chapterNo}. ${chapterData?.chapter.name_simple}`}
           </IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -102,9 +109,7 @@ const ViewChapter: React.FC = () => {
         <IonSegment
           className="mb-0.5"
           value={type}
-          onIonChange={(e) => {
-            replace(`/quran/${chapterNo}?type=${e.detail.value}`);
-          }}
+          onIonChange={(e) => setType(e.detail.value!)}
         >
           <IonSegmentButton value="translation">
             <IonLabel>Translation</IonLabel>
