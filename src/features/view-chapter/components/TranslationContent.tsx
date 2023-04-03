@@ -48,14 +48,12 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
           icon={alertCircle}
         />
       ) : null}
+
       {/* when api is loading */}
       {isLoading && (
-        <IonItem
-          lines="none"
-          className="flex items-center w-full [--inner-padding-end:0px]"
-        >
-          <IonSpinner className="mx-auto" />
-        </IonItem>
+        <div className="w-full h-full grid place-items-center">
+          <IonSpinner />
+        </div>
       )}
 
       {chapterVerses?.pages.map((chapterVerses) =>

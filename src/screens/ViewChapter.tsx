@@ -14,9 +14,9 @@ import {
 } from '@ionic/react';
 import { createRef, useMemo, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { useChapter } from 'features/view-chapter/api/useChapter';
+import { useChapter } from 'features/view-chapter';
 import { ReadingContent } from 'features/view-chapter';
-import { TranslationContent } from 'features/view-chapter/components/TranslationContent';
+import { TranslationContent } from 'features/view-chapter';
 import { chevronBack, chevronForward } from 'ionicons/icons';
 
 const ViewChapter: React.FC = () => {

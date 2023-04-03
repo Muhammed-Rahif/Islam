@@ -93,12 +93,9 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
 
       {/* when api is loading */}
       {isLoading && (
-        <IonItem
-          lines="none"
-          className="flex items-center w-full [--inner-padding-end:0px]"
-        >
-          <IonSpinner className="mx-auto" />
-        </IonItem>
+        <div className="w-full h-full grid place-items-center">
+          <IonSpinner />
+        </div>
       )}
 
       <IonItemGroup className="h-full">
