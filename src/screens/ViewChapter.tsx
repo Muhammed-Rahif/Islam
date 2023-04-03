@@ -11,38 +11,42 @@ import {
   IonSegmentButton,
   IonTitle,
   IonToolbar,
+  useIonRouter,
 } from '@ionic/react';
-import { createRef, useMemo, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { createRef, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import { useChapter } from 'features/view-chapter';
 import { ReadingContent } from 'features/view-chapter';
 import { TranslationContent } from 'features/view-chapter';
 import { chevronBack, chevronForward } from 'ionicons/icons';
+import { useHistory } from 'react-router-dom';
 
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
-  const { id } = useParams<{ id: string }>();
+  const { id: chapterId } = useParams<{ id: string }>();
   const { isLoading: isChapterLoading, data: chapterData } = useChapter({
-    chapterId: parseInt(id),
+    chapterId: parseInt(chapterId),
   });
-  let { search } = useLocation();
+  const {
+    routeInfo: { search },
+  } = useIonRouter();
+  const { replace } = useHistory();
 
-  const chapterName = useMemo(() => {
+  const { chapterName, type } = useMemo(() => {
     const query = new URLSearchParams(search);
-    const chapterName = query.get('chapterName');
-    return chapterName ?? 'Loading';
+    const chapterName = query.get('chapterName') ?? 'Loading';
+    const type = query.get('type') ?? 'reading';
+    return { chapterName: chapterName, type };
   }, [search]);
-
-  const [type, setType] = useState('reading');
 
   const footer = useMemo(
     () => (
       <div className="[direction:ltr] flex justify-between">
         <IonButton
-          routerLink={`/quran/${parseInt(id) - 1}`}
+          routerLink={`/quran/${parseInt(chapterId) - 1}`}
           size="small"
           color="light"
-          disabled={parseInt(id) === 1}
+          disabled={parseInt(chapterId) === 1}
         >
           Prev Chapter
           <IonIcon slot="start" size="small" icon={chevronBack} />
@@ -62,15 +66,15 @@ const ViewChapter: React.FC = () => {
         <IonButton
           size="small"
           color="light"
-          routerLink={`/quran/${parseInt(id) + 1}`}
-          disabled={parseInt(id) === 114}
+          routerLink={`/quran/${parseInt(chapterId) + 1}`}
+          disabled={parseInt(chapterId) === 114}
         >
           Next Chapter
           <IonIcon slot="end" size="small" icon={chevronForward} />
         </IonButton>
       </div>
     ),
-    [id]
+    [chapterId]
   );
 
   return (
@@ -78,10 +82,10 @@ const ViewChapter: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons className="flex items-center justify-center" slot="start">
-            <IonBackButton className="" defaultHref="/"></IonBackButton>
+            <IonBackButton type="reset" defaultHref="/"></IonBackButton>
           </IonButtons>
           <IonTitle>
-            {id}.{' '}
+            {chapterId}.{' '}
             {isChapterLoading ? chapterName : chapterData?.chapter.name_simple}
           </IonTitle>
         </IonToolbar>
@@ -96,7 +100,9 @@ const ViewChapter: React.FC = () => {
         <IonSegment
           className="mb-0.5"
           value={type}
-          onIonChange={(e) => setType(e.detail.value!)}
+          onIonChange={(e) => {
+            replace(`/quran/${chapterId}?type=${e.detail.value}`);
+          }}
         >
           <IonSegmentButton value="translation">
             <IonLabel>Translation</IonLabel>
@@ -106,8 +112,11 @@ const ViewChapter: React.FC = () => {
           </IonSegmentButton>
         </IonSegment>
 
-        {type === 'reading' ? (
+        {type === 'translation' ? (
+          <TranslationContent footer={footer} />
+        ) : (
           <>
+            {/* only render if the start pages data is availiable, because this required in child component to fetch data */}
             {chapterData?.chapter.pages.length && (
               <ReadingContent
                 bismiPre={chapterData?.chapter.bismillah_pre}
@@ -119,8 +128,6 @@ const ViewChapter: React.FC = () => {
               />
             )}
           </>
-        ) : (
-          <TranslationContent footer={footer} />
         )}
       </IonContent>
     </IonPage>
