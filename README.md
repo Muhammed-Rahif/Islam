@@ -35,6 +35,9 @@
   </p>
 </div>
 
+<!-- START doctoc -->
+<!-- END doctoc -->
+
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
