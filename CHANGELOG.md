@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.2.1...v1.2.2) (2023-04-03)
+
+
+### Bug Fixes
+
+* update loading spinners ([c87bfd1](https://github.com/Muhammed-Rahif/Islam/commit/c87bfd1583a60d739004abdd9dc57b83b1fc3521))
+
 ## [1.2.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.2.0...v1.2.1) (2023-04-02)
 
 
