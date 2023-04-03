@@ -61,8 +61,8 @@
 <a name="screenshots"></a>
 
 <div align=center>
-<img src=resources/screenshots/pixel4-justblack-portrait-light.png width="49%">
-<img src=resources/screenshots/pixel4-justblack-portrait-dark.png width="49%">
+<img src=resources/screenshots/pixel4-justblack-portrait-light.png width="36%">
+<img src=resources/screenshots/pixel4-justblack-portrait-dark.png width="36%">
 </div>
 
 <p>The Islam Application is a mobile app created for Muslims, offering access to the Quran, Sunnah, and Dhikrs. The app is designed to serve as a valuable resource for Muslims who are looking to enhance their knowledge and practice of Islam.
