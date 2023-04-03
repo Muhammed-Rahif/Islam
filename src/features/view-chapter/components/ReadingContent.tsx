@@ -1,19 +1,16 @@
 import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
-  IonItem,
   IonSpinner,
   IonToast,
   useIonToast,
 } from '@ionic/react';
 import { alertCircle } from 'ionicons/icons';
-import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-import { numToArabic } from 'utils/string';
 import { useVersesUthmani } from '../api/useVersesUthmani';
-import { useAtom, useAtomValue } from 'jotai/react';
-import { quranLastReadAtom } from 'stores/quranLastRead';
-import { settingsAtom, SettingsType } from 'stores/settings';
+import { BismiVerse } from './BismiVerse';
+import { useMemo } from 'react';
+import { InlinedVerses } from './InlinedVerses';
 
 type Props = {
   pages: {
@@ -23,29 +20,6 @@ type Props = {
   bismiPre?: boolean;
   footer?: React.ReactNode;
 };
-
-function Bismi({
-  quranSettings,
-  ayahNo,
-}: {
-  quranSettings: SettingsType['quran'];
-  ayahNo?: number;
-}) {
-  return (
-    <div
-      style={{
-        fontSize: quranSettings.fontSize,
-        height: parseInt(quranSettings.fontSize.replace('%', '')) * 0.36,
-        fontFamily: quranSettings.fontFamily,
-      }}
-      lang="ar"
-      className="block text-center mt-1"
-    >
-      بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ{' '}
-      {ayahNo && `  ﴿${numToArabic(ayahNo)}﴾  `}
-    </div>
-  );
-}
 
 const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
   const { id } = useParams<{ id: string }>();
@@ -60,9 +34,20 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
     chapterId: parseInt(id),
     pages,
   });
-  const { quran: quranSettings } = useAtomValue(settingsAtom);
 
   const [presentToast] = useIonToast();
+
+  // page numbers of current surah as in uthmani quran
+  const pageNums: number[] = useMemo(
+    () =>
+      versesUthmaniData?.pageParams
+        ? [
+            pages.start,
+            ...(versesUthmaniData.pageParams as number[]).filter(Boolean),
+          ]
+        : [],
+    [versesUthmaniData?.pageParams]
+  );
 
   return (
     <div className="[direction:rtl] leading-9 pb-10 text-justify mt-2 mb-3 h-full overflow-y-scroll overflow-x-visible ion-content-scroll-host">
@@ -83,57 +68,24 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
         </div>
       )}
 
-      {!isLoading && bismiPre && <Bismi quranSettings={quranSettings} />}
+      {!isLoading && bismiPre && <BismiVerse />}
 
-      {versesUthmaniData?.pages.map((versesUthmani, index) => {
-        const pageNo = [
-          pages.start,
-          ...versesUthmaniData.pageParams.filter(Boolean),
-        ][index] as number;
+      {/* maping through pages */}
+      {versesUthmaniData?.pages.map((versesUthmani, index) => (
+        <span key={index}>
+          <InlinedVerses versesData={versesUthmani} />
 
-        return (
-          <span key={index}>
-            {versesUthmani.verses.map((verse, indx) => {
-              if (
-                verse.text_uthmani === 'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ'
-              )
-                return (
-                  <Bismi
-                    quranSettings={quranSettings}
-                    ayahNo={++indx}
-                    key={'bismi'}
-                  />
-                );
-
-              return (
-                <Fragment key={indx}>
-                  <span
-                    style={{
-                      fontSize: quranSettings.fontSize,
-                      lineHeight: quranSettings.fontSize,
-                      fontFamily: quranSettings.fontFamily,
-                    }}
-                  >
-                    {verse?.text_uthmani}{' '}
-                    {`  ﴿${numToArabic(
-                      verse.verse_key.replace(/\d+:/, '')
-                    )}﴾  `}
-                  </span>
-                </Fragment>
-              );
-            })}
-            <p className="opacity-20 text-center text-xs [direction:ltr]">
-              {pageNo}
-            </p>
-            <hr className="opacity-20 my-3.5" />
-          </span>
-        );
-      })}
+          <p className="opacity-20 text-center text-xs [direction:ltr]">
+            {pageNums[index]}
+          </p>
+          <hr className="opacity-20 my-3.5" />
+        </span>
+      ))}
 
       {hasNextPage && !isFetchingNextPage && !isLoading && (
         <p
           onClick={async () => await fetchNextPage()}
-          className="opacity-20 text-center text-xs [font-family:var(--ion-font-family)] cursor-pointer"
+          className="opacity-20 text-center active:scale-95 duration-300 text-xs [font-family:var(--ion-font-family)] cursor-pointer"
         >
           Click here or Scroll down to load more
         </p>

@@ -1,10 +1,4 @@
-import {
-  IonItem,
-  IonItemGroup,
-  IonSpinner,
-  IonToast,
-  useIonToast,
-} from '@ionic/react';
+import { IonItemGroup, IonSpinner, IonToast } from '@ionic/react';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ChapterSortBy } from '../types/Chapter';
 import { useChapersList } from '../api/useChapersList';
@@ -24,32 +18,14 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   search,
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
-  const [presentToast] = useIonToast();
   const [chapterListHeight, setChapterListHeight] = useState(0);
 
-  const {
-    isLoading,
-    error,
-    data: chapterData,
-    refetch: refetchChapters,
-  } = useChapersList();
-  const { data: allJuzsData, refetch: refetchAllJuzs } = useAllJuzs();
+  const { isLoading, error, data: chapterData } = useChapersList();
+  const { data: allJuzsData } = useAllJuzs();
 
   useEffect(() => {
     setChapterListHeight(contentRef.current?.clientHeight ?? 0);
   });
-
-  // runs when 'sortBy' state changes
-  useEffect(() => {
-    Promise.all([refetchChapters(), refetchAllJuzs()]).catch((err) => {
-      presentToast({
-        message: err.message,
-        duration: 4500,
-        position: 'bottom',
-        icon: alertCircle,
-      });
-    });
-  }, [refetchChapters, presentToast, sortBy, refetchAllJuzs]);
 
   const searchedChapters = useMemo(() => {
     if (search.trim()) {

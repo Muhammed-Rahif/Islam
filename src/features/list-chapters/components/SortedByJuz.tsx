@@ -11,6 +11,7 @@ type Props = {
 };
 
 const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
+  // array in array: chapters in juz. Eg: [[chapter-1,chapter-2],[chapter-2,chapter-3]]
   const juzChaptersGroup = useMemo(() => {
     if (!juzs) return null;
     if (!chapters) return null;

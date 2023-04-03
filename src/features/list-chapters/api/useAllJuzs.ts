@@ -18,7 +18,7 @@ function useAllJuzs() {
     cacheTime: Infinity,
     retry: true,
     structuralSharing: false,
-    notifyOnChangeProps: ['data', 'refetch'],
+    notifyOnChangeProps: ['data'],
   });
 }
 

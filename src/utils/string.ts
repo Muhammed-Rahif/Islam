@@ -7,7 +7,7 @@ const arNumToInt = (s: {
   replace: (arg0: RegExp, arg1: (d: any) => number) => any;
 }) => s.replace(/[٠-٩]/g, (d: string) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
 
-const removeHtmlTags = (s: string) => s.replace(/<[^>]*>?/gm, '');
+const removeHtmlTags = (s: string) => s.replace(/<[^>]*>([^<]*)<\/[^>]*>/g, '');
 
 const truncate = (input: string, length = 5) =>
   input.length > length ? `${input.substring(0, length)}...` : input;

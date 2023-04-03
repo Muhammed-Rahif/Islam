@@ -18,7 +18,7 @@ function useChapersList() {
     cacheTime: Infinity,
     retry: true,
     structuralSharing: false,
-    notifyOnChangeProps: ['data', 'error', 'isLoading', 'refetch'],
+    notifyOnChangeProps: ['data', 'error', 'isLoading'],
   });
 }
 

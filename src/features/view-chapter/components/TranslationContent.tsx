@@ -15,6 +15,7 @@ import { settingsAtom } from 'stores/settings';
 import { numToArabic, removeHtmlTags } from 'utils/string';
 import { useChapterVerses } from '../api/useChapterVerses';
 import { Fragment } from 'react';
+import { TranslationVerseItem } from './TranslationVerseItem';
 
 type Props = {
   footer?: React.ReactNode;
@@ -58,37 +59,10 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
 
       {chapterVerses?.pages.map((chapterVerses) =>
         chapterVerses.verses.map((verse, indx) => (
-          <Fragment key={indx}>
-            <div key={indx} className="[direction:rtl]">
-              <IonText lang="ar" className="ml-2">
-                <span
-                  className="mb-2 text-justify"
-                  style={{
-                    fontSize: quranSettings.fontSize,
-                    lineHeight: quranSettings.fontSize,
-                    fontFamily: quranSettings.fontFamily,
-                  }}
-                >
-                  {verse.words
-                    .filter((word) => word.char_type_name === 'word')
-                    .map((word) => word.text_uthmani)
-                    .join(' ')}
-                  {`  ﴿${numToArabic(verse.verse_number)}﴾  `}
-                </span>
-              </IonText>
-            </div>
-            {verse?.translations.map((translation, indx) => (
-              <IonText key={indx} className="text-left">
-                {removeHtmlTags(translation.text)}
-                <small className="opacity-20 block mb-2">
-                  - {translation.resource_name}
-                </small>
-              </IonText>
-            ))}
-            <hr className="my-4 opacity-20" />
-          </Fragment>
+          <TranslationVerseItem verse={verse} key={indx} />
         ))
       )}
+
       <IonInfiniteScroll
         disabled={!hasNextPage}
         onIonInfinite={async (ev) => {
