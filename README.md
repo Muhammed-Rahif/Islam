@@ -35,8 +35,23 @@
   </p>
 </div>
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [About The Project](#about-the-project)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation and running](#installation-and-running)
+  - [Testing](#testing)
+- [Contributing](#contributing)
+- [Join our Telegram community group.](#join-our-telegram-community-group)
+- [Technologies Used](#technologies-used)
+- [Contact Author](#contact-author)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 <!-- ABOUT THE PROJECT -->
 
