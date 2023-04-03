@@ -5,8 +5,11 @@ jobs:
     name: TOC Generator
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - uses: technote-space/toc-generator@v4
         with:
           CREATE_PR: true
           COMMIT_MESSAGE: 'docs(readme): update table of contents'
           PR_TITLE: 'docs(readme): update table of contents (${PR_MERGE_REF})'
+          CHECK_ONLY_DEFAULT_BRANCH: true

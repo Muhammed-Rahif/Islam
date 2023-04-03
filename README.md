@@ -89,7 +89,7 @@ To get a local copy up and running follow these steps below.
 
 ## Contributing
 
-We welcome contributions to the ISLAM Application from the community. If you're interested in contributing, please see the guidelines outlined in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+We welcome and greatly appreciate your contributions to the Islam app project. If you're interested in contributing, please refer to the guidelines outlined in the [**CONTRIBUTING.md**](CONTRIBUTING.md) file. May Allah (SWT) reward you for your efforts and bless your contributions to this Islamic project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
