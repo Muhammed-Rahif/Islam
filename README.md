@@ -86,20 +86,18 @@ To get a local copy up and running follow these steps below.
 
 ## Contributing
 
-We welcome contributions to the Islam Application! If you'd like to contribute, follow these steps:
+We welcome contributions to the ISLAM Application from the community. If you're interested in contributing, please see the guidelines outlined in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- We welcome contributions to the Islam Application! If you'd like to contribute, follow these steps:
 1. Fork this repository to your GitHub account.
 2. Clone the forked repository to your local machine.
 3. Create a new branch for your changes using `git checkout -b <my-new-branch>`.
 4. Make your changes and commit them with descriptive commit messages.
 5. Push your changes to your forked repository with `git push origin <my-new-branch>`.
 6. Create a pull request from your forked repository to this repository.
-7. Wait for the maintainers to review your changes and merge them into the main branch.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- Contributions
-We welcome contributions to the ISLAM Application from the community. If you're interested in contributing, please see the guidelines outlined in the CONTRIBUTING.md file. -->
+7. Wait for the maintainers to review your changes and merge them into the main branch. -->
 
 ## Join our Telegram community group.
 
@@ -136,7 +134,7 @@ The Islam project is built using the following technologies:
 
 ## License
 
-The Islam Application is licensed under the [MIT License](https://opensource.org/licenses/MIT). See `LICENSE.txt` for more information.
+The Islam Application is licensed under the [MIT License](https://opensource.org/licenses/MIT). See [`LICENSE.txt`](LICENSE.txt) for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
