@@ -6,3 +6,6 @@ export * from './types/Chapter';
 export * from './types/VersesByChapter';
 export * from './types/VersesUthmani';
 export * from './components/TranslationContent';
+export * from './components/BismiVerse';
+export * from './components/InlinedVerses';
+export * from './components/TranslationVerseItem';

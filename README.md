@@ -37,6 +37,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [About The Project](#about-the-project)
@@ -59,8 +60,10 @@
 
 <a name="screenshots"></a>
 
-![light-mode](resources/screenshots/light-mode.png)
-![dark-mode](resources/screenshots/dark-mode.png)
+<div align=center>
+<img src=resources/screenshots/light-mode.png >
+<img src=resources/screenshots/dark-mode.png >
+</div>
 
 <p>The Islam Application is a mobile app created for Muslims, offering access to the Quran, Sunnah, and Dhikrs. The app is designed to serve as a valuable resource for Muslims who are looking to enhance their knowledge and practice of Islam.
 

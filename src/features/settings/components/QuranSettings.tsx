@@ -23,7 +23,7 @@ const QuranSettings: React.FC = () => {
 
   const translationItems = useMemo(
     () =>
-      // returning data as { text: string; value: string; }
+      // returning data as [{ text: string; value: string; },...]
       translationsData?.translations.map((translation) => ({
         text: `${translation.language_name}, ${translation.name}`,
         value: translation.id.toString(),
@@ -44,6 +44,7 @@ const QuranSettings: React.FC = () => {
     [setSettings]
   );
 
+  // the extra fullpage modal that is used to select translations
   const translationsModal = useRef<HTMLIonModalElement>(null);
   const onTranslationsChange = useCallback(
     (items: string[]) => {
@@ -64,16 +65,26 @@ const QuranSettings: React.FC = () => {
     [translationsData?.translations, updateQuranSettings]
   );
 
+  // btn text is like: english, arabic, chi...
   const translationsBtnText = useMemo(() => {
-    const uniqueTranslations = [
+    // selected languages only, divided by comma. eg: english, arabic, chinease
+    const translationsLanguages = [
       ...new Set(
         settings?.quran.translations.map(
           (translation) => translation.language_name
         )
       ),
     ];
-    return truncate(uniqueTranslations.join(', '), 24);
+    return truncate(translationsLanguages.join(', '), 24);
   }, [settings?.quran.translations]);
+
+  const selectedTranslationValues = useMemo(
+    () =>
+      settings?.quran.translations.map((translation) =>
+        translation.id.toString()
+      ) ?? [],
+    [settings?.quran.translations]
+  );
 
   return (
     <IonItemGroup className="pb-3">
@@ -151,11 +162,7 @@ const QuranSettings: React.FC = () => {
           <AppTypeahead
             title="Select Translations"
             items={translationItems}
-            selectedItems={
-              settings?.quran.translations.map((translation) =>
-                translation.id.toString()
-              ) ?? []
-            }
+            selectedItems={selectedTranslationValues}
             required
             onSelectionCancel={() => translationsModal.current?.dismiss()}
             onSelectionChange={onTranslationsChange}
