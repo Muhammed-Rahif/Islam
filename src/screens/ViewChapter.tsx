@@ -23,9 +23,11 @@ import { useHistory } from 'react-router-dom';
 
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
-  const { id: chapterId } = useParams<{ id: string }>();
+  const { chapterNo } = useParams<{
+    chapterNo: string;
+  }>();
   const { isLoading: isChapterLoading, data: chapterData } = useChapter({
-    chapterId: parseInt(chapterId),
+    chapterId: parseInt(chapterNo),
   });
   const {
     routeInfo: { search },
@@ -43,10 +45,10 @@ const ViewChapter: React.FC = () => {
     () => (
       <div className="[direction:ltr] flex justify-between">
         <IonButton
-          routerLink={`/quran/${parseInt(chapterId) - 1}`}
+          routerLink={`/quran/${parseInt(chapterNo) - 1}`}
           size="small"
           color="light"
-          disabled={parseInt(chapterId) === 1}
+          disabled={parseInt(chapterNo) === 1}
         >
           Prev Chapter
           <IonIcon slot="start" size="small" icon={chevronBack} />
@@ -66,15 +68,15 @@ const ViewChapter: React.FC = () => {
         <IonButton
           size="small"
           color="light"
-          routerLink={`/quran/${parseInt(chapterId) + 1}`}
-          disabled={parseInt(chapterId) === 114}
+          routerLink={`/quran/${parseInt(chapterNo) + 1}`}
+          disabled={parseInt(chapterNo) === 114}
         >
           Next Chapter
           <IonIcon slot="end" size="small" icon={chevronForward} />
         </IonButton>
       </div>
     ),
-    [chapterId]
+    [chapterNo]
   );
 
   return (
@@ -85,7 +87,7 @@ const ViewChapter: React.FC = () => {
             <IonBackButton type="reset" defaultHref="/"></IonBackButton>
           </IonButtons>
           <IonTitle>
-            {chapterId}.{' '}
+            {chapterNo}.{' '}
             {isChapterLoading ? chapterName : chapterData?.chapter.name_simple}
           </IonTitle>
         </IonToolbar>
@@ -101,7 +103,7 @@ const ViewChapter: React.FC = () => {
           className="mb-0.5"
           value={type}
           onIonChange={(e) => {
-            replace(`/quran/${chapterId}?type=${e.detail.value}`);
+            replace(`/quran/${chapterNo}?type=${e.detail.value}`);
           }}
         >
           <IonSegmentButton value="translation">
