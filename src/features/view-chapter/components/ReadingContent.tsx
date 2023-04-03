@@ -22,7 +22,7 @@ type Props = {
 };
 
 const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
-  const { id } = useParams<{ id: string }>();
+  const { chapterNo } = useParams<{ chapterNo: string }>();
   const {
     isLoading,
     data: versesUthmaniData,
@@ -31,7 +31,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
     isFetchingNextPage,
     hasNextPage,
   } = useVersesUthmani({
-    chapterId: parseInt(id),
+    chapterId: parseInt(chapterNo),
     pages,
   });
 

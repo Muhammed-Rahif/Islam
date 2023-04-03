@@ -1,4 +1,9 @@
-import { IonItemGroup, IonSpinner, IonToast } from '@ionic/react';
+import {
+  IonItemGroup,
+  IonSpinner,
+  IonToast,
+  useIonViewDidEnter,
+} from '@ionic/react';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ChapterSortBy } from '../types/Chapter';
 import { useChapersList } from '../api/useChapersList';
@@ -18,13 +23,17 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   search,
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
-  const [chapterListHeight, setChapterListHeight] = useState(0);
+  const [chapterListHeight, setChapterListHeight] = useState(
+    window.innerHeight
+  );
 
   const { isLoading, error, data: chapterData } = useChapersList();
   const { data: allJuzsData } = useAllJuzs();
 
-  useEffect(() => {
-    setChapterListHeight(contentRef.current?.clientHeight ?? 0);
+  useIonViewDidEnter(() => {
+    setChapterListHeight(
+      contentRef.current?.clientHeight ?? window.innerHeight
+    );
   });
 
   const searchedChapters = useMemo(() => {
@@ -79,7 +88,6 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
           //  when succesfull data retrieve; and sortBy == 'revelation-order' or 'surah'
           <List
             height={chapterListHeight}
-            className="h-full"
             itemCount={chapters.length}
             itemSize={62}
             width="100%"
@@ -92,7 +100,6 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
                 versesCount={data[index]?.verses_count}
                 id={data[index]?.id}
                 translatedName={data[index]?.translated_name.name}
-                index={index}
                 key={data[index]?.id}
               />
             )}
