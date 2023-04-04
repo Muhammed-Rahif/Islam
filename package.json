@@ -112,7 +112,7 @@
     "eslint-plugin-react": "^7.32.2",
     "postcss": "^8.4.21",
     "prettier": "2.8.6",
-    "semantic-release": "^21.0.0",
+    "semantic-release": "^21.0.1",
     "tailwindcss": "^3.3.1"
   },
   "description": "Quran, Hadiths, Sunnah and Dhikrs in one place!"
