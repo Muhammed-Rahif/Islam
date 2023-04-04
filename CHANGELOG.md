@@ -1,4 +1,12 @@
-## [1.2.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.2.1...v1.2.2) (2023-04-03)
+## [1.2.2-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.2.2-beta.1...v1.2.2-beta.2) (2023-04-03)
+
+
+### Bug Fixes
+
+* **quran:** remove param 'chapterName'; view quran type(reading or translation) changed to param ([3c79c2e](https://github.com/Muhammed-Rahif/Islam/commit/3c79c2ea705ad95781a259d70cc166d304247cae))
+* view-quran 'type' param issue ([f2d5de5](https://github.com/Muhammed-Rahif/Islam/commit/f2d5de5ebd2679deee64a15fcf48f9734e09f14a))
+
+## [1.2.2-beta.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.2.1...v1.2.2-beta.1) (2023-04-03)
 
 
 ### Bug Fixes

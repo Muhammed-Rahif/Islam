@@ -107,7 +107,7 @@ const App: React.FC = () => {
               <Route exact path="/quran" render={() => <QuranPage />} />
               <Route
                 exact
-                path="/quran/:id"
+                path="/quran/:chapterNo"
                 render={() => <ViewChapterPage />}
               />
               <Route exact path="/settings" render={() => <SettingsPage />} />

@@ -17,7 +17,7 @@ import {
   useIonRouter,
 } from '@ionic/react';
 import { createRef, useMemo, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useChapter } from 'features/view-chapter';
 import { ReadingContent } from 'features/view-chapter';
 import { TranslationContent } from 'features/view-chapter';
@@ -30,19 +30,30 @@ import {
 
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
-  const { id } = useParams<{ id: string }>();
-  const { isLoading: isChapterLoading, data: chapterData } = useChapter({
-    chapterId: parseInt(id),
-  });
-  let { search } = useLocation();
+  const { chapterNo } = useParams<{
+    chapterNo: string;
+  }>();
 
-  const chapterName = useMemo(() => {
+  const { isLoading: isChapterLoading, data: chapterData } = useChapter({
+    chapterId: parseInt(chapterNo),
+  });
+
+  const {
+    routeInfo: { search },
+  } = useIonRouter();
+
+  const { type: typeParam } = useMemo(() => {
     const query = new URLSearchParams(search);
-    const chapterName = query.get('chapterName');
-    return chapterName ?? 'Loading';
+    let type = query.get('type');
+
+    // setting type to 'reading' when there is no 'type' param or 'type' param is other than 'translation' or 'reading'
+    if (!type || (type !== 'reading' && type !== 'translation'))
+      type = 'reading';
+
+    return { type };
   }, [search]);
 
-  const [type, setType] = useState('reading');
+  const [type, setType] = useState(typeParam);
   const { push } = useIonRouter();
 
   return (
@@ -50,11 +61,12 @@ const ViewChapter: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons className="flex items-center justify-center" slot="start">
-            <IonBackButton className="" defaultHref="/"></IonBackButton>
+            <IonBackButton type="reset" defaultHref="/"></IonBackButton>
           </IonButtons>
           <IonTitle>
-            {id}.{' '}
-            {isChapterLoading ? chapterName : chapterData?.chapter.name_simple}
+            {isChapterLoading
+              ? `Surah No. ${chapterNo}`
+              : `${chapterNo}. ${chapterData?.chapter.name_simple}`}
           </IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -78,8 +90,11 @@ const ViewChapter: React.FC = () => {
           </IonSegmentButton>
         </IonSegment>
 
-        {type === 'reading' ? (
+        {type === 'translation' ? (
+          <TranslationContent />
+        ) : (
           <>
+            {/* only render if the start pages data is availiable, because this required in child component to fetch data */}
             {chapterData?.chapter.pages.length && (
               <ReadingContent
                 bismiPre={chapterData?.chapter.bismillah_pre}
@@ -90,8 +105,6 @@ const ViewChapter: React.FC = () => {
               />
             )}
           </>
-        ) : (
-          <TranslationContent bismiPre={chapterData?.chapter.bismillah_pre} />
         )}
       </IonContent>
 
@@ -128,15 +141,15 @@ const ViewChapter: React.FC = () => {
           </IonFabButton>
           <IonFabButton
             id="next-btn"
-            routerLink={`/quran/${parseInt(id) + 1}`}
-            disabled={parseInt(id) === 114}
+            routerLink={`/quran/${parseInt(chapterNo) + 1}`}
+            disabled={parseInt(chapterNo) === 114}
           >
             <IonIcon icon={arrowRedoOutline}></IonIcon>
           </IonFabButton>
           <IonFabButton
             id="prev-btn"
-            routerLink={`/quran/${parseInt(id) - 1}`}
-            disabled={parseInt(id) === 1}
+            routerLink={`/quran/${parseInt(chapterNo) - 1}`}
+            disabled={parseInt(chapterNo) === 1}
           >
             <IonIcon icon={arrowUndoOutline}></IonIcon>
           </IonFabButton>

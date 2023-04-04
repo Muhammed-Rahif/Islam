@@ -23,7 +23,7 @@ type Props = {
 };
 
 const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
-  const { id } = useParams<{ id: string }>();
+  const { chapterNo: chapterNo } = useParams<{ chapterNo: string }>();
   const { quran: quranSettings } = useAtomValue(settingsAtom);
   const [presentToast] = useIonToast();
 
@@ -35,7 +35,7 @@ const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
     isFetchingNextPage,
     hasNextPage,
   } = useChapterVerses({
-    chapterId: parseInt(id),
+    chapterId: parseInt(chapterNo),
     translations: quranSettings.translations.map((t) => t.id),
   });
 
