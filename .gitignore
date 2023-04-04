@@ -36,3 +36,6 @@ env.local
 /playwright/.cache/
 /dev-dist/
 scripts/telegram-bot/*.js
+
+# using capacitor.config.ts not 'json'
+capacitor.config.json

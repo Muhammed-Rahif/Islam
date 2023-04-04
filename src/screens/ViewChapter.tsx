@@ -1,98 +1,77 @@
 import {
   IonBackButton,
-  IonButton,
   IonButtons,
   IonContent,
+  IonFab,
+  IonFabButton,
+  IonFabList,
   IonHeader,
   IonIcon,
   IonLabel,
   IonPage,
+  IonPopover,
   IonSegment,
   IonSegmentButton,
   IonTitle,
   IonToolbar,
+  useIonRouter,
+  useIonViewDidEnter,
 } from '@ionic/react';
-import { createRef, useMemo, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { createRef, useCallback, useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useChapter } from 'features/view-chapter';
 import { ReadingContent } from 'features/view-chapter';
 import { TranslationContent } from 'features/view-chapter';
-import { chevronBack, chevronForward } from 'ionicons/icons';
+import {
+  arrowRedoOutline,
+  arrowUndoOutline,
+  arrowUpOutline,
+  swapHorizontal,
+} from 'ionicons/icons';
 
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
-  const { id } = useParams<{ id: string }>();
-  const { isLoading: isChapterLoading, data: chapterData } = useChapter({
-    chapterId: parseInt(id),
-  });
-  let { search } = useLocation();
+  const [isScrollEnding, setIsScrollEnding] = useState(false);
+  const { chapterNo } = useParams<{
+    chapterNo: string;
+  }>();
 
-  const chapterName = useMemo(() => {
+  const { isLoading: isChapterLoading, data: chapterData } = useChapter({
+    chapterId: parseInt(chapterNo),
+  });
+
+  const {
+    routeInfo: { search },
+  } = useIonRouter();
+
+  const { type: typeParam } = useMemo(() => {
     const query = new URLSearchParams(search);
-    const chapterName = query.get('chapterName');
-    return chapterName ?? 'Loading';
+    let type = query.get('type');
+
+    // setting type to 'reading' when there is no 'type' param or 'type' param is other than 'translation' or 'reading'
+    if (!type || (type !== 'reading' && type !== 'translation'))
+      type = 'reading';
+
+    return { type };
   }, [search]);
 
-  const [type, setType] = useState('reading');
-
-  const footer = useMemo(
-    () => (
-      <div className="[direction:ltr] flex justify-between">
-        <IonButton
-          routerLink={`/quran/${parseInt(id) - 1}`}
-          size="small"
-          color="light"
-          disabled={parseInt(id) === 1}
-        >
-          Prev Chapter
-          <IonIcon slot="start" size="small" icon={chevronBack} />
-        </IonButton>
-        <IonButton
-          size="small"
-          color="light"
-          onClick={async () =>
-            document.querySelector('.ion-content-scroll-host')?.scrollTo({
-              top: 0,
-              behavior: 'smooth',
-            })
-          }
-        >
-          To top
-        </IonButton>
-        <IonButton
-          size="small"
-          color="light"
-          routerLink={`/quran/${parseInt(id) + 1}`}
-          disabled={parseInt(id) === 114}
-        >
-          Next Chapter
-          <IonIcon slot="end" size="small" icon={chevronForward} />
-        </IonButton>
-      </div>
-    ),
-    [id]
-  );
+  const [type, setType] = useState(typeParam);
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons className="flex items-center justify-center" slot="start">
-            <IonBackButton className="" defaultHref="/"></IonBackButton>
+            <IonBackButton type="reset" defaultHref="/"></IonBackButton>
           </IonButtons>
           <IonTitle>
-            {id}.{' '}
-            {isChapterLoading ? chapterName : chapterData?.chapter.name_simple}
+            {isChapterLoading
+              ? `Surah No. ${chapterNo}`
+              : `${chapterNo}. ${chapterData?.chapter.name_simple}`}
           </IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent
-        className="ion-padding"
-        ref={contentRef}
-        fullscreen
-        scrollX={false}
-        scrollY={false}
-      >
+      <IonContent className="ion-padding" ref={contentRef} fullscreen>
         <IonSegment
           className="mb-0.5"
           value={type}
@@ -106,12 +85,17 @@ const ViewChapter: React.FC = () => {
           </IonSegmentButton>
         </IonSegment>
 
-        {type === 'reading' ? (
+        {type === 'translation' ? (
+          <TranslationContent bismiPre={chapterData?.chapter.bismillah_pre} />
+        ) : (
           <>
+            {/* 
+              only render if the 'pages.start' data is availiable, 
+              because this required in child component to fetch data.
+            */}
             {chapterData?.chapter.pages.length && (
               <ReadingContent
                 bismiPre={chapterData?.chapter.bismillah_pre}
-                footer={footer}
                 pages={{
                   start: chapterData.chapter.pages[0],
                   end: chapterData.chapter.pages[1],
@@ -119,10 +103,43 @@ const ViewChapter: React.FC = () => {
               />
             )}
           </>
-        ) : (
-          <TranslationContent footer={footer} />
         )}
       </IonContent>
+
+      <IonFab
+        slot="fixed"
+        horizontal="end"
+        vertical="bottom"
+        aria-label="floating-action-button"
+        className="opacity-60 active:opacity-100 hover:opacity-100 duration-300 focus:opacity-100"
+      >
+        <IonFabButton>
+          <IonIcon icon={swapHorizontal}></IonIcon>
+        </IonFabButton>
+
+        <IonFabList side="top">
+          <IonFabButton
+            aria-label="scroll-to-top-btn"
+            onClick={() => contentRef.current?.scrollToTop(700)}
+          >
+            <IonIcon icon={arrowUpOutline}></IonIcon>
+          </IonFabButton>
+          <IonFabButton
+            aria-label="next-chapter-btn"
+            routerLink={`/quran/${parseInt(chapterNo) + 1}`}
+            disabled={parseInt(chapterNo) === 114}
+          >
+            <IonIcon icon={arrowRedoOutline}></IonIcon>
+          </IonFabButton>
+          <IonFabButton
+            aria-label="previous-chapter-btn"
+            routerLink={`/quran/${parseInt(chapterNo) - 1}`}
+            disabled={parseInt(chapterNo) === 1}
+          >
+            <IonIcon icon={arrowUndoOutline}></IonIcon>
+          </IonFabButton>
+        </IonFabList>
+      </IonFab>
     </IonPage>
   );
 };

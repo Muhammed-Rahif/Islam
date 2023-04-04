@@ -17,18 +17,17 @@ const InlinedVerses: React.FC<{ versesData: VersesUthmani }> = ({
           return <BismiVerse ayahNo={++indx} key={'bismi'} />;
 
         return (
-          <Fragment key={indx}>
-            <span
-              style={{
-                fontSize: quranSettings.fontSize,
-                lineHeight: quranSettings.fontSize,
-                fontFamily: quranSettings.fontFamily,
-              }}
-            >
-              {verse?.text_uthmani}{' '}
-              {`  ﴿${numToArabic(verse.verse_key.replace(/\d+:/, ''))}﴾  `}
-            </span>
-          </Fragment>
+          <span
+            key={indx}
+            style={{
+              fontSize: quranSettings.fontSize,
+              lineHeight: quranSettings.fontSize,
+              fontFamily: quranSettings.fontFamily,
+            }}
+          >
+            {verse?.text_uthmani}{' '}
+            {`  ﴿${numToArabic(verse.verse_key.replace(/\d+:/, ''))}﴾  `}
+          </span>
         );
       })}
     </>

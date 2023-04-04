@@ -3,7 +3,6 @@ import React from 'react';
 
 type ChapterItemProps = {
   id: number;
-  index: number;
   name: string;
   translatedName: string;
   versesCount: number;
@@ -11,13 +10,13 @@ type ChapterItemProps = {
 };
 
 const ChapterItem: React.FC<ChapterItemProps> = React.memo(
-  ({ id, index, name, translatedName, versesCount, style }) => {
+  ({ id, name, translatedName, versesCount, style }) => {
     return (
       <IonItem
         key={id}
         className="flex items-center w-full [--inner-padding-end:0px] -z-0"
         button
-        routerLink={`/quran/${id}?chapterName=${name}`}
+        routerLink={`/quran/${id}?type=reading`}
         style={style}
       >
         <IonRippleEffect type="unbounded" />

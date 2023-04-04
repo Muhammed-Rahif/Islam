@@ -32,8 +32,12 @@ test('clicking on fatiha item should navigate to "Al-Fatihah" page', async ({
 test('clicking on next chapter btn in "Al-Fatihah" page should navigate to "Al-Baqarah"', async ({
   page,
 }) => {
-  await page.goto('http://localhost:8100/quran/1?chapterName=Al-Fatihah');
-  await page.getByRole('link', { name: 'Next Chapter' }).click();
+  // surah 1 is "Al-Fatihah"
+  await page.goto('http://localhost:8100/quran/1');
+  await page.getByLabel('floating-action-button', { exact: true }).click();
+  await page
+    .getByRole('link', { name: 'next-chapter-btn' })
+    .click({ force: true });
   const nextPageTitle = page
     .locator('ion-title')
     .filter({ hasText: '2. Al-Baqarah' });
@@ -41,11 +45,15 @@ test('clicking on next chapter btn in "Al-Fatihah" page should navigate to "Al-B
   await expect(nextPageTitle).toBeInViewport();
 });
 
-test('clicking on next chapter btn in "An-Nas" page should navigate to "Al-Falaq"', async ({
+test('clicking on previous chapter btn in "An-Nas" page should navigate to "Al-Falaq"', async ({
   page,
 }) => {
-  await page.goto('http://localhost:8100/quran/114?chapterName=An-Nas');
-  await page.getByRole('link', { name: 'Prev Chapter' }).click();
+  // surah 114 is "An-Nas"
+  await page.goto('http://localhost:8100/quran/114');
+  await page.locator('ion-fab').getByRole('button').click({ force: true });
+  await page
+    .getByRole('link', { name: 'previous-chapter-btn' })
+    .click({ force: true });
   const nextPageTitle = page
     .locator('ion-title')
     .filter({ hasText: '113. Al-Falaq' });
@@ -54,7 +62,8 @@ test('clicking on next chapter btn in "An-Nas" page should navigate to "Al-Falaq
 });
 
 test('change type to translation', async ({ page }) => {
-  await page.goto('http://localhost:8100/quran/1?chapterName=Al-Fatihah');
+  // surah 1 is "Al-Fatihah"
+  await page.goto('http://localhost:8100/quran/1');
   await page
     .locator('ion-segment-button')
     .filter({ hasText: 'Translation' })
@@ -69,18 +78,23 @@ test('change type to translation', async ({ page }) => {
 test('on Surah 114, "next chapter" btn should disabled, "prev chapter" btn should enabled', async ({
   page,
 }) => {
+  // surah 114 is "An-Nas"
   await page.goto('http://localhost:8100/quran/114');
-  const nextBtn = page.locator('ion-button', { hasText: 'Next Chapter' });
-  const prevBtn = page.locator('ion-button', { hasText: 'Prev Chapter' });
+  await page.locator('ion-fab').getByRole('button').click({ force: true });
+  const nextBtn = page.getByRole('link', { name: 'next-chapter-btn' });
+  const prevBtn = page.getByRole('link', { name: 'previous-chapter-btn' });
 
   await expect(nextBtn).toHaveAttribute('disabled', '');
   await expect(prevBtn).not.toHaveAttribute('disabled', '');
 });
 
-test('on Surah 1, "prev chapter" btn should disabled', async ({ page }) => {
+test('on Surah 1 (al-Fatihah), "prev chapter" btn should disabled', async ({
+  page,
+}) => {
   await page.goto('http://localhost:8100/quran/1');
-  const nextBtn = page.locator('ion-button', { hasText: 'Next Chapter' });
-  const prevBtn = page.locator('ion-button', { hasText: 'Prev Chapter' });
+  await page.locator('ion-fab').getByRole('button').click({ force: true });
+  const nextBtn = page.getByRole('link', { name: 'next-chapter-btn' });
+  const prevBtn = page.getByRole('link', { name: 'previous-chapter-btn' });
 
   await expect(nextBtn).not.toHaveAttribute('disabled', '');
   await expect(prevBtn).toHaveAttribute('disabled', '');
