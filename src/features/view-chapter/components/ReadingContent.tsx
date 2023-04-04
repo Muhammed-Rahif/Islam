@@ -37,7 +37,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
 
   const [presentToast] = useIonToast();
 
-  // page numbers of current surah as in uthmani quran
+  // page numbers of current surah as in uthmani quran. eg: [121,122,123,124]
   const pageNums: number[] = useMemo(
     () =>
       versesUthmaniData?.pageParams

@@ -120,7 +120,10 @@ const ViewChapter: React.FC = () => {
             )}
           </>
         ) : (
-          <TranslationContent footer={footer} />
+          <TranslationContent
+            bismiPre={chapterData?.chapter.bismillah_pre}
+            footer={footer}
+          />
         )}
       </IonContent>
     </IonPage>

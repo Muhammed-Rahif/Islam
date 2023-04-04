@@ -16,12 +16,14 @@ import { numToArabic, removeHtmlTags } from 'utils/string';
 import { useChapterVerses } from '../api/useChapterVerses';
 import { Fragment } from 'react';
 import { TranslationVerseItem } from './TranslationVerseItem';
+import { BismiVerse } from './BismiVerse';
 
 type Props = {
   footer?: React.ReactNode;
+  bismiPre?: boolean;
 };
 
-const TranslationContent: React.FC<Props> = ({ footer }) => {
+const TranslationContent: React.FC<Props> = ({ footer, bismiPre }) => {
   const { id } = useParams<{ id: string }>();
   const { quran: quranSettings } = useAtomValue(settingsAtom);
   const [presentToast] = useIonToast();
@@ -56,6 +58,8 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
           <IonSpinner />
         </div>
       )}
+
+      {!isLoading && bismiPre && <BismiVerse />}
 
       {chapterVerses?.pages.map((chapterVerses) =>
         chapterVerses.verses.map((verse, indx) => (
