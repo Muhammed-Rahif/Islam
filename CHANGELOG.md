@@ -1,3 +1,19 @@
+# [1.3.0-beta.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.2.2...v1.3.0-beta.1) (2023-04-04)
+
+
+### Bug Fixes
+
+* **quran:** add pre bismi verse in translation section ([08e7a53](https://github.com/Muhammed-Rahif/Islam/commit/08e7a53e4952b4afe652e2601f83f863b5069962))
+* **quran:** remove param 'chapterName'; view quran type(reading or translation) changed to param ([3c79c2e](https://github.com/Muhammed-Rahif/Islam/commit/3c79c2ea705ad95781a259d70cc166d304247cae))
+* **quran:** update line height of translation arabic content ([8c9318f](https://github.com/Muhammed-Rahif/Islam/commit/8c9318fc5305cf3da6723e2ec00d2b571f8b42d4))
+* view-quran 'type' param issue ([f2d5de5](https://github.com/Muhammed-Rahif/Islam/commit/f2d5de5ebd2679deee64a15fcf48f9734e09f14a))
+
+
+### Features
+
+* **quran:** change 'next', 'prev' and 'to top' footer btns to fab btns ([2c06ac6](https://github.com/Muhammed-Rahif/Islam/commit/2c06ac6293920bb365e05b0ae503832159b1ba05))
+* **quran:** change next, prev surah and 'to top' btns to fab btns ([216280f](https://github.com/Muhammed-Rahif/Islam/commit/216280ff1dfe5975005f68b33c31453badb5ce8e))
+
 ## [1.2.2-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.2.2-beta.1...v1.2.2-beta.2) (2023-04-03)
 
 
