@@ -87,7 +87,7 @@ export default defineConfig({
   webServer: {
     command: 'ionic serve',
     url: 'http://127.0.0.1:8100',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
     // port: 8100,
     // timeout: 60000 * 4,
   },

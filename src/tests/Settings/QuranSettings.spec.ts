@@ -100,7 +100,7 @@ test('enabling translations of french and chinese with default eng translation',
     .locator('ion-text')
     .filter({
       hasText:
-        'Au nom d’Allah, le Tout Miséricordieux, le Très Miséricordieux. - French Transla',
+        'Au nom d’Allah, le Tout Miséricordieux, le Très Miséricordieux. 1- French Transl',
     })
     .locator('small');
   const engTranslation = page

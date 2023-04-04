@@ -110,6 +110,7 @@ const ViewChapter: React.FC = () => {
         slot="fixed"
         horizontal="end"
         vertical="bottom"
+        aria-label="floating-action-button"
         className="opacity-60 active:opacity-100 hover:opacity-100 duration-300 focus:opacity-100"
       >
         <IonFabButton>
@@ -117,16 +118,21 @@ const ViewChapter: React.FC = () => {
         </IonFabButton>
 
         <IonFabList side="top">
-          <IonFabButton onClick={() => contentRef.current?.scrollToTop(700)}>
+          <IonFabButton
+            aria-label="scroll-to-top-btn"
+            onClick={() => contentRef.current?.scrollToTop(700)}
+          >
             <IonIcon icon={arrowUpOutline}></IonIcon>
           </IonFabButton>
           <IonFabButton
+            aria-label="next-chapter-btn"
             routerLink={`/quran/${parseInt(chapterNo) + 1}`}
             disabled={parseInt(chapterNo) === 114}
           >
             <IonIcon icon={arrowRedoOutline}></IonIcon>
           </IonFabButton>
           <IonFabButton
+            aria-label="previous-chapter-btn"
             routerLink={`/quran/${parseInt(chapterNo) - 1}`}
             disabled={parseInt(chapterNo) === 1}
           >
