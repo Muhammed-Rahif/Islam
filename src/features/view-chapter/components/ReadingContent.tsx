@@ -18,10 +18,9 @@ type Props = {
     end: number;
   };
   bismiPre?: boolean;
-  footer?: React.ReactNode;
 };
 
-const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
+const ReadingContent: React.FC<Props> = ({ bismiPre, pages }) => {
   const { chapterNo } = useParams<{ chapterNo: string }>();
   const {
     isLoading,
@@ -37,7 +36,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
 
   const [presentToast] = useIonToast();
 
-  // page numbers of current surah as in uthmani quran
+  // page numbers of current surah as in uthmani quran. eg: [121,122,123,124]
   const pageNums: number[] = useMemo(
     () =>
       versesUthmaniData?.pageParams
@@ -50,7 +49,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
   );
 
   return (
-    <div className="[direction:rtl] leading-9 pb-10 text-justify mt-2 mb-3 h-full overflow-y-scroll overflow-x-visible ion-content-scroll-host">
+    <div className="[direction:rtl] leading-9 text-justify mt-4 h-full">
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -115,7 +114,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
         <IonInfiniteScrollContent loadingText="Please, be patient..."></IonInfiniteScrollContent>
       </IonInfiniteScroll>
 
-      {!hasNextPage && !isFetchingNextPage && !isLoading && footer}
+      <div className="h-[90px]" />
     </div>
   );
 };

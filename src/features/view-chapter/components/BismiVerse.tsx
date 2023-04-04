@@ -2,7 +2,12 @@ import { useAtomValue } from 'jotai/react';
 import { SettingsType, settingsAtom } from 'stores/settings';
 import { numToArabic } from 'utils/string';
 
-function BismiVerse({ ayahNo }: { ayahNo?: number }) {
+type Props = {
+  ayahNo?: number;
+  className?: string;
+};
+
+function BismiVerse({ ayahNo, className }: Props) {
   const { quran: quranSettings } = useAtomValue(settingsAtom);
 
   return (
@@ -13,7 +18,7 @@ function BismiVerse({ ayahNo }: { ayahNo?: number }) {
         fontFamily: quranSettings.fontFamily,
       }}
       lang="ar"
-      className="block text-center mt-1"
+      className={`block text-center mt-1 ${className}`}
     >
       بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ{' '}
       {ayahNo && `  ﴿${numToArabic(ayahNo)}﴾  `}

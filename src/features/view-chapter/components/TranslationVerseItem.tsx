@@ -21,7 +21,7 @@ const TranslationVerseItem: React.FC<{ verse: Verse }> = ({ verse }) => {
   return (
     <Fragment>
       <div className="[direction:rtl]">
-        <IonText lang="ar" className="ml-2">
+        <IonText lang="ar" className="ml-2 leading-8">
           <span
             className="mb-2 text-justify"
             style={{

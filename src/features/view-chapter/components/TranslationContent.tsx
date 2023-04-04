@@ -16,12 +16,13 @@ import { numToArabic, removeHtmlTags } from 'utils/string';
 import { useChapterVerses } from '../api/useChapterVerses';
 import { Fragment } from 'react';
 import { TranslationVerseItem } from './TranslationVerseItem';
+import { BismiVerse } from './BismiVerse';
 
 type Props = {
-  footer?: React.ReactNode;
+  bismiPre?: boolean;
 };
 
-const TranslationContent: React.FC<Props> = ({ footer }) => {
+const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
   const { chapterNo: chapterNo } = useParams<{ chapterNo: string }>();
   const { quran: quranSettings } = useAtomValue(settingsAtom);
   const [presentToast] = useIonToast();
@@ -39,7 +40,7 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
   });
 
   return (
-    <div className="mt-4 h-full pb-10 overflow-y-scroll overflow-x-visible ion-content-scroll-host">
+    <div className="mt-4 h-full">
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -56,6 +57,8 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
           <IonSpinner />
         </div>
       )}
+
+      {!isLoading && bismiPre && <BismiVerse className="mb-3" />}
 
       {chapterVerses?.pages.map((chapterVerses) =>
         chapterVerses.verses.map((verse, indx) => (
@@ -82,7 +85,8 @@ const TranslationContent: React.FC<Props> = ({ footer }) => {
       >
         <IonInfiniteScrollContent loadingText="Please, be patient..."></IonInfiniteScrollContent>
       </IonInfiniteScroll>
-      {!hasNextPage && !isFetchingNextPage && !isLoading && footer}
+
+      <div className="h-[90px]" />
     </div>
   );
 };
