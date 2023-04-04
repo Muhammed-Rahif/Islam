@@ -1,23 +1,32 @@
 import {
   IonBackButton,
-  IonButton,
   IonButtons,
   IonContent,
+  IonFab,
+  IonFabButton,
+  IonFabList,
   IonHeader,
   IonIcon,
   IonLabel,
   IonPage,
+  IonPopover,
   IonSegment,
   IonSegmentButton,
   IonTitle,
   IonToolbar,
+  useIonRouter,
 } from '@ionic/react';
 import { createRef, useMemo, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useChapter } from 'features/view-chapter';
 import { ReadingContent } from 'features/view-chapter';
 import { TranslationContent } from 'features/view-chapter';
-import { chevronBack, chevronForward } from 'ionicons/icons';
+import {
+  arrowRedoOutline,
+  arrowUndoOutline,
+  arrowUpOutline,
+  swapHorizontal,
+} from 'ionicons/icons';
 
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
@@ -34,44 +43,7 @@ const ViewChapter: React.FC = () => {
   }, [search]);
 
   const [type, setType] = useState('reading');
-
-  const footer = useMemo(
-    () => (
-      <div className="[direction:ltr] flex justify-between">
-        <IonButton
-          routerLink={`/quran/${parseInt(id) - 1}`}
-          size="small"
-          color="light"
-          disabled={parseInt(id) === 1}
-        >
-          Prev Chapter
-          <IonIcon slot="start" size="small" icon={chevronBack} />
-        </IonButton>
-        <IonButton
-          size="small"
-          color="light"
-          onClick={async () =>
-            document.querySelector('.ion-content-scroll-host')?.scrollTo({
-              top: 0,
-              behavior: 'smooth',
-            })
-          }
-        >
-          To top
-        </IonButton>
-        <IonButton
-          size="small"
-          color="light"
-          routerLink={`/quran/${parseInt(id) + 1}`}
-          disabled={parseInt(id) === 114}
-        >
-          Next Chapter
-          <IonIcon slot="end" size="small" icon={chevronForward} />
-        </IonButton>
-      </div>
-    ),
-    [id]
-  );
+  const { push } = useIonRouter();
 
   return (
     <IonPage>
@@ -111,7 +83,6 @@ const ViewChapter: React.FC = () => {
             {chapterData?.chapter.pages.length && (
               <ReadingContent
                 bismiPre={chapterData?.chapter.bismillah_pre}
-                footer={footer}
                 pages={{
                   start: chapterData.chapter.pages[0],
                   end: chapterData.chapter.pages[1],
@@ -120,12 +91,57 @@ const ViewChapter: React.FC = () => {
             )}
           </>
         ) : (
-          <TranslationContent
-            bismiPre={chapterData?.chapter.bismillah_pre}
-            footer={footer}
-          />
+          <TranslationContent bismiPre={chapterData?.chapter.bismillah_pre} />
         )}
       </IonContent>
+
+      <IonFab slot="fixed" horizontal="end" vertical="bottom">
+        <IonFabButton>
+          <IonIcon icon={swapHorizontal}></IonIcon>
+        </IonFabButton>
+
+        {/* <IonPopover
+          trigger="to-top-btn"
+          side="left"
+          triggerAction="context-menu"
+        >
+          <IonContent className="ion-padding">Scroll to top</IonContent>
+        </IonPopover>
+        <IonPopover trigger="next-btn" side="left" triggerAction="context-menu">
+          <IonContent className="ion-padding">Next chapter</IonContent>
+        </IonPopover>
+        <IonPopover trigger="prev-btn" side="left" triggerAction="context-menu">
+          <IonContent className="ion-padding">Previous chapter</IonContent>
+        </IonPopover> */}
+
+        <IonFabList side="top">
+          <IonFabButton
+            onClick={() =>
+              document.querySelector('.ion-content-scroll-host')?.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+              })
+            }
+            id="to-top-btn"
+          >
+            <IonIcon icon={arrowUpOutline}></IonIcon>
+          </IonFabButton>
+          <IonFabButton
+            id="next-btn"
+            routerLink={`/quran/${parseInt(id) + 1}`}
+            disabled={parseInt(id) === 114}
+          >
+            <IonIcon icon={arrowRedoOutline}></IonIcon>
+          </IonFabButton>
+          <IonFabButton
+            id="prev-btn"
+            routerLink={`/quran/${parseInt(id) - 1}`}
+            disabled={parseInt(id) === 1}
+          >
+            <IonIcon icon={arrowUndoOutline}></IonIcon>
+          </IonFabButton>
+        </IonFabList>
+      </IonFab>
     </IonPage>
   );
 };

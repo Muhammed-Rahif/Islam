@@ -19,11 +19,10 @@ import { TranslationVerseItem } from './TranslationVerseItem';
 import { BismiVerse } from './BismiVerse';
 
 type Props = {
-  footer?: React.ReactNode;
   bismiPre?: boolean;
 };
 
-const TranslationContent: React.FC<Props> = ({ footer, bismiPre }) => {
+const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
   const { id } = useParams<{ id: string }>();
   const { quran: quranSettings } = useAtomValue(settingsAtom);
   const [presentToast] = useIonToast();
@@ -86,7 +85,6 @@ const TranslationContent: React.FC<Props> = ({ footer, bismiPre }) => {
       >
         <IonInfiniteScrollContent loadingText="Please, be patient..."></IonInfiniteScrollContent>
       </IonInfiniteScroll>
-      {!hasNextPage && !isFetchingNextPage && !isLoading && footer}
     </div>
   );
 };

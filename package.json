@@ -62,7 +62,7 @@
     "workbox-streams": "^5.1.4"
   },
   "scripts": {
-    "ionic:serve": "vite",
+    "ionic:serve": "vite --host",
     "ionic:build": "vite build",
     "start": "vite",
     "build": "vite build",

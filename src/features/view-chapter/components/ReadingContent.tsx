@@ -18,10 +18,9 @@ type Props = {
     end: number;
   };
   bismiPre?: boolean;
-  footer?: React.ReactNode;
 };
 
-const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
+const ReadingContent: React.FC<Props> = ({ bismiPre, pages }) => {
   const { id } = useParams<{ id: string }>();
   const {
     isLoading,
@@ -114,8 +113,6 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, footer, pages }) => {
       >
         <IonInfiniteScrollContent loadingText="Please, be patient..."></IonInfiniteScrollContent>
       </IonInfiniteScroll>
-
-      {!hasNextPage && !isFetchingNextPage && !isLoading && footer}
     </div>
   );
 };
