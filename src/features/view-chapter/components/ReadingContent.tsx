@@ -49,7 +49,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, pages }) => {
   );
 
   return (
-    <div className="[direction:rtl] leading-9 text-justify mt-2 mb-3 h-full">
+    <div className="[direction:rtl] leading-9 text-justify mt-4 h-full">
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -114,7 +114,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, pages }) => {
         <IonInfiniteScrollContent loadingText="Please, be patient..."></IonInfiniteScrollContent>
       </IonInfiniteScroll>
 
-      <div className="h-32" />
+      <div className="h-[90px]" />
     </div>
   );
 };

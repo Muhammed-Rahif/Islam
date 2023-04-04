@@ -71,13 +71,7 @@ const ViewChapter: React.FC = () => {
           </IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent
-        className="ion-padding"
-        scrollEvents
-        onIonScroll={(e) => console.log(e.target.scrollHeight)}
-        ref={contentRef}
-        fullscreen
-      >
+      <IonContent className="ion-padding" ref={contentRef} fullscreen>
         <IonSegment
           className="mb-0.5"
           value={type}
@@ -95,7 +89,10 @@ const ViewChapter: React.FC = () => {
           <TranslationContent bismiPre={chapterData?.chapter.bismillah_pre} />
         ) : (
           <>
-            {/* only render if the start pages data is availiable, because this required in child component to fetch data */}
+            {/* 
+              only render if the 'pages.start' data is availiable, 
+              because this required in child component to fetch data.
+            */}
             {chapterData?.chapter.pages.length && (
               <ReadingContent
                 bismiPre={chapterData?.chapter.bismillah_pre}

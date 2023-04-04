@@ -86,7 +86,7 @@ const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
         <IonInfiniteScrollContent loadingText="Please, be patient..."></IonInfiniteScrollContent>
       </IonInfiniteScroll>
 
-      <div className="h-32" />
+      <div className="h-[90px]" />
     </div>
   );
 };
