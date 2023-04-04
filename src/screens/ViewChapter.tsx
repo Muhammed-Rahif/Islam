@@ -15,8 +15,9 @@ import {
   IonTitle,
   IonToolbar,
   useIonRouter,
+  useIonViewDidEnter,
 } from '@ionic/react';
-import { createRef, useMemo, useState } from 'react';
+import { createRef, useCallback, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useChapter } from 'features/view-chapter';
 import { ReadingContent } from 'features/view-chapter';
@@ -30,6 +31,7 @@ import {
 
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
+  const [isScrollEnding, setIsScrollEnding] = useState(false);
   const { chapterNo } = useParams<{
     chapterNo: string;
   }>();
@@ -54,7 +56,6 @@ const ViewChapter: React.FC = () => {
   }, [search]);
 
   const [type, setType] = useState(typeParam);
-  const { push } = useIonRouter();
 
   return (
     <IonPage>
@@ -72,10 +73,10 @@ const ViewChapter: React.FC = () => {
       </IonHeader>
       <IonContent
         className="ion-padding"
+        scrollEvents
+        onIonScroll={(e) => console.log(e.target.scrollHeight)}
         ref={contentRef}
         fullscreen
-        scrollX={false}
-        scrollY={false}
       >
         <IonSegment
           className="mb-0.5"
@@ -91,7 +92,7 @@ const ViewChapter: React.FC = () => {
         </IonSegment>
 
         {type === 'translation' ? (
-          <TranslationContent />
+          <TranslationContent bismiPre={chapterData?.chapter.bismillah_pre} />
         ) : (
           <>
             {/* only render if the start pages data is availiable, because this required in child component to fetch data */}
@@ -108,46 +109,27 @@ const ViewChapter: React.FC = () => {
         )}
       </IonContent>
 
-      <IonFab slot="fixed" horizontal="end" vertical="bottom">
+      <IonFab
+        slot="fixed"
+        horizontal="end"
+        vertical="bottom"
+        className="opacity-60 active:opacity-100 hover:opacity-100 duration-300 focus:opacity-100"
+      >
         <IonFabButton>
           <IonIcon icon={swapHorizontal}></IonIcon>
         </IonFabButton>
 
-        {/* <IonPopover
-          trigger="to-top-btn"
-          side="left"
-          triggerAction="context-menu"
-        >
-          <IonContent className="ion-padding">Scroll to top</IonContent>
-        </IonPopover>
-        <IonPopover trigger="next-btn" side="left" triggerAction="context-menu">
-          <IonContent className="ion-padding">Next chapter</IonContent>
-        </IonPopover>
-        <IonPopover trigger="prev-btn" side="left" triggerAction="context-menu">
-          <IonContent className="ion-padding">Previous chapter</IonContent>
-        </IonPopover> */}
-
         <IonFabList side="top">
-          <IonFabButton
-            onClick={() =>
-              document.querySelector('.ion-content-scroll-host')?.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-              })
-            }
-            id="to-top-btn"
-          >
+          <IonFabButton onClick={() => contentRef.current?.scrollToTop(700)}>
             <IonIcon icon={arrowUpOutline}></IonIcon>
           </IonFabButton>
           <IonFabButton
-            id="next-btn"
             routerLink={`/quran/${parseInt(chapterNo) + 1}`}
             disabled={parseInt(chapterNo) === 114}
           >
             <IonIcon icon={arrowRedoOutline}></IonIcon>
           </IonFabButton>
           <IonFabButton
-            id="prev-btn"
             routerLink={`/quran/${parseInt(chapterNo) - 1}`}
             disabled={parseInt(chapterNo) === 1}
           >

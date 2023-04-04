@@ -40,7 +40,7 @@ const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
   });
 
   return (
-    <div className="mt-4 h-full pb-10 overflow-y-scroll overflow-x-visible ion-content-scroll-host">
+    <div className="mt-4 h-full">
       {/* when error appears */}
       {error ? (
         <IonToast
@@ -58,7 +58,7 @@ const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
         </div>
       )}
 
-      {!isLoading && bismiPre && <BismiVerse />}
+      {!isLoading && bismiPre && <BismiVerse className="mb-3" />}
 
       {chapterVerses?.pages.map((chapterVerses) =>
         chapterVerses.verses.map((verse, indx) => (
@@ -85,6 +85,8 @@ const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
       >
         <IonInfiniteScrollContent loadingText="Please, be patient..."></IonInfiniteScrollContent>
       </IonInfiniteScroll>
+
+      <div className="h-32" />
     </div>
   );
 };
