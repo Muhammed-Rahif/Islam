@@ -1,3 +1,10 @@
+## [1.3.1-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.3.1-beta.1...v1.3.1-beta.2) (2023-04-05)
+
+
+### Bug Fixes
+
+* only support portrait mode for android ([dd55814](https://github.com/Muhammed-Rahif/Islam/commit/dd55814bfe36407f48744a11cd2d26f0ef293660))
+
 ## [1.3.1-beta.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.3.0...v1.3.1-beta.1) (2023-04-05)
 
 

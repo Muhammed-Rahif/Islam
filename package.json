@@ -1,6 +1,6 @@
 {
   "name": "Islam",
-  "version": "v1.3.1-beta.1",
+  "version": "v1.3.1-beta.2",
   "private": true,
   "dependencies": {
     "@capacitor/android": "4.7.3",
