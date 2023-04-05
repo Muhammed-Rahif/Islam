@@ -21,6 +21,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useAtomValue } from 'jotai/react';
 import { settingsAtom } from 'stores/settings';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -96,6 +97,10 @@ const App: React.FC = () => {
       ? document.body.classList.add('dark')
       : document.body.classList.remove('dark');
   }, [settings.general.theme]);
+
+  useEffect(() => {
+    setTimeout(async () => await SplashScreen.hide(), 500);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
