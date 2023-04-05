@@ -99,3 +99,26 @@ test('on Surah 1 (al-Fatihah), "prev chapter" btn should disabled', async ({
   await expect(nextBtn).not.toHaveAttribute('disabled', '');
   await expect(prevBtn).toHaveAttribute('disabled', '');
 });
+
+test('should scroll to top fab button scroll to top', async ({ page }) => {
+  await page.goto('http://localhost:8100/quran');
+  await page.getByRole('heading', { name: 'Al-Baqarah' }).click();
+  await page.getByText('Click here or Scroll down to load more').click();
+  await page.getByText('Click here or Scroll down to load more').click();
+  await page.getByText('Click here or Scroll down to load more').click();
+  await page.getByText('Click here or Scroll down to load more').click();
+  await page.locator('ion-fab').getByRole('button').click({ force: true });
+  await page
+    .getByRole('button', { name: 'scroll-to-top-btn' })
+    .click({ force: true });
+
+  // wait page to scroll to smoothly to top
+  await delay(1000);
+
+  // reading segment button is in the top of the page
+  const readingSegBtn = page
+    .locator('ion-segment-button')
+    .filter({ hasText: 'Reading' });
+
+  await expect(readingSegBtn).toBeInViewport();
+});
