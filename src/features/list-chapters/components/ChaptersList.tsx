@@ -1,17 +1,12 @@
-import {
-  IonItemGroup,
-  IonSpinner,
-  IonToast,
-  useIonViewDidEnter,
-} from '@ionic/react';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { IonItemGroup, IonSpinner, useIonViewDidEnter } from '@ionic/react';
+import React, { useMemo, useRef, useState } from 'react';
 import { ChapterSortBy } from '../types/Chapter';
 import { useChapersList } from '../api/useChapersList';
-import { alertCircle } from 'ionicons/icons';
 import { useAllJuzs } from '../api/useAllJuzs';
 import { ChapterItem } from './ChapterItem';
 import { SortedByJuz } from './SortedByJuz';
 import { FixedSizeList as List } from 'react-window';
+import DisplayError from 'components/DisplayError';
 
 interface ChapetersListProps {
   sortBy: ChapterSortBy;
@@ -67,14 +62,7 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   return (
     <div className="my-3 h-[calc(100%-6.6rem)]" ref={contentRef}>
       {/* when error appears */}
-      {error ? (
-        <IonToast
-          isOpen={Boolean(error)}
-          message={error ? (error as any).message : error}
-          duration={4500}
-          icon={alertCircle}
-        />
-      ) : null}
+      {error ? <DisplayError error={error} /> : null}
 
       {/* when api is loading */}
       {isLoading && (

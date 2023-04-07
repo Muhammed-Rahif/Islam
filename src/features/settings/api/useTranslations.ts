@@ -12,10 +12,8 @@ function useTranslations() {
         await quranApiInstance.get('/resources/translations');
       return data;
     },
-    enabled: true,
     staleTime: Infinity,
     cacheTime: Infinity,
-    retry: true,
     structuralSharing: false,
     notifyOnChangeProps: ['data'],
   });

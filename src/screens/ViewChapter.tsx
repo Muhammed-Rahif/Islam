@@ -9,15 +9,14 @@ import {
   IonIcon,
   IonLabel,
   IonPage,
-  IonPopover,
   IonSegment,
   IonSegmentButton,
+  IonSpinner,
   IonTitle,
   IonToolbar,
   useIonRouter,
-  useIonViewDidEnter,
 } from '@ionic/react';
-import { createRef, useCallback, useMemo, useState } from 'react';
+import { createRef, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useChapter } from 'features/view-chapter';
 import { ReadingContent } from 'features/view-chapter';
@@ -28,15 +27,19 @@ import {
   arrowUpOutline,
   swapHorizontal,
 } from 'ionicons/icons';
+import DisplayError from 'components/DisplayError';
 
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
-  const [isScrollEnding, setIsScrollEnding] = useState(false);
   const { chapterNo } = useParams<{
     chapterNo: string;
   }>();
 
-  const { isLoading: isChapterLoading, data: chapterData } = useChapter({
+  const {
+    isLoading: isChapterLoading,
+    data: chapterData,
+    error: chapterDataError,
+  } = useChapter({
     chapterId: parseInt(chapterNo),
   });
 
@@ -65,9 +68,9 @@ const ViewChapter: React.FC = () => {
             <IonBackButton type="reset" defaultHref="/"></IonBackButton>
           </IonButtons>
           <IonTitle>
-            {isChapterLoading
-              ? `Surah No. ${chapterNo}`
-              : `${chapterNo}. ${chapterData?.chapter.name_simple}`}
+            {chapterData?.chapter.name_simple
+              ? `${chapterNo}. ${chapterData?.chapter.name_simple}`
+              : `Surah No. ${chapterNo}`}
           </IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -84,6 +87,16 @@ const ViewChapter: React.FC = () => {
             <IonLabel>Reading</IonLabel>
           </IonSegmentButton>
         </IonSegment>
+
+        {/* when error appears */}
+        {chapterDataError ? <DisplayError error={chapterDataError} /> : null}
+
+        {/* when api is loading */}
+        {isChapterLoading && (
+          <div className="w-full h-full grid place-items-center">
+            <IonSpinner />
+          </div>
+        )}
 
         {type === 'translation' ? (
           <TranslationContent bismiPre={chapterData?.chapter.bismillah_pre} />

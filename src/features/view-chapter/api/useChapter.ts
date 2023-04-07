@@ -19,9 +19,8 @@ function useChapter({ chapterId }: Props) {
     enabled: Boolean(chapterId),
     staleTime: Infinity,
     cacheTime: Infinity,
-    retry: true,
     structuralSharing: false,
-    notifyOnChangeProps: ['data', 'isLoading'],
+    notifyOnChangeProps: ['data', 'isLoading', 'error'],
   });
 }
 

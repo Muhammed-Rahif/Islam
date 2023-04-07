@@ -31,7 +31,6 @@ function useVersesUthmani({ chapterId, pages }: Props) {
     enabled: Boolean(chapterId),
     cacheTime: Infinity,
     staleTime: Infinity,
-    retry: true,
     structuralSharing: false,
     notifyOnChangeProps: [
       'data',
