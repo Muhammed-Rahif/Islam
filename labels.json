@@ -130,17 +130,17 @@
   {
     "name": "released",
     "color": "207de5",
-    "description": "Released"
+    "description": "Released on production version"
   },
   {
     "name": "released on @beta",
     "color": "207de5",
-    "description": "Released on beta version"
+    "description": "Released on beta/development version"
   },
   {
     "name": "released on @main",
     "color": "207de5",
-    "description": "Released on main version"
+    "description": "Released on main/production version"
   },
   {
     "name": "status: invalid",
