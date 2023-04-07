@@ -1,3 +1,10 @@
+## [1.3.1-beta.3](https://github.com/Muhammed-Rahif/Islam/compare/v1.3.1-beta.2...v1.3.1-beta.3) (2023-04-07)
+
+
+### Bug Fixes
+
+* **api:** display network error issues ([37dcfa0](https://github.com/Muhammed-Rahif/Islam/commit/37dcfa021caba3f00a2f3f436ebf0d8f608974c7))
+
 ## [1.3.1-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.3.1-beta.1...v1.3.1-beta.2) (2023-04-05)
 
 
