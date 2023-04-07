@@ -1,22 +1,17 @@
 import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
-  IonItem,
   IonSpinner,
-  IonText,
-  IonToast,
   useIonToast,
 } from '@ionic/react';
 import { alertCircle } from 'ionicons/icons';
-import { useAtom, useAtomValue } from 'jotai/react';
+import { useAtomValue } from 'jotai/react';
 import { useParams } from 'react-router-dom';
-import { quranLastReadAtom } from 'stores/quranLastRead';
 import { settingsAtom } from 'stores/settings';
-import { numToArabic, removeHtmlTags } from 'utils/string';
 import { useChapterVerses } from '../api/useChapterVerses';
-import { Fragment } from 'react';
 import { TranslationVerseItem } from './TranslationVerseItem';
 import { BismiVerse } from './BismiVerse';
+import DisplayError from 'components/DisplayError';
 
 type Props = {
   bismiPre?: boolean;
@@ -42,14 +37,7 @@ const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
   return (
     <div className="mt-4 h-full">
       {/* when error appears */}
-      {error ? (
-        <IonToast
-          isOpen={Boolean(error)}
-          message={error ? (error as any).message : error}
-          duration={4500}
-          icon={alertCircle}
-        />
-      ) : null}
+      {error ? <DisplayError error={error} /> : null}
 
       {/* when api is loading */}
       {isLoading && (

@@ -2,7 +2,6 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonSpinner,
-  IonToast,
   useIonToast,
 } from '@ionic/react';
 import { alertCircle } from 'ionicons/icons';
@@ -11,6 +10,7 @@ import { useVersesUthmani } from '../api/useVersesUthmani';
 import { BismiVerse } from './BismiVerse';
 import { useMemo } from 'react';
 import { InlinedVerses } from './InlinedVerses';
+import DisplayError from 'components/DisplayError';
 
 type Props = {
   pages: {
@@ -51,14 +51,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, pages }) => {
   return (
     <div className="[direction:rtl] leading-9 text-justify mt-4 h-full">
       {/* when error appears */}
-      {error ? (
-        <IonToast
-          isOpen={Boolean(error)}
-          message={error ? (error as any).message : error}
-          duration={4500}
-          icon={alertCircle}
-        />
-      ) : null}
+      {error ? <DisplayError error={error} /> : null}
 
       {/* when api is loading */}
       {isLoading && (

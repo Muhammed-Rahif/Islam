@@ -13,10 +13,8 @@ function useChapersList() {
 
       return data;
     },
-    enabled: true,
     staleTime: Infinity,
     cacheTime: Infinity,
-    retry: true,
     structuralSharing: false,
     notifyOnChangeProps: ['data', 'error', 'isLoading'],
   });
