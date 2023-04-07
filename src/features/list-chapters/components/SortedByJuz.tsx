@@ -28,7 +28,7 @@ const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
 
   // juz chapters cout like [2, 1, 3, 1, 4, 2, 2, 5]
   const juzChaptersCount = useMemo(
-    () => juzChaptersGroup?.map((juzChapters) => juzChapters.length),
+    () => juzChaptersGroup?.map((juzChapters) => juzChapters.length) ?? [],
     [juzChaptersGroup]
   );
 
@@ -58,7 +58,6 @@ const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
             versesCount={chapter.verses_count}
             id={chapter.id}
             translatedName={chapter.translated_name.name}
-            index={indx}
             key={chapter.id}
           />
         );
