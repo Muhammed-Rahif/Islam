@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.3.0...v1.3.1) (2023-04-07)
+
+
+### Bug Fixes
+
+* **api:** display network error issues ([37dcfa0](https://github.com/Muhammed-Rahif/Islam/commit/37dcfa021caba3f00a2f3f436ebf0d8f608974c7))
+* **capacitor:** splash screen should be removed after loading the content ([954b4a4](https://github.com/Muhammed-Rahif/Islam/commit/954b4a4af0874ad6058bfd17c8145a5fa456b289))
+* only support portrait mode for android ([dd55814](https://github.com/Muhammed-Rahif/Islam/commit/dd55814bfe36407f48744a11cd2d26f0ef293660))
+
 ## [1.3.1-beta.3](https://github.com/Muhammed-Rahif/Islam/compare/v1.3.1-beta.2...v1.3.1-beta.3) (2023-04-07)
 
 
