@@ -60,7 +60,10 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   );
 
   return (
-    <div className="my-3 h-[calc(100%-6.6rem)]" ref={contentRef}>
+    <div
+      className="ion-padding-vertical h-[calc(100%-6.6rem)]"
+      ref={contentRef}
+    >
       {/* when error appears */}
       {error ? <DisplayError error={error} /> : null}
 
