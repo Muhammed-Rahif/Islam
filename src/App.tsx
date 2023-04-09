@@ -13,8 +13,11 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import {
   book,
+  bookOutline,
   settings,
+  settingsOutline,
   time,
+  timeOutline,
   // chatbubble, happy
 } from 'ionicons/icons';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -64,7 +67,7 @@ const routes: {
   {
     name: 'Quran',
     path: '/quran',
-    icon: book,
+    icon: bookOutline,
   },
   // {
   //   name: 'Sunnah',
@@ -74,7 +77,7 @@ const routes: {
   {
     name: 'Prayer Times',
     path: '/prayer-times',
-    icon: time,
+    icon: timeOutline,
   },
   // {
   //   name: 'Dhikr',
@@ -89,7 +92,7 @@ const routes: {
   {
     name: 'Settings',
     path: '/settings',
-    icon: settings,
+    icon: settingsOutline,
   },
 ];
 
