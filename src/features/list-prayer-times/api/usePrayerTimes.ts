@@ -33,12 +33,12 @@ function usePrayerTimes({
   date = dayjs().format('DD-MM-YYYY'),
   method = 4,
 }: Props = {}) {
-  return useQuery({
+  return useQuery<PrayerTimesResponse>({
     queryKey: ['prayer-times', date],
     queryFn: async () => {
       const geoLocation = await getGeoLocation();
 
-      const { data }: { data: PrayerTimesResponse } = await axios.get(
+      const { data } = await axios.get(
         `https://api.aladhan.com/v1/timings/${date}?latitude=${geoLocation?.coords.latitude}&longitude=${geoLocation?.coords.longitude}&method=${method}`
       );
       return data;

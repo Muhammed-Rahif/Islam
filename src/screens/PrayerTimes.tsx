@@ -20,12 +20,23 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import DisplayError from 'components/DisplayError';
-import { ListPrayerTimes, usePrayerTimes } from 'features/list-prayer-times';
+import NextPrayerCard from 'components/NextPrayerCard';
+import {
+  ListPrayerTimes,
+  getNextPrayer,
+  usePrayerTimes,
+} from 'features/list-prayer-times';
 import { chevronForwardOutline, locationOutline } from 'ionicons/icons';
+import { useMemo } from 'react';
 import Countdown from 'react-countdown';
 
 const PrayerTimes: React.FC = () => {
   const { data, isLoading, refetch, error } = usePrayerTimes();
+
+  const nextPrayer = useMemo(
+    () => (data?.data.timings ? getNextPrayer(data.data.timings) : null),
+    [data?.data.timings]
+  );
 
   return (
     <IonPage>
@@ -45,65 +56,25 @@ const PrayerTimes: React.FC = () => {
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
 
-        <IonCard>
-          <IonCardHeader className="pb-1">
-            <IonCardTitle>Fajr</IonCardTitle>
-          </IonCardHeader>
-
-          <IonCardContent>
-            <IonText color="dark">
-              <small className="opacity-75 block">is the next prayer in</small>
-              <Countdown date={Date.now() + 10000} className="text-lg" />
-              <small className="opacity-75 inline-block mx-1">(5:31 AM)</small>
-            </IonText>
-
-            <div className="my-2 flex opacity-75 justify-between">
-              <small className="flex items-center justify-start">
-                <IonIcon
-                  icon={locationOutline}
-                  className="-translate-y-px pr-0.5"
-                />{' '}
-                Europe/London
-              </small>
-
-              <IonPopover trigger="timing-method" triggerAction="context-menu">
-                <IonContent class="ion-padding">
-                  Prayer times calculation method.
-                </IonContent>
-              </IonPopover>
-              <small
-                id="timing-method"
-                className="flex items-center justify-start"
-              >
-                <IonIcon
-                  icon={chevronForwardOutline}
-                  className="-translate-y-px pr-0.5"
-                />{' '}
-                Muslim World League
-              </small>
-            </div>
-
-            <hr className="opacity-20 mt-2" />
-
-            <table className="w-full border-separate border-spacing-y-1 text-[13px] text-left table-auto mt-1.5">
-              <thead className="gap-y-2">
-                <tr>
-                  <th>Hijri</th>
-                  <th>Gregorian</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Al Sabt, 17 {'Rama\u1e0d\u0101n'.normalize()} 1444</td>
-                  <td>Saturday, 08 April 2023</td>
-                </tr>
-              </tbody>
-            </table>
-          </IonCardContent>
-        </IonCard>
+        {data?.data && (
+          <NextPrayerCard
+            isLoading={isLoading}
+            nextPrayer={nextPrayer}
+            gregorianDate={`${data?.data.date.gregorian.day} ${data?.data.date.gregorian.month.en} ${data?.data.date.gregorian.year}`}
+            hijriDate={`${
+              data?.data.date.hijri.day
+            } ${data?.data.date.hijri.month.en.normalize()} ${
+              data?.data.date.hijri.year
+            }`}
+            hijriWeekDay={data?.data.date.hijri.weekday.en ?? ''}
+            gregorianWeekDay={data?.data.date.gregorian.weekday.en ?? ''}
+            timezone={data?.data.meta.timezone ?? ''}
+            methodName={data?.data.meta.method.name ?? ''}
+          />
+        )}
 
         {isLoading && (
-          <div className="w-full h-1/2 grid place-items-center">
+          <div className="w-full h-full grid place-items-center">
             <IonSpinner />
           </div>
         )}
@@ -112,7 +83,7 @@ const PrayerTimes: React.FC = () => {
           <DisplayError
             error={error}
             toastOnly={Boolean(data?.data)}
-            className="h-1/2"
+            className={Boolean(data?.data) ? 'h-1/2' : '!h-full'}
           />
         )}
 

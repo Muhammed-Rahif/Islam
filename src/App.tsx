@@ -13,9 +13,8 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import {
   book,
-  person,
-  cog,
-  timeOutline,
+  settings,
+  time,
   // chatbubble, happy
 } from 'ionicons/icons';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -75,7 +74,7 @@ const routes: {
   {
     name: 'Prayer Times',
     path: '/prayer-times',
-    icon: timeOutline,
+    icon: time,
   },
   // {
   //   name: 'Dhikr',
@@ -90,7 +89,7 @@ const routes: {
   {
     name: 'Settings',
     path: '/settings',
-    icon: cog,
+    icon: settings,
   },
 ];
 

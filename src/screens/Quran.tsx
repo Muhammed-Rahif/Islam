@@ -37,8 +37,6 @@ const Quran: React.FC = () => {
   } = useChapersList();
   const { data: allJuzsData, refetch: refetchAllJuzs } = useAllJuzs();
 
-  console.log(error);
-
   return (
     <IonPage>
       <IonHeader>
