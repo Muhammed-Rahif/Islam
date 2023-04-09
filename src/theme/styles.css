@@ -29,6 +29,11 @@ html {
   width: 100%;
 }
 
+ion-refresher {
+  z-index: 50;
+  position: relative;
+}
+
 @font-face {
   font-family: 'Me Quran';
   src: url('/assets/fonts/Me Quran.ttf') format('truetype');

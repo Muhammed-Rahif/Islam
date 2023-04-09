@@ -1027,6 +1027,11 @@
   dependencies:
     tslib "^2.1.0"
 
+"@capacitor/geolocation@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@capacitor/geolocation/-/geolocation-4.1.0.tgz#1941b5ca4288d7cb5c80940649d4416322b37ee2"
+  integrity sha512-hfI4MUcu1zcJPTvm0g6V3telTGwq9sCU8EnY4hFJpLedbIQeWPthCOSbFtNHAU5mVaAP1Zls3x6TsXL8TX08EA==
+
 "@capacitor/haptics@4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@capacitor/haptics/-/haptics-4.1.0.tgz#29b082c3b90c920477717a0754017f5d4e43ed15"

@@ -11,15 +11,22 @@ import {
   IonList,
   IonPage,
   IonPopover,
+  IonRefresher,
+  IonRefresherContent,
   IonRippleEffect,
+  IonSpinner,
   IonText,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
+import DisplayError from 'components/DisplayError';
+import { ListPrayerTimes, usePrayerTimes } from 'features/list-prayer-times';
 import { chevronForwardOutline, locationOutline } from 'ionicons/icons';
 import Countdown from 'react-countdown';
 
 const PrayerTimes: React.FC = () => {
+  const { data, isLoading, refetch, error } = usePrayerTimes();
+
   return (
     <IonPage>
       <IonHeader>
@@ -27,16 +34,27 @@ const PrayerTimes: React.FC = () => {
           <IonTitle>Prayer Times</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen scrollY={false}>
-        <IonCard className="mb-2.5">
+      <IonContent fullscreen scrollY>
+        <IonRefresher
+          slot="fixed"
+          onIonRefresh={async (e) => {
+            await refetch();
+            e.detail.complete();
+          }}
+        >
+          <IonRefresherContent></IonRefresherContent>
+        </IonRefresher>
+
+        <IonCard>
           <IonCardHeader className="pb-1">
             <IonCardTitle>Fajr</IonCardTitle>
           </IonCardHeader>
 
           <IonCardContent>
             <IonText color="dark">
-              <small className="opacity-75">is the next prayer in</small>
-              <Countdown date={Date.now() + 10000} className="block text-lg" />
+              <small className="opacity-75 block">is the next prayer in</small>
+              <Countdown date={Date.now() + 10000} className="text-lg" />
+              <small className="opacity-75 inline-block mx-1">(5:31 AM)</small>
             </IonText>
 
             <div className="my-2 flex opacity-75 justify-between">
@@ -84,55 +102,21 @@ const PrayerTimes: React.FC = () => {
           </IonCardContent>
         </IonCard>
 
-        <IonList className="my-1">
-          <IonItem className="flex items-center [--inner-padding-end:0px]">
-            <IonRippleEffect type="unbounded" />
-            <IonLabel className="font-semibold">Fajr</IonLabel>
-            <IonLabel className="font-semibold" slot="end">
-              12:04 PM
-            </IonLabel>
-          </IonItem>
+        {isLoading && (
+          <div className="w-full h-1/2 grid place-items-center">
+            <IonSpinner />
+          </div>
+        )}
 
-          <IonItem className="flex items-center [--inner-padding-end:0px]">
-            <IonRippleEffect type="unbounded" />
-            <IonLabel className="font-semibold">Sunrise</IonLabel>
-            <IonLabel className="font-semibold" slot="end">
-              12:04 PM
-            </IonLabel>
-          </IonItem>
+        {Boolean(error) && (
+          <DisplayError
+            error={error}
+            toastOnly={Boolean(data?.data)}
+            className="h-1/2"
+          />
+        )}
 
-          <IonItem className="flex items-center [--inner-padding-end:0px]">
-            <IonRippleEffect type="unbounded" />
-            <IonLabel className="font-semibold">Dhuhr</IonLabel>
-            <IonLabel className="font-semibold" slot="end">
-              12:04 PM
-            </IonLabel>
-          </IonItem>
-
-          <IonItem className="flex items-center [--inner-padding-end:0px]">
-            <IonRippleEffect type="unbounded" />
-            <IonLabel className="font-semibold">Asr</IonLabel>
-            <IonLabel className="font-semibold" slot="end">
-              12:04 PM
-            </IonLabel>
-          </IonItem>
-
-          <IonItem className="flex items-center [--inner-padding-end:0px]">
-            <IonRippleEffect type="unbounded" />
-            <IonLabel className="font-semibold">Maghrib</IonLabel>
-            <IonLabel className="font-semibold" slot="end">
-              12:04 PM
-            </IonLabel>
-          </IonItem>
-
-          <IonItem className="flex items-center [--inner-padding-end:0px]">
-            <IonRippleEffect type="unbounded" />
-            <IonLabel className="font-semibold">Ishah</IonLabel>
-            <IonLabel className="font-semibold" slot="end">
-              12:04 PM
-            </IonLabel>
-          </IonItem>
-        </IonList>
+        {data?.data && <ListPrayerTimes timings={data.data.timings} />}
       </IonContent>
     </IonPage>
   );

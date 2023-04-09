@@ -1,21 +1,43 @@
-import { ChaptersList, ChapterSortBy } from 'features/list-chapters';
+import {
+  ChaptersList,
+  ChapterSortBy,
+  useAllJuzs,
+  useChapersList,
+} from 'features/list-chapters';
 import {
   IonContent,
   IonHeader,
   IonLabel,
   IonPage,
+  IonRefresher,
+  IonRefresherContent,
   IonSearchbar,
   IonSegment,
   IonSegmentButton,
+  IonSpinner,
   IonTitle,
   IonToolbar,
+  useIonToast,
 } from '@ionic/react';
 import { createRef, useState } from 'react';
+import DisplayError from 'components/DisplayError';
+import { alertCircle } from 'ionicons/icons';
 
 const Quran: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
   const [sortBy, setSortBy] = useState<ChapterSortBy>('surah');
   const [search, setSearch] = useState('');
+  const [presentToast] = useIonToast();
+
+  const {
+    isLoading,
+    error,
+    data: chaptersData,
+    refetch: refetchChapters,
+  } = useChapersList();
+  const { data: allJuzsData, refetch: refetchAllJuzs } = useAllJuzs();
+
+  console.log(error);
 
   return (
     <IonPage>
@@ -25,6 +47,24 @@ const Quran: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent ref={contentRef} fullscreen scrollY={false}>
+        <IonRefresher
+          slot="fixed"
+          onIonRefresh={async (e) => {
+            Promise.all([await refetchChapters(), await refetchAllJuzs()])
+              .catch((err) =>
+                presentToast({
+                  message: err.message,
+                  duration: 4500,
+                  position: 'bottom',
+                  icon: alertCircle,
+                })
+              )
+              .finally(e.detail.complete);
+          }}
+        >
+          <IonRefresherContent></IonRefresherContent>
+        </IonRefresher>
+
         <IonSearchbar
           onIonInput={(e) => setSearch(e.detail.value!)}
           className="sticky top-0 z-30"
@@ -47,7 +87,27 @@ const Quran: React.FC = () => {
           </IonSegmentButton>
         </IonSegment>
 
-        <ChaptersList search={search} sortBy={sortBy} />
+        {isLoading && (
+          <div className="w-full h-3/4 grid place-items-center">
+            <IonSpinner />
+          </div>
+        )}
+
+        {Boolean(error) && (
+          <DisplayError
+            error={error}
+            toastOnly={Boolean(chaptersData?.chapters.length)}
+          />
+        )}
+
+        {chaptersData?.chapters && (
+          <ChaptersList
+            chapters={chaptersData?.chapters ?? []}
+            juzs={allJuzsData?.juzs ?? []}
+            search={search}
+            sortBy={sortBy}
+          />
+        )}
       </IonContent>
     </IonPage>
   );
