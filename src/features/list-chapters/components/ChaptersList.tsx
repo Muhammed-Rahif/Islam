@@ -20,7 +20,7 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   chapters,
   juzs,
 }) => {
-  const contentRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLIonItemGroupElement>(null);
   const [chapterListHeight, setChapterListHeight] = useState(
     window.innerHeight
   );
@@ -58,19 +58,18 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   );
 
   return (
-    <div
-      className="ion-padding-vertical h-[calc(100%-6.6rem)]"
-      ref={contentRef}
-    >
-      <IonItemGroup className="h-full">
+    <div className="h-full">
+      <IonItemGroup className="h-full" ref={contentRef}>
         {sortBy !== 'juz' ? (
           //  when succesfull data retrieve; and sortBy == 'revelation-order' or 'surah'
           <List
             height={chapterListHeight}
+            style={{ height: '100%' }}
             itemCount={updatedChaptersArr.length}
             itemSize={62}
             width="100%"
             itemData={updatedChaptersArr}
+            className="ion-content-scroll-host"
           >
             {({ index, style, data }) => (
               <ChapterItem

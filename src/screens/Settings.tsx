@@ -11,7 +11,7 @@ import { QuranSettings, GeneralSettings } from 'features/settings';
 const Settings: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader translucent>
         <IonToolbar>
           <IonTitle>Settings</IonTitle>
         </IonToolbar>

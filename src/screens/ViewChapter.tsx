@@ -62,7 +62,7 @@ const ViewChapter: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader translucent>
         <IonToolbar>
           <IonButtons className="flex items-center justify-center" slot="start">
             <IonBackButton type="reset" defaultHref="/"></IonBackButton>
@@ -73,21 +73,23 @@ const ViewChapter: React.FC = () => {
               : `Surah No. ${chapterNo}`}
           </IonTitle>
         </IonToolbar>
+
+        <IonToolbar>
+          <IonSegment
+            className="w-full max-w-[calc(100%-1.5rem)] mx-auto mb-1.5"
+            value={type}
+            onIonChange={(e) => setType(e.detail.value!)}
+          >
+            <IonSegmentButton value="translation">
+              <IonLabel>Translation</IonLabel>
+            </IonSegmentButton>
+            <IonSegmentButton value="reading">
+              <IonLabel>Reading</IonLabel>
+            </IonSegmentButton>
+          </IonSegment>
+        </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding" ref={contentRef} fullscreen>
-        <IonSegment
-          className="mb-0.5"
-          value={type}
-          onIonChange={(e) => setType(e.detail.value!)}
-        >
-          <IonSegmentButton value="translation">
-            <IonLabel>Translation</IonLabel>
-          </IonSegmentButton>
-          <IonSegmentButton value="reading">
-            <IonLabel>Reading</IonLabel>
-          </IonSegmentButton>
-        </IonSegment>
-
         {/* when error appears */}
         {chapterDataError ? <DisplayError error={chapterDataError} /> : null}
 

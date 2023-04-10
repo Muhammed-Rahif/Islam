@@ -41,7 +41,7 @@ const PrayerTimes: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader translucent>
         <IonToolbar>
           <IonTitle>Prayer Times</IonTitle>
         </IonToolbar>
