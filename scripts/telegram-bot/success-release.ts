@@ -59,7 +59,7 @@ We encourage all developers, testers, and users to <a href="${downloadUrl}">down
   });
 
   await bot.telegram.sendDocument(toTelegramId, {
-    source: `android/app/build/outputs/apk/debug/app-release.apk`,
+    source: `android/app/build/outputs/apk/release/app-release.apk`,
     filename: `app-release-${versionName}.apk`,
   });
 
