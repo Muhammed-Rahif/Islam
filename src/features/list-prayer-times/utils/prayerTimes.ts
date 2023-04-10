@@ -3,7 +3,7 @@ import { Timings } from '../types/PrayerTimesResponse';
 
 export function getNextPrayer(prayerTimes: Timings) {
   const now = dayjs();
-  const prayerOrder = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+  const prayerOrder = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
   let nextPrayerIndex = 0;
 
   for (let i = 0; i < prayerOrder.length; i++) {

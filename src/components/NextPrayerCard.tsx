@@ -34,7 +34,7 @@ export default function NextPrayerCard({
   gregorianWeekDay,
 }: Props) {
   return (
-    <IonCard>
+    <IonCard className="mx-3 my-4">
       {isLoading ? (
         <IonCardContent className="flex items-center justify-center h-56">
           <IonSpinner name="dots" />

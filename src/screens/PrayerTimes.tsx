@@ -26,15 +26,16 @@ import {
   getNextPrayer,
   usePrayerTimes,
 } from 'features/list-prayer-times';
-import { chevronForwardOutline, locationOutline } from 'ionicons/icons';
 import { useMemo } from 'react';
-import Countdown from 'react-countdown';
 
 const PrayerTimes: React.FC = () => {
   const { data, isLoading, refetch, error } = usePrayerTimes();
 
+  const prayerTimesData = useMemo(() => data?.data, [data]);
+
   const nextPrayer = useMemo(
-    () => (data?.data.timings ? getNextPrayer(data.data.timings) : null),
+    () =>
+      prayerTimesData?.timings ? getNextPrayer(prayerTimesData.timings) : null,
     [data?.data.timings]
   );
 
@@ -60,16 +61,16 @@ const PrayerTimes: React.FC = () => {
           <NextPrayerCard
             isLoading={isLoading}
             nextPrayer={nextPrayer}
-            gregorianDate={`${data?.data.date.gregorian.day} ${data?.data.date.gregorian.month.en} ${data?.data.date.gregorian.year}`}
+            gregorianDate={`${prayerTimesData?.date.gregorian.day} ${prayerTimesData?.date.gregorian.month.en} ${prayerTimesData?.date.gregorian.year}`}
             hijriDate={`${
-              data?.data.date.hijri.day
-            } ${data?.data.date.hijri.month.en.normalize()} ${
-              data?.data.date.hijri.year
+              prayerTimesData?.date.hijri.day
+            } ${prayerTimesData?.date.hijri.month.en.normalize()} ${
+              prayerTimesData?.date.hijri.year
             }`}
-            hijriWeekDay={data?.data.date.hijri.weekday.en ?? ''}
-            gregorianWeekDay={data?.data.date.gregorian.weekday.en ?? ''}
-            timezone={data?.data.meta.timezone ?? ''}
-            methodName={data?.data.meta.method.name ?? ''}
+            hijriWeekDay={prayerTimesData?.date.hijri.weekday.en ?? ''}
+            gregorianWeekDay={prayerTimesData?.date.gregorian.weekday.en ?? ''}
+            timezone={prayerTimesData?.meta.timezone ?? ''}
+            methodName={prayerTimesData?.meta.method.name ?? ''}
           />
         )}
 
@@ -82,12 +83,14 @@ const PrayerTimes: React.FC = () => {
         {Boolean(error) && (
           <DisplayError
             error={error}
-            toastOnly={Boolean(data?.data)}
-            className={Boolean(data?.data) ? 'h-1/2' : '!h-full'}
+            toastOnly={Boolean(data)}
+            className={Boolean(data) ? 'h-1/2' : '!h-full'}
           />
         )}
 
-        {data?.data && <ListPrayerTimes timings={data.data.timings} />}
+        {prayerTimesData && (
+          <ListPrayerTimes timings={prayerTimesData.timings} />
+        )}
       </IonContent>
     </IonPage>
   );
