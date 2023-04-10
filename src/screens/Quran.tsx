@@ -48,7 +48,6 @@ const Quran: React.FC = () => {
           <IonSearchbar
             onIonInput={(e) => setSearch(e.detail.value!)}
             className="sticky top-0 z-30 !pb-0"
-            color="light"
           />
         </IonToolbar>
 

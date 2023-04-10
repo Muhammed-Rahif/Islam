@@ -3,6 +3,7 @@ import { Timings } from '../types/PrayerTimesResponse';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { useMemo } from 'react';
 
 dayjs.extend(relativeTime);
 dayjs.extend(customParseFormat);
@@ -15,7 +16,10 @@ const ListPrayerTimes: React.FC<Props> = ({ timings }) => {
   return (
     <IonList className="my-1 min-h-[12rem]">
       {Object.keys(timings).map((prayerName, indx) => {
-        const prayerTime = dayjs(timings[prayerName as keyof Timings], 'HH:mm');
+        const prayerTime = useMemo(
+          () => dayjs(timings[prayerName as keyof Timings], 'HH:mm'),
+          [prayerName, timings]
+        );
 
         return (
           <IonItem
