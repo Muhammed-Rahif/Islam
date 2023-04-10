@@ -1,3 +1,20 @@
+# [1.4.0-beta.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.3.1...v1.4.0-beta.1) (2023-04-10)
+
+
+### Bug Fixes
+
+* 'NextPrayerCard' ([2d0e6de](https://github.com/Muhammed-Rahif/Islam/commit/2d0e6de9aec99af68021ddb6e7f3b69d42a93b30))
+* **performance:** memoize in list prayer times; quran search bar bg color issue ([85a02cb](https://github.com/Muhammed-Rahif/Islam/commit/85a02cb7033adb5c144835971aa5eff9eafd1c2b))
+* **ui:** ui toolbar update and improvements ([6d3d068](https://github.com/Muhammed-Rahif/Islam/commit/6d3d068c203cd3f9b84938adfad3339379625a44))
+* update tab icons ([71df5c9](https://github.com/Muhammed-Rahif/Islam/commit/71df5c9c416dc605ae1c1e8f09e2d93bb49666dc))
+
+
+### Features
+
+* **prayer-times:** add lorem ipsum of the prayer times screen ([5673c89](https://github.com/Muhammed-Rahif/Islam/commit/5673c89f002441d801e79fd9cfa4718bd78483d2))
+* **prayer-times:** add prayer times list ([77fa1c4](https://github.com/Muhammed-Rahif/Islam/commit/77fa1c4a2e66d02ed5db032ea4d10d7d0803fbca))
+* **prayer-times:** update error displaying ([59c7b0b](https://github.com/Muhammed-Rahif/Islam/commit/59c7b0b5940cec14d15efe888147d1649ef9d455))
+
 ## [1.3.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.3.0...v1.3.1) (2023-04-07)
 
 

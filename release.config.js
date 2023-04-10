@@ -12,9 +12,9 @@ module.exports = {
       {
         assets: [
           {
-            path: 'android/app/build/outputs/apk/release/app-release-unsigned.apk',
-            label: 'app-release-unsigned-v${nextRelease.version}.apk',
-            name: 'app-release-unsigned-v${nextRelease.version}.apk',
+            path: 'android/app/build/outputs/apk/release/app-release.apk',
+            label: 'app-release-v${nextRelease.version}.apk',
+            name: 'app-release-v${nextRelease.version}.apk',
           },
           {
             path: 'android/app/build/outputs/apk/debug/app-debug.apk',
