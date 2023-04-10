@@ -39,12 +39,14 @@ const TranslationVerseItem: React.FC<{ verse: Verse }> = ({ verse }) => {
       {verse?.translations.map((translation, indx) => (
         <IonText key={indx} className="text-left">
           {removeHtmlTags(translation.text)}
-
           <small className="opacity-20 block mb-2">
             - {translation.resource_name}
           </small>
         </IonText>
       ))}
+      <p className="opacity-20 text-center text-xs [direction:ltr]">
+        {verse.verse_number}
+      </p>
       <hr className="my-4 opacity-20" />
     </Fragment>
   );

@@ -13,8 +13,11 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import {
   book,
-  person,
-  cog,
+  bookOutline,
+  settings,
+  settingsOutline,
+  time,
+  timeOutline,
   // chatbubble, happy
 } from 'ionicons/icons';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -47,6 +50,7 @@ import './theme/styles.css';
 import QuranPage from 'screens/Quran';
 import ViewChapterPage from 'screens/ViewChapter';
 import SettingsPage from 'screens/Settings';
+import PrayerTimes from 'screens/PrayerTimes';
 // const QuranPage = React.lazy(() => import('screens/Quran'));
 // const ViewChapterPage = React.lazy(() => import('screens/ViewChapter'));
 // const SettingsPage = React.lazy(() => import('screens/Settings'));
@@ -63,12 +67,17 @@ const routes: {
   {
     name: 'Quran',
     path: '/quran',
-    icon: book,
+    icon: bookOutline,
   },
+  // {
+  //   name: 'Sunnah',
+  //   path: '/sunnah',
+  //   icon: person,
+  // },
   {
-    name: 'Sunnah',
-    path: '/sunnah',
-    icon: person,
+    name: 'Prayer Times',
+    path: '/prayer-times',
+    icon: timeOutline,
   },
   // {
   //   name: 'Dhikr',
@@ -83,7 +92,7 @@ const routes: {
   {
     name: 'Settings',
     path: '/settings',
-    icon: cog,
+    icon: settingsOutline,
   },
 ];
 
@@ -109,6 +118,11 @@ const App: React.FC = () => {
         <IonReactRouter>
           <IonTabs>
             <IonRouterOutlet animated>
+              <Route
+                exact
+                path="/prayer-times"
+                render={() => <PrayerTimes />}
+              />
               <Route exact path="/quran" render={() => <QuranPage />} />
               <Route
                 exact

@@ -36,14 +36,6 @@ function useChapterVerses({
     cacheTime: Infinity,
     staleTime: Infinity,
     structuralSharing: false,
-    notifyOnChangeProps: [
-      'data',
-      'error',
-      'isLoading',
-      'fetchNextPage',
-      'isFetchingNextPage',
-      'hasNextPage',
-    ],
   });
 }
 

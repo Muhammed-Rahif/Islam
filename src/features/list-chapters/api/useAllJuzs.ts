@@ -16,7 +16,6 @@ function useAllJuzs() {
     staleTime: Infinity,
     cacheTime: Infinity,
     structuralSharing: false,
-    notifyOnChangeProps: ['data'],
   });
 }
 

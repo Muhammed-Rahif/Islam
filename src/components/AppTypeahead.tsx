@@ -108,7 +108,7 @@ function AppTypeahead(props: TypeaheadProps) {
 
   return (
     <>
-      <IonHeader>
+      <IonHeader translucent>
         <IonToolbar>
           <IonButtons slot="start">
             <IonButton onClick={cancelChanges}>Cancel</IonButton>

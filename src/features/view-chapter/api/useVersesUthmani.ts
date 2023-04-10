@@ -32,14 +32,6 @@ function useVersesUthmani({ chapterId, pages }: Props) {
     cacheTime: Infinity,
     staleTime: Infinity,
     structuralSharing: false,
-    notifyOnChangeProps: [
-      'data',
-      'error',
-      'isLoading',
-      'fetchNextPage',
-      'isFetchingNextPage',
-      'hasNextPage',
-    ],
   });
 }
 
