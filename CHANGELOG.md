@@ -1,3 +1,10 @@
+# [1.4.0-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.4.0-beta.1...v1.4.0-beta.2) (2023-04-10)
+
+
+### Bug Fixes
+
+* signed app release ([27f11a8](https://github.com/Muhammed-Rahif/Islam/commit/27f11a811aab41a9d727e7cb785d9747bd55e72a))
+
 # [1.4.0-beta.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.3.1...v1.4.0-beta.1) (2023-04-10)
 
 
