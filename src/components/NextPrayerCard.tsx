@@ -9,12 +9,14 @@ import {
   IonSpinner,
   IonText,
 } from '@ionic/react';
+import { Timings, getNextPrayer } from 'features/list-prayer-times';
 import { chevronForwardOutline, locationOutline } from 'ionicons/icons';
+import { useMemo, useState } from 'react';
 import Countdown from 'react-countdown';
 
 type Props = {
   isLoading: boolean;
-  nextPrayer: { name: string; time: Date; readableTime: string } | null;
+  timings: Timings;
   timezone: string;
   methodName: string;
   hijriDate: string;
@@ -25,7 +27,7 @@ type Props = {
 
 export default function NextPrayerCard({
   isLoading,
-  nextPrayer,
+  timings,
   timezone,
   methodName,
   hijriDate,
@@ -33,6 +35,8 @@ export default function NextPrayerCard({
   gregorianDate,
   gregorianWeekDay,
 }: Props) {
+  const [nextPrayer, setNextPrayer] = useState(getNextPrayer(timings));
+
   return (
     <IonCard className="mx-3 my-4">
       {isLoading ? (
@@ -42,7 +46,7 @@ export default function NextPrayerCard({
       ) : (
         <>
           <IonCardHeader className="pb-1">
-            <IonCardTitle>{nextPrayer?.name}</IonCardTitle>
+            <IonCardTitle>{nextPrayer.name}</IonCardTitle>
           </IonCardHeader>
 
           <IonCardContent>
@@ -50,11 +54,12 @@ export default function NextPrayerCard({
               <small className="opacity-75 block">is the next prayer in</small>
               <Countdown
                 daysInHours
-                date={nextPrayer?.time}
+                date={nextPrayer.time}
                 className="text-lg"
+                onComplete={() => setNextPrayer(getNextPrayer(timings))}
               />
               <small className="opacity-75 inline-block mx-1">
-                ({nextPrayer?.readableTime})
+                ({nextPrayer.readableTime})
               </small>
             </IonText>
 
@@ -63,7 +68,7 @@ export default function NextPrayerCard({
                 <IonIcon
                   icon={locationOutline}
                   className="-translate-y-px pr-0.5"
-                />{' '}
+                />
                 {timezone}
               </small>
 

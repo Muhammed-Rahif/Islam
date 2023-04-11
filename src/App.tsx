@@ -51,9 +51,6 @@ import QuranPage from 'screens/Quran';
 import ViewChapterPage from 'screens/ViewChapter';
 import SettingsPage from 'screens/Settings';
 import PrayerTimes from 'screens/PrayerTimes';
-// const QuranPage = React.lazy(() => import('screens/Quran'));
-// const ViewChapterPage = React.lazy(() => import('screens/ViewChapter'));
-// const SettingsPage = React.lazy(() => import('screens/Settings'));
 
 setupIonicReact({
   mode: 'ios',
@@ -118,18 +115,14 @@ const App: React.FC = () => {
         <IonReactRouter>
           <IonTabs>
             <IonRouterOutlet animated>
-              <Route
-                exact
-                path="/prayer-times"
-                render={() => <PrayerTimes />}
-              />
-              <Route exact path="/quran" render={() => <QuranPage />} />
+              <Route exact path="/prayer-times" component={PrayerTimes} />
+              <Route exact path="/quran" component={QuranPage} />
               <Route
                 exact
                 path="/quran/:chapterNo"
-                render={() => <ViewChapterPage />}
+                component={ViewChapterPage}
               />
-              <Route exact path="/settings" render={() => <SettingsPage />} />
+              <Route exact path="/settings" component={SettingsPage} />
 
               <Redirect exact path="/" to="/quran" />
             </IonRouterOutlet>

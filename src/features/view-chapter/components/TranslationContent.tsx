@@ -35,23 +35,29 @@ const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
   });
 
   return (
-    <div className="mt-4 h-full">
-      {/* when error appears */}
-      {error ? <DisplayError error={error} /> : null}
-
-      {/* when api is loading */}
-      {isLoading && (
-        <div className="w-full h-full grid place-items-center">
-          <IonSpinner />
-        </div>
-      )}
-
-      {!isLoading && bismiPre && <BismiVerse className="mb-3" />}
+    <div className="h-full">
+      {!isLoading && bismiPre && <BismiVerse />}
 
       {chapterVerses?.pages.map((chapterVerses) =>
         chapterVerses.verses.map((verse, indx) => (
           <TranslationVerseItem verse={verse} key={indx} />
         ))
+      )}
+
+      {/* when error appears */}
+      {!isFetchingNextPage && error ? (
+        <DisplayError className="h-2/5" error={error} onRetry={fetchNextPage} />
+      ) : null}
+
+      {/* when api is loading */}
+      {(isLoading || isFetchingNextPage) && (
+        <div
+          className={`${
+            isFetchingNextPage ? 'h-12' : 'h-full'
+          } w-full grid place-items-center`}
+        >
+          <IonSpinner />
+        </div>
       )}
 
       <IonInfiniteScroll
@@ -71,7 +77,10 @@ const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
             });
         }}
       >
-        <IonInfiniteScrollContent loadingText="Please, be patient..."></IonInfiniteScrollContent>
+        <IonInfiniteScrollContent
+          loadingSpinner={null}
+          loadingText="Please, be patient..."
+        />
       </IonInfiniteScroll>
 
       <div className="h-[90px]" />

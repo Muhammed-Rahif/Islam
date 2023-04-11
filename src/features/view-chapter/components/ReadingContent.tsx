@@ -49,17 +49,7 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, pages }) => {
   );
 
   return (
-    <div className="[direction:rtl] leading-9 text-justify mt-4 h-full">
-      {/* when error appears */}
-      {error ? <DisplayError error={error} /> : null}
-
-      {/* when api is loading */}
-      {isLoading && (
-        <div className="w-full h-full grid place-items-center">
-          <IonSpinner />
-        </div>
-      )}
-
+    <div className="[direction:rtl] leading-9 text-justify h-full">
       {!isLoading && bismiPre && <BismiVerse />}
 
       {/* maping through pages */}
@@ -74,7 +64,27 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, pages }) => {
         </span>
       ))}
 
-      {hasNextPage && !isFetchingNextPage && !isLoading && (
+      {/* when error appears */}
+      {!isFetchingNextPage && error ? (
+        <DisplayError
+          className="[direction:ltr] leading-5 h-2/5"
+          error={error}
+          onRetry={fetchNextPage}
+        />
+      ) : null}
+
+      {/* when api is loading */}
+      {(isLoading || isFetchingNextPage) && (
+        <div
+          className={`${
+            isFetchingNextPage ? 'h-12' : 'h-full'
+          } w-full grid place-items-center`}
+        >
+          <IonSpinner />
+        </div>
+      )}
+
+      {!error && hasNextPage && !isFetchingNextPage && !isLoading && (
         <p
           onClick={async () => await fetchNextPage()}
           className="opacity-20 text-center active:scale-95 duration-300 text-xs [font-family:var(--ion-font-family)] cursor-pointer"
@@ -104,7 +114,10 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, pages }) => {
             });
         }}
       >
-        <IonInfiniteScrollContent loadingText="Please, be patient..."></IonInfiniteScrollContent>
+        <IonInfiniteScrollContent
+          loadingSpinner={null}
+          loadingText="Please, be patient..."
+        />
       </IonInfiniteScroll>
 
       <div className="h-[90px]" />
