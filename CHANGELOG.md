@@ -1,3 +1,16 @@
+# [1.4.0-beta.3](https://github.com/Muhammed-Rahif/Islam/compare/v1.4.0-beta.2...v1.4.0-beta.3) (2023-04-11)
+
+
+### Bug Fixes
+
+* pull refresh bg color issue ([7f5b3f0](https://github.com/Muhammed-Rahif/Islam/commit/7f5b3f013dab244052f1dd3ef10772a9a29c13d2))
+* **ui:** add retry btn for 'DisplayError' ([59d3c91](https://github.com/Muhammed-Rahif/Islam/commit/59d3c9131ebf71cf97ea3a51c8a8e41df3a67e83))
+
+
+### Features
+
+* **prayer-times:** notificate user on prayer times ([4e5404a](https://github.com/Muhammed-Rahif/Islam/commit/4e5404aee6b46fed93fec14d1149e1748db8831d))
+
 # [1.4.0-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.4.0-beta.1...v1.4.0-beta.2) (2023-04-10)
 
 
