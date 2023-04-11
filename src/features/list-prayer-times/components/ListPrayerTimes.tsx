@@ -1,12 +1,7 @@
 import { IonItem, IonLabel, IonList, IonRippleEffect } from '@ionic/react';
 import { Timings } from '../types/PrayerTimesResponse';
 import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import { useMemo } from 'react';
-
-dayjs.extend(relativeTime);
-dayjs.extend(customParseFormat);
 
 type Props = {
   timings: Timings;

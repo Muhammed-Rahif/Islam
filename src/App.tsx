@@ -12,11 +12,8 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import {
-  book,
   bookOutline,
-  settings,
   settingsOutline,
-  time,
   timeOutline,
   // chatbubble, happy
 } from 'ionicons/icons';
@@ -25,6 +22,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai/react';
 import { settingsAtom } from 'stores/settings';
 import { SplashScreen } from '@capacitor/splash-screen';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import dayjs from 'dayjs';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -51,6 +51,9 @@ import QuranPage from 'screens/Quran';
 import ViewChapterPage from 'screens/ViewChapter';
 import SettingsPage from 'screens/Settings';
 import PrayerTimes from 'screens/PrayerTimes';
+
+dayjs.extend(relativeTime);
+dayjs.extend(customParseFormat);
 
 setupIonicReact({
   mode: 'ios',
