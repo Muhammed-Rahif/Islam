@@ -10,6 +10,7 @@
     "@capacitor/haptics": "4.1.0",
     "@capacitor/ios": "4.7.3",
     "@capacitor/keyboard": "4.1.1",
+    "@capacitor/local-notifications": "^4.1.5",
     "@capacitor/splash-screen": "^4.2.0",
     "@capacitor/status-bar": "4.1.1",
     "@ionic/react": "^7.0.0",

@@ -3,7 +3,11 @@ import { PrayerTimesResponse } from '../types/PrayerTimesResponse';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { getGeoLocation } from 'utils/geoLocation';
-import { Position } from '@capacitor/geolocation';
+import { LocalNotifications } from '@capacitor/local-notifications';
+import {
+  generatePrayerNotificationContent,
+  updatePrayerNotifications,
+} from '../utils/prayerTimes';
 
 interface Props {
   date?: string;
@@ -38,9 +42,13 @@ function usePrayerTimes({
     queryFn: async () => {
       const geoLocation = await getGeoLocation();
 
-      const { data } = await axios.get(
+      const { data }: { data: PrayerTimesResponse } = await axios.get(
         `https://api.aladhan.com/v1/timings/${date}?latitude=${geoLocation?.coords.latitude}&longitude=${geoLocation?.coords.longitude}&method=${method}`
       );
+
+      if (Object.keys(data.data.timings).length > 0)
+        updatePrayerNotifications(data.data.timings);
+
       return data;
     },
     staleTime: Infinity,

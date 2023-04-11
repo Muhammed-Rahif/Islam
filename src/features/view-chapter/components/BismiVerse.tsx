@@ -18,7 +18,7 @@ function BismiVerse({ ayahNo, className }: Props) {
         fontFamily: quranSettings.fontFamily,
       }}
       lang="ar"
-      className={`block text-center mt-1 ${className}`}
+      className={`block text-center ${className}`}
     >
       بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ{' '}
       {ayahNo && `  ﴿${numToArabic(ayahNo)}﴾  `}

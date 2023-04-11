@@ -96,8 +96,10 @@ const Quran: React.FC = () => {
 
         {Boolean(error) && (
           <DisplayError
+            className="h-full"
             error={error}
             toastOnly={Boolean(chaptersData?.chapters.length)}
+            onRetry={refetchChapters}
           />
         )}
 

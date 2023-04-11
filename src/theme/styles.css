@@ -34,6 +34,14 @@ ion-refresher {
   position: relative;
 }
 
+body {
+  background-color: white;
+}
+
+body.dark {
+  background-color: black;
+}
+
 @font-face {
   font-family: 'Me Quran';
   src: url('/assets/fonts/Me Quran.ttf') format('truetype');

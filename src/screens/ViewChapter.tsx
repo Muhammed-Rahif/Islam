@@ -39,6 +39,7 @@ const ViewChapter: React.FC = () => {
     isLoading: isChapterLoading,
     data: chapterData,
     error: chapterDataError,
+    refetch,
   } = useChapter({
     chapterId: parseInt(chapterNo),
   });
@@ -89,9 +90,16 @@ const ViewChapter: React.FC = () => {
           </IonSegment>
         </IonToolbar>
       </IonHeader>
+
       <IonContent className="ion-padding" ref={contentRef} fullscreen>
         {/* when error appears */}
-        {chapterDataError ? <DisplayError error={chapterDataError} /> : null}
+        {chapterDataError ? (
+          <DisplayError
+            className="h-full"
+            error={chapterDataError}
+            onRetry={refetch}
+          />
+        ) : null}
 
         {/* when api is loading */}
         {isChapterLoading && (

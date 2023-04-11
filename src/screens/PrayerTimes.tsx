@@ -33,12 +33,6 @@ const PrayerTimes: React.FC = () => {
 
   const prayerTimesData = useMemo(() => data?.data, [data]);
 
-  const nextPrayer = useMemo(
-    () =>
-      prayerTimesData?.timings ? getNextPrayer(prayerTimesData.timings) : null,
-    [data?.data.timings]
-  );
-
   return (
     <IonPage>
       <IonHeader translucent>
@@ -60,7 +54,7 @@ const PrayerTimes: React.FC = () => {
         {data?.data && (
           <NextPrayerCard
             isLoading={isLoading}
-            nextPrayer={nextPrayer}
+            timings={prayerTimesData!.timings}
             gregorianDate={`${prayerTimesData?.date.gregorian.day} ${prayerTimesData?.date.gregorian.month.en} ${prayerTimesData?.date.gregorian.year}`}
             hijriDate={`${
               prayerTimesData?.date.hijri.day
@@ -85,6 +79,7 @@ const PrayerTimes: React.FC = () => {
             error={error}
             toastOnly={Boolean(data)}
             className={Boolean(data) ? 'h-1/2' : '!h-full'}
+            onRetry={async () => await refetch()}
           />
         )}
 
