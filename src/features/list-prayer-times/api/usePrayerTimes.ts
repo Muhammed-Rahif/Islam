@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { getGeoLocation } from 'utils/geoLocation';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import {
-  generatePrayerNotification,
+  generatePrayerNotificationContent,
   updatePrayerNotifications,
 } from '../utils/prayerTimes';
 

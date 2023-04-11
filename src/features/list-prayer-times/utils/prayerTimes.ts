@@ -43,7 +43,7 @@ type ObligatoryPrayers =
   | 'Maghrib'
   | 'Isha';
 
-export function generatePrayerNotification(
+export function generatePrayerNotificationContent(
   currentPrayerName: ObligatoryPrayers
 ) {
   const titleMessages = [
@@ -133,7 +133,9 @@ export async function updatePrayerNotifications(prayerTimings: Timings) {
   });
 
   const prayerNotifications = prayerNames.map(async (prayerName, indx) => {
-    const { body, title } = generatePrayerNotification(prayerName as any);
+    const { body, title } = generatePrayerNotificationContent(
+      prayerName as any
+    );
     const time = dayjs(prayerTimings[prayerName as keyof Timings], 'HH:mm');
 
     await LocalNotifications.schedule({
