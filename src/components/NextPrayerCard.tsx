@@ -9,6 +9,7 @@ import {
   IonSpinner,
   IonText,
 } from '@ionic/react';
+import dayjs from 'dayjs';
 import { Timings, getNextPrayer } from 'features/list-prayer-times';
 import { chevronForwardOutline, locationOutline } from 'ionicons/icons';
 import { useMemo, useState } from 'react';
@@ -53,6 +54,7 @@ export default function NextPrayerCard({
             <IonText color="dark">
               <small className="opacity-75 block">is the next prayer in</small>
               <Countdown
+                key={dayjs(nextPrayer.time).unix()}
                 daysInHours
                 date={nextPrayer.time}
                 className="text-lg"
