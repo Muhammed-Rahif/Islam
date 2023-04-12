@@ -1271,29 +1271,29 @@
     debug "^4.0.0"
     tslib "^2.0.1"
 
-"@ionic/core@7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@ionic/core/-/core-7.0.1.tgz#9ca6f3fdf4d46324bb3f0092b5604bc0d9386cfc"
-  integrity sha512-RK69pJ+2e5gLM4eASR2vccPQibIz+Lsc1uHql61lV8Xghb7+usYdeSXUvmn2JL3hkbSMt6JxKCTLfQjFJc+d8Q==
+"@ionic/core@7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@ionic/core/-/core-7.0.2.tgz#743cdf8835ca461426f1ac350cdc9f73e7b24fac"
+  integrity sha512-GxQsMmsyBGeK9khIPNR3zw3WvDZj3I0inKtPcd/s9hEnfndAlFFI9gckB7/zrp55xoknCRwqAYT8sGWze3sn2w==
   dependencies:
-    "@stencil/core" "^3.2.0"
+    "@stencil/core" "^3.2.1"
     ionicons "^7.1.0"
     tslib "^2.1.0"
 
-"@ionic/react-router@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@ionic/react-router/-/react-router-7.0.1.tgz#67f9f602409b013d529b8e5e72b0804e4e93d16a"
-  integrity sha512-QvOuZjMAAK1v8YFkeDjwhVpGmzJO0V44ScVc0Pj00Jh+677Y+g3PddahBh1am2xngRj8XAxZoyk9EjK9kzAmGw==
+"@ionic/react-router@^7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@ionic/react-router/-/react-router-7.0.2.tgz#d298c5c631f1cef59ed0f0072b1d3dc3e93abaa1"
+  integrity sha512-Eu4rQ0EXuRFCI3TRVL3x2MX6n5FgKfHgWABVy+I+VGYgxAqqxNSP3fq2KnwRpOKmU+uxQzgawSJElTXg+r0rJw==
   dependencies:
-    "@ionic/react" "7.0.1"
+    "@ionic/react" "7.0.2"
     tslib "*"
 
-"@ionic/react@7.0.1", "@ionic/react@^7.0.0":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@ionic/react/-/react-7.0.1.tgz#80c5f9e21e5d07dc98207bcc4f6c727d6c5d1438"
-  integrity sha512-qgNdaVLgk8Jy68SmFtGWTcOah2gP+HymSgEoHebVRDoap6nuLzObeRspgH/ocFFkLKW+jO8vZfZud25r7QcQQA==
+"@ionic/react@7.0.2", "@ionic/react@^7.0.0":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@ionic/react/-/react-7.0.2.tgz#af19fb5c4ec1602047850330b49ca966ac94a308"
+  integrity sha512-5DflV9+Ipp6qaDU7DYfvtivIPdcIQMcNLX2PcqrvOzRc+1Y9oJ5h4P7DLxWpquQmYgSMaG3LCux0Fj5CNYQyag==
   dependencies:
-    "@ionic/core" "7.0.1"
+    "@ionic/core" "7.0.2"
     ionicons "^7.0.0"
     tslib "*"
 
@@ -2117,10 +2117,10 @@
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.22.3.tgz#83987e20bba855c450f6d6780e3a20192603f13f"
   integrity sha512-kmVA0M/HojwsfkeHsifvHVIYe4l5tin7J5+DLgtl8h6WWfiMClND5K3ifCXXI2ETDNKiEk21p6jql3Fx9o2rng==
 
-"@stencil/core@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-3.2.0.tgz#be869b68bbe588d33fe3109c5aea08fda6de761e"
-  integrity sha512-vAZiHg4h6hZn4GP6P4w/d7qJwovW0xroitVAn/Ay0rUOeMHqMDYTX5jq0Vy/bgKactKam5WL/to50esGe6lDUQ==
+"@stencil/core@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-3.2.1.tgz#50bd07f478e04a5527a35aee61deff772b056860"
+  integrity sha512-Ybm4NteQBScLq3H0JML/uqo4nWjNpZw1HAAURtR5LlRm7ptzNKO5S8EnHp3m05/uyTzeh9yLpUFHY7bxGNdYLg==
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
@@ -2560,10 +2560,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18.0.34":
-  version "18.0.34"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.34.tgz#e553444a578f023e6e1ac499514688fb80b0a984"
-  integrity sha512-NO1UO8941541CJl1BeOXi8a9dNKFK09Gnru5ZJqkm4Q3/WoQJtHvmwt0VX0SB9YCEwe7TfSSxDuaNmx6H2BAIQ==
+"@types/react@*", "@types/react@^18.0.35":
+  version "18.0.35"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.35.tgz#192061cb1044fe01f2d3a94272cd35dd50502741"
+  integrity sha512-6Laome31HpetaIUGFWl1VQ3mdSImwxtFZ39rh059a1MNnKGqBpC88J6NJ8n/Is3Qx7CefDGLgf/KhN/sYCf7ag==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -5005,10 +5005,10 @@ fraction.js@^4.2.0:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.2.0.tgz#448e5109a313a3527f5a3ab2119ec4cf0e0e2950"
   integrity sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==
 
-framer-motion@^10.11.5:
-  version "10.11.5"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-10.11.5.tgz#410d40eee41963d4c23108caff29d040466c5a70"
-  integrity sha512-1JuoJsojdYLVdVldkR7p69G24bNs00p/IuqNcuIT9g2qSNG9Ya4SyK4Jy4Z5grUSi7j1yLI6AdO/0BhY0zo7yw==
+framer-motion@^10.11.6:
+  version "10.11.6"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-10.11.6.tgz#1c59f9e2dcfa379f5dd1076eebdf8b11b7c62f80"
+  integrity sha512-QXfnUzPQqbJEnWpmtPaRB4OCuyH44uCys5Agg44LEQvItKTg0bou57WuhsNVuEyVCnMoAhrtRYiKeG/vAz6bFw==
   dependencies:
     tslib "^2.4.0"
   optionalDependencies:
@@ -9789,10 +9789,10 @@ vite-plugin-svgr@^2.4.0:
     "@rollup/pluginutils" "^5.0.2"
     "@svgr/core" "^6.5.1"
 
-vite-tsconfig-paths@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vite-tsconfig-paths/-/vite-tsconfig-paths-4.1.0.tgz#e5d0796be173f603a9874a33ac38793775949fb1"
-  integrity sha512-Ps275He1fF6Wpm/3tvyokIfXd3lcmk4KsdCG4yduSTRVt+htaxIoEor88M1h3soOeXg5fn77ZiupVRwGeB/XNQ==
+vite-tsconfig-paths@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/vite-tsconfig-paths/-/vite-tsconfig-paths-4.2.0.tgz#bd2647d3eadafb65a10fc98a2ca565211f2eaf63"
+  integrity sha512-jGpus0eUy5qbbMVGiTxCL1iB9ZGN6Bd37VGLJU39kTDD6ZfULTTb1bcc5IeTWqWJKiWV5YihCaibeASPiGi8kw==
   dependencies:
     debug "^4.1.1"
     globrex "^0.1.2"
