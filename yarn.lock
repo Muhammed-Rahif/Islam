@@ -1261,29 +1261,29 @@
     debug "^4.0.0"
     tslib "^2.0.1"
 
-"@ionic/core@7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@ionic/core/-/core-7.0.1.tgz#9ca6f3fdf4d46324bb3f0092b5604bc0d9386cfc"
-  integrity sha512-RK69pJ+2e5gLM4eASR2vccPQibIz+Lsc1uHql61lV8Xghb7+usYdeSXUvmn2JL3hkbSMt6JxKCTLfQjFJc+d8Q==
+"@ionic/core@7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@ionic/core/-/core-7.0.2.tgz#743cdf8835ca461426f1ac350cdc9f73e7b24fac"
+  integrity sha512-GxQsMmsyBGeK9khIPNR3zw3WvDZj3I0inKtPcd/s9hEnfndAlFFI9gckB7/zrp55xoknCRwqAYT8sGWze3sn2w==
   dependencies:
-    "@stencil/core" "^3.2.0"
+    "@stencil/core" "^3.2.1"
     ionicons "^7.1.0"
     tslib "^2.1.0"
 
-"@ionic/react-router@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@ionic/react-router/-/react-router-7.0.1.tgz#67f9f602409b013d529b8e5e72b0804e4e93d16a"
-  integrity sha512-QvOuZjMAAK1v8YFkeDjwhVpGmzJO0V44ScVc0Pj00Jh+677Y+g3PddahBh1am2xngRj8XAxZoyk9EjK9kzAmGw==
+"@ionic/react-router@^7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@ionic/react-router/-/react-router-7.0.2.tgz#d298c5c631f1cef59ed0f0072b1d3dc3e93abaa1"
+  integrity sha512-Eu4rQ0EXuRFCI3TRVL3x2MX6n5FgKfHgWABVy+I+VGYgxAqqxNSP3fq2KnwRpOKmU+uxQzgawSJElTXg+r0rJw==
   dependencies:
-    "@ionic/react" "7.0.1"
+    "@ionic/react" "7.0.2"
     tslib "*"
 
-"@ionic/react@7.0.1", "@ionic/react@^7.0.0":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@ionic/react/-/react-7.0.1.tgz#80c5f9e21e5d07dc98207bcc4f6c727d6c5d1438"
-  integrity sha512-qgNdaVLgk8Jy68SmFtGWTcOah2gP+HymSgEoHebVRDoap6nuLzObeRspgH/ocFFkLKW+jO8vZfZud25r7QcQQA==
+"@ionic/react@7.0.2", "@ionic/react@^7.0.0":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@ionic/react/-/react-7.0.2.tgz#af19fb5c4ec1602047850330b49ca966ac94a308"
+  integrity sha512-5DflV9+Ipp6qaDU7DYfvtivIPdcIQMcNLX2PcqrvOzRc+1Y9oJ5h4P7DLxWpquQmYgSMaG3LCux0Fj5CNYQyag==
   dependencies:
-    "@ionic/core" "7.0.1"
+    "@ionic/core" "7.0.2"
     ionicons "^7.0.0"
     tslib "*"
 
@@ -2107,10 +2107,10 @@
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.22.3.tgz#83987e20bba855c450f6d6780e3a20192603f13f"
   integrity sha512-kmVA0M/HojwsfkeHsifvHVIYe4l5tin7J5+DLgtl8h6WWfiMClND5K3ifCXXI2ETDNKiEk21p6jql3Fx9o2rng==
 
-"@stencil/core@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-3.2.0.tgz#be869b68bbe588d33fe3109c5aea08fda6de761e"
-  integrity sha512-vAZiHg4h6hZn4GP6P4w/d7qJwovW0xroitVAn/Ay0rUOeMHqMDYTX5jq0Vy/bgKactKam5WL/to50esGe6lDUQ==
+"@stencil/core@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-3.2.1.tgz#50bd07f478e04a5527a35aee61deff772b056860"
+  integrity sha512-Ybm4NteQBScLq3H0JML/uqo4nWjNpZw1HAAURtR5LlRm7ptzNKO5S8EnHp3m05/uyTzeh9yLpUFHY7bxGNdYLg==
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
