@@ -9,10 +9,12 @@ import {
   updatePrayerNotifications,
 } from '../utils/prayerTimes';
 import { IntRange } from 'types/Int';
+import { ObligatoryPrayers } from 'types/Prayers';
 
 interface Props {
   date?: string;
   method?: IntRange<0, 14>;
+  notifications?: ObligatoryPrayers[];
 }
 
 /**
@@ -46,9 +48,6 @@ function usePrayerTimes({
       const { data }: { data: PrayerTimesResponse } = await axios.get(
         `https://api.aladhan.com/v1/timings/${date}?latitude=${geoLocation?.coords.latitude}&longitude=${geoLocation?.coords.longitude}&method=${method}`
       );
-
-      if (Object.keys(data.data.timings).length > 0)
-        updatePrayerNotifications(data.data.timings);
 
       return data;
     },

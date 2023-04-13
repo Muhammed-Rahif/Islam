@@ -37,6 +37,7 @@ const PrayerNotificationSettings: React.FC = () => {
   return (
     <IonItemGroup className="pb-3">
       <h2 className="text-xl font-bold mb-2">Prayer Times</h2>
+
       <div className="flex justify-between items-center h-9">
         <IonText>
           <h2 className="text-base">Method</h2>
@@ -68,6 +69,44 @@ const PrayerNotificationSettings: React.FC = () => {
           ))}
         </IonSelect>
       </div>
+
+      <div className="flex justify-between items-center h-9">
+        <IonText>
+          <h2 className="text-base">Notifications</h2>
+        </IonText>
+        <IonSelect
+          interface="alert"
+          placeholder="Select notifications to receive"
+          aria-label="Select notifications to receive"
+          title="Select notifications to receive"
+          className="py-0 capitalize w-min max-w-[50vw]"
+          value={settings?.prayerTimes?.notifications}
+          onIonChange={(e) =>
+            updatePrayerTimeSettings({
+              notifications: e.detail.value,
+            })
+          }
+          multiple
+          interfaceOptions={{
+            subHeader: 'Select notifications to receive',
+            className:
+              '[--width:92%] [&>.alert-wrapper_.alert-radio-label]:whitespace-normal [&>.alert-wrapper_.alert-radio-label]:text-clip',
+          }}
+        >
+          {availableSettings.prayerTimes.notifications.map(
+            (prayerName, indx) => (
+              <IonSelectOption
+                value={prayerName}
+                key={prayerName}
+                className="capitalize"
+              >
+                {prayerName}
+              </IonSelectOption>
+            )
+          )}
+        </IonSelect>
+      </div>
+
       <IonItemDivider className="min-h-[2px] my-2" />
     </IonItemGroup>
   );

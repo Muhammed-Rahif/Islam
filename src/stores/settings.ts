@@ -16,7 +16,7 @@ export type SettingsType = {
     translations: Translations;
   };
   prayerTimes: {
-    notify: ObligatoryPrayers[];
+    notifications: ObligatoryPrayers[];
     /**
      * @example {number} methodNo - Calculation method
      * - 0 - Shia Ithna-Ansari
@@ -69,7 +69,7 @@ export const availableSettings = {
     ],
   },
   prayerTimes: {
-    notify: ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'],
+    notifications: ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'],
     methods: [
       'Shia Ithna-Ansari',
       'University of Islamic Sciences, Karachi',
@@ -111,7 +111,7 @@ const settingsAtom = atomWithStorage<SettingsType>(settingsStorageKey, {
     ],
   },
   prayerTimes: {
-    notify: ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'],
+    notifications: ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'],
     methodId: 4,
   },
 });

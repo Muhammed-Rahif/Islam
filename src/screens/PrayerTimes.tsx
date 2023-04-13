@@ -1,3 +1,4 @@
+import { LocalNotifications } from '@capacitor/local-notifications';
 import {
   IonCard,
   IonCardContent,
@@ -21,20 +22,32 @@ import {
 } from '@ionic/react';
 import DisplayError from 'components/DisplayError';
 import NextPrayerCard from 'components/NextPrayerCard';
-import { ListPrayerTimes, usePrayerTimes } from 'features/list-prayer-times';
+import {
+  ListPrayerTimes,
+  updatePrayerNotifications,
+  usePrayerTimes,
+} from 'features/list-prayer-times';
 import { useAtomValue } from 'jotai/react';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { settingsAtom } from 'stores/settings';
 
 const PrayerTimes: React.FC = () => {
   const {
-    prayerTimes: { methodId: methodNo },
+    prayerTimes: { methodId, notifications },
   } = useAtomValue(settingsAtom);
   const { data, isLoading, refetch, error } = usePrayerTimes({
-    method: methodNo,
+    method: methodId,
+    notifications,
   });
 
   const prayerTimesData = useMemo(() => data?.data, [data?.data]);
+
+  useEffect(() => {
+    if (!prayerTimesData) return;
+
+    if (Object.keys(prayerTimesData.timings ?? []).length > 0)
+      updatePrayerNotifications(prayerTimesData.timings, notifications);
+  }, [notifications, prayerTimesData?.timings]);
 
   return (
     <IonPage>

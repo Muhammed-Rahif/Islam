@@ -118,12 +118,15 @@ export function generatePrayerNotificationContent(
   };
 }
 
-export async function updatePrayerNotifications(prayerTimings: Timings) {
-  const prayerNames = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
-  // clear any pending notifications using 'extra.type' === 'prayer-notification'
+export async function updatePrayerNotifications(
+  prayerTimings: Timings,
+  prayerNames: ObligatoryPrayers[] = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha']
+) {
+  // clear any pending notifications using 'extra.type' === NotificationsTypes.PRAYER_NOTIFICATION
   const pending = await LocalNotifications.getPending();
   const pendingPrayerNotifications = pending.notifications.filter(
-    (notification) => notification.extra.type === 'prayer-notification'
+    (notification) =>
+      notification.extra.type === NotificationsTypes.PRAYER_NOTIFICATION
   );
 
   LocalNotifications.cancel({
@@ -145,7 +148,6 @@ export async function updatePrayerNotifications(prayerTimings: Timings) {
           id: time.unix(),
           schedule: {
             at: time.toDate(),
-            allowWhileIdle: true,
             every: 'day',
           },
           extra: {
