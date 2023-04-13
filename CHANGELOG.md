@@ -1,3 +1,11 @@
+# [1.4.0-beta.5](https://github.com/Muhammed-Rahif/Islam/compare/v1.4.0-beta.4...v1.4.0-beta.5) (2023-04-13)
+
+
+### Features
+
+* **prayer-times:** made methods dynamic ([a1aaff8](https://github.com/Muhammed-Rahif/Islam/commit/a1aaff82a1cb2bae3a5b6c1aaa1d9fbd536f2ebd))
+* **prayer-times:** prayer notifications select settings ([5f67a04](https://github.com/Muhammed-Rahif/Islam/commit/5f67a0478c8a5c885bd1e93564cf848a6fe90c47))
+
 # [1.4.0-beta.4](https://github.com/Muhammed-Rahif/Islam/compare/v1.4.0-beta.3...v1.4.0-beta.4) (2023-04-12)
 
 
