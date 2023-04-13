@@ -21,17 +21,20 @@ import {
 } from '@ionic/react';
 import DisplayError from 'components/DisplayError';
 import NextPrayerCard from 'components/NextPrayerCard';
-import {
-  ListPrayerTimes,
-  getNextPrayer,
-  usePrayerTimes,
-} from 'features/list-prayer-times';
+import { ListPrayerTimes, usePrayerTimes } from 'features/list-prayer-times';
+import { useAtomValue } from 'jotai/react';
 import { useMemo } from 'react';
+import { settingsAtom } from 'stores/settings';
 
 const PrayerTimes: React.FC = () => {
-  const { data, isLoading, refetch, error } = usePrayerTimes();
+  const {
+    prayerTimes: { methodId: methodNo },
+  } = useAtomValue(settingsAtom);
+  const { data, isLoading, refetch, error } = usePrayerTimes({
+    method: methodNo,
+  });
 
-  const prayerTimesData = useMemo(() => data?.data, [data]);
+  const prayerTimesData = useMemo(() => data?.data, [data?.data]);
 
   return (
     <IonPage>
@@ -64,7 +67,7 @@ const PrayerTimes: React.FC = () => {
             hijriWeekDay={prayerTimesData?.date.hijri.weekday.en ?? ''}
             gregorianWeekDay={prayerTimesData?.date.gregorian.weekday.en ?? ''}
             timezone={prayerTimesData?.meta.timezone ?? ''}
-            methodName={prayerTimesData?.meta.method.name ?? ''}
+            timingMethod={prayerTimesData?.meta.method.name ?? ''}
           />
         )}
 

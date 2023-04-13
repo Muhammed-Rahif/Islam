@@ -19,7 +19,7 @@ type Props = {
   isLoading: boolean;
   timings: Timings;
   timezone: string;
-  methodName: string;
+  timingMethod: string;
   hijriDate: string;
   hijriWeekDay: string;
   gregorianDate: string;
@@ -30,7 +30,7 @@ export default function NextPrayerCard({
   isLoading,
   timings,
   timezone,
-  methodName,
+  timingMethod,
   hijriDate,
   hijriWeekDay,
   gregorianDate,
@@ -87,7 +87,7 @@ export default function NextPrayerCard({
                   icon={chevronForwardOutline}
                   className="-translate-y-px pr-0.5"
                 />{' '}
-                {methodName}
+                {timingMethod}
               </small>
             </div>
 

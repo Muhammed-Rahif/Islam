@@ -4,7 +4,7 @@ export interface PrayerTimesResponse {
   data: Data;
 }
 
-export interface Data {
+interface Data {
   timings: Timings;
   date: DateClass;
   meta: Meta;
@@ -87,8 +87,7 @@ export interface Location {
 }
 
 export interface Params {
-  Fajr: number;
-  Isha: number;
+  [key: string]: string | number;
 }
 
 export interface Timings {

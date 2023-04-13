@@ -15,7 +15,7 @@ convention:
     - revert
   commitScopes:
     [
-      'pages',
+      'screen',
       'resources',
       'hooks',
       'theme',

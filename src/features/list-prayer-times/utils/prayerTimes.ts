@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { Timings } from '../types/PrayerTimesResponse';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { NotificationsTypes } from 'config/notifications';
+import { ObligatoryPrayers } from 'types/Prayers';
 
 export function getNextPrayer(prayerTimes: Timings) {
   const now = dayjs();
@@ -22,11 +23,16 @@ export function getNextPrayer(prayerTimes: Timings) {
   }
 
   const nextPrayerName = prayerOrder[nextPrayerIndex];
-  const nextPrayerTime = dayjs(
+  let nextPrayerTime = dayjs(
     `${now.format('YYYY-MM-DD')} ${
       prayerTimes[nextPrayerName as keyof Timings]
     }`
   );
+
+  // if all prayers of today has passed, set fajr to tomorrow
+  if (nextPrayerName === 'Fajr' && nextPrayerTime.isBefore(now)) {
+    nextPrayerTime = nextPrayerTime.add(1, 'day');
+  }
 
   return {
     name: nextPrayerName,
@@ -34,14 +40,6 @@ export function getNextPrayer(prayerTimes: Timings) {
     readableTime: nextPrayerTime.format('h:mm A'),
   };
 }
-
-type ObligatoryPrayers =
-  | 'Fajr'
-  | 'Sunrise'
-  | 'Dhuhr'
-  | 'Asr'
-  | 'Maghrib'
-  | 'Isha';
 
 export function generatePrayerNotificationContent(
   currentPrayerName: ObligatoryPrayers
