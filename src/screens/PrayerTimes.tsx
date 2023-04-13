@@ -1,3 +1,4 @@
+import { LocalNotifications } from '@capacitor/local-notifications';
 import {
   IonCard,
   IonCardContent,
@@ -23,15 +24,30 @@ import DisplayError from 'components/DisplayError';
 import NextPrayerCard from 'components/NextPrayerCard';
 import {
   ListPrayerTimes,
-  getNextPrayer,
+  updatePrayerNotifications,
   usePrayerTimes,
 } from 'features/list-prayer-times';
-import { useMemo } from 'react';
+import { useAtomValue } from 'jotai/react';
+import { useEffect, useMemo } from 'react';
+import { settingsAtom } from 'stores/settings';
 
 const PrayerTimes: React.FC = () => {
-  const { data, isLoading, refetch, error } = usePrayerTimes();
+  const {
+    prayerTimes: { methodId, notifications },
+  } = useAtomValue(settingsAtom);
+  const { data, isLoading, refetch, error } = usePrayerTimes({
+    method: methodId,
+    notifications,
+  });
 
-  const prayerTimesData = useMemo(() => data?.data, [data]);
+  const prayerTimesData = useMemo(() => data?.data, [data?.data]);
+
+  useEffect(() => {
+    if (!prayerTimesData) return;
+
+    if (Object.keys(prayerTimesData.timings ?? []).length > 0)
+      updatePrayerNotifications(prayerTimesData.timings, notifications);
+  }, [notifications, prayerTimesData?.timings]);
 
   return (
     <IonPage>
@@ -64,7 +80,7 @@ const PrayerTimes: React.FC = () => {
             hijriWeekDay={prayerTimesData?.date.hijri.weekday.en ?? ''}
             gregorianWeekDay={prayerTimesData?.date.gregorian.weekday.en ?? ''}
             timezone={prayerTimesData?.meta.timezone ?? ''}
-            methodName={prayerTimesData?.meta.method.name ?? ''}
+            timingMethod={prayerTimesData?.meta.method.name ?? ''}
           />
         )}
 

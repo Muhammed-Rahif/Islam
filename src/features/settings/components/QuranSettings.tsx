@@ -134,6 +134,9 @@ const QuranSettings: React.FC = () => {
               fontFamily: e.detail.value,
             });
           }}
+          interfaceOptions={{
+            subHeader: 'Select font family',
+          }}
         >
           {availableSettings.quran.fontFamily.map((family) => (
             <IonSelectOption value={family} key={family} className="capitalize">
