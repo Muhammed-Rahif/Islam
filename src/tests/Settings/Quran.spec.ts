@@ -1,8 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { delay } from 'utils/time';
 
-test('changing font size to "175%" should work', async ({ page }) => {
+test.beforeEach(async ({ page }) => {
   await page.goto('http://localhost:8100/settings');
+});
+
+test('changing font size to "175%" should work', async ({ page }) => {
   await page.getByTitle('Select font size').click();
 
   // font size to 175%
@@ -21,7 +24,6 @@ test('changing font size to "175%" should work', async ({ page }) => {
 test('changing font size to "175%" should not have value "100%"', async ({
   page,
 }) => {
-  await page.goto('http://localhost:8100/settings');
   await page.locator('label').filter({ hasText: '100%' }).click();
 
   // font size to 175%
@@ -38,8 +40,6 @@ test('changing font size to "175%" should not have value "100%"', async ({
 });
 
 test('changing font family to "Al Qalam" should work', async ({ page }) => {
-  await page.goto('http://localhost:8100/settings');
-
   // clicking on font family select
   await page.getByTitle('Select font family').click();
 
@@ -60,8 +60,6 @@ test('changing font family to "Al Qalam" should work', async ({ page }) => {
 test('enabling translations of french and chinese with default eng translation', async ({
   page,
 }) => {
-  await page.goto('http://localhost:8100/settings');
-
   // opening translations selecting modal in settings
   await page.getByTitle('Select translations').click();
   await page.getByPlaceholder('Search').click();
@@ -122,7 +120,6 @@ test('enabling translations of french and chinese with default eng translation',
 test('replacing default translation "Eng - Dr. Mustafa Khattab" by "Malayalam, Abdul-Hamid Haidar & Kanhi Muhammad"', async ({
   page,
 }) => {
-  await page.goto('http://localhost:8100/settings');
   // opening translations selecting modal in settings
   await page.getByTitle('Select translations').click();
 

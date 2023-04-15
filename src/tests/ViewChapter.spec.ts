@@ -2,11 +2,13 @@
 import { test, expect } from '@playwright/test';
 import { delay } from 'utils/time';
 
+test.beforeEach(async ({ page }) => {
+  await page.goto('http://localhost:8100/quran');
+});
+
 test('clicking on fatiha item should navigate to "Al-Fatihah" page', async ({
   page,
 }, testInfo) => {
-  await page.goto('http://localhost:8100/quran');
-
   // adding delay for fetching data
   await delay(2000);
 
@@ -101,7 +103,6 @@ test('on Surah 1 (al-Fatihah), "prev chapter" btn should disabled', async ({
 });
 
 test('should scroll to top fab button scroll to top', async ({ page }) => {
-  await page.goto('http://localhost:8100/quran');
   await page.getByRole('heading', { name: 'Al-Baqarah' }).click();
   await page.getByText('Click here or Scroll down to load more').click();
   await page.getByText('Click here or Scroll down to load more').click();

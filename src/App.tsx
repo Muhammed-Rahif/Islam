@@ -13,6 +13,8 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import {
   bookOutline,
+  helpOutline,
+  personOutline,
   settingsOutline,
   timeOutline,
   // chatbubble, happy
@@ -72,7 +74,7 @@ const routes: {
   // {
   //   name: 'Sunnah',
   //   path: '/sunnah',
-  //   icon: person,
+  //   icon: personOutline,
   // },
   {
     name: 'Prayer Times',
@@ -80,14 +82,9 @@ const routes: {
     icon: timeOutline,
   },
   // {
-  //   name: 'Dhikr',
-  //   path: '/dhikr',
-  //   icon: chatbubble,
-  // },
-  // {
-  //   name: 'Good Deeds',
-  //   path: '/good-deeds',
-  //   icon: happy,
+  //   name: 'Quiz',
+  //   path: '/quiz',
+  //   icon: helpOutline,
   // },
   {
     name: 'Settings',
