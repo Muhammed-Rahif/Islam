@@ -12,9 +12,11 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import {
-  book,
-  person,
-  cog,
+  bookOutline,
+  helpOutline,
+  personOutline,
+  settingsOutline,
+  timeOutline,
   // chatbubble, happy
 } from 'ionicons/icons';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -22,6 +24,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai/react';
 import { settingsAtom } from 'stores/settings';
 import { SplashScreen } from '@capacitor/splash-screen';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import dayjs from 'dayjs';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -47,9 +52,10 @@ import './theme/styles.css';
 import QuranPage from 'screens/Quran';
 import ViewChapterPage from 'screens/ViewChapter';
 import SettingsPage from 'screens/Settings';
-// const QuranPage = React.lazy(() => import('screens/Quran'));
-// const ViewChapterPage = React.lazy(() => import('screens/ViewChapter'));
-// const SettingsPage = React.lazy(() => import('screens/Settings'));
+import PrayerTimes from 'screens/PrayerTimes';
+
+dayjs.extend(relativeTime);
+dayjs.extend(customParseFormat);
 
 setupIonicReact({
   mode: 'ios',
@@ -63,27 +69,27 @@ const routes: {
   {
     name: 'Quran',
     path: '/quran',
-    icon: book,
-  },
-  {
-    name: 'Sunnah',
-    path: '/sunnah',
-    icon: person,
+    icon: bookOutline,
   },
   // {
-  //   name: 'Dhikr',
-  //   path: '/dhikr',
-  //   icon: chatbubble,
+  //   name: 'Sunnah',
+  //   path: '/sunnah',
+  //   icon: personOutline,
   // },
+  {
+    name: 'Prayer Times',
+    path: '/prayer-times',
+    icon: timeOutline,
+  },
   // {
-  //   name: 'Good Deeds',
-  //   path: '/good-deeds',
-  //   icon: happy,
+  //   name: 'Quiz',
+  //   path: '/quiz',
+  //   icon: helpOutline,
   // },
   {
     name: 'Settings',
     path: '/settings',
-    icon: cog,
+    icon: settingsOutline,
   },
 ];
 
@@ -109,13 +115,14 @@ const App: React.FC = () => {
         <IonReactRouter>
           <IonTabs>
             <IonRouterOutlet animated>
-              <Route exact path="/quran" render={() => <QuranPage />} />
+              <Route exact path="/prayer-times" component={PrayerTimes} />
+              <Route exact path="/quran" component={QuranPage} />
               <Route
                 exact
                 path="/quran/:chapterNo"
-                render={() => <ViewChapterPage />}
+                component={ViewChapterPage}
               />
-              <Route exact path="/settings" render={() => <SettingsPage />} />
+              <Route exact path="/settings" component={SettingsPage} />
 
               <Redirect exact path="/" to="/quran" />
             </IonRouterOutlet>

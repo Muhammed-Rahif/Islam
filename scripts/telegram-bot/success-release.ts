@@ -13,7 +13,7 @@ async function successReleaseMsg() {
   const toTelegramId = process.env.TELEGRAM_TO_ID || -1001890500958;
   const releaseUrl = `https://github.com/Muhammed-Rahif/Islam/releases/tag/${versionName}`;
   const changelogUrl = `https://github.com/Muhammed-Rahif/Islam/blob/${versionName}/CHANGELOG.md`;
-  const downloadUrl = `https://github.com/Muhammed-Rahif/Islam/releases/download/${versionName}/app-debug-${versionName}.apk`;
+  const downloadUrl = `https://github.com/Muhammed-Rahif/Islam/releases/download/${versionName}/app-release-${versionName}.apk`;
   const newIssueUrl = `https://github.com/Muhammed-Rahif/Islam/issues/new`;
 
   if (!versionName) throw new Error('versionName argument is required');
@@ -56,6 +56,11 @@ We encourage all developers, testers, and users to <a href="${downloadUrl}">down
   await bot.telegram.sendDocument(toTelegramId, {
     source: `android/app/build/outputs/apk/debug/app-debug.apk`,
     filename: `app-debug-${versionName}.apk`,
+  });
+
+  await bot.telegram.sendDocument(toTelegramId, {
+    source: `android/app/build/outputs/apk/release/app-release.apk`,
+    filename: `app-release-${versionName}.apk`,
   });
 
   bot.launch();

@@ -16,7 +16,6 @@ function useChapersList() {
     staleTime: Infinity,
     cacheTime: Infinity,
     structuralSharing: false,
-    notifyOnChangeProps: ['data', 'error', 'isLoading'],
   });
 }
 

@@ -15,7 +15,6 @@ function useTranslations() {
     staleTime: Infinity,
     cacheTime: Infinity,
     structuralSharing: false,
-    notifyOnChangeProps: ['data'],
   });
 }
 

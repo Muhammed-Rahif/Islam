@@ -15,6 +15,7 @@ Before you can start developing, you will need to make sure the following are in
 - @ionic/cli
 - @capacitor/cli
 - Git
+- Git Conventional Commits
 
 You can install these globally by running the following commands:
 
@@ -30,6 +31,9 @@ npm install -g yarn
 
 # Install @ionic/cli and @capacitor/cli
 npm install -g @ionic/cli @capacitor/cli
+
+# Install Git Conventional Commits
+npm install --global git-conventional-commits
 ```
 
 ## Setting up the project
@@ -44,6 +48,12 @@ git clone https://github.com/Muhammed-Rahif/Islam.
 
 ```bash
 cd Islam
+```
+
+3. Initialize git conventional commits
+
+```bash
+git-conventional-commits init
 ```
 
 Now open the project in [VS Code](https://code.visualstudio.com/) or your preferred code editor.
@@ -92,7 +102,7 @@ Please use one of the following prefixes to indicate the type of change:
 - test: for adding or updating tests
 - chore: for other changes, such as build process, dependencies, or tooling.
 
-For more advanced commit message, [check this](https://gist.github.com/Muhammed-Rahif/cf0d4b78f6ec8ea6ef2e2e6025b7e37f).
+For more advanced commit message, [Semantic Commit Messages](https://gist.github.com/Muhammed-Rahif/cf0d4b78f6ec8ea6ef2e2e6025b7e37f) and [Conventional Commit Messages](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13). You can check and use any scopes and options from [git-conventional-commits.yaml](git-conventional-commits.yaml) file.
 
 **5. Create a pull request (PR) for your changes:**
 

@@ -10,6 +10,11 @@ const config: CapacitorConfig = {
       launchShowDuration: 7000,
       launchAutoHide: true,
     },
+    LocalNotifications: {
+      smallIcon: 'icon_black',
+      iconColor: '#ffffff',
+      sound: 'beep.wav',
+    },
   },
 };
 

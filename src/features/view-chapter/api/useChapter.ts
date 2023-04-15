@@ -20,7 +20,6 @@ function useChapter({ chapterId }: Props) {
     staleTime: Infinity,
     cacheTime: Infinity,
     structuralSharing: false,
-    notifyOnChangeProps: ['data', 'isLoading', 'error'],
   });
 }
 

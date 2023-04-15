@@ -29,7 +29,7 @@ yarn-error.log*
 # Optional eslint cache
 .eslintcache
 
-my-release-key.keystore
+release-key.keystore
 env.local
 /test-results/
 /playwright-report/

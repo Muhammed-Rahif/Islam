@@ -6,12 +6,16 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import { QuranSettings, GeneralSettings } from 'features/settings';
+import {
+  QuranSettings,
+  GeneralSettings,
+  PrayerNotificationSettings,
+} from 'features/settings';
 
 const Settings: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader translucent>
         <IonToolbar>
           <IonTitle>Settings</IonTitle>
         </IonToolbar>
@@ -20,6 +24,7 @@ const Settings: React.FC = () => {
         <IonList>
           <GeneralSettings />
           <QuranSettings />
+          <PrayerNotificationSettings />
         </IonList>
       </IonContent>
     </IonPage>
