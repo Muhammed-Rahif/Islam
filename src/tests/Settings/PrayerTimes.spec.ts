@@ -29,7 +29,6 @@ test('changing prayer timing method to "Qatar" should update the times screen', 
   await delay(1000);
 
   const timingMethod = await page.locator('#timing-method').innerText();
-  console.log(timingMethod);
 
   expect(timingMethod).toMatch(/Qatar/gi);
 });
