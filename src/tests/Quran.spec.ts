@@ -3,9 +3,11 @@
 import { test, expect } from '@playwright/test';
 import { delay } from 'utils/time';
 
-test('have "Quran" named toolbar', async ({ page }) => {
+test.beforeEach(async ({ page }) => {
   await page.goto('http://localhost:8100/quran');
+});
 
+test('have "Quran" named toolbar', async ({ page }) => {
   // the title in the header toolbar
   const quranTitle = page.locator('ion-title');
 
@@ -14,8 +16,6 @@ test('have "Quran" named toolbar', async ({ page }) => {
 });
 
 test('should "Quran" title visible', async ({ page }) => {
-  await page.goto('http://localhost:8100/quran');
-
   // Expects the title to be in viewport.
   const quranTitleInViewport = page.locator('ion-title').filter({
     hasText: 'Quran',
@@ -24,8 +24,6 @@ test('should "Quran" title visible', async ({ page }) => {
 });
 
 test('have segment btn with text of "Surah"', async ({ page }) => {
-  await page.goto('http://localhost:8100/quran');
-
   const ionSegBtn = page
     .locator('ion-segment-button')
     .filter({ hasText: 'Juz' });
@@ -37,8 +35,6 @@ test('have segment btn with text of "Surah"', async ({ page }) => {
 test('in "Revelation Order", surah Alaq should be visible', async ({
   page,
 }) => {
-  await page.goto('http://localhost:8100/quran');
-
   await page
     .locator('ion-segment-button')
     .filter({ hasText: 'Revelation Order' })
@@ -48,7 +44,6 @@ test('in "Revelation Order", surah Alaq should be visible', async ({
 });
 
 test('search for "Mulk" should show mulk surah', async ({ page }) => {
-  await page.goto('http://localhost:8100/quran');
   await page.getByPlaceholder('Search').click();
   await page.getByPlaceholder('Search').fill('mulk');
   await delay(1000);
@@ -61,7 +56,6 @@ test('search for "Mulk" should show mulk surah', async ({ page }) => {
 test('scroll down to bottom, surah "Al-Nas" should be visible', async ({
   page,
 }) => {
-  await page.goto('http://localhost:8100/quran');
   const alNasSurah = page.getByText('An-NasMankind');
   await delay(1000);
 
