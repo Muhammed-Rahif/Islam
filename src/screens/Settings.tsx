@@ -36,6 +36,17 @@ const Settings: React.FC = () => {
 
           <IonItemGroup className="pb-3">
             <IonItem
+              href="https://t.me/islam_app_community"
+              target="_blank"
+              lines="none"
+              className="[--padding-start:0px] [--inner-padding-end:0px] cursor-pointer duration-300"
+            >
+              <IonLabel>
+                <b>Report a problem</b>
+              </IonLabel>
+            </IonItem>
+
+            <IonItem
               routerLink="/about"
               lines="none"
               className="[--padding-start:0px] [--inner-padding-end:0px] cursor-pointer duration-300"
