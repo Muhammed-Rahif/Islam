@@ -3,7 +3,9 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonItem,
   IonItemDivider,
+  IonLabel,
   IonPage,
   IonText,
   IonTitle,
@@ -63,9 +65,15 @@ const About: React.FC = () => {
 
         <ListContributors />
 
-        <IonText className="opacity-30 text-center">
-          <p className="mt-6 mb-4">App version {packageJson.version}</p>
-        </IonText>
+        <IonItem
+          href={`https://github.com/Muhammed-Rahif/Islam/releases/tag/${packageJson.version}`}
+          target="_blank"
+          lines="none"
+          className="[--padding-start:0px] opacity-40 [--inner-padding-end:0px] cursor-pointer duration-300"
+        >
+          <IonLabel>App version</IonLabel>
+          <IonLabel slot="end">{packageJson.version}</IonLabel>
+        </IonItem>
       </IonContent>
     </IonPage>
   );

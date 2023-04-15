@@ -28,7 +28,7 @@ const Settings: React.FC = () => {
           <IonTitle>Settings</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen scrollY={false} className="ion-padding">
+      <IonContent fullscreen className="ion-padding">
         <IonList>
           <GeneralSettings />
           <QuranSettings />
@@ -41,9 +41,7 @@ const Settings: React.FC = () => {
               lines="none"
               className="[--padding-start:0px] [--inner-padding-end:0px] cursor-pointer duration-300"
             >
-              <IonLabel>
-                <b>Report a problem</b>
-              </IonLabel>
+              <IonLabel>Report a problem</IonLabel>
             </IonItem>
 
             <IonItem
@@ -55,12 +53,18 @@ const Settings: React.FC = () => {
                 <b>About</b>
               </IonLabel>
             </IonItem>
+
+            <IonItem
+              href={`https://github.com/Muhammed-Rahif/Islam/releases/tag/${packageJson.version}`}
+              target="_blank"
+              lines="none"
+              className="[--padding-start:0px] [--inner-padding-end:0px] cursor-pointer duration-300"
+            >
+              <IonLabel>App version</IonLabel>
+              <IonLabel slot="end">{packageJson.version}</IonLabel>
+            </IonItem>
           </IonItemGroup>
         </IonList>
-
-        <IonText className="opacity-30 text-center">
-          <p className="mt-6 mb-4">App version {packageJson.version}</p>
-        </IonText>
       </IonContent>
     </IonPage>
   );
