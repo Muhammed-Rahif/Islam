@@ -70,24 +70,6 @@ const Quran: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent ref={contentRef} fullscreen scrollY={false}>
-        <IonRefresher
-          slot="fixed"
-          onIonRefresh={async (e) => {
-            Promise.all([await refetchChapters(), await refetchAllJuzs()])
-              .catch((err) =>
-                presentToast({
-                  message: err.message,
-                  duration: 4500,
-                  position: 'bottom',
-                  icon: alertCircle,
-                })
-              )
-              .finally(e.detail.complete);
-          }}
-        >
-          <IonRefresherContent></IonRefresherContent>
-        </IonRefresher>
-
         {isLoading && (
           <div className="w-full h-3/4 grid place-items-center">
             <IonSpinner />
