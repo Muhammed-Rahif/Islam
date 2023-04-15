@@ -19,7 +19,6 @@ const ChapterItem: React.FC<ChapterItemProps> = React.memo(
         routerLink={`/quran/${id}?type=reading`}
         style={style}
       >
-        <IonRippleEffect type="unbounded" />
         <h1 className="my-2 ml-1 mr-4">
           <b>{id}</b>
         </h1>

@@ -1,5 +1,5 @@
 import {
-  ChaptersList,
+  ListChapters,
   ChapterSortBy,
   useAllJuzs,
   useChapersList,
@@ -86,7 +86,7 @@ const Quran: React.FC = () => {
         )}
 
         {chaptersData?.chapters && (
-          <ChaptersList
+          <ListChapters
             chapters={chaptersData?.chapters ?? []}
             juzs={allJuzsData?.juzs ?? []}
             search={search}
