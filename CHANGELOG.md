@@ -1,3 +1,10 @@
+# [1.5.0-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.5.0-beta.1...v1.5.0-beta.2) (2023-04-16)
+
+
+### Features
+
+* **about:** add stargazers section ([72873e8](https://github.com/Muhammed-Rahif/Islam/commit/72873e83f00e69af95e5cc0e4fa2d535c8761a7e))
+
 # [1.5.0-beta.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.4.0...v1.5.0-beta.1) (2023-04-16)
 
 
