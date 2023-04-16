@@ -7,13 +7,14 @@ interface Props {
   pages: {
     start: number;
     end: number;
+    continue?: number;
   };
 }
 
 function useVersesUthmani({ chapterId, pages }: Props) {
   return useInfiniteQuery({
     queryKey: ['verses-uthmani', chapterId, pages],
-    queryFn: async ({ pageParam = pages.start }) => {
+    queryFn: async ({ pageParam = pages.continue ?? pages.start }) => {
       const { data }: { data: VersesUthmani } = await quranApiInstance.get(
         `https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=${chapterId}&page_number=${pageParam}`
       );

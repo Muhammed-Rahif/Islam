@@ -1,6 +1,8 @@
 import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
+  IonRefresher,
+  IonRefresherContent,
   IonSpinner,
   useIonToast,
 } from '@ionic/react';
@@ -16,6 +18,7 @@ type Props = {
   pages: {
     start: number;
     end: number;
+    continue?: number;
   };
   bismiPre?: boolean;
 };
@@ -29,6 +32,8 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, pages }) => {
     fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
+    fetchPreviousPage,
+    hasPreviousPage,
   } = useVersesUthmani({
     chapterId: parseInt(chapterNo),
     pages,
@@ -50,7 +55,18 @@ const ReadingContent: React.FC<Props> = ({ bismiPre, pages }) => {
 
   return (
     <div className="[direction:rtl] leading-9 text-justify h-full">
-      {!isLoading && bismiPre && <BismiVerse />}
+      <IonRefresher
+        slot="fixed"
+        disabled={!hasPreviousPage}
+        onIonRefresh={async (e) => {
+          await fetchPreviousPage();
+          e.detail.complete();
+        }}
+      >
+        <IonRefresherContent />
+      </IonRefresher>
+
+      {!hasPreviousPage && !isLoading && bismiPre && <BismiVerse />}
 
       {/* maping through pages */}
       {versesUthmaniData?.pages.map((versesUthmani, index) => (

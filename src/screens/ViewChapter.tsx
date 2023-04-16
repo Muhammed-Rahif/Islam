@@ -48,18 +48,18 @@ const ViewChapter: React.FC = () => {
     routeInfo: { search },
   } = useIonRouter();
 
-  const { type: typeParam } = useMemo(() => {
+  const { mode: modeParam } = useMemo(() => {
     const query = new URLSearchParams(search);
-    let type = query.get('type');
+    let mode = query.get('mode');
 
-    // setting type to 'reading' when there is no 'type' param or 'type' param is other than 'translation' or 'reading'
-    if (!type || (type !== 'reading' && type !== 'translation'))
-      type = 'reading';
+    // setting mode to 'reading' when there is no 'mode' param or 'mode' param is other than 'translation' or 'reading'
+    if (!mode || (mode !== 'reading' && mode !== 'translation'))
+      mode = 'reading';
 
-    return { type };
+    return { mode };
   }, [search]);
 
-  const [type, setType] = useState(typeParam);
+  const [mode, setMode] = useState(modeParam);
 
   return (
     <IonPage>
@@ -78,8 +78,8 @@ const ViewChapter: React.FC = () => {
         <IonToolbar>
           <IonSegment
             className="w-full max-w-[calc(100%-1.5rem)] mx-auto mb-1.5"
-            value={type}
-            onIonChange={(e) => setType(e.detail.value!)}
+            value={mode}
+            onIonChange={(e) => setMode(e.detail.value!)}
           >
             <IonSegmentButton value="translation">
               <IonLabel>Translation</IonLabel>
@@ -108,8 +108,11 @@ const ViewChapter: React.FC = () => {
           </div>
         )}
 
-        {type === 'translation' ? (
-          <TranslationContent bismiPre={chapterData?.chapter.bismillah_pre} />
+        {mode === 'translation' ? (
+          <TranslationContent
+            startFrom={2}
+            bismiPre={chapterData?.chapter.bismillah_pre}
+          />
         ) : (
           <>
             {/* 

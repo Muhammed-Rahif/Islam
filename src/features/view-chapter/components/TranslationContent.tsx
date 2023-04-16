@@ -1,6 +1,8 @@
 import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
+  IonRefresher,
+  IonRefresherContent,
   IonSpinner,
   useIonToast,
 } from '@ionic/react';
@@ -15,9 +17,10 @@ import DisplayError from 'components/DisplayError';
 
 type Props = {
   bismiPre?: boolean;
+  startFrom?: number;
 };
 
-const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
+const TranslationContent: React.FC<Props> = ({ bismiPre, startFrom }) => {
   const { chapterNo: chapterNo } = useParams<{ chapterNo: string }>();
   const { quran: quranSettings } = useAtomValue(settingsAtom);
   const [presentToast] = useIonToast();
@@ -29,13 +32,27 @@ const TranslationContent: React.FC<Props> = ({ bismiPre }) => {
     fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
+    fetchPreviousPage,
+    hasPreviousPage,
   } = useChapterVerses({
     chapterId: parseInt(chapterNo),
     translations: quranSettings.translations.map((t) => t.id),
+    startFrom,
   });
 
   return (
     <div className="h-full">
+      <IonRefresher
+        slot="fixed"
+        disabled={!hasPreviousPage}
+        onIonRefresh={async (e) => {
+          await fetchPreviousPage();
+          e.detail.complete();
+        }}
+      >
+        <IonRefresherContent />
+      </IonRefresher>
+
       {!isLoading && bismiPre && <BismiVerse />}
 
       {chapterVerses?.pages.map((chapterVerses) =>
