@@ -48,10 +48,12 @@ const ListContributors: React.FC<ListContributorsProps> = ({}) => {
       {data
         // filtering users only from contributors to avoid bots
         ?.filter(({ login, type }) => type == 'User' && !login.endsWith('bot'))
-        ?.map(({ login, contributions, avatar_url }) => (
+        ?.map(({ login, contributions, html_url, avatar_url }) => (
           <IonItem
             className="[--padding-start:0px] [--inner-padding-end:0px]"
             key={login}
+            href={html_url}
+            target="_blank"
           >
             <IonAvatar slot="start">
               <img alt={login} src={avatar_url} />
