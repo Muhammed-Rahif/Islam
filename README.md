@@ -78,11 +78,19 @@ We hope that the Islam Application will prove to be a valuable resource for Musl
 
 The Islam Application includes the following features:
 
-- Access to the Quran, Sunnah, and Dhikrs
-- Dark and white mode available
-- Made with Ionic iOS theme
-- Prayer Time
-- Prayer Notification
+- Read the Holy Quran with 147+ translations
+- Dark and white mode options for reading
+- Built with the Ionic iOS theme for a seamless and responsive experience
+- Location-based prayer times feature provides accurate timings for sunset, sunrise, first third, last third, and midnight times
+- Choose from over 15 prayer time calculation methods, including Ummul Qura University and Muslim World League
+- Set reminders for prayer times with notifications to never miss a prayer again
+- About screen with contributors list
+- Change font size and font family from 18+ handpicked options
+- Easily switch between reading mode and translations, and move to next or previous chapter or scroll to top of the chapter
+- Sort Quran chapters by Surah no, revelation order, or juzs order
+- Efficient search function for Quran chapters
+- Countdown for the next prayer
+- Display of Hijri and Gregorian date of today.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
