@@ -65,7 +65,7 @@ const ViewChapter: React.FC = () => {
     <IonPage>
       <IonHeader translucent>
         <IonToolbar>
-          <IonButtons className="flex items-center justify-center" slot="start">
+          <IonButtons>
             <IonBackButton type="reset" defaultHref="/"></IonBackButton>
           </IonButtons>
           <IonTitle>

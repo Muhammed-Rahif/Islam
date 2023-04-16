@@ -48,11 +48,12 @@ import '@ionic/react/css/display.css';
 import './theme/variables.scss';
 import './theme/styles.scss';
 
-/* Pages */
-import QuranPage from 'screens/Quran';
-import ViewChapterPage from 'screens/ViewChapter';
-import SettingsPage from 'screens/Settings';
-import PrayerTimes from 'screens/PrayerTimes';
+/* Screens */
+import QuranScreen from 'screens/Quran';
+import ViewChapterScreen from 'screens/ViewChapter';
+import SettingsScreen from 'screens/Settings';
+import PrayerTimesScreen from 'screens/PrayerTimes';
+import AboutScreen from 'screens/About';
 
 dayjs.extend(relativeTime);
 dayjs.extend(customParseFormat);
@@ -115,14 +116,15 @@ const App: React.FC = () => {
         <IonReactRouter>
           <IonTabs>
             <IonRouterOutlet animated>
-              <Route exact path="/prayer-times" component={PrayerTimes} />
-              <Route exact path="/quran" component={QuranPage} />
+              <Route exact path="/prayer-times" component={PrayerTimesScreen} />
+              <Route exact path="/quran" component={QuranScreen} />
               <Route
                 exact
                 path="/quran/:chapterNo"
-                component={ViewChapterPage}
+                component={ViewChapterScreen}
               />
-              <Route exact path="/settings" component={SettingsPage} />
+              <Route exact path="/about" component={AboutScreen} />
+              <Route exact path="/settings" component={SettingsScreen} />
 
               <Redirect exact path="/" to="/quran" />
             </IonRouterOutlet>

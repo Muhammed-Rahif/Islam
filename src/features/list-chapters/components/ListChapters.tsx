@@ -7,14 +7,14 @@ import { FixedSizeList as List } from 'react-window';
 import { Chapter } from '../types/Chapter';
 import { Juz } from '../types/Juz';
 
-interface ChapetersListProps {
+interface ListChaptersProps {
   sortBy: ChapterSortBy;
   search: string;
   chapters: Chapter[];
   juzs: Juz[];
 }
 
-const ChaptersList: React.FC<ChapetersListProps> = ({
+const ListChapters: React.FC<ListChaptersProps> = ({
   sortBy = 'surah',
   search,
   chapters,
@@ -94,4 +94,4 @@ const ChaptersList: React.FC<ChapetersListProps> = ({
   );
 };
 
-export { ChaptersList };
+export { ListChapters };

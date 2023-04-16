@@ -1,5 +1,5 @@
 import {
-  ChaptersList,
+  ListChapters,
   ChapterSortBy,
   useAllJuzs,
   useChapersList,
@@ -69,7 +69,12 @@ const Quran: React.FC = () => {
           </IonSegment>
         </IonToolbar>
       </IonHeader>
-      <IonContent ref={contentRef} fullscreen scrollY={false}>
+      <IonContent
+        ref={contentRef}
+        className="ion-padding-horizontal"
+        fullscreen
+        scrollY={false}
+      >
         {isLoading && (
           <div className="w-full h-3/4 grid place-items-center">
             <IonSpinner />
@@ -86,7 +91,7 @@ const Quran: React.FC = () => {
         )}
 
         {chaptersData?.chapters && (
-          <ChaptersList
+          <ListChapters
             chapters={chaptersData?.chapters ?? []}
             juzs={allJuzsData?.juzs ?? []}
             search={search}
