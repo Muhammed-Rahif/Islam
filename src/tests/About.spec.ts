@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-test('should have "about" screen contents', async ({ page }) => {
+test.beforeEach(async ({ page }) => {
   await page.goto('http://localhost:8100/about');
+});
 
+test('should have "about" screen contents', async ({ page }) => {
   const aboutHeading = page.getByText(
     'The Islam Application - Your Comprehensive Resource for Enhancing Your Knowledge'
   );
@@ -13,16 +15,14 @@ test('should have "about" screen contents', async ({ page }) => {
   const contributorsTitle = page.getByRole('heading', {
     name: 'Our Contributors',
   });
-
-  const authorName = page.getByRole('heading', {
-    name: 'Muhammed-Rahif',
-  });
+  const stargazersTitle = page.getByRole('heading', { name: 'Our Stargazers' });
 
   for (const element of [
     aboutHeading,
     aboutParaStartgin,
     contributorsTitle,
-    authorName,
+    contributorsTitle,
+    stargazersTitle,
   ]) {
     await expect(element).toBeVisible();
   }

@@ -3,13 +3,11 @@ import {
   IonButton,
   IonIcon,
   IonItem,
-  IonItemGroup,
   IonLabel,
   IonSpinner,
   IonText,
-  useIonViewDidEnter,
 } from '@ionic/react';
-import React, { useMemo, useRef, useState } from 'react';
+import React from 'react';
 // import { FixedSizeList as List } from 'react-window';
 import { useContributors } from '../api/useContributors';
 import { cardOutline, personOutline } from 'ionicons/icons';
