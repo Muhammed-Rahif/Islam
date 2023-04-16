@@ -60,8 +60,8 @@
 <a name="screenshots"></a>
 
 <div align=center>
-<img src=resources/screenshots/light-mode.png >
-<img src=resources/screenshots/dark-mode.png >
+<img src=resources/screenshots/1.png >
+<img src=resources/screenshots/2.png >
 </div>
 
 <p>The Islam Application is a mobile app created for Muslims, offering access to the Quran, Sunnah, and Dhikrs. The app is designed to serve as a valuable resource for Muslims who are looking to enhance their knowledge and practice of Islam.
@@ -81,6 +81,8 @@ The Islam Application includes the following features:
 - Access to the Quran, Sunnah, and Dhikrs
 - Dark and white mode available
 - Made with Ionic iOS theme
+- Prayer Time
+- Prayer Notification
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
