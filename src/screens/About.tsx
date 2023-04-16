@@ -13,6 +13,7 @@ import {
 } from '@ionic/react';
 import { ListContributors } from 'features/list-contributors';
 import packageJson from '../../package.json';
+import { ListStargazers } from 'features/list-stargazers';
 
 const About: React.FC = () => {
   return (
@@ -64,6 +65,8 @@ const About: React.FC = () => {
         <hr className="mt-3 mb-5  opacity-20" />
 
         <ListContributors />
+        <hr className="opacity-20 my-4" />
+        <ListStargazers />
 
         <IonItem
           href={`https://github.com/Muhammed-Rahif/Islam/releases/tag/${packageJson.version}`}
