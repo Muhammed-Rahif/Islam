@@ -82,7 +82,7 @@ The Islam Application includes the following features:
 - Dark and white mode available
 - Made with Ionic iOS theme
 - Prayer Time
-- Prayer Notifiction
+- Prayer Notification
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
