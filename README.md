@@ -82,7 +82,7 @@ The Islam Application includes the following features:
 - Dark and white mode options for reading
 - Built with the Ionic iOS theme for a seamless and responsive experience
 - Location-based prayer times feature provides accurate timings for sunset, sunrise, first third, last third, and midnight times
-- Choose from over 15 prayer time calculation methods, including Ummul Qura University and Muslim World League
+- Choose from over 15+ prayer time calculation methods, default to Ummul Qura University
 - Set reminders for prayer times with notifications to never miss a prayer again
 - About screen with contributors list
 - Change font size and font family from 18+ handpicked options
