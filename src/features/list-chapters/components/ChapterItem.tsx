@@ -14,7 +14,7 @@ const ChapterItem: React.FC<ChapterItemProps> = React.memo(
     return (
       <IonItem
         key={id}
-        className="flex items-center w-full [--inner-padding-end:0px] -z-0"
+        className="flex items-center w-full [--padding-start:0px] [--inner-padding-end:0px] -z-0"
         button
         routerLink={`/quran/${id}?type=reading`}
         style={style}
