@@ -81,6 +81,8 @@ The Islam Application includes the following features:
 - Access to the Quran, Sunnah, and Dhikrs
 - Dark and white mode available
 - Made with Ionic iOS theme
+- Prayer Time
+- Prayer Notifiction
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
