@@ -3,13 +3,11 @@ import {
   IonButton,
   IonIcon,
   IonItem,
-  IonItemGroup,
   IonLabel,
   IonSpinner,
   IonText,
-  useIonViewDidEnter,
 } from '@ionic/react';
-import React, { useMemo, useRef, useState } from 'react';
+import React from 'react';
 // import { FixedSizeList as List } from 'react-window';
 import { useContributors } from '../api/useContributors';
 import { cardOutline, personOutline } from 'ionicons/icons';
@@ -48,10 +46,12 @@ const ListContributors: React.FC<ListContributorsProps> = ({}) => {
       {data
         // filtering users only from contributors to avoid bots
         ?.filter(({ login, type }) => type == 'User' && !login.endsWith('bot'))
-        ?.map(({ login, contributions, avatar_url }) => (
+        ?.map(({ login, contributions, html_url, avatar_url }) => (
           <IonItem
             className="[--padding-start:0px] [--inner-padding-end:0px]"
             key={login}
+            href={html_url}
+            target="_blank"
           >
             <IonAvatar slot="start">
               <img alt={login} src={avatar_url} />
