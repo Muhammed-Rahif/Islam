@@ -62,10 +62,10 @@ const About: React.FC = () => {
           </p>
         </IonText>
 
-        <hr className="mt-3 mb-5  opacity-20" />
+        <hr className="my-3 opacity-20" />
 
         <ListContributors />
-        <hr className="opacity-20 my-4" />
+        <hr className="opacity-20 my-3" />
         <ListStargazers />
 
         <IonItem

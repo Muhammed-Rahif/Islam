@@ -13,21 +13,17 @@ html {
   --ion-font-family: 'Mulish', sans-serif;
 }
 
-[lang='ar'] * {
-  font-family: 'Me Quran', serif;
-  text-align: justify;
-}
-
 [lang='ar'] {
   font-family: 'Me Quran', serif;
   text-align: justify;
+  direction: rtl;
 }
 
-[lang='ar']:after {
-  content: '';
-  display: inline-block;
-  width: 100%;
-}
+// [lang='ar']:after {
+//   content: '';
+//   display: inline-block;
+//   width: 100%;
+// }
 
 ion-refresher {
   z-index: 50;
@@ -44,6 +40,11 @@ body.dark {
 
 .alert-wrapper {
   background: #e5e5e5;
+}
+
+@font-face {
+  font-family: 'Uthmanic Script';
+  src: url('/assets/fonts/Uthmanic Script.otf') format('truetype');
 }
 
 @font-face {

@@ -47,6 +47,7 @@ export const availableSettings = {
   quran: {
     fontSize: ['75%', '100%', '125%', '150%', '175%', '200%'],
     fontFamily: [
+      // 'Uthmanic Script',
       'Me Quran',
       'Al Qalam',
       'Noorehira',
