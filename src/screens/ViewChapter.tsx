@@ -7,6 +7,8 @@ import {
   IonFabList,
   IonHeader,
   IonIcon,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonLabel,
   IonPage,
   IonSegment,
@@ -18,9 +20,11 @@ import {
 } from '@ionic/react';
 import { createRef, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useChapter } from 'features/view-chapter';
-import { ReadingContent } from 'features/view-chapter';
-import { TranslationContent } from 'features/view-chapter';
+import {
+  ReadingQuran,
+  useChapter,
+  useChapterVerses,
+} from 'features/reading-quran';
 import {
   arrowRedoOutline,
   arrowUndoOutline,
@@ -28,6 +32,7 @@ import {
   swapHorizontal,
 } from 'ionicons/icons';
 import DisplayError from 'components/DisplayError';
+import { BismiVerse } from 'components/BismiVerse';
 
 const ViewChapter: React.FC = () => {
   const contentRef = createRef<HTMLIonContentElement>();
@@ -41,6 +46,15 @@ const ViewChapter: React.FC = () => {
     error: chapterDataError,
     refetch,
   } = useChapter({
+    chapterId: parseInt(chapterNo),
+  });
+  const {
+    data: chapterVersesData,
+    isLoading: isVersesLoading,
+    error: versesError,
+    fetchNextPage,
+    hasNextPage,
+  } = useChapterVerses({
     chapterId: parseInt(chapterNo),
   });
 
@@ -93,46 +107,50 @@ const ViewChapter: React.FC = () => {
 
       <IonContent className="ion-padding" ref={contentRef} fullscreen>
         {/* when error appears */}
-        {chapterDataError ? (
+        {chapterDataError || versesError ? (
           <DisplayError
             className="h-full"
-            error={chapterDataError}
+            error={chapterDataError ?? versesError}
             onRetry={refetch}
           />
         ) : null}
 
         {/* when api is loading */}
-        {isChapterLoading && (
+        {(isChapterLoading || isVersesLoading) && (
           <div className="w-full h-full grid place-items-center">
             <IonSpinner />
           </div>
         )}
 
-        {mode === 'translation' ? (
-          <TranslationContent
-            startFrom={2}
-            bismiPre={chapterData?.chapter.bismillah_pre}
-          />
-        ) : (
-          <>
-            {/* 
-              only render if the 'pages.start' data is availiable, 
-              because this required in child component to fetch data.
-            */}
-            {chapterData?.chapter.pages.length && (
-              <ReadingContent
-                bismiPre={chapterData?.chapter.bismillah_pre}
-                pages={{
-                  start: chapterData.chapter.pages[0],
-                  end: chapterData.chapter.pages[1],
-                }}
+        <div className="container mx-auto text-base overflow-hidden">
+          {mode === 'translation' ? (
+            <></>
+          ) : (
+            <>
+              {!(isChapterLoading || isVersesLoading) &&
+                chapterData?.chapter.bismillah_pre && <BismiVerse />}
+              <ReadingQuran
+                verses={
+                  chapterVersesData?.pages.map(({ verses }) => verses).flat() ??
+                  []
+                }
               />
-            )}
-          </>
-        )}
+            </>
+          )}
+        </div>
+
+        <IonInfiniteScroll
+          disabled={!hasNextPage}
+          onIonInfinite={async (ev) => {
+            await fetchNextPage();
+            ev.target.complete();
+          }}
+        >
+          <IonInfiniteScrollContent />
+        </IonInfiniteScroll>
       </IonContent>
 
-      <IonFab
+      {/* <IonFab
         slot="fixed"
         horizontal="end"
         vertical="bottom"
@@ -165,7 +183,7 @@ const ViewChapter: React.FC = () => {
             <IonIcon icon={arrowUndoOutline}></IonIcon>
           </IonFabButton>
         </IonFabList>
-      </IonFab>
+      </IonFab> */}
     </IonPage>
   );
 };

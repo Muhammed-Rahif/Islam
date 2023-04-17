@@ -15,6 +15,7 @@ export interface Verse {
   id: number;
   verse_number: number;
   verse_key: string;
+  text_uthmani: string;
   hizb_number: number;
   rub_el_hizb_number: number;
   ruku_number: number;

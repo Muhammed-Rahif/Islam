@@ -12,7 +12,7 @@ interface Props {
 
 function useChapterVerses({
   chapterId,
-  per_page = 10,
+  per_page = window.innerHeight > 600 ? 20 : 10,
   words = true,
   translations = [131],
   startFrom = 1,
@@ -21,7 +21,7 @@ function useChapterVerses({
     queryKey: ['chapter-verses', chapterId, per_page, translations, words],
     queryFn: async ({ pageParam = startFrom }) => {
       const { data }: { data: VersesByChapter } = await quranApiInstance.get(
-        `/verses/by_chapter/${chapterId}?words=${words}&page=${pageParam}&per_page=${per_page}&word_fields=text-uthmani,location,audio_url&translations=${translations.join(
+        `/verses/by_chapter/${chapterId}?words=${words}&page=${pageParam}&per_page=${per_page}&fields=text_uthmani&word_fields=text_uthmani,location,audio_url&translations=${translations.join(
           ','
         )}&translation_fields=resource_name`
       );
