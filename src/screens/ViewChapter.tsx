@@ -155,7 +155,17 @@ const ViewChapter: React.FC = () => {
             />
           )}
 
-          {!hasNextPage && <Divider text="End" />}
+          {hasNextPage && (
+            <p
+              role="button"
+              onClick={async () => await fetchNextPage()}
+              className="opacity-20 my-3.5 text-center active:scale-95 duration-300 text-xs [font-family:var(--ion-font-family)] cursor-pointer"
+            >
+              Click here or Scroll down to load rest of the chapter
+            </p>
+          )}
+
+          {!hasNextPage && <Divider text="The End" />}
         </div>
 
         <IonInfiniteScroll

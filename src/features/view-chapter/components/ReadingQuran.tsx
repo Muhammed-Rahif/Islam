@@ -1,16 +1,7 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment } from 'react';
 import { Verse } from '../types/VersesByChapter';
 import { useAtom, useAtomValue } from 'jotai/react';
 import { settingsAtom } from 'stores/settings';
-import smoothScrollIntoView from 'smooth-scroll-into-view-if-needed';
-import { IonChip, IonIcon, IonLabel } from '@ionic/react';
-import Draggable from 'react-draggable';
-import {
-  chevronForwardOutline,
-  closeOutline,
-  pencilOutline,
-  pinOutline,
-} from 'ionicons/icons';
 import LastReadChip from 'components/LastReadChip';
 import { AnimatePresence } from 'framer-motion';
 import { quranLastReadAtom } from 'stores/quranLastRead';
