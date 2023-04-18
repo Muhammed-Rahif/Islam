@@ -44,7 +44,7 @@
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
     "react-virtuoso": "^4.2.1",
-    "react-window": "^1.8.8",
+    "react-window": "^1.8.9",
     "sass": "^1.62.0",
     "smooth-scroll-into-view-if-needed": "^2.0.0",
     "telegraf": "^4.12.2",
