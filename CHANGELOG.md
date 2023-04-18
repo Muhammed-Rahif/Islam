@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/Muhammed-Rahif/Islam/compare/v1.4.0...v1.5.0) (2023-04-16)
+
+
+### Bug Fixes
+
+* **ui:** chapter item padding ([7e06c5f](https://github.com/Muhammed-Rahif/Islam/commit/7e06c5fd545dd7c7bfd9ff0c5b2de43284576717))
+* **ui:** some improvements in settings and about screen ([6477657](https://github.com/Muhammed-Rahif/Islam/commit/6477657636d9a8c5d3c3b4b9e557d4a0115ff2d5))
+
+
+### Features
+
+* **about:** add about screen with contributors list ([14916a2](https://github.com/Muhammed-Rahif/Islam/commit/14916a2cb452d3792aa99bdda06ad960321d0459))
+* **about:** add stargazers section ([72873e8](https://github.com/Muhammed-Rahif/Islam/commit/72873e83f00e69af95e5cc0e4fa2d535c8761a7e))
+
 # [1.5.0-beta.2](https://github.com/Muhammed-Rahif/Islam/compare/v1.5.0-beta.1...v1.5.0-beta.2) (2023-04-16)
 
 
