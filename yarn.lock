@@ -8193,10 +8193,10 @@ react-router@5.3.4, react-router@^5.3.4:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-virtuoso@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/react-virtuoso/-/react-virtuoso-4.2.1.tgz#7d37ea16cd771239009aa0a58d4af85e28144cae"
-  integrity sha512-IdbKabxa2Mq6f9m6BflvyzAbUHt0btCSq9rw2omcGAQt7ze80s2y6a2TvmSne1wLd0+75FgMGki2ru/dcAVmSQ==
+react-virtuoso@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/react-virtuoso/-/react-virtuoso-4.2.2.tgz#13f2e4d1d0e7a0dcbc94da4c1948887e535b26ce"
+  integrity sha512-qF0yULGH7pzIZOpCAike9KssDiWkG3o/ldQGwZpUKMDH8TPyFHUObvT8+wvksz64gdQZqspRWHeCdiAM6sLYyQ==
 
 react-window@^1.8.9:
   version "1.8.9"
