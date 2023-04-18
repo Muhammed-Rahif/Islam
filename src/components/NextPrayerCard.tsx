@@ -12,7 +12,7 @@ import {
 import dayjs from 'dayjs';
 import { Timings, getNextPrayer } from 'features/list-prayer-times';
 import { chevronForwardOutline, locationOutline } from 'ionicons/icons';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Countdown from 'react-countdown';
 import Divider from './Divider';
 
@@ -39,6 +39,11 @@ export default function NextPrayerCard({
 }: Props) {
   const [nextPrayer, setNextPrayer] = useState(getNextPrayer(timings));
 
+  const onCountDownComplete = useCallback(
+    () => setNextPrayer(getNextPrayer(timings)),
+    [timings]
+  );
+
   return (
     <IonCard className="mx-3 my-4">
       {isLoading ? (
@@ -59,7 +64,7 @@ export default function NextPrayerCard({
                 daysInHours
                 date={nextPrayer.time}
                 className="text-lg"
-                onComplete={() => setNextPrayer(getNextPrayer(timings))}
+                onComplete={onCountDownComplete}
               />
               <small className="opacity-75 inline-block mx-1">
                 ({nextPrayer.readableTime})

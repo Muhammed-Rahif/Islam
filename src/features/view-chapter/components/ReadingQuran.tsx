@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React, { Fragment, useCallback } from 'react';
 import { Verse } from '../types/VersesByChapter';
 import { useAtom, useAtomValue } from 'jotai/react';
 import { settingsAtom } from 'stores/settings';
@@ -11,9 +11,30 @@ type Props = {
   chapterId: number;
 };
 
-function ReadingQuran({ verses, chapterId }: Props) {
+const ReadingQuran = React.memo(({ verses, chapterId }: Props) => {
   const { quran: quranSettings } = useAtomValue(settingsAtom);
   const [quranLastRead, setQuranLastRead] = useAtom(quranLastReadAtom);
+
+  const onDblClickVerse = useCallback(
+    (verseNo: number) =>
+      setQuranLastRead({
+        ...quranLastRead,
+        reading: {
+          chapterId,
+          verseId: verseNo,
+        },
+      }),
+    [quranLastRead]
+  );
+
+  const removeLastReadQuran = useCallback(
+    () =>
+      setQuranLastRead({
+        ...quranLastRead,
+        reading: undefined,
+      }),
+    [quranLastRead]
+  );
 
   return (
     <div
@@ -27,29 +48,13 @@ function ReadingQuran({ verses, chapterId }: Props) {
       {verses.map(({ words, verse_number }, indx) => (
         <span
           className="relative active:text-blue-200 cursor-pointer"
-          onDoubleClick={() =>
-            setQuranLastRead({
-              ...quranLastRead,
-              reading: {
-                chapterId,
-                verseId: verse_number,
-              },
-            })
-          }
+          onDoubleClick={() => onDblClickVerse(verse_number)}
           key={indx}
         >
           <AnimatePresence>
             {quranLastRead?.reading?.chapterId === chapterId &&
               quranLastRead?.reading.verseId === verse_number && (
-                <LastReadChip
-                  onClose={() =>
-                    setQuranLastRead({
-                      ...quranLastRead,
-                      reading: undefined,
-                    })
-                  }
-                  key={indx}
-                />
+                <LastReadChip onClose={removeLastReadQuran} key={indx} />
               )}
           </AnimatePresence>
 
@@ -64,6 +69,6 @@ function ReadingQuran({ verses, chapterId }: Props) {
       ))}
     </div>
   );
-}
+});
 
 export { ReadingQuran };

@@ -23,14 +23,14 @@ type Props = {
   chapterId: number;
 };
 
-function TranslationQuran({ verses, chapterId }: Props) {
+const TranslationQuran = React.memo(({ verses, chapterId }: Props) => {
   const { quran: quranSettings } = useAtomValue(settingsAtom);
   const [quranLastRead, setQuranLastRead] = useAtom(quranLastReadAtom);
 
   return (
     <>
       {verses.map(({ verse_number, text_uthmani, translations }, indx) => (
-        <div>
+        <>
           <div
             style={{
               fontSize: quranSettings.fontSize,
@@ -56,10 +56,10 @@ function TranslationQuran({ verses, chapterId }: Props) {
           ))}
 
           <Divider className="opacity-20 my-4" />
-        </div>
+        </>
       ))}
     </>
   );
-}
+});
 
 export { TranslationQuran };
