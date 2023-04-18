@@ -105,7 +105,12 @@ const ViewChapter: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent className="ion-padding" ref={contentRef} fullscreen>
+      <IonContent
+        scrollX={false}
+        className="ion-padding"
+        ref={contentRef}
+        fullscreen
+      >
         {/* when error appears */}
         {chapterDataError || versesError ? (
           <DisplayError
@@ -122,7 +127,7 @@ const ViewChapter: React.FC = () => {
           </div>
         )}
 
-        <div className="container mx-auto text-base overflow-hidden">
+        <div className="container mx-auto text-base overflow-x-visible">
           {mode === 'translation' ? (
             <></>
           ) : (
@@ -130,6 +135,7 @@ const ViewChapter: React.FC = () => {
               {!(isChapterLoading || isVersesLoading) &&
                 chapterData?.chapter.bismillah_pre && <BismiVerse />}
               <ReadingQuran
+                chapterId={parseInt(chapterNo)}
                 verses={
                   chapterVersesData?.pages.map(({ verses }) => verses).flat() ??
                   []

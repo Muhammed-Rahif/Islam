@@ -149,6 +149,7 @@ export async function updatePrayerNotifications(
           schedule: {
             at: time.toDate(),
             every: 'day',
+            allowWhileIdle: true,
           },
           extra: {
             type: NotificationsTypes.PRAYER_NOTIFICATION,
