@@ -36,7 +36,7 @@ const MotionCaret: FC<MotionCaretProps> = ({ show, title }) => {
           className="inline-block"
         >
           <IonIcon
-            className="w-6 h-6"
+            className="h-6 w-6"
             icon={caretBackOutline}
             color="primary"
           />

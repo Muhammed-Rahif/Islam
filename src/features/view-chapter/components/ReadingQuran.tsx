@@ -45,11 +45,11 @@ const ReadingQuran = React.memo(({ verses, chapterId }: Props) => {
         fontFamily: quranSettings.fontFamily,
       }}
       lang="ar"
-      className="reading-quran leading-[220%] relative text-justify w-full after:inline-block after:content-[''] overflow-x-visible"
+      className="reading-quran relative w-full overflow-x-visible text-justify leading-[220%] after:inline-block after:content-['']"
     >
       {verses.map(({ words, verse_number }, indx) => (
         <span
-          className="relative active:text-blue-200 cursor-pointer"
+          className="relative cursor-pointer active:text-blue-200"
           onDoubleClick={() => onDblClickVerse(verse_number)}
           key={indx}
         >

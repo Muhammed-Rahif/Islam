@@ -14,7 +14,7 @@ function LastReadChip({ onClose, onClick, className }: Props) {
     <motion.div
       dir="ltr"
       onClick={onClick}
-      className={`last-read-marker flex items-center justify-center top-0 h-[3rem] w-48 z-40 absolute ${className}`}
+      className={`last-read-marker absolute top-0 z-40 flex h-[3rem] w-48 items-center justify-center ${className}`}
       initial={{ opacity: 0, x: '100%' }}
       animate={{ opacity: 1, x: '82%' }}
       exit={{ opacity: 0, x: '100%' }}

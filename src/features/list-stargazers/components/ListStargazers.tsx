@@ -18,7 +18,7 @@ const ListStargazers: FC<ListStargazersProps> = () => {
   return (
     <>
       <IonText>
-        <h2 className="text-xl mb-2 font-bold">Our Stargazers</h2>
+        <h2 className="mb-2 text-xl font-bold">Our Stargazers</h2>
         <p className="mb-2">
           Developers Who Support Us: We would like to express our gratitude to
           the developers who have shown their support for the Islam Application
@@ -27,14 +27,14 @@ const ListStargazers: FC<ListStargazersProps> = () => {
       </IonText>
 
       {isLoading && (
-        <div className="h-24 flex items-center justify-center">
+        <div className="flex h-24 items-center justify-center">
           <IonSpinner />
         </div>
       )}
 
       {!isLoading && error ? (
         <DisplayError
-          className="[direction:ltr] leading-5 h-1/5"
+          className="h-1/5 leading-5 [direction:ltr]"
           error={error}
           onRetry={refetch}
         />
@@ -42,10 +42,10 @@ const ListStargazers: FC<ListStargazersProps> = () => {
 
       {data
         // filtering users only from contributors to avoid bots
-        ?.filter(({ login, type }) => type == 'User' && !login.endsWith('bot'))
+        ?.filter(({ login, type }) => type === 'User' && !login.endsWith('bot'))
         ?.map(({ login, html_url, avatar_url }) => (
           <IonItem
-            className="[--padding-start:0px] [--inner-padding-end:0px]"
+            className="[--inner-padding-end:0px] [--padding-start:0px]"
             key={login}
             href={html_url}
             target="_blank"

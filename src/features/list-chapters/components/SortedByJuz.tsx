@@ -37,14 +37,14 @@ const SortedByJuz: FC<Props> = ({ juzs, chapters }) => {
       groupCounts={juzChaptersCount}
       groupContent={(index) => {
         return juzChaptersGroup![index].length > 0 ? (
-          <IonItemDivider className="z-40 relative">
+          <IonItemDivider className="relative z-40">
             <IonLabel>Juz {juzs![index].juz_number}</IonLabel>
           </IonItemDivider>
         ) : (
           <div style={{ height: 0.5 }}></div>
         );
       }}
-      className="w-full h-full"
+      className="h-full w-full"
       itemContent={(indx, groupIndx) => {
         if (!juzs) return;
         if (!chapters) return;

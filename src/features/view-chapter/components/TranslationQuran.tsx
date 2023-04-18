@@ -27,7 +27,7 @@ const TranslationQuran = React.memo(({ verses }: Props) => {
             }}
             dir="rtl"
             lang="ar"
-            className="my-4 leading-[220%] relative text-right w-full after:inline-block after:content-[''] overflow-x-visible"
+            className="relative my-4 w-full overflow-x-visible text-right leading-[220%] after:inline-block after:content-['']"
           >
             {text_uthmani} ﴿{numToArabic(verse_number)}﴾
           </div>
@@ -38,13 +38,13 @@ const TranslationQuran = React.memo(({ verses }: Props) => {
                 fontSize: quranSettings.fontSize,
               }}
               key={indx}
-              className="block mt-2.5 leading-[130%]"
+              className="mt-2.5 block leading-[130%]"
             >
               {removeHtmlTags(translation.text)}
             </div>
           ))}
 
-          <Divider className="opacity-20 my-4" />
+          <Divider className="my-4 opacity-20" />
         </>
       ))}
     </>

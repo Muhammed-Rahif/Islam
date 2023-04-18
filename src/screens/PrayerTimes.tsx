@@ -35,6 +35,7 @@ const PrayerTimes: FC = () => {
 
     if (Object.keys(prayerTimesData.timings ?? []).length > 0)
       updatePrayerNotifications(prayerTimesData.timings, notifications);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notifications, prayerTimesData?.timings]);
 
   return (
@@ -73,7 +74,7 @@ const PrayerTimes: FC = () => {
         )}
 
         {isLoading && (
-          <div className="w-full h-full grid place-items-center">
+          <div className="grid h-full w-full place-items-center">
             <IonSpinner />
           </div>
         )}

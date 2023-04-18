@@ -35,9 +35,9 @@ const PrayerNotificationSettings: FC = () => {
 
   return (
     <IonItemGroup className="pb-3">
-      <h2 className="text-xl font-bold mb-2">Prayer Times</h2>
+      <h2 className="mb-2 text-xl font-bold">Prayer Times</h2>
 
-      <div className="flex justify-between items-center h-9">
+      <div className="flex h-9 items-center justify-between">
         <IonText>
           <h2 className="text-base">Method</h2>
         </IonText>
@@ -46,7 +46,7 @@ const PrayerNotificationSettings: FC = () => {
           placeholder="Select timing method"
           aria-label="Select timing method"
           title="Select timing method"
-          className="py-0 capitalize w-min max-w-[50vw]"
+          className="w-min max-w-[50vw] py-0 capitalize"
           value={settings?.prayerTimes?.methodId}
           defaultValue={4}
           onIonChange={(e) =>
@@ -69,7 +69,7 @@ const PrayerNotificationSettings: FC = () => {
         </IonSelect>
       </div>
 
-      <div className="flex justify-between items-center h-9">
+      <div className="flex h-9 items-center justify-between">
         <IonText>
           <h2 className="text-base">Notifications</h2>
         </IonText>
@@ -78,7 +78,7 @@ const PrayerNotificationSettings: FC = () => {
           placeholder="Select notifications to receive"
           aria-label="Select notifications to receive"
           title="Select notifications to receive"
-          className="py-0 capitalize w-min max-w-[50vw]"
+          className="w-min max-w-[50vw] py-0 capitalize"
           value={settings?.prayerTimes?.notifications}
           onIonChange={(e) =>
             updatePrayerTimeSettings({
@@ -106,7 +106,7 @@ const PrayerNotificationSettings: FC = () => {
         </IonSelect>
       </div>
 
-      <IonItemDivider className="min-h-[2px] my-2" />
+      <IonItemDivider className="my-2 min-h-[2px]" />
     </IonItemGroup>
   );
 };

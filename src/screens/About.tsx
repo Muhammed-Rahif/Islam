@@ -66,14 +66,14 @@ const About: FC = () => {
         <Divider className="my-3 opacity-20" />
 
         <ListContributors />
-        <Divider className="opacity-20 my-3" />
+        <Divider className="my-3 opacity-20" />
         <ListStargazers />
 
         <IonItem
           href={`https://github.com/Muhammed-Rahif/Islam/releases/tag/${packageJson.version}`}
           target="_blank"
           lines="none"
-          className="[--padding-start:0px] opacity-40 [--inner-padding-end:0px] cursor-pointer duration-300"
+          className="cursor-pointer opacity-40 duration-300 [--inner-padding-end:0px] [--padding-start:0px]"
         >
           <IonLabel>App version</IonLabel>
           <IonLabel slot="end">{packageJson.version}</IonLabel>

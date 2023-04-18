@@ -47,7 +47,7 @@ export default function NextPrayerCard({
   return (
     <IonCard className="mx-3 my-4">
       {isLoading ? (
-        <IonCardContent className="flex items-center justify-center h-56">
+        <IonCardContent className="flex h-56 items-center justify-center">
           <IonSpinner name="dots" />
         </IonCardContent>
       ) : (
@@ -58,7 +58,7 @@ export default function NextPrayerCard({
 
           <IonCardContent>
             <IonText color="dark">
-              <small className="opacity-75 block">is the next prayer in</small>
+              <small className="block opacity-75">is the next prayer in</small>
               <Countdown
                 key={dayjs(nextPrayer.time).unix()}
                 daysInHours
@@ -66,12 +66,12 @@ export default function NextPrayerCard({
                 className="text-lg"
                 onComplete={onCountDownComplete}
               />
-              <small className="opacity-75 inline-block mx-1">
+              <small className="mx-1 inline-block opacity-75">
                 ({nextPrayer.readableTime})
               </small>
             </IonText>
 
-            <div className="my-2 grid opacity-75 grid-cols-2">
+            <div className="my-2 grid grid-cols-2 opacity-75">
               <small className="flex items-center justify-start">
                 <IonIcon
                   icon={locationOutline}
@@ -97,9 +97,9 @@ export default function NextPrayerCard({
               </small>
             </div>
 
-            <Divider className="opacity-20 mt-2" />
+            <Divider className="mt-2 opacity-20" />
 
-            <table className="w-full border-separate text-[13px] text-left table-auto mt-1.5">
+            <table className="mt-1.5 w-full table-auto border-separate text-left text-[13px]">
               <thead className="gap-y-0.5">
                 <tr>
                   <th>Hijri</th>

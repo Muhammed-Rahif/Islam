@@ -50,7 +50,8 @@ convention:
       'capacitor',
       'prayer-times',
       'release',
-      'eslint'
+      'eslint',
+      'prettier'
     ]
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
 changelog:

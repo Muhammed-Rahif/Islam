@@ -21,8 +21,8 @@ const GeneralSettings: FC = () => {
 
   return (
     <IonItemGroup className="pb-3">
-      <h2 className="text-xl font-bold mb-2">General</h2>
-      <div className="flex justify-between items-center h-9">
+      <h2 className="mb-2 text-xl font-bold">General</h2>
+      <div className="flex h-9 items-center justify-between">
         <IonText>
           <h2 className="text-base">Dark mode</h2>
         </IonText>
@@ -38,7 +38,7 @@ const GeneralSettings: FC = () => {
           className="py-0"
         ></IonToggle>
       </div>
-      <IonItemDivider className="min-h-[2px] my-2" />
+      <IonItemDivider className="my-2 min-h-[2px]" />
     </IonItemGroup>
   );
 };

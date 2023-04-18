@@ -21,7 +21,7 @@ const ListPrayerTimes: FC<Props> = ({ timings }) => {
             <IonRippleEffect type="unbounded" />
             <IonLabel className="font-semibold">{prayerName}</IonLabel>
             <IonLabel
-              className="font-semibold !flex flex-col items-end"
+              className="!flex flex-col items-end font-semibold"
               slot="end"
             >
               {prayerTime.format('h:mm A')}

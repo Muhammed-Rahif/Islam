@@ -7,9 +7,9 @@ type Props = {
 
 function Divider({ text, className }: Props) {
   return (
-    <div className={`my-4 w-full opacity-20 relative ${className}`}>
+    <div className={`relative my-4 w-full opacity-20 ${className}`}>
       {text && (
-        <p className="absolute text-xs bg-[var(--background)] px-2 z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <p className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 bg-[var(--background)] px-2 text-xs">
           {text}
         </p>
       )}

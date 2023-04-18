@@ -22,7 +22,7 @@ const ListContributors: FC<ListContributorsProps> = () => {
   return (
     <>
       <IonText>
-        <h2 className="text-xl mb-2 font-bold">Our Contributors</h2>
+        <h2 className="mb-2 text-xl font-bold">Our Contributors</h2>
         <p className="mb-2">
           We would like to extend our heartfelt thanks to the following
           individuals for their valuable contributions to the Islam Application:
@@ -30,14 +30,14 @@ const ListContributors: FC<ListContributorsProps> = () => {
       </IonText>
 
       {isLoading && (
-        <div className="h-24 flex items-center justify-center">
+        <div className="flex h-24 items-center justify-center">
           <IonSpinner />
         </div>
       )}
 
       {!isLoading && error ? (
         <DisplayError
-          className="[direction:ltr] leading-5 h-1/5"
+          className="h-1/5 leading-5 [direction:ltr]"
           error={error}
           onRetry={refetch}
         />
@@ -48,7 +48,7 @@ const ListContributors: FC<ListContributorsProps> = () => {
         ?.filter(({ login, type }) => type == 'User' && !login.endsWith('bot'))
         ?.map(({ login, contributions, html_url, avatar_url }) => (
           <IonItem
-            className="[--padding-start:0px] [--inner-padding-end:0px]"
+            className="[--inner-padding-end:0px] [--padding-start:0px]"
             key={login}
             href={html_url}
             target="_blank"

@@ -49,7 +49,7 @@ const Quran: FC = () => {
 
         <IonToolbar>
           <IonSegment
-            className="w-full max-w-[calc(100%-1.5rem)] mx-auto mb-1.5"
+            className="mx-auto mb-1.5 w-full max-w-[calc(100%-1.5rem)]"
             value={sortBy}
             onIonChange={(e) => setSortBy(e.detail.value as ChapterSortBy)}
           >
@@ -72,7 +72,7 @@ const Quran: FC = () => {
         scrollY={false}
       >
         {isLoading && (
-          <div className="w-full h-3/4 grid place-items-center">
+          <div className="grid h-3/4 w-full place-items-center">
             <IonSpinner />
           </div>
         )}

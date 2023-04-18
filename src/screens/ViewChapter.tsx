@@ -95,7 +95,7 @@ const ViewChapter: FC = () => {
 
         <IonToolbar>
           <IonSegment
-            className="w-full max-w-[calc(100%-1.5rem)] mx-auto mb-1.5"
+            className="mx-auto mb-1.5 w-full max-w-[calc(100%-1.5rem)]"
             value={mode}
             onIonChange={(e) => setMode(e.detail.value!)}
           >
@@ -126,12 +126,12 @@ const ViewChapter: FC = () => {
 
         {/* when api is loading */}
         {(isChapterLoading || isVersesLoading) && (
-          <div className="w-full h-full grid place-items-center">
+          <div className="grid h-full w-full place-items-center">
             <IonSpinner />
           </div>
         )}
 
-        <div className="container mx-auto text-base overflow-x-visible">
+        <div className="container mx-auto overflow-x-visible text-base">
           {!(isChapterLoading || isVersesLoading) &&
             chapterData?.chapter.bismillah_pre && <BismiVerse />}
           {mode === 'translation' ? (
@@ -150,7 +150,7 @@ const ViewChapter: FC = () => {
             <p
               role="button"
               onClick={async () => await fetchNextPage()}
-              className="opacity-20 my-3.5 text-center active:scale-95 duration-300 text-xs [font-family:var(--ion-font-family)] cursor-pointer"
+              className="my-3.5 cursor-pointer text-center text-xs opacity-20 duration-300 [font-family:var(--ion-font-family)] active:scale-95"
             >
               Click here or Scroll down to load rest of the chapter
             </p>
