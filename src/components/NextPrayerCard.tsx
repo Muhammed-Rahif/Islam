@@ -14,6 +14,7 @@ import { Timings, getNextPrayer } from 'features/list-prayer-times';
 import { chevronForwardOutline, locationOutline } from 'ionicons/icons';
 import { useMemo, useState } from 'react';
 import Countdown from 'react-countdown';
+import Divider from './Divider';
 
 type Props = {
   isLoading: boolean;
@@ -91,7 +92,7 @@ export default function NextPrayerCard({
               </small>
             </div>
 
-            <hr className="opacity-20 mt-2" />
+            <Divider className="opacity-20 mt-2" />
 
             <table className="w-full border-separate text-[13px] text-left table-auto mt-1.5">
               <thead className="gap-y-0.5">

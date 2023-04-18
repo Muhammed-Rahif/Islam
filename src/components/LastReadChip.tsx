@@ -22,7 +22,7 @@ function LastReadChip({ onClose, onClick, className }: Props) {
       whileHover={{ x: '28%' }}
       whileFocus={{ x: '28%' }}
       whileTap={{ x: '28%' }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.6 }}
     >
       <IonChip role="button" color="primary" className="bg-blue-500 text-white">
         <IonLabel>Last Read</IonLabel>

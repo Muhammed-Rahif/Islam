@@ -24,7 +24,7 @@ import {
   ReadingQuran,
   useChapter,
   useChapterVerses,
-} from 'features/reading-quran';
+} from 'features/view-chapter';
 import {
   arrowRedoOutline,
   arrowUndoOutline,
@@ -33,8 +33,15 @@ import {
 } from 'ionicons/icons';
 import DisplayError from 'components/DisplayError';
 import { BismiVerse } from 'components/BismiVerse';
+import { TranslationQuran } from 'features/view-chapter/components/TranslationQuran';
+import { useAtomValue } from 'jotai/react';
+import { settingsAtom } from 'stores/settings';
+import Divider from 'components/Divider';
 
 const ViewChapter: React.FC = () => {
+  const {
+    quran: { translations },
+  } = useAtomValue(settingsAtom);
   const contentRef = createRef<HTMLIonContentElement>();
   const { chapterNo } = useParams<{
     chapterNo: string;
@@ -56,6 +63,7 @@ const ViewChapter: React.FC = () => {
     hasNextPage,
   } = useChapterVerses({
     chapterId: parseInt(chapterNo),
+    translations: translations.map(({ id }) => id),
   });
 
   const {
@@ -74,6 +82,11 @@ const ViewChapter: React.FC = () => {
   }, [search]);
 
   const [mode, setMode] = useState(modeParam);
+
+  const chapterVerses = useMemo(
+    () => chapterVersesData?.pages.map(({ verses }) => verses).flat() ?? [],
+    [chapterVersesData]
+  );
 
   return (
     <IonPage>
@@ -128,21 +141,21 @@ const ViewChapter: React.FC = () => {
         )}
 
         <div className="container mx-auto text-base overflow-x-visible">
+          {!(isChapterLoading || isVersesLoading) &&
+            chapterData?.chapter.bismillah_pre && <BismiVerse />}
           {mode === 'translation' ? (
-            <></>
+            <TranslationQuran
+              verses={chapterVerses}
+              chapterId={parseInt(chapterNo)}
+            />
           ) : (
-            <>
-              {!(isChapterLoading || isVersesLoading) &&
-                chapterData?.chapter.bismillah_pre && <BismiVerse />}
-              <ReadingQuran
-                chapterId={parseInt(chapterNo)}
-                verses={
-                  chapterVersesData?.pages.map(({ verses }) => verses).flat() ??
-                  []
-                }
-              />
-            </>
+            <ReadingQuran
+              chapterId={parseInt(chapterNo)}
+              verses={chapterVerses}
+            />
           )}
+
+          {!hasNextPage && <Divider text="End" />}
         </div>
 
         <IonInfiniteScroll

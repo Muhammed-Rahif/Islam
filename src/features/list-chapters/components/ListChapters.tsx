@@ -1,4 +1,4 @@
-import { IonItemGroup, IonSpinner, useIonViewDidEnter } from '@ionic/react';
+import { IonItemGroup, useIonViewDidEnter } from '@ionic/react';
 import React, { useMemo, useRef, useState } from 'react';
 import { ChapterSortBy } from '../types/Chapter';
 import { ChapterItem } from './ChapterItem';
