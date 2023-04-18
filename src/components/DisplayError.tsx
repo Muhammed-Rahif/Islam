@@ -1,12 +1,6 @@
-import {
-  IonButton,
-  IonIcon,
-  IonText,
-  IonToast,
-  useIonToast,
-} from '@ionic/react';
+import { IonButton, IonIcon, IonText, useIonToast } from '@ionic/react';
 import { alertCircle, alertCircleOutline } from 'ionicons/icons';
-import { ReactNode, useMemo } from 'react';
+import { useMemo } from 'react';
 
 type Props = {
   error: Error | any;

@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { Fragment, useCallback } from 'react';
 import { Verse } from '../types/VersesByChapter';
 import { useAtom, useAtomValue } from 'jotai/react';
@@ -24,7 +25,7 @@ const ReadingQuran = React.memo(({ verses, chapterId }: Props) => {
           verseId: verseNo,
         },
       }),
-    [quranLastRead]
+    [chapterId, quranLastRead, setQuranLastRead]
   );
 
   const removeLastReadQuran = useCallback(
@@ -33,6 +34,7 @@ const ReadingQuran = React.memo(({ verses, chapterId }: Props) => {
         ...quranLastRead,
         reading: undefined,
       }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [quranLastRead]
   );
 

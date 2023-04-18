@@ -1,23 +1,18 @@
 import {
   IonAvatar,
-  IonButton,
-  IonIcon,
   IonItem,
-  IonItemGroup,
   IonLabel,
   IonSpinner,
   IonText,
-  useIonViewDidEnter,
 } from '@ionic/react';
-import React, { useMemo, useRef, useState } from 'react';
+import React, { FC } from 'react';
 // import { FixedSizeList as List } from 'react-window';
 import { useStargazers } from '../api/useStargazers';
-import { cardOutline, personOutline } from 'ionicons/icons';
 import DisplayError from 'components/DisplayError';
 
 interface ListStargazersProps {}
 
-const ListStargazers: React.FC<ListStargazersProps> = ({}) => {
+const ListStargazers: FC<ListStargazersProps> = () => {
   const { data, isLoading, error, refetch } = useStargazers();
 
   return (
@@ -69,9 +64,9 @@ const ListStargazers: React.FC<ListStargazersProps> = ({}) => {
         If you are a developer and appreciate the app and our work, please
         consider starring the project on GitHub to show your support.{' '}
         <b>
-          By starring the project, your name will be added to our "Our
-          Stargazers" section, and you'll help to spread the word about the app
-          to the developer community.
+          By starring the project, your name will be added to our &quot;Our
+          Stargazers&quot; section, and you&apos;`ll help to spread the word
+          about the app to the developer community.
         </b>
       </p>
     </>

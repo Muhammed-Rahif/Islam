@@ -9,13 +9,13 @@ import {
 } from '@ionic/react';
 import AppTypeahead from 'components/AppTypeahead';
 import { useAtom } from 'jotai/react';
-import { useCallback, useMemo, useRef } from 'react';
+import { FC, useCallback, useMemo, useRef } from 'react';
 import { availableSettings, settingsAtom, SettingsType } from 'stores/settings';
 import { truncate } from 'utils/string';
 import { useTranslations } from '../api/useTranslations';
 import { Translations } from '../types/Translations';
 
-const QuranSettings: React.FC = () => {
+const QuranSettings: FC = () => {
   const [settings, setSettings] = useAtom(settingsAtom);
 
   const { data: translationsData, isLoading: isTranslationsLoading } =
@@ -45,6 +45,7 @@ const QuranSettings: React.FC = () => {
   );
 
   // the extra fullpage modal that is used to select translations
+  // eslint-disable-next-line no-undef
   const translationsModal = useRef<HTMLIonModalElement>(null);
   const onTranslationsChange = useCallback(
     (items: string[]) => {

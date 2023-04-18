@@ -4,14 +4,13 @@ import {
   IonSelect,
   IonSelectOption,
   IonText,
-  IonToggle,
 } from '@ionic/react';
 import { useAtom } from 'jotai/react';
-import { useCallback, useMemo } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 import { availableSettings, settingsAtom, SettingsType } from 'stores/settings';
 import { usePrayerTimeMethods } from '../api/usePrayerTimeMethods';
 
-const PrayerNotificationSettings: React.FC = () => {
+const PrayerNotificationSettings: FC = () => {
   const [settings, setSettings] = useAtom(settingsAtom);
 
   const { data } = usePrayerTimeMethods();

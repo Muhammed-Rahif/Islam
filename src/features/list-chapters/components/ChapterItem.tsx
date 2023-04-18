@@ -1,14 +1,8 @@
-import {
-  IonButton,
-  IonChip,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonRippleEffect,
-} from '@ionic/react';
+/* eslint-disable react/display-name */
+import { IonIcon, IonItem, IonLabel } from '@ionic/react';
 import { playOutline } from 'ionicons/icons';
 import { useAtomValue } from 'jotai/react';
-import React from 'react';
+import React, { FC } from 'react';
 import { quranLastReadAtom } from 'stores/quranLastRead';
 
 type ChapterItemProps = {
@@ -19,8 +13,8 @@ type ChapterItemProps = {
   style?: React.CSSProperties;
 };
 
-const ChapterItem: React.FC<ChapterItemProps> = React.memo(
-  ({ id, name, translatedName, versesCount, style }) => {
+const ChapterItem: FC<ChapterItemProps> = React.memo(
+  ({ id, name, translatedName, versesCount, style }: ChapterItemProps) => {
     const lastReadQuran = useAtomValue(quranLastReadAtom);
 
     return (

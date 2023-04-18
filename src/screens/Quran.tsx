@@ -9,25 +9,21 @@ import {
   IonHeader,
   IonLabel,
   IonPage,
-  IonRefresher,
-  IonRefresherContent,
   IonSearchbar,
   IonSegment,
   IonSegmentButton,
   IonSpinner,
   IonTitle,
   IonToolbar,
-  useIonToast,
 } from '@ionic/react';
-import { createRef, useState } from 'react';
+import { FC, createRef, useState } from 'react';
 import DisplayError from 'components/DisplayError';
-import { alertCircle } from 'ionicons/icons';
 
-const Quran: React.FC = () => {
+const Quran: FC = () => {
+  // eslint-disable-next-line no-undef
   const contentRef = createRef<HTMLIonContentElement>();
   const [sortBy, setSortBy] = useState<ChapterSortBy>('surah');
   const [search, setSearch] = useState('');
-  const [presentToast] = useIonToast();
 
   const {
     isLoading,
@@ -35,7 +31,7 @@ const Quran: React.FC = () => {
     data: chaptersData,
     refetch: refetchChapters,
   } = useChapersList();
-  const { data: allJuzsData, refetch: refetchAllJuzs } = useAllJuzs();
+  const { data: allJuzsData } = useAllJuzs();
 
   return (
     <IonPage>

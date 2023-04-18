@@ -1,9 +1,9 @@
 import { IonItemDivider, IonItemGroup, IonText, IonToggle } from '@ionic/react';
 import { useAtom } from 'jotai/react';
-import { useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import { settingsAtom, SettingsType } from 'stores/settings';
 
-const GeneralSettings: React.FC = () => {
+const GeneralSettings: FC = () => {
   const [settings, setSettings] = useAtom(settingsAtom);
 
   const updateGeneralSettings = useCallback(

@@ -1,7 +1,7 @@
 import { IonIcon } from '@ionic/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { caretBackOutline } from 'ionicons/icons';
-import { useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import scrollIntoView from 'smooth-scroll-into-view-if-needed';
 
 interface MotionCaretProps {
@@ -9,7 +9,7 @@ interface MotionCaretProps {
   title?: string;
 }
 
-const MotionCaret: React.FC<MotionCaretProps> = ({ show, title }) => {
+const MotionCaret: FC<MotionCaretProps> = ({ show, title }) => {
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {

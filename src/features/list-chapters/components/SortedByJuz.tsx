@@ -3,14 +3,14 @@ import { Chapter } from '../types/Chapter';
 import { Juz } from '../types/Juz';
 import { ChapterItem } from './ChapterItem';
 import { GroupedVirtuoso } from 'react-virtuoso';
-import { useMemo } from 'react';
+import { FC, useMemo } from 'react';
 
 type Props = {
   juzs?: Juz[];
   chapters?: Chapter[];
 };
 
-const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
+const SortedByJuz: FC<Props> = ({ juzs, chapters }) => {
   // array in array: chapters in juz. Eg: [[chapter-1,chapter-2],[chapter-2,chapter-3]]
   const juzChaptersGroup = useMemo(() => {
     if (!juzs) return null;

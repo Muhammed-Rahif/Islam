@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -13,8 +13,6 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import {
   bookOutline,
-  helpOutline,
-  personOutline,
   settingsOutline,
   timeOutline,
   // chatbubble, happy
@@ -96,7 +94,7 @@ const routes: {
 
 const queryClient = new QueryClient();
 
-const App: React.FC = () => {
+const App: FC = () => {
   const settings = useAtomValue(settingsAtom);
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import viteTsconfigPaths from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 import manifest from './public/manifest.json';
+import eslint from 'vite-plugin-eslint';
 
 export const pwaOptions: Partial<VitePWAOptions> = {
   base: '/quran',
@@ -21,7 +22,13 @@ export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
 
   return {
-    plugins: [react(), VitePWA(pwaOptions), viteTsconfigPaths(), svgrPlugin()],
+    plugins: [
+      react(),
+      eslint(),
+      VitePWA(pwaOptions),
+      viteTsconfigPaths(),
+      svgrPlugin(),
+    ],
     server: {
       open: Boolean(process.env.BROWSER),
       port: Number(process.env.PORT) || 8100,

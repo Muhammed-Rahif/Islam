@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export interface VersesByChapter {
   verses: Verse[];
   pagination: Pagination;

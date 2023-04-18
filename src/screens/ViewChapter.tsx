@@ -2,11 +2,7 @@ import {
   IonBackButton,
   IonButtons,
   IonContent,
-  IonFab,
-  IonFabButton,
-  IonFabList,
   IonHeader,
-  IonIcon,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonLabel,
@@ -18,30 +14,25 @@ import {
   IonToolbar,
   useIonRouter,
 } from '@ionic/react';
-import { createRef, useMemo, useState } from 'react';
+import React, { FC, createRef, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   ReadingQuran,
   useChapter,
   useChapterVerses,
 } from 'features/view-chapter';
-import {
-  arrowRedoOutline,
-  arrowUndoOutline,
-  arrowUpOutline,
-  swapHorizontal,
-} from 'ionicons/icons';
 import DisplayError from 'components/DisplayError';
 import { BismiVerse } from 'components/BismiVerse';
-import { TranslationQuran } from 'features/view-chapter/components/TranslationQuran';
+import { TranslationQuran } from 'features/view-chapter';
 import { useAtomValue } from 'jotai/react';
 import { settingsAtom } from 'stores/settings';
 import Divider from 'components/Divider';
 
-const ViewChapter: React.FC = () => {
+const ViewChapter: FC = () => {
   const {
     quran: { translations },
   } = useAtomValue(settingsAtom);
+  // eslint-disable-next-line no-undef
   const contentRef = createRef<HTMLIonContentElement>();
   const { chapterNo } = useParams<{
     chapterNo: string;

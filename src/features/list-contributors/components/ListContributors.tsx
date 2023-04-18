@@ -7,16 +7,16 @@ import {
   IonSpinner,
   IonText,
 } from '@ionic/react';
-import React from 'react';
+import React, { FC } from 'react';
 // import { FixedSizeList as List } from 'react-window';
 import { useContributors } from '../api/useContributors';
-import { cardOutline, personOutline } from 'ionicons/icons';
+import { personOutline } from 'ionicons/icons';
 import DisplayError from 'components/DisplayError';
 import { contributorsProfileLinks } from '../stores/contributors';
 
 interface ListContributorsProps {}
 
-const ListContributors: React.FC<ListContributorsProps> = ({}) => {
+const ListContributors: FC<ListContributorsProps> = () => {
   const { data, isLoading, error, refetch } = useContributors();
 
   return (

@@ -1,22 +1,10 @@
-import { LocalNotifications } from '@capacitor/local-notifications';
 import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
   IonContent,
   IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
   IonPage,
-  IonPopover,
   IonRefresher,
   IonRefresherContent,
-  IonRippleEffect,
   IonSpinner,
-  IonText,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
@@ -28,10 +16,10 @@ import {
   usePrayerTimes,
 } from 'features/list-prayer-times';
 import { useAtomValue } from 'jotai/react';
-import { useEffect, useMemo } from 'react';
+import { FC, useEffect, useMemo } from 'react';
 import { settingsAtom } from 'stores/settings';
 
-const PrayerTimes: React.FC = () => {
+const PrayerTimes: FC = () => {
   const {
     prayerTimes: { methodId, notifications },
   } = useAtomValue(settingsAtom);
@@ -94,7 +82,7 @@ const PrayerTimes: React.FC = () => {
           <DisplayError
             error={error}
             toastOnly={Boolean(data)}
-            className={Boolean(data) ? 'h-1/2' : '!h-full'}
+            className={data ? 'h-1/2' : '!h-full'}
             onRetry={async () => await refetch()}
           />
         )}

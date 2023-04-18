@@ -1,14 +1,11 @@
 import {
   IonContent,
   IonHeader,
-  IonIcon,
   IonItem,
   IonItemGroup,
   IonLabel,
   IonList,
   IonPage,
-  IonRippleEffect,
-  IonText,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
@@ -17,10 +14,10 @@ import {
   GeneralSettings,
   PrayerNotificationSettings,
 } from 'features/settings';
-import { chevronForwardOutline } from 'ionicons/icons';
 import packageJson from '../../package.json';
+import { FC } from 'react';
 
-const Settings: React.FC = () => {
+const Settings: FC = () => {
   return (
     <IonPage>
       <IonHeader translucent>

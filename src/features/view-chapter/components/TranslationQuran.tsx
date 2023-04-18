@@ -1,19 +1,8 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+/* eslint-disable react/display-name */
+import React from 'react';
 import { Verse } from '../types/VersesByChapter';
-import { useAtom, useAtomValue } from 'jotai/react';
+import { useAtomValue } from 'jotai/react';
 import { settingsAtom } from 'stores/settings';
-import smoothScrollIntoView from 'smooth-scroll-into-view-if-needed';
-import { IonChip, IonIcon, IonLabel } from '@ionic/react';
-import Draggable from 'react-draggable';
-import {
-  chevronForwardOutline,
-  closeOutline,
-  pencilOutline,
-  pinOutline,
-} from 'ionicons/icons';
-import LastReadChip from 'components/LastReadChip';
-import { AnimatePresence } from 'framer-motion';
-import { quranLastReadAtom } from 'stores/quranLastRead';
 import { numToArabic } from 'utils/string';
 import { removeHtmlTags } from 'utils/string';
 import Divider from 'components/Divider';
@@ -23,13 +12,13 @@ type Props = {
   chapterId: number;
 };
 
-const TranslationQuran = React.memo(({ verses, chapterId }: Props) => {
+const TranslationQuran = React.memo(({ verses }: Props) => {
   const { quran: quranSettings } = useAtomValue(settingsAtom);
-  const [quranLastRead, setQuranLastRead] = useAtom(quranLastReadAtom);
+  // const [quranLastRead, setQuranLastRead] = useAtom(quranLastReadAtom);
 
   return (
     <>
-      {verses.map(({ verse_number, text_uthmani, translations }, indx) => (
+      {verses.map(({ verse_number, text_uthmani, translations }) => (
         <>
           <div
             style={{

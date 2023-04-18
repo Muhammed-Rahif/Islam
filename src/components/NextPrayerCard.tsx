@@ -12,7 +12,7 @@ import {
 import dayjs from 'dayjs';
 import { Timings, getNextPrayer } from 'features/list-prayer-times';
 import { chevronForwardOutline, locationOutline } from 'ionicons/icons';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import Countdown from 'react-countdown';
 import Divider from './Divider';
 

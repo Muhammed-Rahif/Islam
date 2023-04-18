@@ -4,7 +4,6 @@ import {
   IonContent,
   IonHeader,
   IonItem,
-  IonItemDivider,
   IonLabel,
   IonPage,
   IonText,
@@ -15,8 +14,9 @@ import { ListContributors } from 'features/list-contributors';
 import packageJson from '../../package.json';
 import { ListStargazers } from 'features/list-stargazers';
 import Divider from 'components/Divider';
+import { FC } from 'react';
 
-const About: React.FC = () => {
+const About: FC = () => {
   return (
     <IonPage>
       <IonHeader translucent>
@@ -38,21 +38,21 @@ const About: React.FC = () => {
 
           <p className="mt-4">
             The Islam Application is a mobile app that provides Muslims with
-            easy access to the Quran, Sunnah, and Dhikrs. Whether you're a
+            easy access to the Quran, Sunnah, and Dhikrs. Whether you&apos;re a
             seasoned scholar or a newcomer to the faith, this app is designed to
             help you deepen your understanding of Islam and improve your
             practice.
             <br />
             <br />
             Built on the Ionic iOS theme, the app offers a user-friendly
-            interface that's easy to navigate. Users can choose between dark and
-            white modes to suit their preferences.
+            interface that&apos;s easy to navigate. Users can choose between
+            dark and white modes to suit their preferences.
             <br />
             <br />
             One of the unique features of the Islam Application is that it
             provides an opportunity for its contributors to earn sadaqah
             jariyah. By contributing to the development of the app, you can earn
-            ongoing charity that continues to benefit you even after you've
+            ongoing charity that continues to benefit you even after you&apos;ve
             passed away.
             <br />
             <br />

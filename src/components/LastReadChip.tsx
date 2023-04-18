@@ -1,6 +1,5 @@
 import { IonChip, IonIcon, IonLabel } from '@ionic/react';
-import { AnimatePresence } from 'framer-motion';
-import { chevronForwardOutline, closeOutline } from 'ionicons/icons';
+import { closeOutline } from 'ionicons/icons';
 import React from 'react';
 import { motion } from 'framer-motion';
 

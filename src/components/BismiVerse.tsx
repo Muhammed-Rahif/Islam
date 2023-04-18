@@ -1,6 +1,5 @@
 import { useAtomValue } from 'jotai/react';
-import { SettingsType, settingsAtom } from 'stores/settings';
-import { numToArabic } from 'utils/string';
+import { settingsAtom } from 'stores/settings';
 
 type Props = {
   className?: string;
