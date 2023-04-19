@@ -45,7 +45,7 @@ const ListContributors: FC<ListContributorsProps> = () => {
 
       {data
         // filtering users only from contributors to avoid bots
-        ?.filter(({ login, type }) => type == 'User' && !login.endsWith('bot'))
+        ?.filter(({ login, type }) => type === 'User' && !login.endsWith('bot'))
         ?.map(({ login, contributions, html_url, avatar_url }) => (
           <IonItem
             className="[--inner-padding-end:0px] [--padding-start:0px]"

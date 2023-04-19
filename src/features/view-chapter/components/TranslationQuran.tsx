@@ -1,25 +1,44 @@
 /* eslint-disable react/display-name */
 import React from 'react';
 import { Verse } from '../types/VersesByChapter';
-import { useAtomValue } from 'jotai/react';
+import { useAtom, useAtomValue } from 'jotai/react';
 import { settingsAtom } from 'stores/settings';
 import { numToArabic } from 'utils/string';
 import { removeHtmlTags } from 'utils/string';
 import Divider from 'components/Divider';
+import LastReadChip from 'components/LastReadChip';
+import { quranLastReadAtom } from 'stores/quranLastRead';
 
 type Props = {
   verses: Verse[];
   chapterId: number;
 };
 
-const TranslationQuran = React.memo(({ verses }: Props) => {
+const TranslationQuran = React.memo(({ verses, chapterId }: Props) => {
   const { quran: quranSettings } = useAtomValue(settingsAtom);
-  // const [quranLastRead, setQuranLastRead] = useAtom(quranLastReadAtom);
+  const [quranLastRead, setQuranLastRead] = useAtom(quranLastReadAtom);
 
   return (
     <>
-      {verses.map(({ verse_number, text_uthmani, translations }) => (
-        <>
+      {verses.map(({ verse_number, text_uthmani, translations }, indx) => (
+        <div
+          key={indx}
+          className="relative active:text-blue-200"
+          onDoubleClick={() =>
+            setQuranLastRead({
+              ...quranLastRead,
+              translation: {
+                chapterId,
+                verseId: verse_number,
+              },
+            })
+          }
+        >
+          {quranLastRead?.translation?.chapterId === chapterId &&
+            quranLastRead?.translation?.verseId === verse_number && (
+              <LastReadChip className="right-0" />
+            )}
+
           <div
             style={{
               fontSize: quranSettings.fontSize,
@@ -45,7 +64,7 @@ const TranslationQuran = React.memo(({ verses }: Props) => {
           ))}
 
           <Divider className="my-4 opacity-20" />
-        </>
+        </div>
       ))}
     </>
   );

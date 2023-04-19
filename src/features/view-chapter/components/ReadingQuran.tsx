@@ -4,7 +4,6 @@ import { Verse } from '../types/VersesByChapter';
 import { useAtom, useAtomValue } from 'jotai/react';
 import { settingsAtom } from 'stores/settings';
 import LastReadChip from 'components/LastReadChip';
-import { AnimatePresence } from 'framer-motion';
 import { quranLastReadAtom } from 'stores/quranLastRead';
 
 type Props = {
@@ -53,12 +52,10 @@ const ReadingQuran = React.memo(({ verses, chapterId }: Props) => {
           onDoubleClick={() => onDblClickVerse(verse_number)}
           key={indx}
         >
-          <AnimatePresence>
-            {quranLastRead?.reading?.chapterId === chapterId &&
-              quranLastRead?.reading.verseId === verse_number && (
-                <LastReadChip onClose={removeLastReadQuran} key={indx} />
-              )}
-          </AnimatePresence>
+          {quranLastRead?.reading?.chapterId === chapterId &&
+            quranLastRead?.reading.verseId === verse_number && (
+              <LastReadChip onClose={removeLastReadQuran} key={indx} />
+            )}
 
           {words.map(({ text_uthmani, char_type_name }, indx) => (
             <Fragment key={indx}>
