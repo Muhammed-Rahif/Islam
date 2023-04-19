@@ -51,7 +51,7 @@ const TranslationQuran = React.memo(({ verses, chapterId }: Props) => {
             {text_uthmani} ﴿{numToArabic(verse_number)}﴾
           </div>
 
-          {translations.map((translation, indx) => (
+          {translations.map(({ text, resource_name }, indx) => (
             <div
               style={{
                 fontSize: quranSettings.fontSize,
@@ -59,11 +59,15 @@ const TranslationQuran = React.memo(({ verses, chapterId }: Props) => {
               key={indx}
               className="mt-2.5 block leading-[130%]"
             >
-              {removeHtmlTags(translation.text)}
+              {removeHtmlTags(text)}
+
+              <span className="block text-xs opacity-20">
+                - {resource_name}
+              </span>
             </div>
           ))}
 
-          <Divider className="my-4 opacity-20" />
+          <Divider className="my-4 opacity-20">Verse {verse_number}</Divider>
         </div>
       ))}
     </>

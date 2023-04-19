@@ -156,7 +156,7 @@ const ViewChapter: FC = () => {
             </p>
           )}
 
-          {!hasNextPage && <Divider text="The End" />}
+          {!hasNextPage && <Divider>The End</Divider>}
         </div>
 
         <IonInfiniteScroll
