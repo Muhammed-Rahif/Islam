@@ -2,7 +2,11 @@ import {
   IonBackButton,
   IonButtons,
   IonContent,
+  IonFab,
+  IonFabButton,
+  IonFabList,
   IonHeader,
+  IonIcon,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonLabel,
@@ -27,6 +31,12 @@ import { TranslationQuran } from 'features/view-chapter';
 import { useAtomValue } from 'jotai/react';
 import { settingsAtom } from 'stores/settings';
 import Divider from 'components/Divider';
+import {
+  arrowRedoOutline,
+  arrowUndoOutline,
+  arrowUpOutline,
+  swapHorizontal,
+} from 'ionicons/icons';
 
 const ViewChapter: FC = () => {
   const {
@@ -170,12 +180,12 @@ const ViewChapter: FC = () => {
         </IonInfiniteScroll>
       </IonContent>
 
-      {/* <IonFab
+      <IonFab
         slot="fixed"
         horizontal="end"
         vertical="bottom"
         aria-label="floating-action-button"
-        className="opacity-60 active:opacity-100 hover:opacity-100 duration-300 focus:opacity-100"
+        className="opacity-60 duration-300 hover:opacity-100 focus:opacity-100 active:opacity-100"
       >
         <IonFabButton>
           <IonIcon icon={swapHorizontal}></IonIcon>
@@ -203,7 +213,7 @@ const ViewChapter: FC = () => {
             <IonIcon icon={arrowUndoOutline}></IonIcon>
           </IonFabButton>
         </IonFabList>
-      </IonFab> */}
+      </IonFab>
     </IonPage>
   );
 };

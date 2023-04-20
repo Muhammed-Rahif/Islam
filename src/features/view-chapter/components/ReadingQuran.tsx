@@ -45,6 +45,7 @@ const ReadingQuran = React.memo(({ verses, chapterId }: Props) => {
       }}
       lang="ar"
       className="reading-quran relative w-full overflow-x-visible text-justify leading-[220%] after:inline-block after:content-['']"
+      aria-label="reading-quran-container"
     >
       {verses.map(({ words, verse_number }, indx) => (
         <span

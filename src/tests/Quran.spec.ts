@@ -1,5 +1,3 @@
-/* eslint-disable testing-library/no-await-sync-query */
-/* eslint-disable testing-library/prefer-screen-queries */
 import { test, expect } from '@playwright/test';
 import { delay } from 'utils/time';
 
@@ -56,7 +54,7 @@ test('search for "Mulk" should show mulk surah', async ({ page }) => {
 test('scroll down to bottom, surah "Al-Nas" should be visible', async ({
   page,
 }) => {
-  const alNasSurah = page.getByText('An-NasMankind');
+  const alNasSurah = page.getByRole('heading', { name: 'An-Nas', exact: true });
   await delay(1000);
 
   // before scrolling, should not be visible
