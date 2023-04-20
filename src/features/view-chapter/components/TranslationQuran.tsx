@@ -23,7 +23,7 @@ const TranslationQuran = React.memo(({ verses, chapterId }: Props) => {
       {verses.map(({ verse_number, text_uthmani, translations }, indx) => (
         <div
           key={indx}
-          className="relative active:text-blue-200"
+          className="relative"
           onDoubleClick={() =>
             setQuranLastRead({
               ...quranLastRead,

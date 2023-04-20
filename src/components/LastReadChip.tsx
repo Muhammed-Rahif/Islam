@@ -30,7 +30,11 @@ function LastReadChip({ onClose, onClick, className }: Props) {
           className="bg-blue-500 text-white"
         >
           <IonLabel>Last Read</IonLabel>
-          <IonIcon onClick={onClose} icon={closeOutline} />
+          <IonIcon
+            aria-label="last-read-marker-close"
+            onClick={onClose}
+            icon={closeOutline}
+          />
         </IonChip>
       </motion.div>
     </AnimatePresence>

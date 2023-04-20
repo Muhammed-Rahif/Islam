@@ -140,3 +140,37 @@ test('should scroll to top fab button scroll to top', async ({ page }) => {
 
   await expect(readingSegBtn).toBeInViewport();
 });
+
+test('should mark last read when double clicking on a verse', async ({
+  page,
+}) => {
+  await page.goto('http://localhost:8100/quran');
+  await page.getByRole('heading', { name: 'Al-Fatihah' }).click();
+  await page.getByText('مَـٰلِكِ يَوْمِ ٱلدِّينِ ﴿٤﴾').dblclick();
+
+  const lastRead = page.getByRole('button', { name: 'Last Read' });
+  await lastRead.hover(); // last read should be hovered in order to visible to user
+
+  await expect(lastRead).toBeInViewport();
+});
+
+test('should remove the last read marker btn when clicking on close icon in it', async ({
+  page,
+}) => {
+  await page.goto('http://localhost:8100/quran');
+  await page.getByRole('heading', { name: 'Al-Fatihah' }).click();
+  await page.getByText('مَـٰلِكِ يَوْمِ ٱلدِّينِ ﴿٤﴾').dblclick();
+
+  const lastRead = page.getByRole('button', { name: 'Last Read' });
+  await lastRead.hover(); // last read should be hovered in order to visible to user
+
+  await expect(lastRead).toBeInViewport();
+
+  // clicking on the close icon in the last read marker btn
+  await page
+    .getByRole('img', { name: 'last-read-marker-close' })
+    .locator('svg')
+    .click();
+
+  await expect(lastRead).not.toBeInViewport();
+});

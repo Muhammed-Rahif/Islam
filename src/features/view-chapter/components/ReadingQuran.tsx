@@ -50,7 +50,7 @@ const ReadingQuran = React.memo(({ verses, chapterId }: Props) => {
       {verses.map(({ words, verse_number }, indx) => (
         <span
           key={indx}
-          className="relative cursor-pointer active:text-blue-200"
+          className="relative"
           onDoubleClick={() => onDblClickVerse(verse_number)}
         >
           {quranLastRead?.reading?.chapterId === chapterId &&
