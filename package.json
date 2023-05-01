@@ -3,7 +3,7 @@
   "version": "v1.5.0",
   "private": true,
   "dependencies": {
-    "@capacitor/android": "4.7.3",
+    "@capacitor/android": "4.8.0",
     "@capacitor/app": "4.1.1",
     "@capacitor/core": "4.7.3",
     "@capacitor/geolocation": "^4.1.0",
