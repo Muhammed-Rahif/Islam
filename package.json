@@ -118,7 +118,7 @@
     "eslint-plugin-react": "^7.32.2",
     "github-label-sync": "^2.3.1",
     "postcss": "^8.4.23",
-    "prettier": "2.8.7",
+    "prettier": "2.8.8",
     "semantic-release": "^21.0.1",
     "tailwindcss": "^3.3.1"
   },
