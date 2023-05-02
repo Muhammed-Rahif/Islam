@@ -1,20 +1,17 @@
 import { IonItem, IonLabel, IonList, IonRippleEffect } from '@ionic/react';
 import { Timings } from '../types/PrayerTimesResponse';
 import dayjs from 'dayjs';
-import { useMemo } from 'react';
+import { FC } from 'react';
 
 type Props = {
   timings: Timings;
 };
 
-const ListPrayerTimes: React.FC<Props> = ({ timings }) => {
+const ListPrayerTimes: FC<Props> = ({ timings }) => {
   return (
     <IonList className="my-1 min-h-[12rem]">
       {Object.keys(timings).map((prayerName, indx) => {
-        const prayerTime = useMemo(
-          () => dayjs(timings[prayerName as keyof Timings], 'HH:mm'),
-          [prayerName, timings]
-        );
+        const prayerTime = dayjs(timings[prayerName as keyof Timings], 'HH:mm');
 
         return (
           <IonItem
@@ -24,7 +21,7 @@ const ListPrayerTimes: React.FC<Props> = ({ timings }) => {
             <IonRippleEffect type="unbounded" />
             <IonLabel className="font-semibold">{prayerName}</IonLabel>
             <IonLabel
-              className="font-semibold !flex flex-col items-end"
+              className="!flex flex-col items-end font-semibold"
               slot="end"
             >
               {prayerTime.format('h:mm A')}

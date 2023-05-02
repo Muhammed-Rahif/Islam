@@ -1,12 +1,6 @@
-import {
-  IonButton,
-  IonIcon,
-  IonText,
-  IonToast,
-  useIonToast,
-} from '@ionic/react';
+import { IonButton, IonIcon, IonText, useIonToast } from '@ionic/react';
 import { alertCircle, alertCircleOutline } from 'ionicons/icons';
-import { ReactNode, useMemo } from 'react';
+import { useMemo } from 'react';
 
 type Props = {
   error: Error | any;
@@ -52,17 +46,18 @@ function DisplayError({ error, className, toastOnly = false, onRetry }: Props) {
       ],
     });
     return errMsg;
-  }, [error]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error, onRetry]);
 
   return (
     <>
       {!toastOnly && (
         <div
-          className={`w-full h-3/4 flex items-center justify-center flex-col ${className}`}
+          className={`flex h-3/4 w-full flex-col items-center justify-center ${className}`}
         >
           <IonIcon icon={alertCircleOutline} className="scale-[1.75]" />
           <IonText>
-            <p className="my-3 max-w-[66vw] min-w-[4rem] text-center">
+            <p className="my-3 min-w-[4rem] max-w-[66vw] text-center">
               {message}.
             </p>
           </IonText>

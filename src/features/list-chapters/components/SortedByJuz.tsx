@@ -3,14 +3,14 @@ import { Chapter } from '../types/Chapter';
 import { Juz } from '../types/Juz';
 import { ChapterItem } from './ChapterItem';
 import { GroupedVirtuoso } from 'react-virtuoso';
-import { useMemo } from 'react';
+import { FC, useMemo } from 'react';
 
 type Props = {
   juzs?: Juz[];
   chapters?: Chapter[];
 };
 
-const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
+const SortedByJuz: FC<Props> = ({ juzs, chapters }) => {
   // array in array: chapters in juz. Eg: [[chapter-1,chapter-2],[chapter-2,chapter-3]]
   const juzChaptersGroup = useMemo(() => {
     if (!juzs) return null;
@@ -37,14 +37,14 @@ const SortedByJuz: React.FC<Props> = ({ juzs, chapters }) => {
       groupCounts={juzChaptersCount}
       groupContent={(index) => {
         return juzChaptersGroup![index].length > 0 ? (
-          <IonItemDivider className="z-40 relative">
+          <IonItemDivider className="relative z-40">
             <IonLabel>Juz {juzs![index].juz_number}</IonLabel>
           </IonItemDivider>
         ) : (
           <div style={{ height: 0.5 }}></div>
         );
       }}
-      className="w-full h-full"
+      className="h-full w-full"
       itemContent={(indx, groupIndx) => {
         if (!juzs) return;
         if (!chapters) return;

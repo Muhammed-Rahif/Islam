@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/prefer-screen-queries */
 import { test, expect } from '@playwright/test';
 import { delay } from 'utils/time';
 
@@ -70,9 +69,9 @@ test('change type to translation', async ({ page }) => {
     .locator('ion-segment-button')
     .filter({ hasText: 'Translation' })
     .click();
-  const translationTxt = page
-    .locator('ion-text')
-    .filter({ hasText: 'All praise is for Allah—Lord of all worlds' });
+  const translationTxt = page.getByText(
+    'All praise is for Allah—Lord of all worlds,1- Dr. Mustafa Khattab, the Clear Qur'
+  );
   await delay(1000);
   await expect(translationTxt).toBeInViewport();
 });
@@ -104,10 +103,28 @@ test('on Surah 1 (al-Fatihah), "prev chapter" btn should disabled', async ({
 
 test('should scroll to top fab button scroll to top', async ({ page }) => {
   await page.getByRole('heading', { name: 'Al-Baqarah' }).click();
-  await page.getByText('Click here or Scroll down to load more').click();
-  await page.getByText('Click here or Scroll down to load more').click();
-  await page.getByText('Click here or Scroll down to load more').click();
-  await page.getByText('Click here or Scroll down to load more').click();
+  const loadMoreBtn = page.getByText(
+    'Click here or Scroll down to load rest of the chapter'
+  );
+
+  // setting mouse position to center of the screen
+  const { windowHeight, windowWidth } = await page.evaluate(() => ({
+    windowHeight: window.innerHeight,
+    windowWidth: window.innerWidth,
+  }));
+  await page.mouse.move(windowWidth * 0.5, windowHeight * 0.5);
+
+  await loadMoreBtn.click();
+  await loadMoreBtn.click();
+  await loadMoreBtn.click();
+  await loadMoreBtn.click();
+
+  // wait page to load more
+  await delay(1800);
+
+  // scrolling down maximum
+  await page.mouse.wheel(0, 8000);
+
   await page.locator('ion-fab').getByRole('button').click({ force: true });
   await page
     .getByRole('button', { name: 'scroll-to-top-btn' })
@@ -122,4 +139,38 @@ test('should scroll to top fab button scroll to top', async ({ page }) => {
     .filter({ hasText: 'Reading' });
 
   await expect(readingSegBtn).toBeInViewport();
+});
+
+test('should mark last read when double clicking on a verse', async ({
+  page,
+}) => {
+  await page.goto('http://localhost:8100/quran');
+  await page.getByRole('heading', { name: 'Al-Fatihah' }).click();
+  await page.getByText('مَـٰلِكِ يَوْمِ ٱلدِّينِ ﴿٤﴾').dblclick();
+
+  const lastRead = page.getByRole('button', { name: 'Last Read' });
+  await lastRead.hover(); // last read should be hovered in order to visible to user
+
+  await expect(lastRead).toBeInViewport();
+});
+
+test('should remove the last read marker btn when clicking on close icon in it', async ({
+  page,
+}) => {
+  await page.goto('http://localhost:8100/quran');
+  await page.getByRole('heading', { name: 'Al-Fatihah' }).click();
+  await page.getByText('مَـٰلِكِ يَوْمِ ٱلدِّينِ ﴿٤﴾').dblclick();
+
+  const lastRead = page.getByRole('button', { name: 'Last Read' });
+  await lastRead.hover(); // last read should be hovered in order to visible to user
+
+  await expect(lastRead).toBeInViewport();
+
+  // clicking on the close icon in the last read marker btn
+  await page
+    .getByRole('img', { name: 'last-read-marker-close' })
+    .locator('svg')
+    .click();
+
+  await expect(lastRead).not.toBeInViewport();
 });

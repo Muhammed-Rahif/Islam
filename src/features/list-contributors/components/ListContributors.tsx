@@ -7,22 +7,22 @@ import {
   IonSpinner,
   IonText,
 } from '@ionic/react';
-import React from 'react';
+import React, { FC } from 'react';
 // import { FixedSizeList as List } from 'react-window';
 import { useContributors } from '../api/useContributors';
-import { cardOutline, personOutline } from 'ionicons/icons';
+import { personOutline } from 'ionicons/icons';
 import DisplayError from 'components/DisplayError';
 import { contributorsProfileLinks } from '../stores/contributors';
 
 interface ListContributorsProps {}
 
-const ListContributors: React.FC<ListContributorsProps> = ({}) => {
+const ListContributors: FC<ListContributorsProps> = () => {
   const { data, isLoading, error, refetch } = useContributors();
 
   return (
     <>
       <IonText>
-        <h2 className="text-xl mb-2 font-bold">Our Contributors</h2>
+        <h2 className="mb-2 text-xl font-bold">Our Contributors</h2>
         <p className="mb-2">
           We would like to extend our heartfelt thanks to the following
           individuals for their valuable contributions to the Islam Application:
@@ -30,14 +30,14 @@ const ListContributors: React.FC<ListContributorsProps> = ({}) => {
       </IonText>
 
       {isLoading && (
-        <div className="h-24 flex items-center justify-center">
+        <div className="flex h-24 items-center justify-center">
           <IonSpinner />
         </div>
       )}
 
       {!isLoading && error ? (
         <DisplayError
-          className="[direction:ltr] leading-5 h-1/5"
+          className="h-1/5 leading-5 [direction:ltr]"
           error={error}
           onRetry={refetch}
         />
@@ -45,10 +45,10 @@ const ListContributors: React.FC<ListContributorsProps> = ({}) => {
 
       {data
         // filtering users only from contributors to avoid bots
-        ?.filter(({ login, type }) => type == 'User' && !login.endsWith('bot'))
+        ?.filter(({ login, type }) => type === 'User' && !login.endsWith('bot'))
         ?.map(({ login, contributions, html_url, avatar_url }) => (
           <IonItem
-            className="[--padding-start:0px] [--inner-padding-end:0px]"
+            className="[--inner-padding-end:0px] [--padding-start:0px]"
             key={login}
             href={html_url}
             target="_blank"

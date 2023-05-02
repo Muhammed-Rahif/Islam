@@ -9,25 +9,21 @@ import {
   IonHeader,
   IonLabel,
   IonPage,
-  IonRefresher,
-  IonRefresherContent,
   IonSearchbar,
   IonSegment,
   IonSegmentButton,
   IonSpinner,
   IonTitle,
   IonToolbar,
-  useIonToast,
 } from '@ionic/react';
-import { createRef, useState } from 'react';
+import { FC, createRef, useState } from 'react';
 import DisplayError from 'components/DisplayError';
-import { alertCircle } from 'ionicons/icons';
 
-const Quran: React.FC = () => {
+const Quran: FC = () => {
+  // eslint-disable-next-line no-undef
   const contentRef = createRef<HTMLIonContentElement>();
   const [sortBy, setSortBy] = useState<ChapterSortBy>('surah');
   const [search, setSearch] = useState('');
-  const [presentToast] = useIonToast();
 
   const {
     isLoading,
@@ -35,7 +31,7 @@ const Quran: React.FC = () => {
     data: chaptersData,
     refetch: refetchChapters,
   } = useChapersList();
-  const { data: allJuzsData, refetch: refetchAllJuzs } = useAllJuzs();
+  const { data: allJuzsData } = useAllJuzs();
 
   return (
     <IonPage>
@@ -53,7 +49,7 @@ const Quran: React.FC = () => {
 
         <IonToolbar>
           <IonSegment
-            className="w-full max-w-[calc(100%-1.5rem)] mx-auto mb-1.5"
+            className="mx-auto mb-1.5 w-full max-w-[calc(100%-1.5rem)]"
             value={sortBy}
             onIonChange={(e) => setSortBy(e.detail.value as ChapterSortBy)}
           >
@@ -76,7 +72,7 @@ const Quran: React.FC = () => {
         scrollY={false}
       >
         {isLoading && (
-          <div className="w-full h-3/4 grid place-items-center">
+          <div className="grid h-3/4 w-full place-items-center">
             <IonSpinner />
           </div>
         )}

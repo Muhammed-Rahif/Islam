@@ -4,7 +4,6 @@ import {
   IonContent,
   IonHeader,
   IonItem,
-  IonItemDivider,
   IonLabel,
   IonPage,
   IonText,
@@ -14,8 +13,10 @@ import {
 import { ListContributors } from 'features/list-contributors';
 import packageJson from '../../package.json';
 import { ListStargazers } from 'features/list-stargazers';
+import Divider from 'components/Divider';
+import { FC } from 'react';
 
-const About: React.FC = () => {
+const About: FC = () => {
   return (
     <IonPage>
       <IonHeader translucent>
@@ -37,21 +38,21 @@ const About: React.FC = () => {
 
           <p className="mt-4">
             The Islam Application is a mobile app that provides Muslims with
-            easy access to the Quran, Sunnah, and Dhikrs. Whether you're a
+            easy access to the Quran, Sunnah, and Dhikrs. Whether you&apos;re a
             seasoned scholar or a newcomer to the faith, this app is designed to
             help you deepen your understanding of Islam and improve your
             practice.
             <br />
             <br />
             Built on the Ionic iOS theme, the app offers a user-friendly
-            interface that's easy to navigate. Users can choose between dark and
-            white modes to suit their preferences.
+            interface that&apos;s easy to navigate. Users can choose between
+            dark and white modes to suit their preferences.
             <br />
             <br />
             One of the unique features of the Islam Application is that it
             provides an opportunity for its contributors to earn sadaqah
             jariyah. By contributing to the development of the app, you can earn
-            ongoing charity that continues to benefit you even after you've
+            ongoing charity that continues to benefit you even after you&apos;ve
             passed away.
             <br />
             <br />
@@ -62,17 +63,17 @@ const About: React.FC = () => {
           </p>
         </IonText>
 
-        <hr className="mt-3 mb-5  opacity-20" />
+        <Divider className="my-3 opacity-20" />
 
         <ListContributors />
-        <hr className="opacity-20 my-4" />
+        <Divider className="my-3 opacity-20" />
         <ListStargazers />
 
         <IonItem
           href={`https://github.com/Muhammed-Rahif/Islam/releases/tag/${packageJson.version}`}
           target="_blank"
           lines="none"
-          className="[--padding-start:0px] opacity-40 [--inner-padding-end:0px] cursor-pointer duration-300"
+          className="cursor-pointer opacity-40 duration-300 [--inner-padding-end:0px] [--padding-start:0px]"
         >
           <IonLabel>App version</IonLabel>
           <IonLabel slot="end">{packageJson.version}</IonLabel>

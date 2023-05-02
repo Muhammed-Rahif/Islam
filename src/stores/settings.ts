@@ -47,6 +47,7 @@ export const availableSettings = {
   quran: {
     fontSize: ['75%', '100%', '125%', '150%', '175%', '200%'],
     fontFamily: [
+      // 'Uthmanic Script',
       'Me Quran',
       'Al Qalam',
       'Noorehira',
@@ -58,14 +59,12 @@ export const availableSettings = {
       'Scheherazade',
       'Saleem',
       'Amiri',
-      'Amiri Quran',
       'Aref Ruqaa',
       'Katibeh',
       'Lateef',
       'Mirza',
       'Noto Naskh Arabic',
       'Rakkas',
-      'Reem Kufi',
     ],
   },
   prayerTimes: {

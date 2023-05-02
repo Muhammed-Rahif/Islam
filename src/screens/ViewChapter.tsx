@@ -7,6 +7,8 @@ import {
   IonFabList,
   IonHeader,
   IonIcon,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonLabel,
   IonPage,
   IonSegment,
@@ -16,20 +18,31 @@ import {
   IonToolbar,
   useIonRouter,
 } from '@ionic/react';
-import { createRef, useMemo, useState } from 'react';
+import React, { FC, createRef, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useChapter } from 'features/view-chapter';
-import { ReadingContent } from 'features/view-chapter';
-import { TranslationContent } from 'features/view-chapter';
+import {
+  ReadingQuran,
+  useChapter,
+  useChapterVerses,
+} from 'features/view-chapter';
+import DisplayError from 'components/DisplayError';
+import { BismiVerse } from 'components/BismiVerse';
+import { TranslationQuran } from 'features/view-chapter';
+import { useAtomValue } from 'jotai/react';
+import { settingsAtom } from 'stores/settings';
+import Divider from 'components/Divider';
 import {
   arrowRedoOutline,
   arrowUndoOutline,
   arrowUpOutline,
   swapHorizontal,
 } from 'ionicons/icons';
-import DisplayError from 'components/DisplayError';
 
-const ViewChapter: React.FC = () => {
+const ViewChapter: FC = () => {
+  const {
+    quran: { translations },
+  } = useAtomValue(settingsAtom);
+  // eslint-disable-next-line no-undef
   const contentRef = createRef<HTMLIonContentElement>();
   const { chapterNo } = useParams<{
     chapterNo: string;
@@ -43,23 +56,38 @@ const ViewChapter: React.FC = () => {
   } = useChapter({
     chapterId: parseInt(chapterNo),
   });
+  const {
+    data: chapterVersesData,
+    isLoading: isVersesLoading,
+    error: versesError,
+    fetchNextPage,
+    hasNextPage,
+  } = useChapterVerses({
+    chapterId: parseInt(chapterNo),
+    translations: translations.map(({ id }) => id),
+  });
 
   const {
     routeInfo: { search },
   } = useIonRouter();
 
-  const { type: typeParam } = useMemo(() => {
+  const { mode: modeParam } = useMemo(() => {
     const query = new URLSearchParams(search);
-    let type = query.get('type');
+    let mode = query.get('mode');
 
-    // setting type to 'reading' when there is no 'type' param or 'type' param is other than 'translation' or 'reading'
-    if (!type || (type !== 'reading' && type !== 'translation'))
-      type = 'reading';
+    // setting mode to 'reading' when there is no 'mode' param or 'mode' param is other than 'translation' or 'reading'
+    if (!mode || (mode !== 'reading' && mode !== 'translation'))
+      mode = 'reading';
 
-    return { type };
+    return { mode };
   }, [search]);
 
-  const [type, setType] = useState(typeParam);
+  const [mode, setMode] = useState(modeParam);
+
+  const chapterVerses = useMemo(
+    () => chapterVersesData?.pages.map(({ verses }) => verses).flat() ?? [],
+    [chapterVersesData]
+  );
 
   return (
     <IonPage>
@@ -77,9 +105,9 @@ const ViewChapter: React.FC = () => {
 
         <IonToolbar>
           <IonSegment
-            className="w-full max-w-[calc(100%-1.5rem)] mx-auto mb-1.5"
-            value={type}
-            onIonChange={(e) => setType(e.detail.value!)}
+            className="mx-auto mb-1.5 w-full max-w-[calc(100%-1.5rem)]"
+            value={mode}
+            onIonChange={(e) => setMode(e.detail.value!)}
           >
             <IonSegmentButton value="translation">
               <IonLabel>Translation</IonLabel>
@@ -91,42 +119,65 @@ const ViewChapter: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent className="ion-padding" ref={contentRef} fullscreen>
+      <IonContent
+        scrollX={false}
+        className="ion-padding"
+        ref={contentRef}
+        fullscreen
+      >
         {/* when error appears */}
-        {chapterDataError ? (
+        {chapterDataError || versesError ? (
           <DisplayError
             className="h-full"
-            error={chapterDataError}
+            error={chapterDataError ?? versesError}
             onRetry={refetch}
           />
         ) : null}
 
         {/* when api is loading */}
-        {isChapterLoading && (
-          <div className="w-full h-full grid place-items-center">
+        {(isChapterLoading || isVersesLoading) && (
+          <div className="grid h-full w-full place-items-center">
             <IonSpinner />
           </div>
         )}
 
-        {type === 'translation' ? (
-          <TranslationContent bismiPre={chapterData?.chapter.bismillah_pre} />
-        ) : (
-          <>
-            {/* 
-              only render if the 'pages.start' data is availiable, 
-              because this required in child component to fetch data.
-            */}
-            {chapterData?.chapter.pages.length && (
-              <ReadingContent
-                bismiPre={chapterData?.chapter.bismillah_pre}
-                pages={{
-                  start: chapterData.chapter.pages[0],
-                  end: chapterData.chapter.pages[1],
-                }}
-              />
-            )}
-          </>
-        )}
+        <div className="container mx-auto overflow-x-visible text-base">
+          {!(isChapterLoading || isVersesLoading) &&
+            chapterData?.chapter.bismillah_pre && <BismiVerse />}
+          {mode === 'translation' ? (
+            <TranslationQuran
+              verses={chapterVerses}
+              chapterId={parseInt(chapterNo)}
+            />
+          ) : (
+            <ReadingQuran
+              chapterId={parseInt(chapterNo)}
+              verses={chapterVerses}
+            />
+          )}
+
+          {hasNextPage && (
+            <p
+              role="button"
+              onClick={async () => await fetchNextPage()}
+              className="my-3.5 cursor-pointer text-center text-xs opacity-20 duration-300 [font-family:var(--ion-font-family)] active:scale-95"
+            >
+              Click here or Scroll down to load rest of the chapter
+            </p>
+          )}
+
+          {!hasNextPage && <Divider>The End</Divider>}
+        </div>
+
+        <IonInfiniteScroll
+          disabled={!hasNextPage}
+          onIonInfinite={async (ev) => {
+            await fetchNextPage();
+            ev.target.complete();
+          }}
+        >
+          <IonInfiniteScrollContent />
+        </IonInfiniteScroll>
       </IonContent>
 
       <IonFab
@@ -134,7 +185,7 @@ const ViewChapter: React.FC = () => {
         horizontal="end"
         vertical="bottom"
         aria-label="floating-action-button"
-        className="opacity-60 active:opacity-100 hover:opacity-100 duration-300 focus:opacity-100"
+        className="opacity-60 duration-300 hover:opacity-100 focus:opacity-100 active:opacity-100"
       >
         <IonFabButton>
           <IonIcon icon={swapHorizontal}></IonIcon>

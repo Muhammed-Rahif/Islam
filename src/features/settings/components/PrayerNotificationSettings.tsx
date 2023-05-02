@@ -4,14 +4,13 @@ import {
   IonSelect,
   IonSelectOption,
   IonText,
-  IonToggle,
 } from '@ionic/react';
 import { useAtom } from 'jotai/react';
-import { useCallback, useMemo } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 import { availableSettings, settingsAtom, SettingsType } from 'stores/settings';
 import { usePrayerTimeMethods } from '../api/usePrayerTimeMethods';
 
-const PrayerNotificationSettings: React.FC = () => {
+const PrayerNotificationSettings: FC = () => {
   const [settings, setSettings] = useAtom(settingsAtom);
 
   const { data } = usePrayerTimeMethods();
@@ -36,9 +35,9 @@ const PrayerNotificationSettings: React.FC = () => {
 
   return (
     <IonItemGroup className="pb-3">
-      <h2 className="text-xl font-bold mb-2">Prayer Times</h2>
+      <h2 className="mb-2 text-xl font-bold">Prayer Times</h2>
 
-      <div className="flex justify-between items-center h-9">
+      <div className="flex h-9 items-center justify-between">
         <IonText>
           <h2 className="text-base">Method</h2>
         </IonText>
@@ -47,7 +46,7 @@ const PrayerNotificationSettings: React.FC = () => {
           placeholder="Select timing method"
           aria-label="Select timing method"
           title="Select timing method"
-          className="py-0 capitalize w-min max-w-[50vw]"
+          className="w-min max-w-[50vw] py-0 capitalize"
           value={settings?.prayerTimes?.methodId}
           defaultValue={4}
           onIonChange={(e) =>
@@ -70,7 +69,7 @@ const PrayerNotificationSettings: React.FC = () => {
         </IonSelect>
       </div>
 
-      <div className="flex justify-between items-center h-9">
+      <div className="flex h-9 items-center justify-between">
         <IonText>
           <h2 className="text-base">Notifications</h2>
         </IonText>
@@ -79,7 +78,7 @@ const PrayerNotificationSettings: React.FC = () => {
           placeholder="Select notifications to receive"
           aria-label="Select notifications to receive"
           title="Select notifications to receive"
-          className="py-0 capitalize w-min max-w-[50vw]"
+          className="w-min max-w-[50vw] py-0 capitalize"
           value={settings?.prayerTimes?.notifications}
           onIonChange={(e) =>
             updatePrayerTimeSettings({
@@ -107,7 +106,7 @@ const PrayerNotificationSettings: React.FC = () => {
         </IonSelect>
       </div>
 
-      <IonItemDivider className="min-h-[2px] my-2" />
+      <IonItemDivider className="my-2 min-h-[2px]" />
     </IonItemGroup>
   );
 };

@@ -1,6 +1,5 @@
 import { quranApiInstance } from 'config/api';
 import { useQuery } from '@tanstack/react-query';
-import { Translations } from '../types/Translations';
 import { PrayerTimeMethodsResponse } from '../types/PrayerMethodsResponse';
 
 // interface Props {}

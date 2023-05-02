@@ -1,5 +1,5 @@
-import { IonItemGroup, IonSpinner, useIonViewDidEnter } from '@ionic/react';
-import React, { useMemo, useRef, useState } from 'react';
+import { IonItemGroup, useIonViewDidEnter } from '@ionic/react';
+import React, { FC, useMemo, useRef, useState } from 'react';
 import { ChapterSortBy } from '../types/Chapter';
 import { ChapterItem } from './ChapterItem';
 import { SortedByJuz } from './SortedByJuz';
@@ -14,12 +14,13 @@ interface ListChaptersProps {
   juzs: Juz[];
 }
 
-const ListChapters: React.FC<ListChaptersProps> = ({
+const ListChapters: FC<ListChaptersProps> = ({
   sortBy = 'surah',
   search,
   chapters,
   juzs,
 }) => {
+  // eslint-disable-next-line no-undef
   const contentRef = useRef<HTMLIonItemGroupElement>(null);
   const [chapterListHeight, setChapterListHeight] = useState(
     window.innerHeight

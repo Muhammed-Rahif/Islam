@@ -3,11 +3,6 @@ import { PrayerTimesResponse } from '../types/PrayerTimesResponse';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { getGeoLocation } from 'utils/geoLocation';
-import { LocalNotifications } from '@capacitor/local-notifications';
-import {
-  generatePrayerNotificationContent,
-  updatePrayerNotifications,
-} from '../utils/prayerTimes';
 import { IntRange } from 'types/Int';
 import { ObligatoryPrayers } from 'types/Prayers';
 

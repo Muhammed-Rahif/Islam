@@ -1,5 +1,9 @@
-import { IonItem, IonLabel, IonRippleEffect } from '@ionic/react';
-import React from 'react';
+/* eslint-disable react/display-name */
+import { IonIcon, IonItem, IonLabel } from '@ionic/react';
+import { playOutline } from 'ionicons/icons';
+import { useAtomValue } from 'jotai/react';
+import React, { FC } from 'react';
+import { quranLastReadAtom } from 'stores/quranLastRead';
 
 type ChapterItemProps = {
   id: number;
@@ -9,21 +13,33 @@ type ChapterItemProps = {
   style?: React.CSSProperties;
 };
 
-const ChapterItem: React.FC<ChapterItemProps> = React.memo(
-  ({ id, name, translatedName, versesCount, style }) => {
+const ChapterItem: FC<ChapterItemProps> = React.memo(
+  ({ id, name, translatedName, versesCount, style }: ChapterItemProps) => {
+    const lastReadQuran = useAtomValue(quranLastReadAtom);
+
     return (
       <IonItem
         key={id}
-        className="flex items-center w-full [--padding-start:0px] [--inner-padding-end:0px] -z-0"
+        className="-z-0 flex w-full items-center [--inner-padding-end:0px] [--padding-start:0px]"
         button
-        routerLink={`/quran/${id}?type=reading`}
+        routerLink={`/quran/${id}?mode=reading`}
         style={style}
       >
         <h1 className="my-2 ml-1 mr-4">
           <b>{id}</b>
         </h1>
         <IonLabel>
-          <h2>{name}</h2>
+          <h2>
+            {name}{' '}
+            {lastReadQuran?.reading?.chapterId === id && (
+              <IonIcon
+                className="rotate-180"
+                slot="icon-only"
+                color="primary"
+                icon={playOutline}
+              />
+            )}
+          </h2>
           <p>{translatedName}</p>
         </IonLabel>
         <IonLabel slot="end" className="m-0">

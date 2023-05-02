@@ -1,14 +1,11 @@
 import {
   IonContent,
   IonHeader,
-  IonIcon,
   IonItem,
   IonItemGroup,
   IonLabel,
   IonList,
   IonPage,
-  IonRippleEffect,
-  IonText,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
@@ -17,10 +14,10 @@ import {
   GeneralSettings,
   PrayerNotificationSettings,
 } from 'features/settings';
-import { chevronForwardOutline } from 'ionicons/icons';
 import packageJson from '../../package.json';
+import { FC } from 'react';
 
-const Settings: React.FC = () => {
+const Settings: FC = () => {
   return (
     <IonPage>
       <IonHeader translucent>
@@ -39,7 +36,7 @@ const Settings: React.FC = () => {
               href="https://t.me/islam_app_community"
               target="_blank"
               lines="none"
-              className="[--padding-start:0px] [--inner-padding-end:0px] cursor-pointer duration-300"
+              className="cursor-pointer duration-300 [--inner-padding-end:0px] [--padding-start:0px]"
             >
               <IonLabel>Report a problem</IonLabel>
             </IonItem>
@@ -47,7 +44,7 @@ const Settings: React.FC = () => {
             <IonItem
               routerLink="/about"
               lines="none"
-              className="[--padding-start:0px] [--inner-padding-end:0px] cursor-pointer duration-300"
+              className="cursor-pointer duration-300 [--inner-padding-end:0px] [--padding-start:0px]"
             >
               <IonLabel>
                 <b>About</b>
@@ -58,7 +55,7 @@ const Settings: React.FC = () => {
               href={`https://github.com/Muhammed-Rahif/Islam/releases/tag/${packageJson.version}`}
               target="_blank"
               lines="none"
-              className="[--padding-start:0px] [--inner-padding-end:0px] cursor-pointer duration-300"
+              className="cursor-pointer duration-300 [--inner-padding-end:0px] [--padding-start:0px]"
             >
               <IonLabel>App version</IonLabel>
               <IonLabel slot="end">{packageJson.version}</IonLabel>

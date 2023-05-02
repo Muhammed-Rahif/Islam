@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -13,8 +13,6 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import {
   bookOutline,
-  helpOutline,
-  personOutline,
   settingsOutline,
   timeOutline,
   // chatbubble, happy
@@ -96,7 +94,7 @@ const routes: {
 
 const queryClient = new QueryClient();
 
-const App: React.FC = () => {
+const App: FC = () => {
   const settings = useAtomValue(settingsAtom);
 
   useEffect(() => {
@@ -115,7 +113,7 @@ const App: React.FC = () => {
       <IonApp>
         <IonReactRouter>
           <IonTabs>
-            <IonRouterOutlet animated>
+            <IonRouterOutlet>
               <Route exact path="/prayer-times" component={PrayerTimesScreen} />
               <Route exact path="/quran" component={QuranScreen} />
               <Route
@@ -129,10 +127,7 @@ const App: React.FC = () => {
               <Redirect exact path="/" to="/quran" />
             </IonRouterOutlet>
 
-            <IonTabBar
-              slot="bottom"
-              className="py-1.5 border-t-[.5px] border-[var(--border-color)]"
-            >
+            <IonTabBar slot="bottom" className="py-1.5">
               {routes.map(({ icon, name, path }, indx) => (
                 <IonTabButton tab={name} href={path} key={name}>
                   <IonIcon aria-hidden="true" icon={icon} />

@@ -9,13 +9,13 @@ import {
 } from '@ionic/react';
 import AppTypeahead from 'components/AppTypeahead';
 import { useAtom } from 'jotai/react';
-import { useCallback, useMemo, useRef } from 'react';
+import { FC, useCallback, useMemo, useRef } from 'react';
 import { availableSettings, settingsAtom, SettingsType } from 'stores/settings';
 import { truncate } from 'utils/string';
 import { useTranslations } from '../api/useTranslations';
 import { Translations } from '../types/Translations';
 
-const QuranSettings: React.FC = () => {
+const QuranSettings: FC = () => {
   const [settings, setSettings] = useAtom(settingsAtom);
 
   const { data: translationsData, isLoading: isTranslationsLoading } =
@@ -45,6 +45,7 @@ const QuranSettings: React.FC = () => {
   );
 
   // the extra fullpage modal that is used to select translations
+  // eslint-disable-next-line no-undef
   const translationsModal = useRef<HTMLIonModalElement>(null);
   const onTranslationsChange = useCallback(
     (items: string[]) => {
@@ -89,10 +90,10 @@ const QuranSettings: React.FC = () => {
   return (
     <IonItemGroup className="pb-3">
       {/* Title */}
-      <h2 className="text-xl font-bold mb-2">Quran</h2>
+      <h2 className="mb-2 text-xl font-bold">Quran</h2>
 
       {/* Select font size */}
-      <div className="flex justify-between items-center h-9">
+      <div className="flex h-9 items-center justify-between">
         <IonText>
           <h2 className="text-base">Font size</h2>
         </IonText>
@@ -101,7 +102,7 @@ const QuranSettings: React.FC = () => {
           placeholder="Select font size"
           aria-label="Select font size"
           title="Select font size"
-          className="py-0 w-min"
+          className="w-min py-0"
           value={settings?.quran.fontSize}
           onIonChange={(e) => {
             updateQuranSettings({
@@ -118,7 +119,7 @@ const QuranSettings: React.FC = () => {
       </div>
 
       {/* Select font family */}
-      <div className="flex justify-between items-center h-9">
+      <div className="flex h-9 items-center justify-between">
         <IonText>
           <h2 className="text-base">Font family</h2>
         </IonText>
@@ -127,7 +128,7 @@ const QuranSettings: React.FC = () => {
           placeholder="Select font family"
           aria-label="Select font family"
           title="Select font family"
-          className="py-0 capitalize w-min"
+          className="w-min py-0 capitalize"
           value={settings?.quran.fontFamily}
           onIonChange={(e) => {
             updateQuranSettings({
@@ -147,7 +148,7 @@ const QuranSettings: React.FC = () => {
       </div>
 
       {/* Select Translations */}
-      <div className="flex justify-between items-center h-9">
+      <div className="flex h-9 items-center justify-between">
         <IonText>
           <h2 className="text-base">Translations</h2>
         </IonText>
@@ -172,7 +173,7 @@ const QuranSettings: React.FC = () => {
           />
         </IonModal>
       </div>
-      <IonItemDivider className="min-h-[2px] my-2" />
+      <IonItemDivider className="my-2 min-h-[2px]" />
     </IonItemGroup>
   );
 };
