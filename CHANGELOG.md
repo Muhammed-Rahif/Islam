@@ -1,3 +1,21 @@
+# [1.6.0-beta.1](https://github.com/Muhammed-Rahif/Islam/compare/v1.5.0...v1.6.0-beta.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* perfomence improve ([cd946d5](https://github.com/Muhammed-Rahif/Islam/commit/cd946d5c580a4cfc5c99edb4e85062ae1c59fa21))
+* **quran:** add translation resource name ([74a3449](https://github.com/Muhammed-Rahif/Islam/commit/74a34493e1703d309a2152ad7c2e717682ca14fd))
+* **ui:** about screen update ([cb0d82b](https://github.com/Muhammed-Rahif/Islam/commit/cb0d82b788bd62ff39701662321e6e9c052abfef))
+
+
+### Features
+
+* **quran:** add load more btn on view chapter ([5cad9c1](https://github.com/Muhammed-Rahif/Islam/commit/5cad9c1d5d3d5d8ec104d0ab1f68734638365d46))
+* **quran:** implement last read marker on quran reading ([6270dbf](https://github.com/Muhammed-Rahif/Islam/commit/6270dbfe1afabc037fe8f4ceb00d3b88719336e3))
+* **quran:** last read marker for translation quran ([c3a6b30](https://github.com/Muhammed-Rahif/Islam/commit/c3a6b3013d1973b4124dc61acadc191f630b2240))
+* **quran:** quran reading content rebuilt ([612aa96](https://github.com/Muhammed-Rahif/Islam/commit/612aa96b35d2a2aa18de6ca63847da3c8e167e5f))
+* **quran:** translation quran content ([4420341](https://github.com/Muhammed-Rahif/Islam/commit/44203413ccd9c6f7d199c21e2b7d8e5d7648b360))
+
 # [1.5.0](https://github.com/Muhammed-Rahif/Islam/compare/v1.4.0...v1.5.0) (2023-04-16)
 
 
