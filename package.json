@@ -98,7 +98,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.21.3",
+    "@babel/eslint-parser": "^7.22.5",
     "@capacitor/assets": "^2.0.4",
     "@capacitor/cli": "4.7.3",
     "@playwright/test": "^1.33.0",
