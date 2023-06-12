@@ -1403,6 +1403,15 @@
     debug "^4.0.0"
     tslib "^2.0.1"
 
+"@ionic/core@7.0.12":
+  version "7.0.12"
+  resolved "https://registry.yarnpkg.com/@ionic/core/-/core-7.0.12.tgz#7f4403eddcea37e5274a3972ffa1ca123d1febaf"
+  integrity sha512-DCBrxKQ59oghBxZOWqbJihedJ9rkVpi4ka+VGclOtndvz8PbEOsPArVUDYPGI7md3SVZ0qaVelbSwqQbyHRY7g==
+  dependencies:
+    "@stencil/core" "^3.3.1"
+    ionicons "^7.1.0"
+    tslib "^2.1.0"
+
 "@ionic/core@7.0.2":
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/@ionic/core/-/core-7.0.2.tgz#743cdf8835ca461426f1ac350cdc9f73e7b24fac"
@@ -1420,12 +1429,21 @@
     "@ionic/react" "7.0.2"
     tslib "*"
 
-"@ionic/react@7.0.2", "@ionic/react@^7.0.0":
+"@ionic/react@7.0.2":
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/@ionic/react/-/react-7.0.2.tgz#af19fb5c4ec1602047850330b49ca966ac94a308"
   integrity sha512-5DflV9+Ipp6qaDU7DYfvtivIPdcIQMcNLX2PcqrvOzRc+1Y9oJ5h4P7DLxWpquQmYgSMaG3LCux0Fj5CNYQyag==
   dependencies:
     "@ionic/core" "7.0.2"
+    ionicons "^7.0.0"
+    tslib "*"
+
+"@ionic/react@^7.0.12":
+  version "7.0.12"
+  resolved "https://registry.yarnpkg.com/@ionic/react/-/react-7.0.12.tgz#0176e261ff0b9a2f4b5ffe11db392edbe2d21406"
+  integrity sha512-jTGe+21ORplL3WO0KYnDrLQPaV4LuJFhUd2GMnXVOKaRGN1VAbQPmHL8LiAgdi0j98B38rD+B5sw7d2calxRZw==
+  dependencies:
+    "@ionic/core" "7.0.12"
     ionicons "^7.0.0"
     tslib "*"
 
@@ -2253,6 +2271,11 @@
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-3.2.1.tgz#50bd07f478e04a5527a35aee61deff772b056860"
   integrity sha512-Ybm4NteQBScLq3H0JML/uqo4nWjNpZw1HAAURtR5LlRm7ptzNKO5S8EnHp3m05/uyTzeh9yLpUFHY7bxGNdYLg==
+
+"@stencil/core@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-3.3.1.tgz#1c4afbdfad15e29cd122ecf960a6ee189fd1fadb"
+  integrity sha512-I+660Oe9OMLiU+thjV1GgcI27dcvrSpF3xisHWBOU/4mzRtho3YW0cI8lSjcqyB1KirGTA6QeQ0Xif5UHqn8hw==
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
@@ -5845,14 +5868,7 @@ into-stream@^6.0.0:
     from2 "^2.3.0"
     p-is-promise "^3.0.0"
 
-ionicons@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-7.0.0.tgz#7597e4954a00facac928809cde162d80d3d9427d"
-  integrity sha512-5G9gBxaUfJm0aAr/Kg5Eb/d7d+pMC65yiHjlkGATLrHSZgAzlc9l6ho0dCSdfq3wGef2QiZeNsvyChPVggfXwQ==
-  dependencies:
-    "@stencil/core" "^2.18.0"
-
-ionicons@^7.1.0:
+ionicons@^7.0.0, ionicons@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-7.1.0.tgz#25daa91345acedcb0f4fb7da670f5aff2e1f266a"
   integrity sha512-iE4GuEdEHARJpp0sWL7WJZCzNCf5VxpNRhAjW0fLnZPnNL5qZOJUcfup2Z2Ty7Jk8Q5hacrHfGEB1lCwOdXqGg==
